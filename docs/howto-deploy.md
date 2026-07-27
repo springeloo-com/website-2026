@@ -11,6 +11,12 @@ This site is a static Astro build. GitHub Actions builds it and publishes the
 - **GitHub Pages available for this repo**:
   - Public repos: Pages works on Free
   - Private repos: org needs a paid plan (Team/Enterprise) that includes Pages
+- **Decap CMS (editors)**: after Pages is live, admin is at `{site}/admin/`.
+  Production login needs a GitHub OAuth App + OAuth proxy and
+  `backend.base_url` in `public/admin/config.yml` — see
+  [howto-oauth-proxy.md](howto-oauth-proxy.md) and
+  [howto-decap.md](howto-decap.md). Content still only goes live when a
+  maintainer merges to `main`.
 
 ## 1. Enable GitHub Pages
 

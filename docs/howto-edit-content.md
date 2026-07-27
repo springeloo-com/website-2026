@@ -1,16 +1,20 @@
 # How to change images and text
 
 Most marketing copy and images for the **home page**, plus shared nav labels and
-contact details, are edited via **CloudCannon** (or by editing YAML content
-files in Git). Layout, routes, and other pages still live in Astro.
+contact details, are edited via **Decap CMS** (or by editing YAML content files
+in Git). Layout, routes, and other pages still live in Astro.
 
-## Preferred: CloudCannon
+## Preferred: Decap CMS
 
-See **[howto-cloudcannon.md](howto-cloudcannon.md)** for the full workflow:
+See **[howto-decap.md](howto-decap.md)** for the full workflow:
 
-- Editors save on a **content branch** → pull request → **maintainer merges** to
-  `main` → GitHub Pages deploys.
-- Saving in CloudCannon does **not** update production by itself.
+- Editors save with **editorial workflow** → pull request → **maintainer
+  merges** to `main` → GitHub Pages deploys.
+- Saving in Decap does **not** update production by itself.
+- Open admin at `/admin/` (project site:
+  `https://springeloo-com.github.io/website-2026/admin/`).
+
+CloudCannon is no longer part of the editorial path.
 
 ### What editors can change
 
@@ -21,7 +25,7 @@ See **[howto-cloudcannon.md](howto-cloudcannon.md)** for the full workflow:
 
 CTA and nav **URLs** are developer-only. Card count is fixed at three.
 
-## Local / Git edits (without CloudCannon)
+## Local / Git edits (without Decap)
 
 ```bash
 npm install
@@ -52,21 +56,22 @@ Commit on a feature/content branch; open a PR to `main` for review.
 | Non-home page copy / structure | `src/pages/*.astro` (except Kontakt aside contact from globals) |
 | Components / layout | `src/components/*.astro` |
 | Colors, fonts, spacing | `src/styles/tokens.css` |
-| CloudCannon field config | `cloudcannon.config.yml` |
+| Decap field config | `public/admin/config.yml` |
 
 ### Pages map
 
 | URL | File |
-|-----|------|
+|------|------|
 | `/` | `src/pages/index.astro` + `src/content/pages/home.yaml` |
 | `/projektunterstuetzung` | `src/pages/projektunterstuetzung.astro` |
 | `/produkte` | `src/pages/produkte.astro` |
 | `/kontakt` | `src/pages/kontakt.astro` (+ globals contact) |
 | `/springeloo` | `src/pages/springeloo.astro` |
+| `/admin/` | `public/admin/` (Decap CMS; editors only) |
 
 ## Images
 
-- **Home hero / card images (editable):** upload via CloudCannon to
+- **Home hero / card images (editable):** upload via Decap to
   `public/uploads/`, or place files there and set `src` / `alt` in YAML.
 - **Other pages:** import from `src/assets/images/` in the page Astro file, or
   use `public/` for fixed URLs.
@@ -94,7 +99,8 @@ site CSS (`.rich-text`). Do not paste raw HTML/CSS meant to restyle the layout.
 
 | Mistake | Fix |
 |---------|-----|
-| Expect CloudCannon save = live site | Wait for maintainer merge + deploy |
+| Expect Decap save = live site | Wait for maintainer merge + deploy |
 | Edit only `dist/` | Edit content YAML / `src/` only |
-| Try to add a fourth Leistungen card | Not allowed in v1 — ask a developer |
+| Try to add a fourth Leistungen card | Not allowed — ask a developer |
 | Change nav href in YAML without review | Hrefs are developer-controlled |
+| Look for CloudCannon | Use Decap — see [howto-decap.md](howto-decap.md) |
