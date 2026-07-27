@@ -1,0 +1,83 @@
+---
+import '../styles/global.css';
+import '@fontsource/figtree/400.css';
+import '@fontsource/figtree/500.css';
+import '@fontsource/figtree/600.css';
+import '@fontsource/figtree/700.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  ogImage?: string;
+  theme?: 'light' | 'dark' | 'cream';
+}
+
+const {
+  title,
+  description,
+  canonicalPath = '/',
+  ogImage = '/og-default.jpg',
+  theme = 'cream',
+} = Astro.props;
+
+const site = Astro.site ?? new URL('https://springeloo.github.io');
+const base = import.meta.env.BASE_URL;
+const normalize = (path: string) => {
+  const clean = path.startsWith('/') ? path : `/${path}`;
+  if (base === '/') return clean === '/' ? '/' : clean.replace(/\/$/, '') || '/';
+  const joined = `${base.replace(/\/$/, '')}${clean === '/' ? '/' : clean}`;
+  return joined.replace(/\/{2,}/g, '/');
+};
+const canonical = new URL(normalize(canonicalPath), site).href;
+const ogImageUrl = new URL(normalize(ogImage), site).href;
+const fullTitle = title.includes('springeloo') ? title : `${title} · springeloo`;
+---
+
+<!doctype html>
+<html lang="de" data-theme={theme}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
+    <title>{fullTitle}</title>
+  </head>
+  <body class={`theme-${theme}`}>
+    <a class="skip-link" href="#main">Zum Inhalt springen</a>
+    <div class="page-shell">
+      <slot name="header" />
+      <main id="main">
+        <slot />
+      </main>
+      <slot name="footer" />
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  .theme-dark {
+    background: var(--color-navy);
+    color: var(--color-white);
+  }
+
+  .theme-light {
+    background: var(--color-white);
+    color: var(--color-ink);
+  }
+
+  .theme-cream {
+    background: var(--color-cream);
+    color: var(--color-ink);
+  }
+</style>

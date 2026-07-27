@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ContentCard from '../components/ContentCard.astro';
+import CTAButton from '../components/CTAButton.astro';
+import hero from '../assets/images/hero-office-2.jpg';
+
+const title = 'Projektunterstützung';
+const description =
+  'Inspiration schafft Ideen, Unternehmenskultur treibt Innovation — Projektunterstützung by springeloo.';
+---
+
+<BaseLayout title={title} description={description} canonicalPath="/projektunterstuetzung" ogImage={hero.src}>
+  <SiteHeader slot="header" activePath="/projektunterstuetzung" variant="transparent" />
+
+  <section class="page-hero">
+    <img src={hero.src} alt="Teamworkshop im modernen Büro" />
+    <div class="page-hero__shade" aria-hidden="true"></div>
+    <div class="grid-overlay" aria-hidden="true"></div>
+    <div class="container page-hero__content">
+      <p class="eyebrow">future by professionals.</p>
+      <h1>Inspiration schafft Ideen, Unternehmenskultur treibt Innovation.</h1>
+    </div>
+  </section>
+
+  <section class="section section--cream" id="kompetenzen">
+    <div class="container stack">
+      <SectionHeading text="Kompetenzen" level={2} />
+      <p>
+        Wir unterstützen Organisationen dabei, digitale Tools und menschliche Kompetenz zu verbinden —
+        mit klaren Formaten, die Teams handlungsfähig machen.
+      </p>
+      <div class="card-row">
+        <ContentCard title="HR + AI" body="Kompetenzmanagement für digitale Unternehmenskultur." />
+        <ContentCard title="Enablement" body="Begleitung von Führung und Teams in der Transformation." />
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="insight">
+    <div class="container stack">
+      <SectionHeading text="Insight" level={2} />
+      <p>
+        Insight-Formate machen Fortschritt sichtbar: von Standortbestimmung bis zu iterativen
+        Umsetzungszyklen — immer nah am Arbeitsalltag.
+      </p>
+      <CTAButton label="Kontakt aufnehmen" href="/kontakt" variant="dark" />
+    </div>
+  </section>
+
+  <SiteFooter slot="footer" />
+</BaseLayout>
+
+<style>
+  .page-hero {
+    position: relative;
+    min-height: 85vh;
+    color: var(--color-white);
+  }
+
+  .page-hero img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .page-hero__shade {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 47%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 38%);
+    z-index: 1;
+  }
+
+  .page-hero__content {
+    position: relative;
+    z-index: 2;
+    min-height: 85vh;
+    display: grid;
+    align-content: end;
+    gap: var(--space-4);
+    padding-block: calc(var(--header-height) + 2rem) var(--space-8);
+  }
+
+  .page-hero h1 {
+    margin: 0;
+    max-width: 16ch;
+    font-size: var(--font-size-3xl);
+    line-height: var(--line-tight);
+    letter-spacing: -0.02em;
+    color: var(--color-cream);
+  }
+
+  .stack {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .stack p {
+    margin: 0;
+    max-width: 42rem;
+    color: var(--color-ink-muted);
+  }
+
+  .card-row {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 768px) {
+    .card-row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,76 @@
+---
+interface Props {
+  title: string;
+  body?: string;
+  href?: string;
+  mediaSrc?: string;
+  mediaAlt?: string;
+  eyebrow?: string;
+}
+
+const { title, body, href, mediaSrc, mediaAlt = '', eyebrow } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '') || '';
+const resolved = href
+  ? href.startsWith('http') || href.startsWith('#')
+    ? href
+    : `${base}${href.startsWith('/') ? href : `/${href}`}`
+  : undefined;
+---
+
+{
+  resolved ? (
+    <a class="content-card content-card--link" href={resolved}>
+      {mediaSrc && <img src={mediaSrc} alt={mediaAlt} loading="lazy" />}
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h3>{title}</h3>
+      {body && <p>{body}</p>}
+    </a>
+  ) : (
+    <article class="content-card">
+      {mediaSrc && <img src={mediaSrc} alt={mediaAlt} loading="lazy" />}
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h3>{title}</h3>
+      {body && <p>{body}</p>}
+    </article>
+  )
+}
+
+<style>
+  .content-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-5);
+    background: var(--color-blue);
+    color: var(--color-white);
+    min-height: 12rem;
+  }
+
+  .content-card--link {
+    text-decoration: none;
+    transition: transform var(--duration) var(--ease);
+  }
+
+  .content-card--link:hover {
+    transform: translateY(-2px);
+    text-decoration: none;
+  }
+
+  .content-card h3 {
+    margin: 0;
+    font-size: var(--font-size-xl);
+    line-height: var(--line-tight);
+    letter-spacing: -0.02em;
+  }
+
+  .content-card p {
+    margin: 0;
+    opacity: 0.92;
+  }
+
+  .content-card img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+</style>

@@ -1,0 +1,145 @@
+---
+import { primaryNav, siteMeta } from '../data/navigation';
+import NavLink from './NavLink.astro';
+import ExpandableNav from './ExpandableNav.astro';
+import MobileMenu from './MobileMenu.astro';
+
+interface Props {
+  activePath?: string;
+  variant?: 'transparent' | 'solid' | 'solid-dark';
+}
+
+const { activePath = '/', variant = 'transparent' } = Astro.props;
+
+const isActive = (href: string) => {
+  if (href === '/') return activePath === '/';
+  return activePath === href || activePath.startsWith(`${href}/`);
+};
+---
+
+<header class:list={['site-header', `site-header--${variant}`]}>
+  <div class="site-header__inner container">
+    <a class="brand" href={import.meta.env.BASE_URL} aria-label="springeloo Startseite">
+      <span class="brand__mark" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+      </span>
+      <span class="brand__name">{siteMeta.name}</span>
+    </a>
+
+    <nav class="site-header__desktop" aria-label="Hauptnavigation">
+      <ul>
+        {
+          primaryNav.map((item) => (
+            <li>
+              {item.children?.length ? (
+                <ExpandableNav
+                  label={item.label}
+                  href={item.href}
+                  current={isActive(item.href)}
+                  items={item.children}
+                />
+              ) : (
+                <NavLink href={item.href} label={item.label} current={isActive(item.href)} />
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <MobileMenu items={primaryNav} activePath={activePath} />
+  </div>
+</header>
+
+<script>
+  import '../scripts/expandable-menu.ts';
+</script>
+
+<style>
+  .site-header {
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    z-index: 40;
+    height: var(--header-height);
+  }
+
+  .site-header--solid {
+    position: sticky;
+    background: var(--color-cream);
+    color: var(--color-ink);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 8%, transparent);
+  }
+
+  .site-header--solid-dark {
+    position: sticky;
+    background: var(--color-navy);
+    color: var(--color-white);
+  }
+
+  .site-header--transparent {
+    color: var(--color-white);
+  }
+
+  .site-header__inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    text-decoration: none;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.02em;
+  }
+
+  .brand:hover {
+    text-decoration: none;
+  }
+
+  .brand__mark {
+    width: 1.05rem;
+    height: 1.05rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .brand__mark span {
+    background: currentColor;
+    display: block;
+  }
+
+  .brand__mark span:nth-child(2),
+  .brand__mark span:nth-child(3) {
+    opacity: 0.35;
+  }
+
+  .brand__name {
+    font-size: 1.05rem;
+  }
+
+  .site-header__desktop {
+    display: none;
+  }
+
+  .site-header__desktop ul {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 2vw, 2rem);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .site-header__desktop {
+      display: block;
+    }
+  }
+</style>

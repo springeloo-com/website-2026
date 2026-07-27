@@ -1,0 +1,22 @@
+---
+interface Props {
+  text: string;
+  level?: 1 | 2 | 3 | 4;
+  class?: string;
+}
+
+const { text, level = 2, class: className = '' } = Astro.props;
+const Tag = `h${level}` as const;
+---
+
+<Tag class:list={['section-heading', className]}>{text}</Tag>
+
+<style>
+  .section-heading {
+    margin: 0 0 var(--space-4);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-tight);
+    letter-spacing: -0.02em;
+    font-size: var(--font-size-2xl);
+  }
+</style>

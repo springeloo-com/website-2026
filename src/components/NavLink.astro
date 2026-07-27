@@ -1,0 +1,41 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  current?: boolean;
+  class?: string;
+}
+
+const { href, label, current = false, class: className = '' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '') || '';
+const resolved = href.startsWith('http') || href.startsWith('#')
+  ? href
+  : `${base}${href.startsWith('/') ? href : `/${href}`}`;
+---
+
+<a
+  class:list={['nav-link', className]}
+  href={resolved}
+  aria-current={current ? 'page' : undefined}
+>
+  {label}
+</a>
+
+<style>
+  .nav-link {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .nav-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+
+  .nav-link[aria-current='page'] {
+    font-weight: var(--font-weight-semibold);
+  }
+</style>

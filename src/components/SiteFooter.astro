@@ -1,0 +1,157 @@
+---
+import { siteMeta } from '../data/navigation';
+
+const year = new Date().getFullYear();
+const base = import.meta.env.BASE_URL.replace(/\/$/, '') || '';
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__top">
+    <div class="site-footer__brand">
+      <p class="eyebrow">{siteMeta.footerTagline}</p>
+      <a class="brand" href={`${base}/`}>
+        <span class="brand__mark" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </span>
+        <span>{siteMeta.name}</span>
+      </a>
+    </div>
+
+    <div>
+      <h2 class="site-footer__label">Address</h2>
+      <p>
+        {siteMeta.company}<br />
+        {siteMeta.addressLines.map((line) => (
+          <>
+            {line}
+            <br />
+          </>
+        ))}
+      </p>
+    </div>
+
+    <div>
+      <h2 class="site-footer__label">Contact</h2>
+      <p>
+        <a href={`tel:${siteMeta.phone.replace(/\s/g, '')}`}>{siteMeta.phone}</a><br />
+        <a href={`mailto:${siteMeta.email}`}>{siteMeta.email}</a>
+      </p>
+      <a class="site-footer__social" href={siteMeta.linkedIn} aria-label="LinkedIn">in</a>
+    </div>
+  </div>
+
+  <div class="container site-footer__bottom">
+    <nav aria-label="Rechtliches">
+      {
+        siteMeta.legal.map((item) => (
+          <a href={`${base}${item.href}`}>{item.label}</a>
+        ))
+      }
+    </nav>
+    <p>© {year} {siteMeta.company}. Alle Rechte vorbehalten.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-cream);
+    color: var(--color-ink);
+    padding-block: var(--space-7) var(--space-5);
+    border-top: 1px solid color-mix(in srgb, var(--color-ink) 10%, transparent);
+  }
+
+  .site-footer__top {
+    display: grid;
+    gap: var(--space-6);
+    padding-bottom: var(--space-6);
+  }
+
+  .site-footer__label {
+    margin: 0 0 var(--space-3);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .site-footer p {
+    margin: 0;
+    color: var(--color-ink-muted);
+    line-height: 1.6;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-top: var(--space-3);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    color: var(--color-ink);
+  }
+
+  .brand__mark {
+    width: 1rem;
+    height: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .brand__mark span {
+    background: currentColor;
+  }
+
+  .brand__mark span:nth-child(2),
+  .brand__mark span:nth-child(3) {
+    opacity: 0.35;
+  }
+
+  .site-footer__social {
+    display: inline-grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    margin-top: var(--space-3);
+    border: 1px solid var(--color-ink);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .site-footer__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding-top: var(--space-4);
+    border-top: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
+    font-size: var(--font-size-sm);
+    color: var(--color-ink-muted);
+  }
+
+  .site-footer__bottom nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .site-footer__bottom a {
+    text-decoration: none;
+  }
+
+  @media (min-width: 768px) {
+    .site-footer__top {
+      grid-template-columns: 1.2fr 1fr 1fr;
+      align-items: start;
+    }
+
+    .site-footer__bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .site-footer__bottom nav {
+      flex-direction: row;
+      gap: var(--space-5);
+    }
+  }
+</style>

@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import HeroBanner from '../components/HeroBanner.astro';
+import HeroCarousel from '../components/HeroCarousel.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ContentCard from '../components/ContentCard.astro';
+import CTAButton from '../components/CTAButton.astro';
+import hero1 from '../assets/images/hero-office-1.jpg';
+import hero2 from '../assets/images/hero-office-2.jpg';
+import hero3 from '../assets/images/hero-office-3.jpg';
+
+const title = 'Digitale Unternehmenskultur durch Kompetenzmanagement';
+const description =
+  'Digitale Tools und Kompetenzen für eine zukunftsfähige Unternehmenskultur — future by professionals.';
+---
+
+<BaseLayout title={title} description={description} canonicalPath="/" theme="cream" ogImage={hero1.src}>
+  <SiteHeader slot="header" activePath="/" variant="transparent" />
+
+  <HeroBanner
+    headline="Digitale Unternehmenskultur durch Kompetenzmanagement."
+    eyebrow="Digitale Tools und Kompetenzen"
+    imageSrc={hero1.src}
+    imageAlt="Zwei Fachkräfte im modernen Büro mit Tablet und Kaffee"
+    badge="HR + AI"
+    primaryCta={{ label: 'Personal', href: '/projektunterstuetzung' }}
+    secondaryCta={{ label: 'Produkte', href: '/produkte' }}
+  />
+
+  <section class="section section--cream" id="leistungen">
+    <div class="container home-grid">
+      <ContentCard
+        eyebrow="Projektunterstützung"
+        title="Inspiration schafft Ideen, Unternehmenskultur treibt Innovation."
+        body="Begleitung für Teams, die digitale Kompetenz und Kultur verbinden."
+        href="/projektunterstuetzung"
+      />
+      <ContentCard
+        eyebrow="Produkte"
+        title="Host Ablöse und digitale Werkzeuge."
+        body="Produktlösungen, die Legacy-Systeme ablösen und Klarheit schaffen."
+        href="/produkte"
+      />
+      <ContentCard
+        eyebrow="Springeloo"
+        title="Konstanz durch Kultur: Experten, die bleiben."
+        body="Ein Team aus Professionals für nachhaltige digitale Zusammenarbeit."
+        href="/springeloo"
+      />
+    </div>
+  </section>
+
+  <HeroCarousel
+    slides={[
+      {
+        imageSrc: hero2.src,
+        imageAlt: 'Team in einer Besprechung im hellen Büro',
+        eyebrow: 'Insight',
+        headline: 'Konstanz durch Kultur: Experten, die bleiben.',
+      },
+      {
+        imageSrc: hero3.src,
+        imageAlt: 'Kolleginnen und Kollegen bei der Zusammenarbeit am Laptop',
+        eyebrow: 'Kompetenzen',
+        headline: 'Inspiration schafft Ideen, Unternehmenskultur treibt Innovation.',
+      },
+      {
+        imageSrc: hero1.src,
+        imageAlt: 'Professionals mit Tablet in modernem Office',
+        eyebrow: 'HR + AI',
+        headline: 'Digitale Unternehmenskultur durch Kompetenzmanagement.',
+      },
+    ]}
+  />
+
+  <section class="section section--blue">
+    <div class="container cta-band">
+      <SectionHeading text="Bereit für den nächsten Schritt?" level={2} />
+      <p>Sprechen Sie mit uns über Projektunterstützung, Produkte und digitale Kultur.</p>
+      <CTAButton label="jetzt vernetzen" href="/kontakt" variant="ghost-light" />
+    </div>
+  </section>
+
+  <SiteFooter slot="footer" />
+</BaseLayout>
+
+<style>
+  .home-grid {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .cta-band {
+    display: grid;
+    gap: var(--space-4);
+    justify-items: start;
+  }
+
+  .cta-band p {
+    margin: 0;
+    max-width: 40rem;
+    font-size: var(--font-size-lg);
+  }
+
+  @media (min-width: 900px) {
+    .home-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

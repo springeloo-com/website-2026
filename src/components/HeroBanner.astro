@@ -1,0 +1,148 @@
+---
+import CTAButton from './CTAButton.astro';
+
+interface Props {
+  eyebrow?: string;
+  headline: string;
+  imageSrc: string;
+  imageAlt: string;
+  badge?: string;
+  primaryCta?: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+}
+
+const {
+  eyebrow = 'Digitale Tools und Kompetenzen',
+  headline,
+  imageSrc,
+  imageAlt,
+  badge = 'HR + AI',
+  primaryCta = { label: 'Personal', href: '/projektunterstuetzung' },
+  secondaryCta = { label: 'Produkte', href: '/produkte' },
+} = Astro.props;
+---
+
+<section class="hero-banner" aria-label="Hero">
+  <img class="hero-banner__image" src={imageSrc} alt={imageAlt} />
+  <div class="hero-banner__shade" aria-hidden="true"></div>
+  <div class="grid-overlay" aria-hidden="true"></div>
+  <div class="hero-banner__content container">
+    <p class="hero-banner__tag">{Astro.slots.has('tag') ? <slot name="tag" /> : 'future by professionals.'}</p>
+    <div class="hero-banner__stack">
+      {badge && <div class="hero-banner__badge">{badge}</div>}
+      <div class="hero-banner__card">
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        <h1>{headline}</h1>
+        <div class="hero-banner__actions">
+          <CTAButton label={primaryCta.label} href={primaryCta.href} variant="ghost-light" />
+          <CTAButton label={secondaryCta.label} href={secondaryCta.href} variant="ghost-light" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-banner {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100dvh;
+    color: var(--color-white);
+    overflow: hidden;
+    display: grid;
+  }
+
+  .hero-banner__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-banner__shade {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(0deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 48%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 40%),
+      rgba(0, 0, 0, 0.12);
+    z-index: 1;
+  }
+
+  .hero-banner__content {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    align-content: end;
+    padding-block: calc(var(--header-height) + var(--space-6)) var(--space-7);
+    min-height: 100vh;
+    min-height: 100dvh;
+    gap: var(--space-6);
+  }
+
+  .hero-banner__tag {
+    margin: 0;
+    font-size: var(--font-size-sm);
+  }
+
+  .hero-banner__stack {
+    display: grid;
+    gap: var(--space-3);
+    justify-items: stretch;
+    width: min(100%, 36rem);
+    margin-left: auto;
+  }
+
+  .hero-banner__badge {
+    width: 7.5rem;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    background: var(--color-blue);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.04em;
+    justify-self: end;
+  }
+
+  .hero-banner__card {
+    background: var(--color-blue);
+    padding: var(--space-5);
+    display: grid;
+    gap: var(--space-4);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .hero-banner__card h1 {
+    margin: 0;
+    font-size: clamp(1.6rem, 3vw, 2.35rem);
+    line-height: var(--line-tight);
+    letter-spacing: -0.02em;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .hero-banner__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  @media (min-width: 768px) {
+    .hero-banner__stack {
+      width: min(100%, 28rem);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .hero-banner__content {
+      grid-template-columns: 1fr auto;
+      align-items: end;
+    }
+
+    .hero-banner__tag {
+      align-self: start;
+      margin-top: 4rem;
+    }
+  }
+</style>

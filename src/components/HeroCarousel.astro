@@ -1,0 +1,126 @@
+---
+interface Slide {
+  imageSrc: string;
+  imageAlt: string;
+  headline: string;
+  eyebrow?: string;
+}
+
+interface Props {
+  slides: Slide[];
+  autoplay?: boolean;
+}
+
+const { slides, autoplay = true } = Astro.props;
+---
+
+<section
+  class="hero-carousel"
+  aria-roledescription="Karussell"
+  aria-label="Produktkarussell"
+  data-carousel
+  data-autoplay={autoplay ? 'true' : 'false'}
+>
+  <div class="hero-carousel__viewport">
+    {
+      slides.map((slide, index) => (
+        <article
+          class="hero-carousel__slide"
+          data-carousel-slide
+          aria-hidden={index === 0 ? 'false' : 'true'}
+          hidden={index !== 0}
+        >
+          <img src={slide.imageSrc} alt={slide.imageAlt} />
+          <div class="hero-carousel__shade" aria-hidden="true"></div>
+          <div class="hero-carousel__copy container">
+            {slide.eyebrow && <p class="eyebrow">{slide.eyebrow}</p>}
+            <h2>{slide.headline}</h2>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+
+  <div class="hero-carousel__controls container">
+    <button type="button" data-carousel-prev aria-label="Vorherige Folie">‹</button>
+    <button type="button" data-carousel-toggle aria-label="Pause">Pause</button>
+    <button type="button" data-carousel-next aria-label="Nächste Folie">›</button>
+  </div>
+</section>
+
+<script>
+  import '../scripts/carousel.ts';
+</script>
+
+<style>
+  .hero-carousel {
+    position: relative;
+    min-height: 70vh;
+    background: var(--color-navy);
+    color: var(--color-white);
+    overflow: hidden;
+  }
+
+  .hero-carousel__viewport {
+    position: relative;
+    min-height: 70vh;
+  }
+
+  .hero-carousel__slide {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero-carousel__slide[hidden] {
+    display: none;
+  }
+
+  .hero-carousel__slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-carousel__shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.15));
+  }
+
+  .hero-carousel__copy {
+    position: absolute;
+    inset: auto 0 12% 0;
+    z-index: 2;
+  }
+
+  .hero-carousel__copy h2 {
+    margin: 0;
+    max-width: 18ch;
+    font-size: var(--font-size-3xl);
+    line-height: var(--line-tight);
+    letter-spacing: -0.02em;
+  }
+
+  .hero-carousel__controls {
+    position: absolute;
+    inset: auto 0 1.5rem 0;
+    z-index: 3;
+    display: flex;
+    gap: var(--space-3);
+  }
+
+  .hero-carousel__controls button {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--color-white) 70%, transparent);
+    background: color-mix(in srgb, var(--color-white) 12%, transparent);
+    color: var(--color-white);
+  }
+
+  .hero-carousel__controls button[data-carousel-toggle] {
+    width: auto;
+    padding-inline: 1rem;
+    font-size: var(--font-size-sm);
+  }
+</style>

@@ -1,0 +1,191 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { siteMeta } from '../data/navigation';
+import hero from '../assets/images/hero-office-1.jpg';
+
+const title = 'Kontakt';
+const description = 'Wir freuen uns auf Ihre Anfrage — Kontakt zu springeloo.';
+---
+
+<BaseLayout title={title} description={description} canonicalPath="/kontakt" theme="cream" ogImage={hero.src}>
+  <SiteHeader slot="header" activePath="/kontakt" variant="solid" />
+
+  <section class="section">
+    <div class="container kontakt">
+      <div>
+        <p class="eyebrow kontakt__eyebrow">KONTAKT</p>
+        <h1>Wir freuen uns auf Ihre Anfrage.</h1>
+
+        <!-- Visual contact form from Figma — display only, no submission (FR-005) -->
+        <form class="kontakt-form" aria-label="Kontaktformular (Anzeige)" onsubmit="return false;">
+          <div class="field">
+            <label for="topic">THEMA DER ANFRAGE*</label>
+            <select id="topic" name="topic" disabled>
+              <option>ALLGEMEIN</option>
+            </select>
+          </div>
+
+          <fieldset>
+            <legend>IHRE DATEN</legend>
+            <div class="radios" role="group" aria-label="Anrede">
+              <label><input type="radio" name="salutation" value="frau" disabled /> FRAU</label>
+              <label><input type="radio" name="salutation" value="herr" disabled /> HERR</label>
+              <label><input type="radio" name="salutation" value="divers" disabled /> DIVERS</label>
+            </div>
+            <input type="text" placeholder="VORNAME*" disabled />
+            <input type="text" placeholder="NACHNAME*" disabled />
+            <input type="email" placeholder="EMAIL-ADRESSE*" disabled />
+          </fieldset>
+          <p class="hint">Hinweis: Anfragen bitte per E-Mail oder Telefon — Online-Versand folgt später.</p>
+        </form>
+      </div>
+
+      <aside class="kontakt-aside">
+        <div>
+          <h2>ADRESSE</h2>
+          <p>
+            {siteMeta.company}<br />
+            {siteMeta.contactAddressLines.map((line) => (
+              <>
+                {line}
+                <br />
+              </>
+            ))}
+          </p>
+          <a href="https://maps.google.com/?q=Teybergasse+1+1140+Wien">Karte ›</a>
+        </div>
+        <div>
+          <h2>KONTAKT</h2>
+          <p>
+            <a href={`tel:${siteMeta.contactPhone.replace(/\s/g, '')}`}>{siteMeta.contactPhone}</a><br />
+            <a href={`mailto:${siteMeta.contactEmail}`}>{siteMeta.contactEmail}</a>
+          </p>
+        </div>
+        <div id="impressum">
+          <h2>Impressum</h2>
+          <p>
+            {siteMeta.company}<br />
+            {siteMeta.addressLines.join(', ')}
+          </p>
+        </div>
+        <div id="datenschutz">
+          <h2>Datenschutz</h2>
+          <p>Datenschutzhinweise gemäß Figma-Footer-Verweis — Inhalte nur soweit im Extract vorhanden.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <SiteFooter slot="footer" />
+</BaseLayout>
+
+<style>
+  .kontakt {
+    display: grid;
+    gap: var(--space-7);
+    padding-top: var(--space-4);
+  }
+
+  .kontakt__eyebrow {
+    color: var(--color-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .kontakt h1 {
+    margin: 0 0 var(--space-6);
+    color: var(--color-blue);
+    font-size: var(--font-size-3xl);
+    line-height: var(--line-tight);
+    letter-spacing: -0.02em;
+    max-width: 14ch;
+  }
+
+  .kontakt-form {
+    display: grid;
+    gap: var(--space-5);
+    max-width: 36rem;
+  }
+
+  .field,
+  fieldset {
+    display: grid;
+    gap: var(--space-3);
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  label,
+  legend {
+    color: var(--color-blue);
+    font-size: var(--font-size-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  select,
+  input[type='text'],
+  input[type='email'] {
+    width: 100%;
+    border: 0;
+    background: var(--color-cream-dark);
+    color: var(--color-ink);
+    padding: 0.95rem 1rem;
+    font: inherit;
+    text-transform: uppercase;
+  }
+
+  .radios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+
+  .radios label {
+    color: var(--color-ink);
+    text-transform: uppercase;
+    display: inline-flex;
+    gap: 0.4rem;
+    align-items: center;
+  }
+
+  .hint {
+    margin: 0;
+    color: var(--color-ink-muted);
+    font-size: var(--font-size-sm);
+  }
+
+  .kontakt-aside {
+    display: grid;
+    gap: var(--space-6);
+    padding-top: var(--space-2);
+    border-top: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
+  }
+
+  .kontakt-aside h2 {
+    margin: 0 0 var(--space-3);
+    font-size: var(--font-size-sm);
+    letter-spacing: 0.06em;
+  }
+
+  .kontakt-aside p {
+    margin: 0 0 var(--space-3);
+    color: var(--color-ink-muted);
+  }
+
+  @media (min-width: 960px) {
+    .kontakt {
+      grid-template-columns: 1.4fr 0.8fr;
+      align-items: start;
+    }
+
+    .kontakt-aside {
+      border-top: 0;
+      border-left: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
+      padding-left: var(--space-6);
+    }
+  }
+</style>

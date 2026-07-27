@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import HeroCarousel from '../components/HeroCarousel.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import hero1 from '../assets/images/hero-office-1.jpg';
+import hero2 from '../assets/images/hero-office-2.jpg';
+import hero3 from '../assets/images/hero-office-3.jpg';
+
+const title = 'Produkte';
+const description = 'Host Ablöse und digitale Produktlösungen von springeloo.';
+---
+
+<BaseLayout title={title} description={description} canonicalPath="/produkte" theme="dark" ogImage={hero3.src}>
+  <SiteHeader slot="header" activePath="/produkte" variant="solid-dark" />
+
+  <section class="produkte-intro container" id="uebersicht">
+    <p class="eyebrow">future by professionals.</p>
+    <SectionHeading text="Produkte" level={1} />
+  </section>
+
+  <div id="host-abloese">
+    <HeroCarousel
+      slides={[
+        {
+          imageSrc: hero3.src,
+          imageAlt: 'Silhouette vor leuchtender Architektur',
+          eyebrow: 'Name',
+          headline: 'Host Ablöse',
+        },
+        {
+          imageSrc: hero2.src,
+          imageAlt: 'Teamdiskussion am Tisch',
+          eyebrow: 'Beschreibung',
+          headline: 'Legacy-Systeme klar und sicher ablösen.',
+        },
+        {
+          imageSrc: hero1.src,
+          imageAlt: 'Professionals mit Tablet',
+          eyebrow: 'Infos',
+          headline: 'Digitale Werkzeuge für stabile Übergänge.',
+        },
+      ]}
+    />
+  </div>
+
+  <section class="section section--navy info-grid">
+    <div class="container info-grid__inner">
+      <div>
+        <p class="label">Name</p>
+        <p class="value">Host Ablöse</p>
+      </div>
+      <div>
+        <p class="label">Beschreibung</p>
+        <p class="value">Strukturierte Ablösung bestehender Host-Landschaften mit Fokus auf Kontinuität.</p>
+      </div>
+      <div>
+        <p class="label">Infos</p>
+        <p class="value">Mehr erfahren unter Kontakt.</p>
+      </div>
+    </div>
+  </section>
+
+  <SiteFooter slot="footer" />
+</BaseLayout>
+
+<style>
+  .produkte-intro {
+    padding-block: calc(var(--header-height) + var(--space-6)) var(--space-5);
+  }
+
+  .info-grid {
+    border-top: 1px solid var(--color-grid-dark);
+  }
+
+  .info-grid__inner {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .label {
+    margin: 0 0 var(--space-2);
+    color: var(--color-blue-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: var(--font-size-xs);
+  }
+
+  .value {
+    margin: 0;
+    font-size: var(--font-size-lg);
+  }
+
+  @media (min-width: 900px) {
+    .info-grid__inner {
+      grid-template-columns: 1fr 1.4fr 1fr;
+      gap: var(--space-6);
+    }
+
+    .info-grid__inner > div {
+      border-left: 1px solid var(--color-grid-dark);
+      padding-left: var(--space-5);
+    }
+
+    .info-grid__inner > div:first-child {
+      border-left: 0;
+      padding-left: 0;
+    }
+  }
+</style>
