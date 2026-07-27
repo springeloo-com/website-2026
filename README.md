@@ -56,3 +56,5 @@ Feature artifacts live in `specs/` (e.g. `specs/001-springeloo-website/`,
 Connect the repo, set **content branch → PR → maintainer merge**, then walk scenarios in `specs/002-cloudcannon-editing/quickstart.md`. Details in `docs/howto-cloudcannon.md`.
 
 Say if you want a commit on `002-cloudcannon-editing`.
+
+# refactor from CloudCannon to DecapCMS 
