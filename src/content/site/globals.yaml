@@ -1,0 +1,45 @@
+# Global site content — editable labels/contact; hrefs are developer-controlled.
+brandName: springeloo
+nav:
+  - id: projektunterstuetzung
+    label: Projektunterstützung
+    href: /projektunterstuetzung
+    children:
+      - label: Kompetenzen
+        href: /projektunterstuetzung#kompetenzen
+      - label: Insight
+        href: /projektunterstuetzung#insight
+  - id: produkte
+    label: Produkte
+    href: /produkte
+    children:
+      - label: Host Ablöse
+        href: /produkte#host-abloese
+      - label: Übersicht
+        href: /produkte#uebersicht
+  - id: springeloo
+    label: Springeloo
+    href: /springeloo
+  - id: kontakt
+    label: Kontakt
+    href: /kontakt
+footer:
+  tagline: Frictionless digital experiences
+  company: Springeloo GmbH
+  addressLines:
+    - Teybergasse 1
+    - A-1140 Wien
+  phone: "+49 7127 94 99 90"
+  email: hello@springeloo.com
+  linkedIn: https://www.linkedin.com/
+  legal:
+    - label: Impressum
+      href: /kontakt#impressum
+    - label: Datenschutzrichtlinien
+      href: /kontakt#datenschutz
+contact:
+  addressLines:
+    - Teybergasse 1
+    - A-1140 Wien
+  phone: "+43 680 111 32 30"
+  email: office@springeloo.com

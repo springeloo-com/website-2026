@@ -1,5 +1,5 @@
 ---
-import { primaryNav, siteMeta } from '../data/navigation';
+import { getPrimaryNav, getSiteMeta } from '../lib/content';
 import NavLink from './NavLink.astro';
 import ExpandableNav from './ExpandableNav.astro';
 import MobileMenu from './MobileMenu.astro';
@@ -10,6 +10,8 @@ interface Props {
 }
 
 const { activePath = '/', variant = 'transparent' } = Astro.props;
+const primaryNav = getPrimaryNav();
+const siteMeta = getSiteMeta();
 
 const isActive = (href: string) => {
   if (href === '/') return activePath === '/';

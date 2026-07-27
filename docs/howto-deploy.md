@@ -8,6 +8,9 @@ This site is a static Astro build. GitHub Actions builds it and publishes the
 - Repo on GitHub
 - Node.js 22+ locally (only needed for local preview)
 - Permission to change **Settings → Pages** and **Actions**
+- **GitHub Pages available for this repo**:
+  - Public repos: Pages works on Free
+  - Private repos: org needs a paid plan (Team/Enterprise) that includes Pages
 
 ## 1. Enable GitHub Pages
 
@@ -17,6 +20,9 @@ This site is a static Astro build. GitHub Actions builds it and publishes the
 
 Do not use “Deploy from a branch” for this project — the workflow uploads a
 Pages artifact.
+
+If Settings → Pages shows that Pages is unavailable, either make the repository
+**public** (Free) or upgrade the organization plan so private Pages is included.
 
 ## 2. Set repository variables (recommended)
 
@@ -40,20 +46,14 @@ Wrong `base` breaks CSS, images, and internal links.
 
 ### Automatic
 
-Push to one of these branches:
-
-- `main`
-- `master`
-- `001-springeloo-website`
-
-The workflow `.github/workflows/deploy.yml` runs on push and on manual
-**workflow_dispatch**.
+Push to **`main`** only. The workflow `.github/workflows/deploy.yml` also
+supports manual **workflow_dispatch**.
 
 ### Manual
 
 1. **Actions → Deploy to GitHub Pages**
 2. **Run workflow**
-3. Choose the branch
+3. Choose the branch (`main`)
 4. Wait until both **build** and **deploy** jobs are green
 
 The live URL appears on the deploy job summary / Pages settings.
@@ -90,6 +90,7 @@ npm run preview
 
 | Symptom | Likely cause | Fix |
 |---------|--------------|-----|
+| Deploy 404 / “Failed to create deployment” | Pages not enabled or not available on plan | Settings → Pages → Source **GitHub Actions**; for private repos on Free, make public or upgrade plan |
 | Site is blank / no CSS | Wrong `PUBLIC_BASE_PATH` | Set `/repo-name/` for project sites |
 | Workflow fails on `npm ci` | Lockfile out of date | Run `npm install`, commit `package-lock.json` |
 | 404 on nested routes | Pages not using Actions artifact | Source must be **GitHub Actions** |

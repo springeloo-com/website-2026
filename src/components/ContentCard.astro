@@ -1,14 +1,17 @@
 ---
 interface Props {
   title: string;
+  /** Plain-text body (legacy). Prefer bodyHtml for Markdown. */
   body?: string;
+  /** Pre-rendered HTML from Markdown (site-safe). */
+  bodyHtml?: string;
   href?: string;
   mediaSrc?: string;
   mediaAlt?: string;
   eyebrow?: string;
 }
 
-const { title, body, href, mediaSrc, mediaAlt = '', eyebrow } = Astro.props;
+const { title, body, bodyHtml, href, mediaSrc, mediaAlt = '', eyebrow } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '') || '';
 const resolved = href
   ? href.startsWith('http') || href.startsWith('#')
@@ -23,14 +26,22 @@ const resolved = href
       {mediaSrc && <img src={mediaSrc} alt={mediaAlt} loading="lazy" />}
       {eyebrow && <p class="eyebrow">{eyebrow}</p>}
       <h3>{title}</h3>
-      {body && <p>{body}</p>}
+      {bodyHtml ? (
+        <div class="rich-text content-card__body" set:html={bodyHtml} />
+      ) : (
+        body && <p>{body}</p>
+      )}
     </a>
   ) : (
     <article class="content-card">
       {mediaSrc && <img src={mediaSrc} alt={mediaAlt} loading="lazy" />}
       {eyebrow && <p class="eyebrow">{eyebrow}</p>}
       <h3>{title}</h3>
-      {body && <p>{body}</p>}
+      {bodyHtml ? (
+        <div class="rich-text content-card__body" set:html={bodyHtml} />
+      ) : (
+        body && <p>{body}</p>
+      )}
     </article>
   )
 }
@@ -68,9 +79,14 @@ const resolved = href
     opacity: 0.92;
   }
 
+  .content-card__body {
+    opacity: 0.92;
+  }
+
   .content-card img {
     width: 100%;
     aspect-ratio: 16 / 10;
     object-fit: cover;
+    object-position: center;
   }
 </style>

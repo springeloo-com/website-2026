@@ -119,3 +119,62 @@ button {
   background: var(--color-blue);
   color: var(--color-white);
 }
+
+/* Markdown rich-text bodies (editor content) — inherit site type scale only */
+.rich-text {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.rich-text > :first-child {
+  margin-top: 0;
+}
+
+.rich-text > :last-child {
+  margin-bottom: 0;
+}
+
+.rich-text p,
+.rich-text ul,
+.rich-text ol {
+  margin: 0 0 var(--space-3);
+}
+
+.rich-text ul,
+.rich-text ol {
+  padding-inline-start: 1.25rem;
+}
+
+.rich-text li + li {
+  margin-top: 0.35em;
+}
+
+.rich-text h2,
+.rich-text h3,
+.rich-text h4 {
+  margin: var(--space-4) 0 var(--space-2);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-tight);
+  letter-spacing: -0.02em;
+}
+
+.rich-text h2 {
+  font-size: var(--font-size-xl);
+}
+
+.rich-text h3 {
+  font-size: var(--font-size-lg);
+}
+
+.rich-text h4 {
+  font-size: var(--font-size-md);
+}
+
+.rich-text a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.rich-text strong {
+  font-weight: var(--font-weight-semibold);
+}

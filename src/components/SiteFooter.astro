@@ -1,6 +1,7 @@
 ---
-import { siteMeta } from '../data/navigation';
+import { getSiteMeta } from '../lib/content';
 
+const siteMeta = getSiteMeta();
 const year = new Date().getFullYear();
 const base = import.meta.env.BASE_URL.replace(/\/$/, '') || '';
 ---

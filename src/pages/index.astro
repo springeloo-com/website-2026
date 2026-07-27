@@ -7,67 +7,68 @@ import HeroCarousel from '../components/HeroCarousel.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import ContentCard from '../components/ContentCard.astro';
 import CTAButton from '../components/CTAButton.astro';
-import hero1 from '../assets/images/hero-office-1.jpg';
-import hero2 from '../assets/images/hero-office-2.jpg';
-import hero3 from '../assets/images/hero-office-3.jpg';
+import { getHomeContent, publicUrl } from '../lib/content';
+import { renderMarkdown } from '../lib/markdown';
 
-const title = 'Digitale Unternehmenskultur durch Kompetenzmanagement';
-const description =
-  'Digitale Tools und Kompetenzen für eine zukunftsfähige Unternehmenskultur — future by professionals.';
+const home = getHomeContent();
+const { meta, hero, leistungen } = home;
+
+const title = meta.title;
+const description = meta.description;
 ---
 
-<BaseLayout title={title} description={description} canonicalPath="/" theme="cream" ogImage={hero1.src}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/"
+  theme="cream"
+  ogImage={publicUrl(hero.image.src)}
+>
   <SiteHeader slot="header" activePath="/" variant="transparent" />
 
   <HeroBanner
-    headline="Digitale Unternehmenskultur durch Kompetenzmanagement."
-    eyebrow="Digitale Tools und Kompetenzen"
-    imageSrc={hero1.src}
-    imageAlt="Zwei Fachkräfte im modernen Büro mit Tablet und Kaffee"
-    badge="HR + AI"
-    primaryCta={{ label: 'Personal', href: '/projektunterstuetzung' }}
-    secondaryCta={{ label: 'Produkte', href: '/produkte' }}
+    headline={hero.headline}
+    eyebrow={hero.eyebrow}
+    imageSrc={publicUrl(hero.image.src)}
+    imageAlt={hero.image.alt}
+    badge={hero.badge}
+    primaryCta={{ label: hero.primaryCta.label, href: hero.primaryCta.href }}
+    secondaryCta={{ label: hero.secondaryCta.label, href: hero.secondaryCta.href }}
   />
 
   <section class="section section--cream" id="leistungen">
     <div class="container home-grid">
-      <ContentCard
-        eyebrow="Projektunterstützung"
-        title="Inspiration schafft Ideen, Unternehmenskultur treibt Innovation."
-        body="Begleitung für Teams, die digitale Kompetenz und Kultur verbinden."
-        href="/projektunterstuetzung"
-      />
-      <ContentCard
-        eyebrow="Produkte"
-        title="Host Ablöse und digitale Werkzeuge."
-        body="Produktlösungen, die Legacy-Systeme ablösen und Klarheit schaffen."
-        href="/produkte"
-      />
-      <ContentCard
-        eyebrow="Springeloo"
-        title="Konstanz durch Kultur: Experten, die bleiben."
-        body="Ein Team aus Professionals für nachhaltige digitale Zusammenarbeit."
-        href="/springeloo"
-      />
+      {
+        leistungen.cards.map((card) => (
+          <ContentCard
+            eyebrow={card.eyebrow}
+            title={card.title}
+            bodyHtml={renderMarkdown(card.body)}
+            href={card.cta.href}
+            mediaSrc={card.image ? publicUrl(card.image.src) : undefined}
+            mediaAlt={card.image?.alt}
+          />
+        ))
+      }
     </div>
   </section>
 
   <HeroCarousel
     slides={[
       {
-        imageSrc: hero2.src,
+        imageSrc: publicUrl('/uploads/hero-office-2.jpg'),
         imageAlt: 'Team in einer Besprechung im hellen Büro',
         eyebrow: 'Insight',
         headline: 'Konstanz durch Kultur: Experten, die bleiben.',
       },
       {
-        imageSrc: hero3.src,
+        imageSrc: publicUrl('/uploads/hero-office-3.jpg'),
         imageAlt: 'Kolleginnen und Kollegen bei der Zusammenarbeit am Laptop',
         eyebrow: 'Kompetenzen',
         headline: 'Inspiration schafft Ideen, Unternehmenskultur treibt Innovation.',
       },
       {
-        imageSrc: hero1.src,
+        imageSrc: publicUrl('/uploads/hero-office-1.jpg'),
         imageAlt: 'Professionals mit Tablet in modernem Office',
         eyebrow: 'HR + AI',
         headline: 'Digitale Unternehmenskultur durch Kompetenzmanagement.',

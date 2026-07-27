@@ -1,0 +1,39 @@
+# Home page content — hero, meta, and exactly three Leistungen cards.
+meta:
+  title: Digitale Unternehmenskultur durch Kompetenzmanagement
+  description: >-
+    Digitale Tools und Kompetenzen für eine zukunftsfähige Unternehmenskultur —
+    future by professionals.
+hero:
+  eyebrow: Digitale Tools und Kompetenzen
+  headline: Digitale Unternehmenskultur durch Kompetenzmanagement.
+  badge: HR + AI
+  image:
+    src: /uploads/hero-office-1.jpg
+    alt: Zwei Fachkräfte im modernen Büro mit Tablet und Kaffee
+  primaryCta:
+    label: Personal
+    href: /projektunterstuetzung
+  secondaryCta:
+    label: Produkte
+    href: /produkte
+leistungen:
+  cards:
+    - eyebrow: Projektunterstützung
+      title: Inspiration schafft Ideen, Unternehmenskultur treibt Innovation.
+      body: Begleitung für Teams, die digitale Kompetenz und Kultur verbinden.
+      cta:
+        label: Mehr erfahren
+        href: /projektunterstuetzung
+    - eyebrow: Produkte
+      title: Host Ablöse und digitale Werkzeuge.
+      body: Produktlösungen, die Legacy-Systeme ablösen und Klarheit schaffen.
+      cta:
+        label: Mehr erfahren
+        href: /produkte
+    - eyebrow: Springeloo
+      title: "Konstanz durch Kultur: Experten, die bleiben."
+      body: Ein Team aus Professionals für nachhaltige digitale Zusammenarbeit.
+      cta:
+        label: Mehr erfahren
+        href: /springeloo

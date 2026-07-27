@@ -2,9 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import { siteMeta } from '../data/navigation';
+import { getSiteMeta } from '../lib/content';
 import hero from '../assets/images/hero-office-1.jpg';
 
+const siteMeta = getSiteMeta();
 const title = 'Kontakt';
 const description = 'Wir freuen uns auf Ihre Anfrage — Kontakt zu springeloo.';
 ---
@@ -67,7 +68,12 @@ const description = 'Wir freuen uns auf Ihre Anfrage — Kontakt zu springeloo.'
           <h2>Impressum</h2>
           <p>
             {siteMeta.company}<br />
-            {siteMeta.addressLines.join(', ')}
+            {siteMeta.addressLines.map((line) => (
+              <>
+                {line}
+                <br />
+              </>
+            ))}
           </p>
         </div>
         <div id="datenschutz">
