@@ -29,7 +29,9 @@ After deploy, open:
   `http://localhost:4321/website-2026/admin/` when `PUBLIC_BASE_PATH=/website-2026/`)
 
 Config lives at `public/admin/config.yml` (served next to the admin UI).
-Decap JS is copied into `public/admin/decap-cms.js` at build time (not from a CDN).
+Decap JS is copied into `public/admin/decap-cms.js` at build time from the
+`decap-cms` **UMD** package (includes React). Do not use `decap-cms-app` with a
+plain `<script>` tag — that causes a `__CLIENT_INTERNALS…` React crash.
 
 **Important:** “View Source” shows an empty `<body>`. That is normal. After the
 script runs you should see **Mit GitHub einloggen** and an `#nc-root` node in

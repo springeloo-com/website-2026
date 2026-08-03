@@ -6,8 +6,9 @@
     <meta name="robots" content="noindex" />
     <title>Springeloo Content</title>
     <!--
-      Serve Decap from this site (copied at build via scripts/copy-decap.mjs).
-      Avoids CDN/unpkg failures that leave a blank admin body.
+      Full Decap UMD bundle (package: decap-cms), copied at build via
+      scripts/copy-decap.mjs. Do not use decap-cms-app here — it needs React
+      as a peer and throws __CLIENT_INTERNALS… under a plain script tag.
     -->
     <script src="./decap-cms.js"></script>
   </head>
