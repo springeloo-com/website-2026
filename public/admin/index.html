@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>Springeloo Content</title>
-    <!--
-      Full Decap UMD bundle (package: decap-cms), copied at build via
-      scripts/copy-decap.mjs. Do not use decap-cms-app here — it needs React
-      as a peer and throws __CLIENT_INTERNALS… under a plain script tag.
-    -->
-    <script src="./decap-cms.js"></script>
   </head>
   <body>
-    <!-- Decap mounts #nc-root here after the script runs. View Source stays empty. -->
+    <!-- Decap mounts #nc-root here. Script must load AFTER body exists. -->
+    <!--
+      Full Decap UMD bundle (package: decap-cms), copied at build via
+      scripts/copy-decap.mjs. Do not use decap-cms-app under a script tag.
+    -->
+    <script src="./decap-cms.js"></script>
   </body>
 </html>
