@@ -2,14 +2,15 @@
 # Editors edit structured YAML only (no page builder).
 # Publishing: editorial_workflow → PR to main → maintainer merges → GitHub Pages.
 #
-# Auth: set backend.base_url to your GitHub OAuth proxy
-# (see docs/howto-oauth-proxy.md). Placeholder must be replaced before login works.
+# Auth: GitHub OAuth proxy — see docs/howto-oauth-proxy.md / docs/howto-claudflare.md
+# base_url must be the proxy origin only (no /auth). Confirm the workers.dev host
+# matches your Cloudflare Worker exactly (include the account subdomain).
 
 backend:
   name: github
   repo: springeloo-com/website-2026
   branch: main
-  base_url: https://YOUR-OAUTH-PROXY.example
+  base_url: https://springeloo-decap-oauth.mf-7e0.workers.dev
   auth_endpoint: /auth
 
 publish_mode: editorial_workflow
