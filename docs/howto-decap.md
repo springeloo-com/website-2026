@@ -29,6 +29,18 @@ After deploy, open:
   `http://localhost:4321/website-2026/admin/` when `PUBLIC_BASE_PATH=/website-2026/`)
 
 Config lives at `public/admin/config.yml` (served next to the admin UI).
+Decap JS is copied into `public/admin/decap-cms.js` at build time (not from a CDN).
+
+**Important:** “View Source” shows an empty `<body>`. That is normal. After the
+script runs you should see **Mit GitHub einloggen** and an `#nc-root` node in
+DevTools → Elements.
+
+### Health check (curl / wget)
+
+```bash
+npm run check:decap
+# or: bash scripts/check-decap.sh
+```
 
 ## Happy path
 

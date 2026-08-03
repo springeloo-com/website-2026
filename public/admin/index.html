@@ -6,13 +6,12 @@
     <meta name="robots" content="noindex" />
     <title>Springeloo Content</title>
     <!--
-      Use jsDelivr with a pinned version. unpkg (even pinned) failed to execute
-      on GitHub Pages in our checks (script status 0 → blank admin).
-      Fallback comment: https://unpkg.com/decap-cms@3.8.0/dist/decap-cms.js
+      Serve Decap from this site (copied at build via scripts/copy-decap.mjs).
+      Avoids CDN/unpkg failures that leave a blank admin body.
     -->
-    <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.8.0/dist/decap-cms.js"></script>
+    <script src="./decap-cms.js"></script>
   </head>
   <body>
-    <!-- Decap CMS mounts here. Marketing pages do not load this script. -->
+    <!-- Decap mounts #nc-root here after the script runs. View Source stays empty. -->
   </body>
 </html>

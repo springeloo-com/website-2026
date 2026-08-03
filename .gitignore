@@ -1,9 +1,13 @@
 # Dependencies
 node_modules/
+.npm-cache/
 
 # Build
 dist/
 .astro/
+
+# Generated at build/dev (scripts/copy-decap.mjs)
+public/admin/decap-cms.js
 
 # Environment
 .env

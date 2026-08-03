@@ -13,6 +13,10 @@ backend:
   base_url: https://springeloo-decap-oauth.mf-7e0.workers.dev
   auth_endpoint: /auth
 
+# Help Decap resolve links on the GitHub Pages project site.
+site_url: https://springeloo-com.github.io/website-2026
+display_url: https://springeloo-com.github.io/website-2026
+
 publish_mode: editorial_workflow
 
 media_folder: public/uploads
