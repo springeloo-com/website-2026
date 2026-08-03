@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>Springeloo Content</title>
-    <!-- Pin an exact version (no ^ in the URL). Caret ranges break unpkg script loading. -->
-    <script src="https://unpkg.com/decap-cms@3.8.0/dist/decap-cms.js"></script>
+    <!--
+      Use jsDelivr with a pinned version. unpkg (even pinned) failed to execute
+      on GitHub Pages in our checks (script status 0 → blank admin).
+      Fallback comment: https://unpkg.com/decap-cms@3.8.0/dist/decap-cms.js
+    -->
+    <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.8.0/dist/decap-cms.js"></script>
   </head>
   <body>
     <!-- Decap CMS mounts here. Marketing pages do not load this script. -->

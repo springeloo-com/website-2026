@@ -34,8 +34,14 @@ export default {
     }
 
     // 1. Redirect to GitHub OAuth page
+    // Always pass redirect_uri — must match the OAuth App callback URL exactly.
     if (url.pathname === "/auth") {
-      const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${env.GITHUB_OAUTH_ID}&scope=repo`;
+      const redirectUri = `${url.origin}/callback`;
+      const githubAuthUrl =
+        `https://github.com/login/oauth/authorize` +
+        `?client_id=${encodeURIComponent(env.GITHUB_OAUTH_ID)}` +
+        `&scope=${encodeURIComponent("repo")}` +
+        `&redirect_uri=${encodeURIComponent(redirectUri)}`;
       return Response.redirect(githubAuthUrl, 302);
     }
 
