@@ -134,6 +134,46 @@ Then `npm run build` and open a PR to `main`.
 | Production unchanged after save | Expected | Wait for maintainer merge + Pages deploy |
 | Build fails on card count | ≠ 3 cards | Restore exactly three cards in YAML |
 | Admin 404 on Pages | Wrong base path | Use `/website-2026/admin/` for the project site |
+| **Save fails: `API_ERROR: Resource not accessible by integration`** | Org blocks OAuth App / missing write / stale token scopes | See section below |
+
+### Save fails: `Resource not accessible by integration`
+
+Login can work while **save** fails. Decap’s editorial workflow creates a
+branch + PR via the GitHub API; that needs a user OAuth token with **write**
+access to `springeloo-com/website-2026`, and the org must **allow** the OAuth
+App.
+
+Fix in order:
+
+1. **Repo access**  
+   GitHub → `springeloo-com/website-2026` → **Settings → Collaborators**  
+   Your user needs **Write** (or be an org owner).
+
+2. **Approve the OAuth App for the organization** (most common for org repos)  
+   Org owner opens:  
+   `https://github.com/organizations/springeloo-com/settings/oauth_application_policy`  
+   (or **Organization settings → Third-party access**)  
+   Find **Springeloo Decap CMS** (or your OAuth App name) → **Grant** access to
+   the org / this repository.
+
+3. **Re-authorize with full scopes**  
+   Ensure the Cloudflare Worker `/auth` requests `scope=repo,user` (see
+   [howto-claudflare.md](howto-claudflare.md)).  
+   Then: GitHub → **Settings → Applications → Authorized OAuth Apps** → revoke
+   **Springeloo Decap CMS** → open `/admin/` again → **Mit GitHub einloggen**
+   and accept the permissions prompt.
+
+4. **Confirm in Chrome DevTools → Network** when saving  
+   Look for a red `api.github.com` request (often creating a ref, commit, or
+   pull request). Status **403** with that message = still permissions/org
+   policy, not Decap field config.
+
+5. **Optional bisect** (maintainer only): temporarily set
+   `publish_mode: simple` in `public/admin/config.yml` and save again.  
+   - If simple works but editorial fails → focus on PR create permissions /
+     branch protection exceptions for the editor.  
+   - If both fail → org OAuth approval / write access still wrong.  
+   Keep `editorial_workflow` for production once fixed.
 
 ## Related
 
