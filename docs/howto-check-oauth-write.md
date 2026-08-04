@@ -31,6 +31,21 @@ What this means:
 
 So the Client ID/Secret path is minting the **wrong kind of token** (or a token without `repo`), even though your personal admin rights look fine.
 
+### Smoking gun (browser Network tab)
+
+Example from a Decap `GET …/git/trees/…` call after login:
+
+| Header / value | Meaning |
+|----------------|---------|
+| `Authorization: token ghu_…` | **GitHub App** user-to-server token — wrong for Decap |
+| `x-oauth-scopes:` (empty) | Classic OAuth scopes missing |
+| `x-accepted-github-permissions: contents=read` | App only has **read** Contents → save/create-ref will 403 |
+| `x-oauth-client-id: Iv23…` matches Worker | Proxy secrets are from that **GitHub App**, not an OAuth App |
+
+You will **never** see `gho_` until Worker secrets come from  
+**Developer settings → OAuth Apps** (not GitHub Apps). `Iv23…` IDs exist for
+both app types — the token prefix decides.
+
 ### Fix this specific case
 
 1. **Check token prefix** (first characters of `GH_TOKEN`):
@@ -38,9 +53,12 @@ So the Client ID/Secret path is minting the **wrong kind of token** (or a token 
    - `ghu_` / `ghs_` = GitHub **App** token → wrong credentials in the Worker
    - `ghp_` / `github_pat_` = PAT you pasted by mistake
 
-2. **Confirm you created an OAuth App, not a GitHub App**  
-   GitHub → Settings → Developer settings → **OAuth Apps**  
-   (not “GitHub Apps”). Put **that** Client ID/Secret into the Worker.
+2. **Create / use an OAuth App, not a GitHub App**  
+   GitHub → Settings → Developer settings → **OAuth Apps → New OAuth App**  
+   (left sidebar: **OAuth Apps**, not “GitHub Apps”).  
+   Callback: `https://springeloo-decap-oauth.mf-7e0.workers.dev/callback`  
+   Put **that** Client ID/Secret into the Worker (`GITHUB_OAUTH_ID` /
+   `GITHUB_OAUTH_SECRET`), then redeploy/restart so secrets apply.
 
 3. **Confirm authorize URL asks for repo**  
    While logging in, popup URL must contain `scope=repo%2Cuser` or `scope=repo,user`.  
@@ -51,9 +69,19 @@ So the Client ID/Secret path is minting the **wrong kind of token** (or a token 
    GitHub → Settings → Applications → Authorized OAuth Apps → revoke
    Springeloo Decap CMS → `/admin/` login again.
 
-5. **Org OAuth policy** (org owner)  
+5. **Org OAuth policy** (org owner) — required when you see:  
+   `organization has enabled OAuth App access restrictions`  
+   (token can be `gho_` with `repo` and still get create-ref **403**.)
+
+   Org owner opens:  
    https://github.com/organizations/springeloo-com/settings/oauth_application_policy  
-   Approve the OAuth App for `springeloo-com`.
+
+   Find the Decap OAuth App (current Client ID starts with `Ov23…`) → **Grant** access  
+   to `springeloo-com`.  
+
+   Alternate path for the editor who logged in:  
+   GitHub → **Settings → Applications → Authorized OAuth Apps** → open the app →  
+   **Organization access** → **Grant** (or Request) for `springeloo-com`.
 
 6. Re-run:
 
@@ -63,6 +91,19 @@ bash scripts/check-oauth-write.sh
 ```
 
 **Pass looks like:** `x-oauth-scopes: repo, user` (or similar including `repo`) **and** create-ref **HTTP 201**.
+
+### Full-chain script (proxy → authorize → token → write)
+
+```bash
+bash scripts/check-oauth-chain.sh
+
+export GH_TOKEN='gho_...'
+# optional: export GITHUB_OAUTH_ID=... GITHUB_OAUTH_SECRET=...
+bash scripts/check-oauth-chain.sh
+```
+
+This verifies the Cloudflare Worker requests `repo`, that Decap config points
+at the proxy, and that the logged-in user token can create refs.
 
 ---
 

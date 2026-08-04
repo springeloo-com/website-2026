@@ -149,12 +149,14 @@ Fix in order:
    GitHub → `springeloo-com/website-2026` → **Settings → Collaborators**  
    Your user needs **Write** (or be an org owner).
 
-2. **Approve the OAuth App for the organization** (most common for org repos)  
+2. **Approve the OAuth App for the organization** (required when org
+   “OAuth App access restrictions” are on — exact Decap/save error text)  
    Org owner opens:  
    `https://github.com/organizations/springeloo-com/settings/oauth_application_policy`  
    (or **Organization settings → Third-party access**)  
-   Find **Springeloo Decap CMS** (or your OAuth App name) → **Grant** access to
-   the org / this repository.
+   Find **Springeloo Decap CMS** (or your OAuth App / Client ID `Ov23…`) →
+   **Grant** access to the org. Until Grant, login + read can work while
+   save / create-ref returns **403**.
 
 3. **Re-authorize with full scopes**  
    Ensure the Cloudflare Worker `/auth` requests `scope=repo,user` (see
@@ -175,16 +177,30 @@ Fix in order:
    - If both fail → org OAuth approval / write access still wrong.  
    Keep `editorial_workflow` for production once fixed.
 
-### Prove write with curl
+### Prove write with curl (full chain)
 
-See **[howto-check-oauth-write.md](howto-check-oauth-write.md)** or run:
+The Cloudflare Worker is only an OAuth **proxy**. It forwards the logged-in
+user’s GitHub rights; it does not invent write access.
 
 ```bash
-export GH_TOKEN='gho_...'   # from DevTools Network Authorization header after login
-bash scripts/check-oauth-write.sh
+# A) Proxy + authorize URL (no token needed)
+bash scripts/check-oauth-chain.sh
+
+# B) After Decap login — paste token from DevTools → Network → api.github.com
+export GH_TOKEN='gho_...'
+bash scripts/check-oauth-chain.sh
+
+# C) Optional maintainer — also prove Client ID/Secret own that token
+export GITHUB_OAUTH_ID='Iv23...'
+export GITHUB_OAUTH_SECRET='...'
+export GH_TOKEN='gho_...'
+bash scripts/check-oauth-chain.sh
 ```
 
-Pass = `x-oauth-scopes` contains `repo`, repo `"push": true`, create-ref **201**.
+Pass = authorize `scope` includes `repo`, token prefix `gho_`,
+`x-oauth-scopes` includes `repo`, create-ref **HTTP 201**.
+
+Also: [howto-check-oauth-write.md](howto-check-oauth-write.md)
 
 ## Related
 
