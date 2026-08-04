@@ -1,4 +1,4 @@
-brandName: springeloo2
+brandName: springeloo
 nav:
   - id: projektunterstuetzung
     label: Projektunterstützung
@@ -28,7 +28,7 @@ footer:
   addressLines:
     - Teybergasse 1
     - A-1140 Wien
-  phone: +49 7127 94 99 90
+  phone: +43 1313 1212
   email: hello@springeloo.com
   linkedIn: https://www.linkedin.com/
   legal:
