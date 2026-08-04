@@ -10,6 +10,60 @@ the repo. They only mint a **user access token**. Write capability depends on:
 If any of those fail, Decap login can still work while save fails with  
 `API_ERROR: Resource not accessible by integration`.
 
+## Reading a failing check script result
+
+Example of a **failing but informative** run:
+
+```text
+x-oauth-scopes:            ← EMPTY (bad)
+permissions= { … 'push': True … }
+create ref HTTP 403
+Resource not accessible by integration
+```
+
+What this means:
+
+| Signal | Meaning |
+|--------|---------|
+| `push: true` | Your **user** `tkamsker` is allowed to push as a collaborator |
+| Empty `x-oauth-scopes` | This token is **not** a classic OAuth token with `repo` |
+| `Resource not accessible by integration` | GitHub treats the caller as an **App/integration** without write, or an OAuth App blocked for org writes |
+
+So the Client ID/Secret path is minting the **wrong kind of token** (or a token without `repo`), even though your personal admin rights look fine.
+
+### Fix this specific case
+
+1. **Check token prefix** (first characters of `GH_TOKEN`):
+   - `gho_` = classic OAuth (correct for Decap)
+   - `ghu_` / `ghs_` = GitHub **App** token → wrong credentials in the Worker
+   - `ghp_` / `github_pat_` = PAT you pasted by mistake
+
+2. **Confirm you created an OAuth App, not a GitHub App**  
+   GitHub → Settings → Developer settings → **OAuth Apps**  
+   (not “GitHub Apps”). Put **that** Client ID/Secret into the Worker.
+
+3. **Confirm authorize URL asks for repo**  
+   While logging in, popup URL must contain `scope=repo%2Cuser` or `scope=repo,user`.  
+   If missing → Worker still has old code → paste script from
+   `docs/howto-claudflare.md` → Save & Deploy.
+
+4. **Revoke + re-login** (mandatory after scope/app fix)  
+   GitHub → Settings → Applications → Authorized OAuth Apps → revoke
+   Springeloo Decap CMS → `/admin/` login again.
+
+5. **Org OAuth policy** (org owner)  
+   https://github.com/organizations/springeloo-com/settings/oauth_application_policy  
+   Approve the OAuth App for `springeloo-com`.
+
+6. Re-run:
+
+```bash
+export GH_TOKEN='gho_...'   # new token after re-login
+bash scripts/check-oauth-write.sh
+```
+
+**Pass looks like:** `x-oauth-scopes: repo, user` (or similar including `repo`) **and** create-ref **HTTP 201**.
+
 ---
 
 ## 1. Confirm the Worker asks for write scopes
