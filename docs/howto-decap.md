@@ -175,8 +175,20 @@ Fix in order:
    - If both fail → org OAuth approval / write access still wrong.  
    Keep `editorial_workflow` for production once fixed.
 
+### Prove write with curl
+
+See **[howto-check-oauth-write.md](howto-check-oauth-write.md)** or run:
+
+```bash
+export GH_TOKEN='gho_...'   # from DevTools Network Authorization header after login
+bash scripts/check-oauth-write.sh
+```
+
+Pass = `x-oauth-scopes` contains `repo`, repo `"push": true`, create-ref **201**.
+
 ## Related
 
+- [howto-check-oauth-write.md](howto-check-oauth-write.md) — token capability checks
 - [howto-oauth-proxy.md](howto-oauth-proxy.md) — create GitHub OAuth App + proxy
 - [howto-edit-content.md](howto-edit-content.md) — field map and local edits
 - [howto-deploy.md](howto-deploy.md) — GitHub Pages deploy
