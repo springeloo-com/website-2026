@@ -1,12 +1,10 @@
-# Home page content — hero, meta, and exactly three Leistungen cards.
 meta:
   title: Digitale Unternehmenskultur durch Kompetenzmanagement
-  description: >-
-    Digitale Tools und Kompetenzen für eine zukunftsfähige Unternehmenskultur —
-    future by professionals.
+  description: Digitale Tools und Kompetenzen für eine zukunftsfähige
+    Unternehmenskultur — future by professionals.
 hero:
   eyebrow: Digitale Tools und Kompetenzen
-  headline: Digitale Unternehmenskultur durch Kompetenzmanagement.
+  headline: Digitale Unternehmenskultur durch Kompetenzmanagement!
   badge: HR + AI
   image:
     src: /uploads/hero-office-1.jpg
