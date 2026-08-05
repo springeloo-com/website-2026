@@ -41,9 +41,10 @@
   --space-8: 4rem;
   --space-9: 6rem;
 
-  /* Layout */
+  /* Layout — Figma menue-01 is ~95px (≥768); mobile chrome ~148px in file
+     (we use a slightly taller mobile bar until full chrome assets land) */
   --max-content: 72rem;
-  --header-height: 4.5rem;
+  --header-height: 5.9375rem;
   --radius-sm: 0.25rem;
   --radius-pill: 999px;
   --shadow-soft: 0 12px 40px rgba(15, 26, 43, 0.18);
@@ -52,4 +53,11 @@
   /* Motion */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --duration: 280ms;
+}
+
+/* Mobile band — taller chrome than tablet/desktop */
+@media (max-width: 767.98px) {
+  :root {
+    --header-height: 6.5rem;
+  }
 }

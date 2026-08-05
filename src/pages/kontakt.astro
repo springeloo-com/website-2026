@@ -2,85 +2,150 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import { getSiteMeta } from '../lib/content';
-import hero from '../assets/images/hero-office-1.jpg';
+import { getSiteMeta, publicUrl } from '../lib/content';
 
 const siteMeta = getSiteMeta();
 const title = 'Kontakt';
 const description = 'Wir freuen uns auf Ihre Anfrage — Kontakt zu springeloo.';
+
+const phoneDisplay = siteMeta.contactPhone;
+const phoneHref = `tel:${phoneDisplay.replace(/\s/g, '')}`;
+const email = siteMeta.contactEmail;
+
+const team = [
+  {
+    name: 'Franz Mendl',
+    role: 'Managing Director & Co-Founder',
+    tags: ['Finanzen', 'Projektmanagement', 'Programmmanagement'],
+    image: '/uploads/team/franz-mendl.jpg',
+    imageAlt: 'Porträt Franz Mendl',
+    linkedIn: siteMeta.linkedIn,
+  },
+  {
+    name: 'Horst Suntych',
+    role: 'Managing Director & Co-Founder',
+    tags: ['Visionär', 'strategische Ausrichtung'],
+    image: '/uploads/team/horst-suntych.jpg',
+    imageAlt: 'Porträt Horst Suntych',
+    linkedIn: siteMeta.linkedIn,
+  },
+  {
+    name: 'Mathias Florian',
+    role: 'Vertrieb & technische Produkte',
+    tags: ['Produktkommunikation', 'CRM & IDM', 'MedTech'],
+    image: '/uploads/team/mathias-florian.png',
+    imageAlt: 'Porträt Mathias Florian',
+    linkedIn: siteMeta.linkedIn,
+  },
+];
 ---
 
-<BaseLayout title={title} description={description} canonicalPath="/kontakt" theme="cream" ogImage={hero.src}>
-  <SiteHeader slot="header" activePath="/kontakt" variant="solid" />
+<BaseLayout title={title} description={description} canonicalPath="/kontakt" theme="dark">
+  <SiteHeader slot="header" activePath="/kontakt" variant="transparent" />
 
-  <section class="section">
-    <div class="container kontakt">
-      <div>
-        <p class="eyebrow kontakt__eyebrow">KONTAKT</p>
-        <h1>Wir freuen uns auf Ihre Anfrage.</h1>
+  <section class="kontakt-page" aria-label="Kontakt">
+    <div class="grid-overlay grid-overlay--dark" aria-hidden="true"></div>
+    <div class="container kontakt-page__inner">
+      <header class="kontakt-intro">
+        <div class="kontakt-intro__main">
+          <p class="kontakt-kicker">Jetzt Kontakt aufnehmen</p>
+          <h1>
+            Investieren Sie in<br />
+            den nächsten Schritt<br />
+            in die Zukunft.
+          </h1>
+        </div>
+        <p class="kontakt-aside-kicker">
+          Ihre digitale<br />
+          Transformation<br />
+          startet hier
+        </p>
+      </header>
 
-        <!-- Visual contact form from Figma — display only, no submission (FR-005) -->
-        <form class="kontakt-form" aria-label="Kontaktformular (Anzeige)" onsubmit="return false;">
-          <div class="field">
-            <label for="topic">THEMA DER ANFRAGE*</label>
-            <select id="topic" name="topic" disabled>
-              <option>ALLGEMEIN</option>
-            </select>
-          </div>
-
-          <fieldset>
-            <legend>IHRE DATEN</legend>
-            <div class="radios" role="group" aria-label="Anrede">
-              <label><input type="radio" name="salutation" value="frau" disabled /> FRAU</label>
-              <label><input type="radio" name="salutation" value="herr" disabled /> HERR</label>
-              <label><input type="radio" name="salutation" value="divers" disabled /> DIVERS</label>
-            </div>
-            <input type="text" placeholder="VORNAME*" disabled />
-            <input type="text" placeholder="NACHNAME*" disabled />
-            <input type="email" placeholder="EMAIL-ADRESSE*" disabled />
-          </fieldset>
-          <p class="hint">Hinweis: Anfragen bitte per E-Mail oder Telefon — Online-Versand folgt später.</p>
-        </form>
+      <div class="kontakt-box">
+        <p class="kontakt-kicker">Wir freuen uns auf Ihre Anfragen</p>
+        <a class="kontakt-box__line" href={phoneHref}>T. {phoneDisplay}</a>
+        <a class="kontakt-box__line" href={`mailto:${email}`}>{email}</a>
       </div>
 
-      <aside class="kontakt-aside">
-        <div>
-          <h2>ADRESSE</h2>
-          <p>
-            {siteMeta.company}<br />
-            {siteMeta.contactAddressLines.map((line) => (
+      <div class="kontakt-office">
+        <p class="kontakt-kicker">
+          Springeloo<br />
+          office
+        </p>
+        <p>
+          <strong>{siteMeta.company}</strong><br />
+          {
+            siteMeta.contactAddressLines.map((line) => (
               <>
                 {line}
                 <br />
               </>
-            ))}
-          </p>
-          <a href="https://maps.google.com/?q=Teybergasse+1+1140+Wien">Karte ›</a>
-        </div>
-        <div>
-          <h2>KONTAKT</h2>
-          <p>
-            <a href={`tel:${siteMeta.contactPhone.replace(/\s/g, '')}`}>{siteMeta.contactPhone}</a><br />
-            <a href={`mailto:${siteMeta.contactEmail}`}>{siteMeta.contactEmail}</a>
-          </p>
-        </div>
+            ))
+          }
+        </p>
+      </div>
+
+      <div class="kontakt-mgmt-head">
+        <p class="kontakt-kicker">Springeloo management</p>
+        <h2>
+          Ihre Verbindung zu einem<br />
+          Netzwerk von Professionisten
+        </h2>
+      </div>
+
+      <ul class="kontakt-team">
+        {
+          team.map((person) => (
+            <li class="kontakt-person">
+              <div class="kontakt-person__photo">
+                <img src={publicUrl(person.image)} alt={person.imageAlt} width="480" height="520" />
+              </div>
+              <div class="kontakt-person__body">
+                <p class="kontakt-person__name">{person.name}</p>
+                <p class="kontakt-person__role">{person.role}</p>
+                <ul class="kontakt-person__tags">
+                  {person.tags.map((tag) => (
+                    <li>{tag}</li>
+                  ))}
+                </ul>
+              </div>
+              <a class="kontakt-person__link" href={person.linkedIn} target="_blank" rel="noopener noreferrer">
+                <img
+                  class="kontakt-person__li"
+                  src={publicUrl('/uploads/linkedin-bug.png')}
+                  alt=""
+                  width="36"
+                  height="31"
+                />
+                <span>Jetzt vernetzen</span>
+                <span class="kontakt-person__chevron" aria-hidden="true">›</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="kontakt-legal">
         <div id="impressum">
           <h2>Impressum</h2>
           <p>
             {siteMeta.company}<br />
-            {siteMeta.addressLines.map((line) => (
-              <>
-                {line}
-                <br />
-              </>
-            ))}
+            {
+              siteMeta.addressLines.map((line) => (
+                <>
+                  {line}
+                  <br />
+                </>
+              ))
+            }
           </p>
         </div>
         <div id="datenschutz">
           <h2>Datenschutz</h2>
-          <p>Datenschutzhinweise gemäß Figma-Footer-Verweis — Inhalte nur soweit im Extract vorhanden.</p>
+          <p>Datenschutzhinweise gemäß Footer-Verweis — Details folgen dem rechtlichen Extract.</p>
         </div>
-      </aside>
+      </div>
     </div>
   </section>
 
@@ -88,110 +153,250 @@ const description = 'Wir freuen uns auf Ihre Anfrage — Kontakt zu springeloo.'
 </BaseLayout>
 
 <style>
-  .kontakt {
+  .kontakt-page {
+    position: relative;
+    background: var(--color-ink);
+    color: var(--color-cream);
+    padding-block: calc(var(--header-height) + var(--space-8)) var(--space-8);
+    overflow: hidden;
+  }
+
+  .grid-overlay--dark {
+    opacity: 0.18;
+    background-image:
+      linear-gradient(to right, color-mix(in srgb, var(--color-cream) 35%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--color-cream) 35%, transparent) 1px, transparent 1px);
+    background-size: 12.5% 16.666%;
+  }
+
+  /* Kontakt is a dark page: keep transparent chrome cream-on-ink (not mobile navy bar) */
+  :global(.theme-dark) :global(.site-header--transparent) {
+    background: transparent;
+    color: var(--color-cream);
+  }
+
+  .kontakt-page__inner {
+    position: relative;
+    z-index: 1;
     display: grid;
     gap: var(--space-7);
-    padding-top: var(--space-4);
   }
 
-  .kontakt__eyebrow {
-    color: var(--color-blue);
+  .kontakt-kicker {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
   }
 
-  .kontakt h1 {
-    margin: 0 0 var(--space-6);
-    color: var(--color-blue);
-    font-size: var(--font-size-3xl);
-    line-height: var(--line-tight);
-    letter-spacing: -0.02em;
-    max-width: 14ch;
-  }
-
-  .kontakt-form {
+  .kontakt-intro {
     display: grid;
     gap: var(--space-5);
-    max-width: 36rem;
   }
 
-  .field,
-  fieldset {
-    display: grid;
-    gap: var(--space-3);
-    border: 0;
+  .kontakt-intro h1 {
     margin: 0;
-    padding: 0;
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    font-weight: var(--font-weight-regular);
+    line-height: 1;
+    letter-spacing: -0.02em;
   }
 
-  label,
-  legend {
-    color: var(--color-blue);
-    font-size: var(--font-size-xs);
-    letter-spacing: 0.06em;
+  .kontakt-aside-kicker {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.1em;
     text-transform: uppercase;
+    line-height: 1.4;
   }
 
-  select,
-  input[type='text'],
-  input[type='email'] {
-    width: 100%;
-    border: 0;
-    background: var(--color-cream-dark);
-    color: var(--color-ink);
-    padding: 0.95rem 1rem;
-    font: inherit;
-    text-transform: uppercase;
-  }
-
-  .radios {
-    display: flex;
-    flex-wrap: wrap;
+  .kontakt-box {
+    border: 1px solid var(--color-cream);
+    padding: var(--space-6);
+    display: grid;
     gap: var(--space-4);
   }
 
-  .radios label {
-    color: var(--color-ink);
-    text-transform: uppercase;
-    display: inline-flex;
-    gap: 0.4rem;
-    align-items: center;
+  .kontakt-box__line {
+    font-size: clamp(1.5rem, 4vw, 4.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    color: inherit;
+    word-break: break-word;
   }
 
-  .hint {
-    margin: 0;
-    color: var(--color-ink-muted);
-    font-size: var(--font-size-sm);
+  .kontakt-box__line:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
   }
 
-  .kontakt-aside {
+  .kontakt-office {
     display: grid;
-    gap: var(--space-6);
-    padding-top: var(--space-2);
-    border-top: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
+    gap: var(--space-3);
   }
 
-  .kontakt-aside h2 {
-    margin: 0 0 var(--space-3);
+  .kontakt-office p {
+    margin: 0;
+    font-size: var(--font-size-md);
+    line-height: 1.5;
+  }
+
+  .kontakt-mgmt-head h2 {
+    margin: var(--space-3) 0 0;
+    font-size: clamp(1.75rem, 3.5vw, 3rem);
+    font-weight: var(--font-weight-regular);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .kontakt-team {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-7);
+  }
+
+  .kontakt-person {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .kontakt-person__photo {
+    aspect-ratio: 4 / 3.4;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--color-cream) 8%, transparent);
+  }
+
+  .kontakt-person__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .kontakt-person__name {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .kontakt-person__role {
+    margin: 0.15rem 0 0;
+    font-size: var(--font-size-md);
+    opacity: 0.9;
+  }
+
+  .kontakt-person__tags {
+    list-style: none;
+    margin: var(--space-4) 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .kontakt-person__tags li {
+    background: var(--color-cream-soft);
+    color: var(--color-ink);
+    border-radius: var(--radius-pill);
+    padding: 0.45rem 0.75rem;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .kontakt-person__link {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding-block: var(--space-4);
+    border-block: 1px solid color-mix(in srgb, var(--color-cream) 35%, transparent);
+    text-decoration: none;
+    color: inherit;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .kontakt-person__link:hover {
+    text-decoration: none;
+    opacity: 0.85;
+  }
+
+  .kontakt-person__li {
+    width: 2rem;
+    height: auto;
+    flex-shrink: 0;
+    filter: brightness(0) invert(1);
+  }
+
+  .kontakt-person__chevron {
+    margin-left: auto;
+    font-size: 1.4em;
+    line-height: 1;
+  }
+
+  .kontakt-legal {
+    display: grid;
+    gap: var(--space-5);
+    padding-top: var(--space-6);
+    border-top: 1px solid color-mix(in srgb, var(--color-cream) 20%, transparent);
+    opacity: 0.75;
+  }
+
+  .kontakt-legal h2 {
+    margin: 0 0 var(--space-2);
     font-size: var(--font-size-sm);
     letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
 
-  .kontakt-aside p {
-    margin: 0 0 var(--space-3);
-    color: var(--color-ink-muted);
+  .kontakt-legal p {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
   }
 
-  @media (min-width: 960px) {
-    .kontakt {
-      grid-template-columns: 1.4fr 0.8fr;
+  /* Tablet quer+ */
+  @media (min-width: 1024px) {
+    .kontakt-intro {
+      grid-template-columns: 1fr auto;
+      align-items: start;
+      gap: var(--space-6);
+    }
+
+    .kontakt-aside-kicker {
+      text-align: right;
+      max-width: 14rem;
+    }
+
+    .kontakt-box {
+      padding: var(--space-8) clamp(2rem, 6vw, 6rem);
+      gap: var(--space-5);
+    }
+
+    .kontakt-office {
+      grid-template-columns: 12.75rem 1fr;
+      gap: var(--space-5);
       align-items: start;
     }
 
-    .kontakt-aside {
-      border-top: 0;
-      border-left: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
-      padding-left: var(--space-6);
+    .kontakt-team {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+      align-items: start;
+    }
+  }
+
+  /* Desktop */
+  @media (min-width: 1280px) {
+    .kontakt-page {
+      padding-block: calc(var(--header-height) + 6rem) 6rem;
+    }
+
+    .kontakt-page__inner {
+      gap: 3rem;
     }
   }
 </style>

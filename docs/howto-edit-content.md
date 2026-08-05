@@ -2,7 +2,9 @@
 
 Most marketing copy and images for the **home page**, plus shared nav labels and
 contact details, are edited via **Decap CMS** (or by editing YAML content files
-in Git). Layout, routes, and other pages still live in Astro.
+in Git). Layout, routes, and other pages still live in Astro — see
+**[howto-figma-design-drop.md](howto-figma-design-drop.md)** when design delivers
+a new Figma drop (layout is engineering-owned; Decap stays copy/images only).
 
 ## Preferred: Decap CMS
 

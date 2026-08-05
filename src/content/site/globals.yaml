@@ -23,13 +23,13 @@ nav:
     label: Kontakt
     href: /kontakt
 footer:
-  tagline: Frictionless digital experiences
+  tagline: Future by professionals.
   company: Springeloo GmbH
   addressLines:
     - Teybergasse 1
     - A-1140 Wien
-  phone: +43 1313 1212
-  email: hello@springeloo.com
+  phone: +43 680 111 32 30
+  email: office@springeloo.com
   linkedIn: https://www.linkedin.com/
   legal:
     - label: Impressum

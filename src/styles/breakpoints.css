@@ -1,24 +1,69 @@
-/* Breakpoints from Figma export variants */
+/*
+  Acceptance breakpoints ↔ Figma homepage frames
+  (see src/lib/breakpoints.ts + contracts/figma-source.md)
+
+  File: lhqqJkipcRchejNEqQ1ehb (team copy). Landing instances:
+
+  | Band          | min-width | Acceptance | Landing node |
+  |---------------|-----------|------------|--------------|
+  | Mobile        | 0         | 390        | 2109:114327  |
+  | Tablet hoch   | 768       | 768        | 2109:104991  |
+  | Tablet quer   | 1024      | 1024       | 2109:91364   |
+  | Desktop       | 1280      | 1280       | 2109:78609   |
+
+  Optional: 2k 1920 (proto also exposes Breakpoint 2k)
+
+  Note: CSS variables cannot be used inside @media conditions — keep
+  literals in sync with --bp-* and src/lib/breakpoints.ts BP constants.
+*/
 :root {
   --bp-mobile: 390px;
   --bp-tablet-portrait: 768px;
   --bp-tablet-landscape: 1024px;
   --bp-desktop: 1280px;
   --bp-2k: 1920px;
+
+  /* Default until viewport-band.ts sets data-viewport */
+  --viewport-band: mobile;
 }
 
-/* Mobile-first helpers as custom media via classes when needed */
+html[data-viewport='mobile'] {
+  --viewport-band: mobile;
+}
+
+html[data-viewport='tablet-hoch'] {
+  --viewport-band: tablet-hoch;
+}
+
+html[data-viewport='tablet-quer'] {
+  --viewport-band: tablet-quer;
+}
+
+html[data-viewport='desktop'] {
+  --viewport-band: desktop;
+}
+
+/* Mobile-first helpers */
 .container {
   width: min(100% - 2rem, var(--max-content));
   margin-inline: auto;
 }
 
+/* Tablet hoch — 768 */
 @media (min-width: 768px) {
   .container {
     width: min(100% - 3rem, var(--max-content));
   }
 }
 
+/* Tablet quer — 1024 */
+@media (min-width: 1024px) {
+  .container {
+    width: min(100% - 3.5rem, var(--max-content));
+  }
+}
+
+/* Desktop — 1280 */
 @media (min-width: 1280px) {
   .container {
     width: min(100% - 4rem, var(--max-content));
