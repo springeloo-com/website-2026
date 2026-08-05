@@ -2,32 +2,273 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import hero from '../assets/images/hero-office-3.jpg';
+import CTAButton from '../components/CTAButton.astro';
+import { getSiteMeta, publicUrl } from '../lib/content';
 
+const siteMeta = getSiteMeta();
 const title = 'Springeloo';
-const description = 'Konstanz durch Kultur: Experten, die bleiben — über springeloo.';
+const description =
+  'Konstanz durch Kultur: Experten, die bleiben — über springeloo.';
+const heroSrc = publicUrl('/uploads/springeloo/hero.jpg');
+
+const stats = [
+  { value: '12K+', label: 'Wissensträger im Netzwerk der Springeloo' },
+  { value: '50+', label: 'Projektpartner in Europa' },
+  { value: '400+', label: 'erfolgreich realisierte Projekte' },
+  { value: '30+', label: 'Jahre Projekterfahrung in digitaler Transformation' },
+];
+
+const insights = [
+  {
+    id: 'philosophie',
+    label: 'Philosophie',
+    title: 'Unsere Philosophie: Ganzheitliche Technologielösungen',
+    lead: 'Digitale Souveränität entsteht durch das perfekte Zusammenspiel von Strategie, Entwicklung und Betrieb.',
+    body: 'Unsere Philosophie basiert darauf, Ihre IT-Infrastruktur als Gesamtes zu stärken. Ob durch unsere proprietären Produkte oder unsere Dienstleistungen von der Architektur bis zur Administration – wir schaffen offene, zukunftssichere Systeme, die Abhängigkeiten abbauen und Ihre Wertschöpfung langfristig sichern.',
+  },
+  {
+    id: 'transformation',
+    label: 'Transformation',
+    title: 'Transformation mit Sicherheit im Wandel',
+    lead: 'Komplexe IT-Vorhaben brauchen Klarheit, Führung und belastbare Meilensteine.',
+    body: 'Wir begleiten digitale Transformation von der Analyse bis zur Umsetzung — mit Senior Experts, Open-Source- und KI-Werkzeugen sowie Strukturen, die Fortschritt ermöglichen und langfristig tragen.',
+  },
+  {
+    id: 'skalierbarkeit',
+    label: 'Skalierbarkeit',
+    title: 'Skalierbarkeit ohne Vendor-Lock-in',
+    lead: 'Wachstum darf nicht an Lizenzen oder starren Architekturen scheitern.',
+    body: 'Unsere Lösungen und Betriebsmodelle sind so gebaut, dass Teams skalieren können: modular, wartbar und mit voller Datenhoheit in Ihrer Infrastruktur.',
+  },
+  {
+    id: 'netzwerk',
+    label: 'Netzwerk',
+    title: 'Ein Netzwerk aus Wissensträgern',
+    lead: 'Gute IT-Experten findet man nicht auf Jobportalen – man kennt sie.',
+    body: 'Über 12.000 Wissensträger in Europa ermöglichen es uns, gezielt die richtigen Menschen für die richtigen Aufgaben zu aktivieren — schnell, treffsicher und ohne langwierige Ausschreibungen.',
+  },
+  {
+    id: 'team',
+    label: 'Team',
+    title: 'Teamkultur als Stabilitätsanker',
+    lead: 'Konstanz entsteht durch Menschen, die bleiben und Verantwortung übernehmen.',
+    body: 'Wir verbinden Branchenwissen mit modernem Handwerk und fördern ein digitales Mindset — in Projekten und in der Zusammenarbeit mit Ihren Teams.',
+  },
+];
+
+const team = [
+  {
+    name: 'Franz Mendl',
+    role: 'Managing Director & Co-Founder',
+    tags: ['Finanzen', 'Projektmanagement', 'Programmmanagement'],
+    image: '/uploads/team/franz-mendl.jpg',
+    imageAlt: 'Porträt Franz Mendl',
+  },
+  {
+    name: 'Horst Suntych',
+    role: 'Managing Director & Co-Founder',
+    tags: ['Visionär', 'strategische Ausrichtung'],
+    image: '/uploads/team/horst-suntych.jpg',
+    imageAlt: 'Porträt Horst Suntych',
+  },
+  {
+    name: 'Mathias Florian',
+    role: 'Vertrieb & technische Produkte',
+    tags: ['Produktkommunikation', 'CRM & IDM', 'MedTech'],
+    image: '/uploads/team/mathias-florian.png',
+    imageAlt: 'Porträt Mathias Florian',
+  },
+];
 ---
 
-<BaseLayout title={title} description={description} canonicalPath="/springeloo" ogImage={hero.src}>
+<BaseLayout title={title} description={description} canonicalPath="/springeloo" ogImage={heroSrc}>
   <SiteHeader slot="header" activePath="/springeloo" variant="transparent" />
 
-  <section class="page-hero">
-    <img src={hero.src} alt="Drei springeloo Experten im Gespräch" />
-    <div class="page-hero__shade" aria-hidden="true"></div>
+  <section class="sp-hero" aria-label="Hero">
+    <img class="sp-hero__image" src={heroSrc} alt="Drei springeloo Experten im Gespräch" width="1920" height="1080" />
+    <div class="sp-hero__shade" aria-hidden="true"></div>
     <div class="grid-overlay" aria-hidden="true"></div>
-    <div class="container page-hero__content">
-      <p class="eyebrow">future by professionals.</p>
-      <p class="meta">springeloo GmbH</p>
-      <h1>Konstanz durch Kultur:<br />Experten, die bleiben.</h1>
+    <div class="container sp-hero__content">
+      <div class="sp-hero__meta">
+        <p>future by<br />professionals.</p>
+        <p>springeloo<br />GmbH</p>
+      </div>
+      <h1>
+        Konstanz durch Kultur:<br />
+        Experten, die bleiben.
+      </h1>
     </div>
   </section>
 
-  <section class="section section--cream">
-    <div class="container about">
-      <h2>Über springeloo</h2>
-      <p>
-        Wir gestalten digitale Zusammenarbeit mit Haltung: kompetent, beständig und nah an den Menschen,
-        die Transformation tragen. Kultur ist unser Stabilitätsanker — Technologie unser Handwerk.
+  <section class="sp-intro section section--cream">
+    <div class="container">
+      <p class="sp-intro__lead">
+        Springeloo steht für Sicherheit im Wandel. Mit unserem Know-how schaffen wir ein sicheres Fundament für
+        Unternehmen, die etwas bewegen wollen.
+      </p>
+      <div class="sp-intro__body">
+        <p>
+          Die digitale Transformation von Prozessen ist für jedes Unternehmen eine Herausforderung. Das Ziel ist
+          Sicherheit in komplexen IT- und Transformationsprojekten zu schaffen. Dies erreichen wir durch
+          Kompetenzmanagement unserer Mitarbeiter und Implementierung von Softwarelösungen, Open-Source- und KI-Tools.
+        </p>
+        <p>
+          Wir entlasten Organisationen, indem wir Verantwortung übernehmen und Strukturen schaffen, die Fortschritt
+          ermöglichen und langfristig tragen. Durch Senior Experts, jahrelanges Know-how und den Einsatz moderner
+          Technologien, verbinden wir Branchenwissen mit modernen Tools und fördern ein digitales Mindset im
+          Unternehmen.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sp-numbers section section--cream">
+    <div class="container">
+      <div class="sp-numbers__intro">
+        <p class="sp-numbers__strong">
+          Springeloo fördert den digitalen Ansatz in Unternehmensprozessen, seit über 30 Jahren.
+        </p>
+        <p>
+          Der Ausbau und Einsatz unseres Netzwerkes hat zu einer weit gefächerten Branchen-Expertise geführt die wir
+          seit einiger Zeit auch zur Erstellung von Produkten und Softwarelösungen nutzen die mit dem Verständnis des
+          Fachbereichs entstehen.
+        </p>
+      </div>
+      <hr class="sp-divider" />
+      <ul class="sp-stats">
+        {
+          stats.map((stat) => (
+            <li>
+              <p class="sp-stats__value">{stat.value}</p>
+              <p class="sp-stats__label">{stat.label}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="sp-insights" id="insights" data-sp-tabs>
+    <div class="container">
+      <p class="sp-kicker sp-kicker--light">Springeloo insights</p>
+      <h2>Ein digitales Mindset ist unser leitendes Motiv in allen Problemstellungen.</h2>
+
+      <div class="sp-tabs">
+        <div class="sp-tabs__nav" role="tablist" aria-label="Springeloo Insights">
+          {
+            insights.map((item, index) => (
+              <button
+                type="button"
+                class:list={['sp-tabs__btn', { 'is-active': index === 0 }]}
+                role="tab"
+                id={`sp-tab-${item.id}`}
+                aria-selected={index === 0 ? 'true' : 'false'}
+                aria-controls={`sp-panel-${item.id}`}
+                data-sp-tab={item.id}
+              >
+                {item.label}
+              </button>
+            ))
+          }
+        </div>
+
+        <div class="sp-tabs__panels">
+          {
+            insights.map((item, index) => (
+              <div
+                class:list={['sp-tabs__panel', { 'is-active': index === 0 }]}
+                role="tabpanel"
+                id={`sp-panel-${item.id}`}
+                aria-labelledby={`sp-tab-${item.id}`}
+                hidden={index !== 0}
+                data-sp-panel={item.id}
+              >
+                <div class="sp-tabs__copy">
+                  <h3>{item.title}</h3>
+                  <p class="sp-tabs__lead">{item.lead}</p>
+                  <p>{item.body}</p>
+                </div>
+                <div class="sp-tabs__media">
+                  <img
+                    src={publicUrl('/uploads/springeloo/insight.jpg')}
+                    alt="Fachperson am Arbeitsplatz"
+                    width="1600"
+                    height="1067"
+                  />
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sp-mgmt section section--cream" id="management">
+    <div class="container">
+      <p class="sp-kicker">Springeloo management</p>
+      <h2>
+        Ihre Verbindung zu einem<br />
+        Netzwerk von Professionisten
+      </h2>
+
+      <ul class="sp-team">
+        {
+          team.map((person) => (
+            <li class="sp-person">
+              <div class="sp-person__photo">
+                <img src={publicUrl(person.image)} alt={person.imageAlt} width="800" height="660" />
+              </div>
+              <div class="sp-person__text">
+                <p class="sp-person__name">{person.name}</p>
+                <p class="sp-person__role">{person.role}</p>
+                <ul class="sp-person__tags">
+                  {person.tags.map((tag) => (
+                    <li>{tag}</li>
+                  ))}
+                </ul>
+              </div>
+              <a class="sp-person__link" href={siteMeta.linkedIn} target="_blank" rel="noopener noreferrer">
+                <img
+                  class="sp-person__li"
+                  src={publicUrl('/uploads/linkedin-bug.png')}
+                  alt=""
+                  width="36"
+                  height="31"
+                />
+                <span>Jetzt vernetzen</span>
+                <span class="sp-person__chevron" aria-hidden="true">›</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <hr class="sp-divider" />
+
+      <p class="sp-mgmt__quote">
+        Springeloo steht für Sicherheit im Wandel. Mit unserem Know-How schaffen wir ein sicheres Fundament für
+        Unternehmen, die etwas bewegen wollen.
+      </p>
+    </div>
+  </section>
+
+  <section class="sp-cta">
+    <div class="grid-overlay grid-overlay--dark" aria-hidden="true"></div>
+    <div class="container sp-cta__inner">
+      <div class="sp-cta__copy">
+        <p class="sp-kicker sp-kicker--cream">Jetzt Kontakt aufnehmen</p>
+        <h2>
+          Investieren Sie in<br />
+          den nächsten Schritt<br />
+          in die Zukunft.
+        </h2>
+        <CTAButton label="Kontakt aufnehmen" href="/kontakt" variant="ghost-light" />
+      </div>
+      <p class="sp-cta__aside">
+        Ihre digitale<br />
+        Transformation<br />
+        startet hier
       </p>
     </div>
   </section>
@@ -35,71 +276,431 @@ const description = 'Konstanz durch Kultur: Experten, die bleiben — über spri
   <SiteFooter slot="footer" />
 </BaseLayout>
 
+<script>
+  const root = document.querySelector('[data-sp-tabs]');
+  if (root) {
+    const buttons = root.querySelectorAll('[data-sp-tab]');
+    const panels = root.querySelectorAll('[data-sp-panel]');
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const id = button.getAttribute('data-sp-tab');
+        buttons.forEach((btn) => {
+          const active = btn === button;
+          btn.classList.toggle('is-active', active);
+          btn.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        panels.forEach((panel) => {
+          const active = panel.getAttribute('data-sp-panel') === id;
+          panel.classList.toggle('is-active', active);
+          panel.toggleAttribute('hidden', !active);
+        });
+      });
+    });
+  }
+</script>
+
 <style>
-  .page-hero {
+  .sp-hero {
     position: relative;
-    min-height: 100vh;
-    min-height: 100dvh;
-    color: var(--color-white);
+    min-height: 85vh;
+    color: var(--color-cream);
   }
 
-  .page-hero img {
+  .sp-hero__image {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
   }
 
-  .page-hero__shade {
+  .sp-hero__shade {
     position: absolute;
     inset: 0;
     background:
       linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 47%),
-      linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 38%);
+      linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 38%),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
     z-index: 1;
   }
 
-  .page-hero__content {
+  .sp-hero__content {
     position: relative;
     z-index: 2;
-    min-height: 100vh;
-    min-height: 100dvh;
+    min-height: 85vh;
     display: grid;
-    align-content: end;
-    gap: var(--space-3);
-    padding-block: calc(var(--header-height) + 2rem) var(--space-8);
+    align-content: space-between;
+    gap: var(--space-6);
+    padding-block: calc(var(--header-height) + var(--space-6)) var(--space-7);
   }
 
-  .meta {
+  .sp-hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6) clamp(2rem, 20vw, 22rem);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.25;
+  }
+
+  .sp-hero__meta p {
     margin: 0;
-    font-size: var(--font-size-sm);
   }
 
-  .page-hero h1 {
+  .sp-hero h1 {
     margin: 0;
     max-width: 16ch;
-    font-size: var(--font-size-3xl);
-    line-height: var(--line-tight);
+    font-size: clamp(1.75rem, 4vw, 4.5rem);
+    line-height: 1;
     letter-spacing: -0.02em;
-    color: var(--color-cream);
     font-weight: var(--font-weight-regular);
   }
 
-  .about {
-    display: grid;
-    gap: var(--space-4);
+  .sp-kicker {
+    margin: 0 0 var(--space-3);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-blue);
+  }
+
+  .sp-kicker--light {
+    color: var(--color-cream);
+  }
+
+  .sp-kicker--cream {
+    color: var(--color-cream);
+  }
+
+  .sp-intro__lead {
+    margin: 0 0 var(--space-6);
+    color: var(--color-blue);
+    font-size: clamp(1.5rem, 3vw, 3rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
     max-width: 42rem;
   }
 
-  .about h2 {
-    margin: 0;
+  .sp-intro__body {
+    display: grid;
+    gap: var(--space-5);
+    max-width: 48rem;
+    margin-inline-start: clamp(0px, 6vw, 7rem);
   }
 
-  .about p {
+  .sp-intro__body p {
     margin: 0;
-    color: var(--color-ink-muted);
     font-size: var(--font-size-lg);
+    line-height: 1.5;
+  }
+
+  .sp-numbers__intro {
+    display: grid;
+    gap: var(--space-4);
+    max-width: 42rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .sp-numbers__strong {
+    margin: 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.35;
+  }
+
+  .sp-numbers__intro p:last-child {
+    margin: 0;
+    font-size: var(--font-size-md);
+    line-height: 1.5;
+    color: var(--color-ink-muted);
+  }
+
+  .sp-divider {
+    border: 0;
+    border-top: 1px solid color-mix(in srgb, var(--color-ink) 14%, transparent);
+    margin: 0 0 var(--space-7);
+  }
+
+  .sp-stats {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-7);
+  }
+
+  .sp-stats__value {
+    margin: 0;
+    font-size: clamp(3.5rem, 8vw, 6.875rem);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .sp-stats__label {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.4;
+    max-width: 18ch;
+  }
+
+  .sp-insights {
+    background: var(--color-blue);
+    color: var(--color-cream);
+    padding-block: var(--space-8);
+  }
+
+  .sp-insights h2 {
+    margin: 0 0 var(--space-6);
+    font-size: clamp(1.75rem, 3.5vw, 3rem);
+    font-weight: var(--font-weight-regular);
+    line-height: 1.15;
+    max-width: 22ch;
+  }
+
+  .sp-tabs__nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+  }
+
+  .sp-tabs__btn {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    text-align: left;
+    font: inherit;
+    font-size: clamp(1.15rem, 2vw, 1.875rem);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.25;
+    padding: 0.35rem 0;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+  }
+
+  .sp-tabs__btn.is-active {
+    border-bottom-color: var(--color-cream);
+  }
+
+  .sp-tabs__panel {
+    display: none;
+    gap: var(--space-5);
+  }
+
+  .sp-tabs__panel.is-active {
+    display: grid;
+  }
+
+  .sp-tabs__copy h3 {
+    margin: 0 0 var(--space-4);
+    font-size: clamp(1.35rem, 2.4vw, 2.25rem);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.2;
+  }
+
+  .sp-tabs__lead {
+    margin: 0 0 var(--space-4);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-lg);
+    line-height: 1.45;
+  }
+
+  .sp-tabs__copy p {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    line-height: 1.5;
+  }
+
+  .sp-tabs__media {
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background: color-mix(in srgb, var(--color-cream) 12%, transparent);
+  }
+
+  .sp-tabs__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .sp-mgmt h2 {
+    margin: 0 0 var(--space-7);
+    color: var(--color-blue);
+    font-size: clamp(1.75rem, 3.2vw, 3rem);
+    font-weight: var(--font-weight-regular);
+    line-height: 1.15;
+  }
+
+  .sp-team {
+    list-style: none;
+    margin: 0 0 var(--space-7);
+    padding: 0;
+    display: grid;
+    gap: var(--space-7);
+  }
+
+  .sp-person {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .sp-person__photo {
+    aspect-ratio: 4 / 3.3;
+    overflow: hidden;
+    background: var(--color-cream-soft);
+  }
+
+  .sp-person__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .sp-person__name {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .sp-person__role {
+    margin: 0.15rem 0 0;
+    font-size: var(--font-size-md);
+  }
+
+  .sp-person__tags {
+    list-style: none;
+    margin: var(--space-4) 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .sp-person__tags li {
+    background: var(--color-cream-soft);
+    border-radius: var(--radius-pill);
+    padding: 0.45rem 0.75rem;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .sp-person__link {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding-block: var(--space-4);
+    border-block: 1px solid color-mix(in srgb, var(--color-ink) 16%, transparent);
+    text-decoration: none;
+    color: inherit;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .sp-person__link:hover {
+    text-decoration: none;
+    opacity: 0.85;
+  }
+
+  .sp-person__li {
+    width: 2rem;
+    height: auto;
+    flex-shrink: 0;
+  }
+
+  .sp-person__chevron {
+    margin-left: auto;
+    font-size: 1.4em;
+    line-height: 1;
+  }
+
+  .sp-mgmt__quote {
+    margin: 0;
+    color: var(--color-blue);
+    font-size: clamp(1.5rem, 3vw, 3rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .sp-cta {
+    position: relative;
+    background: var(--color-ink);
+    color: var(--color-cream);
+    padding-block: var(--space-8);
+    overflow: hidden;
+  }
+
+  .sp-cta__inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .sp-cta__copy {
+    display: grid;
+    gap: var(--space-5);
+    justify-items: start;
+  }
+
+  .sp-cta h2 {
+    margin: 0;
+    font-size: clamp(1.75rem, 3.5vw, 4.5rem);
+    font-weight: var(--font-weight-regular);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  .sp-cta__aside {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  @media (min-width: 768px) {
+    .sp-stats {
+      grid-template-columns: 1fr 1fr;
+      column-gap: var(--space-8);
+      row-gap: var(--space-8);
+    }
+
+    .sp-tabs__panel.is-active {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+
+    .sp-team {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .sp-tabs {
+      display: grid;
+      grid-template-columns: minmax(12rem, 16rem) 1fr;
+      gap: var(--space-6);
+      align-items: start;
+    }
+
+    .sp-tabs__nav {
+      margin-bottom: 0;
+    }
+
+    .sp-cta__inner {
+      grid-template-columns: 1fr auto;
+      align-items: start;
+    }
+
+    .sp-cta__aside {
+      text-align: right;
+    }
   }
 </style>

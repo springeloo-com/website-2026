@@ -8,6 +8,7 @@ Static corporate website for Springeloo — Astro + GitHub Pages.
 - [Change images and text](docs/howto-edit-content.md)
 - [Decap CMS editorial workflow](docs/howto-decap.md) (editorial workflow → PR → maintainer merge)
 - [GitHub OAuth proxy for Decap](docs/howto-oauth-proxy.md) (required once for admin login)
+- [Figma design drop → layout update](docs/howto-figma-design-drop.md) (tokens → layout → four-width QA; Decap owns copy/images)
 
 ## Develop
 
@@ -42,4 +43,5 @@ Optional: `PUBLIC_SITE_URL` for absolute canonical/OG URLs.
 ## Speckit
 
 Feature artifacts live in `specs/` (e.g. `specs/001-springeloo-website/`,
-`specs/002-cloudcannon-editing/`, `specs/003-decap-cms-migration/`).
+`specs/002-cloudcannon-editing/`, `specs/003-decap-cms-migration/`,
+`specs/004-figma-design-parity/`).

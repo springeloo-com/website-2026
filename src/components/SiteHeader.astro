@@ -83,6 +83,13 @@ const isActive = (href: string) => {
     color: var(--color-white);
   }
 
+  /* Mobile band (Figma 2108:58686): solid dark chrome over hero */
+  @media (max-width: 767.98px) {
+    .site-header--transparent {
+      background: var(--color-navy);
+    }
+  }
+
   .site-header__inner {
     height: 100%;
     display: flex;
@@ -133,15 +140,24 @@ const isActive = (href: string) => {
   .site-header__desktop ul {
     display: flex;
     align-items: center;
-    gap: clamp(1rem, 2vw, 2rem);
+    gap: clamp(0.65rem, 1.5vw, 2rem);
     list-style: none;
     margin: 0;
     padding: 0;
   }
 
-  @media (min-width: 1024px) {
+  /* Tablet hoch+ (768 / Figma 2108:58680): full primary nav */
+  @media (min-width: 768px) {
     .site-header__desktop {
       display: block;
+      font-size: var(--font-size-sm);
+    }
+  }
+
+  /* Tablet quer+ (1024 / Figma 2108:58675) */
+  @media (min-width: 1024px) {
+    .site-header__desktop {
+      font-size: var(--font-size-md);
     }
   }
 </style>

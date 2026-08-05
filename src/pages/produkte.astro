@@ -2,110 +2,432 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import HeroCarousel from '../components/HeroCarousel.astro';
-import SectionHeading from '../components/SectionHeading.astro';
-import hero1 from '../assets/images/hero-office-1.jpg';
-import hero2 from '../assets/images/hero-office-2.jpg';
-import hero3 from '../assets/images/hero-office-3.jpg';
+import CTAButton from '../components/CTAButton.astro';
+import { publicUrl } from '../lib/content';
 
 const title = 'Produkte';
-const description = 'Host Ablöse und digitale Produktlösungen von springeloo.';
+const description =
+  'Digitale Produkte für Identity Management, CRM und Host Ablöse — springeloo.';
+
+const products = [
+  {
+    id: 'spring-ida2',
+    category: 'Identity Management',
+    name: 'spring id.a2',
+    logo: '/uploads/produkte/ida-logo.png',
+    mock: '/uploads/produkte/ida2-mock.png',
+    mockAlt: 'spring id.a2 Oberfläche auf Tablet',
+    features: [
+      {
+        title: 'Radikale Kosteneffizienz:',
+        body: 'Maximale Budgetkontrolle. Da die Plattform auf einem aktiven Open-Source-Modell basiert, entfallen teure, wiederkehrende Lizenzgebühren vollständig. Das senkt die Gesamtbetriebskosten dauerhaft.',
+      },
+      {
+        title: 'Volle Datenhoheit:',
+        body: 'Höchste Sicherheitsstandards. Sie behalten die absolute Kontrolle und Hoheit über all Ihre Kundendaten. Das System lässt sich flexibel und DSGVO-konform in Ihrer eigenen IT-Infrastruktur betreiben.',
+      },
+      {
+        title: 'Grenzenlose Flexibilität:',
+        body: 'Zukunftssicher und skalierbar. Dank des offenen Quellcodes passen wir Felder, Oberflächen und Workflows exakt an. Neue Module und Drittsysteme lassen sich nahtlos und unkompliziert integrieren.',
+      },
+    ],
+    summary:
+      'spring id.a2 ist unsere Lösung für sicheres Identity & Access Management auf Basis von Keycloak. Das System ermöglicht eine benutzerzentrierte Verwaltung digitaler Identitäten für interne und externe User. Durch ein intuitives Self-Service-Portal und ein Support-Dashboard schaffen wir ein sicheres Fundament für Ihre Zugriffssteuerung – verlässlich, skalierbar und NIS2-konform.',
+    details: [
+      {
+        title: 'Touchpoint Management:',
+        body: 'Steuerung aller Kundeninteraktionen. Von Web-Formularen und E-Mail-Kampagnen in der Awareness-Phase über das Lead-Management bis hin zu Verkaufschancen und Angeboten im Kaufprozess.',
+      },
+      {
+        title: 'Kundenservice-Tools:',
+        body: 'Professionelles Support-Management. E-Mail-Anfragen werden über E-Mail-to-Case automatisch in Servicefälle umgewandelt. Ein Kundenportal sowie eine Wissensdatenbank entlasten Ihr Team.',
+      },
+      {
+        title: 'Nahtlose Migration:',
+        body: 'Sicherer Systemwechsel. Wir migrieren Ihre bestehenden Daten verlustfrei – inklusive Firmenstammdaten, kundenspezifischen Feldern, Berechtigungen und Historie.',
+      },
+    ],
+  },
+  {
+    id: 'spring-suitecrm',
+    category: 'Kundenkontaktmanagement',
+    name: 'spring suiteCRM',
+    logo: undefined,
+    mock: '/uploads/produkte/suitecrm-mock.png',
+    mockAlt: 'spring suiteCRM Dashboard auf Tablet',
+    features: [
+      {
+        title: 'Keine Lizenzkosten:',
+        body: 'Volle Budgetkontrolle ohne Vendor-Lock-in. Open-Source-Basis bedeutet: keine teuren, wiederkehrenden Lizenzgebühren für Nutzer oder Features.',
+      },
+      {
+        title: 'DSGVO & Compliance:',
+        body: 'Rechtssicher agieren. Volle Datenhoheit, lückenlose Audits und Protokolle – betrieben in Ihrer Infrastruktur.',
+      },
+      {
+        title: 'Open-Source Technologie:',
+        body: 'Nahtlose Markenidentität und Customizing. Login, Oberflächen und Workflows passen wir an Ihr Corporate Design an.',
+      },
+    ],
+    summary:
+      'spring suiteCRM ist unsere kosteneffiziente Lösung für ganzheitliches Kundenkontaktmanagement. Basierend auf Open Source bietet das System volle Datenhoheit und maximale Flexibilität ohne Lizenzgebühren. Wir integrieren KI-Features wie Speech2Text und automatisierte Workflows für ein sicheres Fundament Ihrer Customer Journey – individuell, skalierbar und absolut verlässlich.',
+    details: [
+      { title: 'Kontakt Management', body: 'Zentrale Steuerung von Kontakten, Leads und Opportunities.' },
+      { title: 'Collaborative Tools', body: 'Zusammenarbeit im Team über geteilte Pipelines und Aufgaben.' },
+      { title: 'Mobile Adaption', body: 'Zugriff auf CRM-Daten dort, wo Ihr Vertrieb arbeitet.' },
+    ],
+  },
+  {
+    id: 'host-abloese',
+    category: 'Host Ablöse',
+    name: 'Host Ablöse',
+    logo: undefined,
+    mock: '/uploads/produkte/ida2-mock.png',
+    mockAlt: 'Host Ablöse Modernisierungsoberfläche',
+    features: [
+      {
+        title: 'DORA- & Compliance-Schutz:',
+        body: 'Revisionssichere Prozesse. Durch lückenlose Provenienz entsteht ein fälschungssicherer Audit-Log für die Banken- und Versicherungsaufsicht.',
+      },
+      {
+        title: 'Re-Engineering von Fachwissen:',
+        body: 'Schutz vor Know-how-Verlust. Historisches, implizites Wissen wird aus altem Code extrahiert und in lesbare Fachlogik übersetzt.',
+      },
+      {
+        title: 'Echte Microservices:',
+        body: 'Nachhaltige Architektur. Agenten-Frameworks erkennen Kopplungen und schlagen modulare Grenzen vor – kein neuer „Java-Mainframe“.',
+      },
+    ],
+    summary:
+      'Unsere Modernisierung des PL/I-BookingHubs löst veraltete Mainframe-Systeme durch eine skalierbare Java- und PostgreSQL-Architektur ab. Mittels Spec-Driven Development (SDD) und KI-Agenten wird Legacy-Code in modulare Microservices transformiert. Wir schaffen ein sicheres Fundament für Ihre IT-Transformation – fachlich absolut gleichwertig, performant und nachhaltig wartbar.',
+    details: [
+      { title: 'Dokumenten-Management', body: 'Strukturierte Ablage und Nachvollziehbarkeit in der Transformation.' },
+      { title: 'Kollaborations-Tools', body: 'Gemeinsame Arbeit von Fachseite und Technik am Soll-Zustand.' },
+      { title: 'Mobile Adaption', body: 'Moderne Oberflächen statt Terminal-Zwang.' },
+    ],
+  },
+];
 ---
 
-<BaseLayout title={title} description={description} canonicalPath="/produkte" theme="dark" ogImage={hero3.src}>
-  <SiteHeader slot="header" activePath="/produkte" variant="solid-dark" />
+<BaseLayout title={title} description={description} canonicalPath="/produkte" theme="dark" ogImage={publicUrl('/uploads/produkte/intro-a.png')}>
+  <SiteHeader slot="header" activePath="/produkte" variant="transparent" />
 
-  <section class="produkte-intro container" id="uebersicht">
-    <p class="eyebrow">future by professionals.</p>
-    <SectionHeading text="Produkte" level={1} />
-  </section>
+  <div class="produkte">
+    <section class="produkte-hero" aria-label="Produkte Intro">
+      <div class="container produkte-hero__grid">
+        <div class="produkte-hero__media">
+          <img src={publicUrl('/uploads/produkte/intro-a.png')} alt="Arbeit an digitalen Systemen im dunklen Office" width="1024" height="680" />
+        </div>
+        <div class="produkte-hero__copy">
+          <h1>Aufbau von Kompetenz für und durch neue Werkzeuge — Transformation als Philosophie.</h1>
+          <p>
+            Wir entlasten Organisationen, indem wir Verantwortung übernehmen und Strukturen schaffen, die Fortschritt
+            ermöglichen und langfristig tragen. Durch Senior Experts, jahrelanges Know-how und den Einsatz moderner
+            Technologien verbinden wir Branchenwissen mit modernen Tools und fördern ein digitales Mindset im
+            Unternehmen.
+          </p>
+        </div>
+      </div>
+    </section>
 
-  <div id="host-abloese">
-    <HeroCarousel
-      slides={[
-        {
-          imageSrc: hero3.src,
-          imageAlt: 'Silhouette vor leuchtender Architektur',
-          eyebrow: 'Name',
-          headline: 'Host Ablöse',
-        },
-        {
-          imageSrc: hero2.src,
-          imageAlt: 'Teamdiskussion am Tisch',
-          eyebrow: 'Beschreibung',
-          headline: 'Legacy-Systeme klar und sicher ablösen.',
-        },
-        {
-          imageSrc: hero1.src,
-          imageAlt: 'Professionals mit Tablet',
-          eyebrow: 'Infos',
-          headline: 'Digitale Werkzeuge für stabile Übergänge.',
-        },
-      ]}
-    />
+    <section class="produkte-lead" id="uebersicht">
+      <div class="container">
+        <p class="produkte-kicker">Digitale Transformation</p>
+        <h2>Digitale Produkte, basierend fokussiert auf Transformation von Prozessen in Unternehmen.</h2>
+        <p class="produkte-lead__body">
+          Wir entlasten Organisationen, indem wir Verantwortung übernehmen und Strukturen schaffen, die Fortschritt
+          ermöglichen und langfristig tragen. Durch Senior Experts, jahrelanges Know-how und den Einsatz moderner
+          Technologien, verbinden wir Branchenwissen mit modernen Tools und fördern ein digitales Mindset im
+          Unternehmen.
+        </p>
+      </div>
+    </section>
+
+    {
+      products.map((product) => (
+        <section class="product-block" id={product.id} aria-labelledby={`${product.id}-title`}>
+          <div class="product-block__start">
+            <div class="container product-block__head">
+              <div>
+                <p class="produkte-kicker">{product.category}</p>
+                <h2 id={`${product.id}-title`}>{product.name}</h2>
+              </div>
+              {product.logo ? (
+                <img class="product-block__logo" src={publicUrl(product.logo)} alt="" width="144" height="61" />
+              ) : null}
+            </div>
+            <div class="product-block__mock container">
+              <img src={publicUrl(product.mock)} alt={product.mockAlt} width="1314" height="572" />
+            </div>
+          </div>
+
+          <div class="product-block__features">
+            <div class="container product-block__features-grid">
+              {product.features.map((feature) => (
+                <article>
+                  <span class="product-block__icon" aria-hidden="true" />
+                  <h3>{feature.title}</h3>
+                  <p>{feature.body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div class="product-block__summary">
+            <div class="container">
+              <p class="produkte-kicker">{product.name}</p>
+              <p>{product.summary}</p>
+            </div>
+          </div>
+
+          <div class="product-block__details">
+            <div class="container">
+              {product.details.map((item, index) => (
+                <details class="product-detail" open={index === 0}>
+                  <summary>{item.title}</summary>
+                  <p>{item.body}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      ))
+    }
+
+    <section class="produkte-oss" aria-label="Open Source">
+      <div class="container">
+        <p class="produkte-kicker">Digitale Souveränität</p>
+        <h2>Open Source Lösungen</h2>
+        <p>
+          Offene Technologien schaffen Unabhängigkeit, Transparenz und langfristige Gestaltbarkeit — das Fundament
+          unserer Produktphilosophie.
+        </p>
+      </div>
+    </section>
+
+    <section class="produkte-cta">
+      <div class="container produkte-cta__inner">
+        <h2>
+          Investieren Sie in den nächsten Schritt<br />
+          in die Zukunft.
+        </h2>
+        <CTAButton label="Kontakt aufnehmen" href="/kontakt" variant="ghost-light" />
+      </div>
+    </section>
   </div>
-
-  <section class="section section--navy info-grid">
-    <div class="container info-grid__inner">
-      <div>
-        <p class="label">Name</p>
-        <p class="value">Host Ablöse</p>
-      </div>
-      <div>
-        <p class="label">Beschreibung</p>
-        <p class="value">Strukturierte Ablösung bestehender Host-Landschaften mit Fokus auf Kontinuität.</p>
-      </div>
-      <div>
-        <p class="label">Infos</p>
-        <p class="value">Mehr erfahren unter Kontakt.</p>
-      </div>
-    </div>
-  </section>
 
   <SiteFooter slot="footer" />
 </BaseLayout>
 
 <style>
-  .produkte-intro {
-    padding-block: calc(var(--header-height) + var(--space-6)) var(--space-5);
+  .produkte {
+    color: var(--color-cream);
+    background: #1d2228;
   }
 
-  .info-grid {
-    border-top: 1px solid var(--color-grid-dark);
+  .produkte-kicker {
+    margin: 0 0 var(--space-3);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
 
-  .info-grid__inner {
+  .produkte-hero {
+    padding-block: calc(var(--header-height) + var(--space-7)) var(--space-7);
+    background: var(--color-ink);
+  }
+
+  .produkte-hero__grid {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .produkte-hero__media {
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    background: #111;
+  }
+
+  .produkte-hero__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .produkte-hero h1 {
+    margin: 0 0 var(--space-5);
+    font-size: clamp(1.75rem, 3.5vw, 3rem);
+    font-weight: var(--font-weight-regular);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .produkte-hero p,
+  .produkte-lead__body,
+  .product-block__summary p,
+  .produkte-oss p {
+    margin: 0;
+    font-size: clamp(1rem, 1.4vw, 1.25rem);
+    line-height: 1.5;
+    max-width: 48rem;
+  }
+
+  .produkte-lead {
+    padding-block: var(--space-8);
+    background: var(--color-ink);
+  }
+
+  .produkte-lead h2 {
+    margin: 0 0 var(--space-5);
+    font-size: clamp(1.75rem, 3vw, 3rem);
+    font-weight: var(--font-weight-regular);
+    line-height: 1.2;
+    max-width: 40rem;
+  }
+
+  .product-block__start {
+    background: #1d2228;
+    padding-block: var(--space-7) var(--space-5);
+  }
+
+  .product-block__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--space-4);
+    margin-bottom: var(--space-5);
+  }
+
+  .product-block__head h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: var(--font-weight-regular);
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+  }
+
+  .product-block__logo {
+    width: 7rem;
+    height: auto;
+    opacity: 0.95;
+  }
+
+  .product-block__mock {
+    overflow: hidden;
+  }
+
+  .product-block__mock img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .product-block__features,
+  .product-block__summary,
+  .product-block__details {
+    background: var(--color-ink);
+    padding-block: var(--space-7);
+  }
+
+  .product-block__features-grid {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .product-block__features article h3 {
+    margin: 0 0 var(--space-3);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .product-block__features article p {
+    margin: 0;
+    line-height: 1.5;
+    opacity: 0.95;
+  }
+
+  .product-block__icon {
+    display: block;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-bottom: var(--space-4);
+    border: 1.5px solid color-mix(in srgb, var(--color-cream) 55%, transparent);
+    border-radius: 0.35rem;
+  }
+
+  .product-detail {
+    border-top: 1px solid color-mix(in srgb, var(--color-cream) 25%, transparent);
+    padding-block: var(--space-4);
+  }
+
+  .product-detail:last-child {
+    border-bottom: 1px solid color-mix(in srgb, var(--color-cream) 25%, transparent);
+  }
+
+  .product-detail summary {
+    cursor: pointer;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    list-style: none;
+  }
+
+  .product-detail summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .product-detail p {
+    margin: var(--space-3) 0 0;
+    max-width: 48rem;
+    line-height: 1.5;
+    opacity: 0.92;
+  }
+
+  .produkte-oss {
+    padding-block: var(--space-8);
+    background: #1d2228;
+  }
+
+  .produkte-oss h2 {
+    margin: 0 0 var(--space-4);
+    font-size: clamp(1.75rem, 3vw, 2.75rem);
+    font-weight: var(--font-weight-regular);
+  }
+
+  .produkte-cta {
+    padding-block: var(--space-8);
+    background: var(--color-ink);
+  }
+
+  .produkte-cta__inner {
     display: grid;
     gap: var(--space-5);
+    justify-items: start;
   }
 
-  .label {
-    margin: 0 0 var(--space-2);
-    color: var(--color-blue-soft);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-size: var(--font-size-xs);
-  }
-
-  .value {
+  .produkte-cta h2 {
     margin: 0;
-    font-size: var(--font-size-lg);
+    font-size: clamp(1.75rem, 3.5vw, 3rem);
+    font-weight: var(--font-weight-regular);
+    line-height: 1.15;
   }
 
-  @media (min-width: 900px) {
-    .info-grid__inner {
-      grid-template-columns: 1fr 1.4fr 1fr;
-      gap: var(--space-6);
-    }
+  :global(.theme-dark) :global(.site-header--transparent) {
+    background: transparent;
+    color: var(--color-cream);
+  }
 
-    .info-grid__inner > div {
-      border-left: 1px solid var(--color-grid-dark);
-      padding-left: var(--space-5);
+  @media (min-width: 768px) {
+    .produkte-hero__grid {
+      grid-template-columns: 0.9fr 1.1fr;
+      align-items: center;
     }
+  }
 
-    .info-grid__inner > div:first-child {
-      border-left: 0;
-      padding-left: 0;
+  @media (min-width: 1024px) {
+    .product-block__features-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
     }
   }
 </style>

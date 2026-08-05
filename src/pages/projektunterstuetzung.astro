@@ -2,65 +2,296 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import SectionHeading from '../components/SectionHeading.astro';
-import ContentCard from '../components/ContentCard.astro';
 import CTAButton from '../components/CTAButton.astro';
+import { publicUrl } from '../lib/content';
 import hero from '../assets/images/hero-office-2.jpg';
 
 const title = 'Projektunterstützung';
 const description =
   'Inspiration schafft Ideen, Unternehmenskultur treibt Innovation — Projektunterstützung by springeloo.';
+
+const kompetenzen = [
+  {
+    id: 'programmleitung',
+    label: 'Programmleitung + Projektleitung',
+    bodyStrong: 'Die erfolgreiche Umsetzung komplexer IT-Vorhaben erfordert eine strukturierte Führung.',
+    body: 'Unsere Projekt- und Programmleiter steuern interdisziplinäre Teams nach etablierten Standards und agilen Frameworks. Wir sichern die lückenlose Überwachung von Budgets, Meilensteinen und Risiken. So gewährleisten wir die verlässliche Transformation Ihrer strategischen Vorgaben in operative Realität.',
+  },
+  {
+    id: 'analyse',
+    label: 'Analyse + Architektur',
+    bodyStrong: 'Klare Zielbilder brauchen belastbare Architekturentscheidungen.',
+    body: 'Wir analysieren bestehende Landschaften, schärfen Anforderungen und entwerfen Architekturen, die Stabilität mit Innovationsfähigkeit verbinden — vom Ist-Zustand bis zur umsetzbaren Roadmap.',
+  },
+  {
+    id: 'testing',
+    label: 'Testing',
+    bodyStrong: 'Qualität ist kein Nachgedanke.',
+    body: 'Unsere Testspezialisten verankern Qualitätssicherung früh im Vorhaben: Teststrategie, Automatisierung und Freigabeprozesse, damit Releases planbar und risikoarm bleiben.',
+  },
+  {
+    id: 'sysadmin',
+    label: 'Systemadministration',
+    bodyStrong: 'Betriebssicherheit schafft Handlungsfreiheit.',
+    body: 'Wir sichern stabile Plattformen und Infrastruktur — Monitoring, Hardening und Betriebsprozesse, damit Fachprojekte auf einem verlässlichen Fundament laufen.',
+  },
+  {
+    id: 'prompting',
+    label: 'Neue Rollen + Prompting',
+    bodyStrong: 'Neue Werkzeuge brauchen neue Rollen.',
+    body: 'Wir begleiten den Aufbau von KI- und Prompting-Kompetenzen im Team — mit klaren Rollen, Governance und praxisnahen Enablement-Formaten.',
+  },
+];
+
+const pillars = [
+  {
+    title: 'Strukturelle Unterstützung',
+    body: 'springeloo schafft Strukturen, die Fortschritt ermöglichen und langfristig tragen. Dabei geht es darum, ein sicheres Fundament für Unternehmen zu bauen, die Veränderungen gezielt gestalten wollen.',
+  },
+  {
+    title: 'Fokus Transformation',
+    body: 'Ein wesentlicher Teil der Beratung konzentriert sich auf die digitale Souveränität und das Aufzeigen neuer Wege durch den Einsatz von KI und Open-Source-Lösungen.',
+  },
+  {
+    title: 'Ganzheitlicher Ansatz',
+    body: 'Die Beratung ist oft in größere Transformationsprojekte eingebettet. Hierbei werden auch der notwendige Wissensaufbau sowie Veränderungen von Rollen und Governance begleitet.',
+  },
+  {
+    title: 'Innovationsmotor',
+    body: 'Die Beratung wird durch ein digitales Mindset getrieben, wobei der offene Zugang zu modernsten Technologien genutzt wird, um Lösungen für komplexe Herausforderungen zu schaffen.',
+  },
+];
+
+const branchen = [
+  {
+    title: 'BFSI',
+    items: ['Banken & Finanzinstitute', 'Versicherungen', 'Asset Management', 'Fin-Tech'],
+  },
+  {
+    title: 'Public Sector & Healthcare',
+    items: ['Gesundheitswesen & Labore', 'Öffentliche Verwaltung'],
+  },
+  {
+    title: 'IT, Infrastruktur & Energie',
+    items: ['Spezialisierte IT-Dienstleister & Banken-IT', 'Rechenzentrum / Cloud Services', 'Energie & Versorgung', 'Handel & E-Commerce'],
+  },
+];
 ---
 
 <BaseLayout title={title} description={description} canonicalPath="/projektunterstuetzung" ogImage={hero.src}>
   <SiteHeader slot="header" activePath="/projektunterstuetzung" variant="transparent" />
 
-  <section class="page-hero">
-    <img src={hero.src} alt="Teamworkshop im modernen Büro" />
-    <div class="page-hero__shade" aria-hidden="true"></div>
+  <section class="pu-hero" aria-label="Hero">
+    <img class="pu-hero__image" src={hero.src} alt="Teamworkshop im modernen Büro" />
+    <div class="pu-hero__shade" aria-hidden="true"></div>
     <div class="grid-overlay" aria-hidden="true"></div>
-    <div class="container page-hero__content">
+    <div class="container pu-hero__content">
       <p class="eyebrow">future by professionals.</p>
       <h1>Inspiration schafft Ideen, Unternehmenskultur treibt Innovation.</h1>
     </div>
   </section>
 
-  <section class="section section--cream" id="kompetenzen">
-    <div class="container stack">
-      <SectionHeading text="Kompetenzen" level={2} />
-      <p>
-        Wir unterstützen Organisationen dabei, digitale Tools und menschliche Kompetenz zu verbinden —
-        mit klaren Formaten, die Teams handlungsfähig machen.
+  <section class="pu-intro section section--cream" id="insight">
+    <div class="container">
+      <p class="pu-intro__lead">
+        Wir finden Menschen, die zu Ihrer Herausforderung passen. Mit unserem durch Erfahrung gestütztem Matching,
+        bringen wir Senior Experten an Bord, die vom ersten Tag an liefern.
       </p>
-      <div class="card-row">
-        <ContentCard title="HR + AI" body="Kompetenzmanagement für digitale Unternehmenskultur." />
-        <ContentCard title="Enablement" body="Begleitung von Führung und Teams in der Transformation." />
+      <p class="pu-intro__body">
+        Gute IT-Experten findet man nicht auf Jobportalen – man kennt sie. Unser Netzwerk von über 12.000 Wissensträgern
+        in Europa ermöglicht es uns, gezielt die richtigen Menschen für die richtigen Aufgaben zu aktivieren – schnell,
+        treffsicher und ohne langwierige Ausschreibungen.
+      </p>
+    </div>
+  </section>
+
+  <section class="pu-kompetenzen" id="kompetenzen" data-pu-tabs>
+    <div class="container">
+      <p class="pu-kicker pu-kicker--light">Kompetenzen</p>
+      <h2>Aufbau von Kompetenzen der Projektmitarbeiter</h2>
+
+      <div class="pu-tabs">
+        <div class="pu-tabs__nav" role="tablist" aria-label="Kompetenzbereiche">
+          {
+            kompetenzen.map((item, index) => (
+              <button
+                type="button"
+                class:list={['pu-tabs__btn', { 'is-active': index === 0 }]}
+                role="tab"
+                id={`tab-${item.id}`}
+                aria-selected={index === 0 ? 'true' : 'false'}
+                aria-controls={`panel-${item.id}`}
+                data-pu-tab={item.id}
+              >
+                {item.label}
+              </button>
+            ))
+          }
+        </div>
+
+        <div class="pu-tabs__panels">
+          {
+            kompetenzen.map((item, index) => (
+              <div
+                class:list={['pu-tabs__panel', { 'is-active': index === 0 }]}
+                role="tabpanel"
+                id={`panel-${item.id}`}
+                aria-labelledby={`tab-${item.id}`}
+                hidden={index !== 0}
+                data-pu-panel={item.id}
+              >
+                <div class="pu-tabs__copy">
+                  <h3>{item.label}</h3>
+                  <p class="pu-tabs__strong">{item.bodyStrong}</p>
+                  <p>{item.body}</p>
+                </div>
+                <div class="pu-tabs__media">
+                  <img
+                    src={publicUrl('/uploads/produkte/intro-c.png')}
+                    alt="Fachleute bei der gemeinsamen Arbeit am Laptop"
+                    width="800"
+                    height="600"
+                  />
+                </div>
+              </div>
+            ))
+          }
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="insight">
-    <div class="container stack">
-      <SectionHeading text="Insight" level={2} />
-      <p>
-        Insight-Formate machen Fortschritt sichtbar: von Standortbestimmung bis zu iterativen
-        Umsetzungszyklen — immer nah am Arbeitsalltag.
+  <section class="pu-frameworks section section--cream">
+    <div class="container">
+      <p class="pu-kicker">Innovationsberatung</p>
+      <h2>Outside the box Denken, in etablierten Frameworks handeln</h2>
+      <div class="pu-frameworks__split">
+        <p>
+          Die Organisationsberatung wird bei springeloo als ein zentraler Bestandteil der Projektunterstützung
+          beschrieben, der darauf abzielt, Unternehmen durch Struktur, Erfahrung und Verlässlichkeit zu entlasten. Ziel
+          ist es, Geschäftsabläufe zu optimieren und zukunftsweisende Innovationen zu implementieren.
+        </p>
+        <div>
+          <p class="pu-kicker">Kernbereiche</p>
+          <p class="pu-frameworks__kern">
+            Klassische Aufbau- und Ablauforganisation<br />
+            Prozess- und Innovationsberatung
+          </p>
+        </div>
+      </div>
+
+      <ul class="pu-pillars">
+        {
+          pillars.map((pillar) => (
+            <li>
+              <span class="pu-pillars__mark" aria-hidden="true" />
+              <h3>{pillar.title}</h3>
+              <p>{pillar.body}</p>
+            </li>
+          ))
+        }
+      </ul>
+
+      <p class="pu-frameworks__end">
+        Zusammenfassend versteht sich springeloo in der Organisationsberatung nicht als reiner Theoretiker, sondern als
+        Partner, der Verantwortung übernimmt und anspruchsvolle Vorhaben von der Analyse bis zum erfolgreichen Abschluss
+        begleitet.
       </p>
-      <CTAButton label="Kontakt aufnehmen" href="/kontakt" variant="dark" />
+    </div>
+  </section>
+
+  <section class="pu-solutions section section--cream">
+    <div class="container">
+      <p class="pu-kicker">Softwareentwicklung</p>
+      <h2>Customized Solutions durch ein Netzwerk an Wissensträgern.</h2>
+      <div class="pu-solutions__grid">
+        <p>
+          Die Softwareeigenentwicklung bei springeloo zeichnet sich primär durch die komplette Auslagerung einer
+          Individualentwicklung aus.
+        </p>
+        <p>
+          Dabei verfolgt das Unternehmen den sogenannten „Builder“-Ansatz, bei dem es nicht nur als klassischer
+          IT-Dienstleister agiert, sondern die Rolle von Architekten und Ingenieuren einnimmt, um funktionale und
+          innovative Produkte zu schaffen.
+        </p>
+      </div>
+      <p class="pu-solutions__merkmal">
+        <strong>Zentrale Merkmale dieser Entwicklung sind:</strong> Fokus auf Open Source und nachhaltige, wartbare
+        Systeme.
+      </p>
+    </div>
+  </section>
+
+  <section class="pu-branchen">
+    <div class="container">
+      <p class="pu-kicker pu-kicker--light">Branchen</p>
+      <h2>Netzwerke in den Branchen die Technologie vorantreibt</h2>
+      <p class="pu-branchen__lead">
+        Unser Netzwerk und die langjährige Erfahrung im Bereich Digitalisierung erlaubt es uns Expertise in vielen
+        Fachbereichen anzubieten.
+      </p>
+      <div class="pu-branchen__grid">
+        {
+          branchen.map((group) => (
+            <div>
+              <h3>{group.title}</h3>
+              <ul>
+                {group.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="pu-cta">
+    <div class="container pu-cta__inner">
+      <h2>
+        Investieren Sie in den nächsten Schritt<br />
+        in die Zukunft.
+      </h2>
+      <CTAButton label="Kontakt aufnehmen" href="/kontakt" variant="ghost-light" />
     </div>
   </section>
 
   <SiteFooter slot="footer" />
 </BaseLayout>
 
+<script>
+  const root = document.querySelector('[data-pu-tabs]');
+  if (root) {
+    const buttons = root.querySelectorAll('[data-pu-tab]');
+    const panels = root.querySelectorAll('[data-pu-panel]');
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const id = button.getAttribute('data-pu-tab');
+        buttons.forEach((btn) => {
+          const active = btn === button;
+          btn.classList.toggle('is-active', active);
+          btn.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        panels.forEach((panel) => {
+          const active = panel.getAttribute('data-pu-panel') === id;
+          panel.classList.toggle('is-active', active);
+          panel.toggleAttribute('hidden', !active);
+        });
+      });
+    });
+  }
+</script>
+
 <style>
-  .page-hero {
+  .pu-hero {
     position: relative;
     min-height: 85vh;
     color: var(--color-white);
   }
 
-  .page-hero img {
+  .pu-hero__image {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -68,7 +299,7 @@ const description =
     object-fit: cover;
   }
 
-  .page-hero__shade {
+  .pu-hero__shade {
     position: absolute;
     inset: 0;
     background:
@@ -77,44 +308,305 @@ const description =
     z-index: 1;
   }
 
-  .page-hero__content {
+  .pu-hero__content {
     position: relative;
     z-index: 2;
     min-height: 85vh;
     display: grid;
     align-content: end;
     gap: var(--space-4);
-    padding-block: calc(var(--header-height) + 2rem) var(--space-8);
+    padding-block: calc(var(--header-height) + var(--space-6)) var(--space-7);
   }
 
-  .page-hero h1 {
+  .pu-hero h1 {
     margin: 0;
-    max-width: 16ch;
-    font-size: var(--font-size-3xl);
+    max-width: 18ch;
+    font-size: clamp(1.75rem, 4vw, 3.25rem);
     line-height: var(--line-tight);
     letter-spacing: -0.02em;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .pu-kicker {
+    margin: 0 0 var(--space-3);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-blue);
+  }
+
+  .pu-kicker--light {
     color: var(--color-cream);
   }
 
-  .stack {
-    display: grid;
-    gap: var(--space-4);
+  .pu-intro__lead {
+    margin: 0 0 var(--space-5);
+    color: var(--color-blue);
+    font-size: clamp(1.5rem, 3vw, 3rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    max-width: 40rem;
   }
 
-  .stack p {
+  .pu-intro__body {
     margin: 0;
-    max-width: 42rem;
-    color: var(--color-ink-muted);
+    max-width: 48rem;
+    font-size: var(--font-size-lg);
+    line-height: 1.5;
+    color: var(--color-ink);
   }
 
-  .card-row {
+  .pu-kompetenzen {
+    background: var(--color-blue);
+    color: var(--color-cream);
+    padding-block: var(--space-8);
+  }
+
+  .pu-kompetenzen h2 {
+    margin: 0 0 var(--space-6);
+    font-size: clamp(1.75rem, 3.5vw, 3rem);
+    font-weight: var(--font-weight-regular);
+    line-height: 1.15;
+    max-width: 22ch;
+  }
+
+  .pu-tabs__nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+  }
+
+  .pu-tabs__btn {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    text-align: left;
+    font: inherit;
+    font-size: clamp(1.15rem, 2vw, 1.75rem);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.25;
+    padding: 0.35rem 0;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+  }
+
+  .pu-tabs__btn.is-active {
+    border-bottom-color: var(--color-cream);
+  }
+
+  .pu-tabs__panel {
+    display: none;
+    gap: var(--space-5);
+  }
+
+  .pu-tabs__panel.is-active {
     display: grid;
-    gap: var(--space-4);
+  }
+
+  .pu-tabs__copy h3 {
+    margin: 0 0 var(--space-4);
+    font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.15;
+  }
+
+  .pu-tabs__strong {
+    margin: 0 0 var(--space-4);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-lg);
+    line-height: 1.45;
+  }
+
+  .pu-tabs__copy p {
+    margin: 0;
+    line-height: 1.5;
+    font-size: var(--font-size-lg);
+  }
+
+  .pu-tabs__media {
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background: color-mix(in srgb, var(--color-cream) 12%, transparent);
+  }
+
+  .pu-tabs__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .pu-frameworks h2,
+  .pu-solutions h2,
+  .pu-branchen h2 {
+    margin: 0 0 var(--space-5);
+    color: var(--color-blue);
+    font-size: clamp(1.75rem, 3.2vw, 3rem);
+    font-weight: var(--font-weight-regular);
+    line-height: 1.15;
+    max-width: 22ch;
+  }
+
+  .pu-frameworks__split {
+    display: grid;
+    gap: var(--space-6);
+    margin-bottom: var(--space-7);
+  }
+
+  .pu-frameworks__split p,
+  .pu-frameworks__end,
+  .pu-solutions p,
+  .pu-branchen__lead {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    line-height: 1.5;
+  }
+
+  .pu-frameworks__kern {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.35;
+    color: var(--color-ink);
+  }
+
+  .pu-pillars {
+    list-style: none;
+    margin: 0 0 var(--space-7);
+    padding: 0;
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .pu-pillars h3 {
+    margin: 0 0 var(--space-3);
+    font-size: var(--font-size-xl);
+  }
+
+  .pu-pillars p {
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .pu-pillars__mark {
+    display: block;
+    width: 3.5rem;
+    height: 3.5rem;
+    margin-bottom: var(--space-4);
+    border-radius: 1.75rem;
+    background: var(--color-cream-soft);
+  }
+
+  .pu-solutions__grid {
+    display: grid;
+    gap: var(--space-5);
+    margin-bottom: var(--space-5);
+  }
+
+  .pu-solutions__merkmal {
+    padding-top: var(--space-5);
+    border-top: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
+  }
+
+  .pu-branchen {
+    background: var(--color-blue);
+    color: var(--color-cream);
+    padding-block: var(--space-8);
+  }
+
+  .pu-branchen h2 {
+    color: var(--color-cream);
+  }
+
+  .pu-branchen__lead {
+    margin-bottom: var(--space-7);
+    max-width: 40rem;
+  }
+
+  .pu-branchen__grid {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .pu-branchen h3 {
+    margin: 0 0 var(--space-3);
+    font-size: var(--font-size-xl);
+  }
+
+  .pu-branchen ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  .pu-branchen li {
+    position: relative;
+    padding-left: 1rem;
+    font-size: var(--font-size-lg);
+  }
+
+  .pu-branchen li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.65em;
+    width: 5px;
+    height: 5px;
+    background: var(--color-cream);
+  }
+
+  .pu-cta {
+    background: var(--color-ink);
+    color: var(--color-cream);
+    padding-block: var(--space-8);
+  }
+
+  .pu-cta__inner {
+    display: grid;
+    gap: var(--space-5);
+    justify-items: start;
+  }
+
+  .pu-cta h2 {
+    margin: 0;
+    font-size: clamp(1.75rem, 3.5vw, 3rem);
+    font-weight: var(--font-weight-regular);
+    line-height: 1.15;
   }
 
   @media (min-width: 768px) {
-    .card-row {
+    .pu-tabs__panel.is-active {
       grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+
+    .pu-pillars {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .pu-tabs {
+      display: grid;
+      grid-template-columns: minmax(14rem, 18rem) 1fr;
+      gap: var(--space-6);
+      align-items: start;
+    }
+
+    .pu-tabs__nav {
+      margin-bottom: 0;
+    }
+
+    .pu-frameworks__split,
+    .pu-solutions__grid {
+      grid-template-columns: 1.4fr 1fr;
+    }
+
+    .pu-branchen__grid {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 </style>

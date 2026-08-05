@@ -105,7 +105,8 @@ const description = meta.description;
     font-size: var(--font-size-lg);
   }
 
-  @media (min-width: 900px) {
+  /* Three-up from Tablet quer (1024 / Figma 2108:58675); hoch stays stacked */
+  @media (min-width: 1024px) {
     .home-grid {
       grid-template-columns: repeat(3, 1fr);
     }
