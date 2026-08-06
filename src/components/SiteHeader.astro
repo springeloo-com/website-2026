@@ -1,7 +1,6 @@
 ---
 import { getPrimaryNav, getSiteMeta } from '../lib/content';
 import NavLink from './NavLink.astro';
-import ExpandableNav from './ExpandableNav.astro';
 import MobileMenu from './MobileMenu.astro';
 
 interface Props {
@@ -31,18 +30,10 @@ const isActive = (href: string) => {
     <nav class="site-header__desktop" aria-label="Hauptnavigation">
       <ul>
         {
+          /* Desktop Figma menue-point-01: Arrow=false, flat links + underline hover */
           primaryNav.map((item) => (
             <li>
-              {item.children?.length ? (
-                <ExpandableNav
-                  label={item.label}
-                  href={item.href}
-                  current={isActive(item.href)}
-                  items={item.children}
-                />
-              ) : (
-                <NavLink href={item.href} label={item.label} current={isActive(item.href)} />
-              )}
+              <NavLink href={item.href} label={item.label} current={isActive(item.href)} />
             </li>
           ))
         }
@@ -80,7 +71,8 @@ const isActive = (href: string) => {
   }
 
   .site-header--transparent {
-    color: var(--color-white);
+    /* Figma menue-01 Transparent: cream type, not pure white */
+    color: var(--color-cream);
   }
 
   /* Mobile band (Figma 2108:58686): solid dark chrome over hero */
@@ -140,24 +132,30 @@ const isActive = (href: string) => {
   .site-header__desktop ul {
     display: flex;
     align-items: center;
-    gap: clamp(0.65rem, 1.5vw, 2rem);
+    gap: clamp(0.65rem, 1.5vw, 2.875rem);
     list-style: none;
     margin: 0;
     padding: 0;
+  }
+
+  .site-header__desktop :global(a),
+  .site-header__desktop :global(a:hover),
+  .site-header__desktop :global(a:focus) {
+    text-decoration: none !important;
   }
 
   /* Tablet hoch+ (768 / Figma 2108:58680): full primary nav */
   @media (min-width: 768px) {
     .site-header__desktop {
       display: block;
-      font-size: var(--font-size-sm);
+      font-size: 0.875rem;
     }
   }
 
-  /* Tablet quer+ (1024 / Figma 2108:58675) */
+  /* Tablet quer+ / Desktop (Figma menue uses 14px Bold) */
   @media (min-width: 1024px) {
     .site-header__desktop {
-      font-size: var(--font-size-md);
+      font-size: 0.875rem;
     }
   }
 </style>

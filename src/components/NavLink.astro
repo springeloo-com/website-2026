@@ -18,24 +18,67 @@ const resolved = href.startsWith('http') || href.startsWith('#')
   href={resolved}
   aria-current={current ? 'page' : undefined}
 >
-  {label}
+  <span class="nav-link__stack">
+    <span class="nav-link__label">{label}</span>
+    <span class="nav-link__underline" aria-hidden="true"></span>
+  </span>
 </a>
 
 <style>
+  /*
+    Figma menue-point-01 (Desktop instances: Arrow=false)
+    Structure: vertical [label + 4px gap + 1px underline]
+    Hover: underline grows 0 → full label width, Smart Animate 300ms ease-out
+  */
   .nav-link {
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: 0.01em;
-    text-decoration: none;
+    display: inline-flex;
+    font-size: inherit;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.03em;
+    line-height: 1.2;
+    text-decoration: none !important;
     white-space: nowrap;
+    color: inherit;
   }
 
-  .nav-link:hover {
-    text-decoration: underline;
-    text-underline-offset: 0.25em;
+  .nav-link:hover,
+  .nav-link:focus,
+  .nav-link:focus-visible,
+  .nav-link:active {
+    text-decoration: none !important;
   }
 
-  .nav-link[aria-current='page'] {
-    font-weight: var(--font-weight-semibold);
+  .nav-link__stack {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    width: max-content;
+  }
+
+  .nav-link__label {
+    display: block;
+  }
+
+  .nav-link__underline {
+    display: block;
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 300ms ease-out;
+    will-change: transform;
+  }
+
+  .nav-link:hover .nav-link__underline,
+  .nav-link:focus-visible .nav-link__underline {
+    transform: scaleX(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-link__underline {
+      transition: none;
+    }
   }
 </style>
