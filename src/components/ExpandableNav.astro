@@ -16,7 +16,10 @@ const parentHref = `${base}${href.startsWith('/') ? href : `/${href}`}`;
 
 <div class="expandable" data-expandable>
   <div class="expandable__row">
-    <a class="expandable__parent" href={parentHref} aria-current={current ? 'page' : undefined}>{label}</a>
+    <a class="expandable__parent" href={parentHref} aria-current={current ? 'page' : undefined}>
+      <span class="expandable__text">{label}</span>
+      <span class="expandable__underline" aria-hidden="true"></span>
+    </a>
     <button
       type="button"
       class="expandable__toggle"
@@ -45,22 +48,57 @@ const parentHref = `${base}${href.startsWith('/') ? href : `/${href}`}`;
 
   .expandable__row {
     display: inline-flex;
-    align-items: center;
-    gap: 0.15rem;
+    align-items: flex-start;
+    gap: 0.35rem;
   }
 
+  /* Same Figma menue-point-01 hover as NavLink (underline grow, no browser underline) */
   .expandable__parent {
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-medium);
-    text-decoration: none;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    font-size: inherit;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.03em;
+    line-height: 1.2;
+    text-decoration: none !important;
+    white-space: nowrap;
+    color: inherit;
+  }
+
+  .expandable__parent:hover,
+  .expandable__parent:focus,
+  .expandable__parent:focus-visible {
+    text-decoration: none !important;
+  }
+
+  .expandable__text {
+    display: block;
+  }
+
+  .expandable__underline {
+    display: block;
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 300ms ease-out;
+  }
+
+  .expandable__row:hover .expandable__underline,
+  .expandable__parent:focus-visible .expandable__underline {
+    transform: scaleX(1);
   }
 
   .expandable__toggle {
     border: 0;
     background: transparent;
     color: inherit;
-    padding: 0.2rem;
+    padding: 0.1rem 0.2rem;
     line-height: 1;
+    font-size: 0.75em;
   }
 
   .expandable__panel {
@@ -80,5 +118,11 @@ const parentHref = `${base}${href.startsWith('/') ? href : `/${href}`}`;
 
   .expandable__panel[hidden] {
     display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .expandable__underline {
+      transition: none;
+    }
   }
 </style>
