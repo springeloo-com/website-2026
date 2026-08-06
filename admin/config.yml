@@ -1,0 +1,182 @@
+# Decap CMS — Springeloo corporate site
+# Editors edit structured YAML only (no page builder).
+# Publishing: editorial_workflow → PR to main → maintainer merges → GitHub Pages.
+#
+# Auth: GitHub OAuth proxy — see docs/howto-oauth-proxy.md / docs/howto-claudflare.md
+# base_url must be the proxy origin only (no /auth). Confirm the workers.dev host
+# matches your Cloudflare Worker exactly (include the account subdomain).
+
+backend:
+  name: github
+  repo: springeloo-com/website-2026
+  branch: main
+  # OAuth proxy origin only (no path). See docs/howto-claudflare.md.
+  base_url: https://springeloo-decap-oauth.mf-7e0.workers.dev
+  auth_endpoint: auth
+  site_domain: springeloo-com.github.io
+
+# Help Decap resolve links on the GitHub Pages project site.
+site_url: https://springeloo-com.github.io/website-2026
+display_url: https://springeloo-com.github.io/website-2026
+
+publish_mode: editorial_workflow
+
+media_folder: public/uploads
+public_folder: /uploads
+
+locale: de
+
+collections:
+  - name: site
+    label: Site content
+    files:
+      - name: globals
+        label: Globals (nav, footer, contact)
+        file: src/content/site/globals.yaml
+        fields:
+          - label: Brand name
+            name: brandName
+            widget: string
+          - label: Primary navigation
+            name: nav
+            widget: list
+            allow_add: false
+            collapsed: true
+            summary: '{{fields.label}}'
+            min: 4
+            max: 4
+            fields:
+              - label: Id (developer)
+                name: id
+                widget: hidden
+              - label: Label
+                name: label
+                widget: string
+              - label: Href (developer)
+                name: href
+                widget: hidden
+              - label: Children
+                name: children
+                widget: list
+                required: false
+                allow_add: false
+                collapsed: true
+                summary: '{{fields.label}}'
+                fields:
+                  - label: Label
+                    name: label
+                    widget: string
+                  - label: Href (developer)
+                    name: href
+                    widget: hidden
+          - label: Footer
+            name: footer
+            widget: object
+            fields:
+              - { label: Tagline, name: tagline, widget: string }
+              - { label: Company, name: company, widget: string }
+              - label: Address lines
+                name: addressLines
+                widget: list
+                allow_add: true
+                field: { label: Line, name: line, widget: string }
+              - { label: Phone, name: phone, widget: string }
+              - { label: Email, name: email, widget: string }
+              - label: LinkedIn (developer)
+                name: linkedIn
+                widget: hidden
+              - label: Legal links
+                name: legal
+                widget: list
+                allow_add: false
+                collapsed: true
+                summary: '{{fields.label}}'
+                min: 2
+                max: 2
+                fields:
+                  - { label: Label, name: label, widget: string }
+                  - label: Href (developer)
+                    name: href
+                    widget: hidden
+          - label: Contact (Kontakt page)
+            name: contact
+            widget: object
+            fields:
+              - label: Address lines
+                name: addressLines
+                widget: list
+                allow_add: true
+                field: { label: Line, name: line, widget: string }
+              - { label: Phone, name: phone, widget: string }
+              - { label: Email, name: email, widget: string }
+
+      - name: home
+        label: Home page
+        file: src/content/pages/home.yaml
+        fields:
+          - label: SEO
+            name: meta
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+          - label: Hero
+            name: hero
+            widget: object
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: Headline, name: headline, widget: string }
+              - { label: Badge, name: badge, widget: string }
+              - label: Image
+                name: image
+                widget: object
+                fields:
+                  - { label: File, name: src, widget: image }
+                  - { label: Alt text, name: alt, widget: string }
+              - label: Primary CTA
+                name: primaryCta
+                widget: object
+                fields:
+                  - { label: Label, name: label, widget: string }
+                  - label: Href (developer)
+                    name: href
+                    widget: hidden
+              - label: Secondary CTA
+                name: secondaryCta
+                widget: object
+                fields:
+                  - { label: Label, name: label, widget: string }
+                  - label: Href (developer)
+                    name: href
+                    widget: hidden
+          - label: Leistungen
+            name: leistungen
+            widget: object
+            fields:
+              - label: Cards (exactly three)
+                name: cards
+                widget: list
+                allow_add: false
+                collapsed: true
+                summary: '{{fields.eyebrow}} — {{fields.title}}'
+                min: 3
+                max: 3
+                fields:
+                  - { label: Eyebrow, name: eyebrow, widget: string, required: false }
+                  - { label: Title, name: title, widget: string }
+                  - { label: Body, name: body, widget: markdown }
+                  - label: Image (optional)
+                    name: image
+                    widget: object
+                    required: false
+                    fields:
+                      - { label: File, name: src, widget: image, required: false }
+                      - { label: Alt text, name: alt, widget: string, required: false }
+                  - label: CTA
+                    name: cta
+                    widget: object
+                    fields:
+                      - { label: Label, name: label, widget: string }
+                      - label: Href (developer)
+                        name: href
+                        widget: hidden
