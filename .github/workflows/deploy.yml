@@ -1,24 +1,26 @@
 name: Deploy to GitHub Pages
 
-# Branch publish bypasses the broken Actions artifact → Pages queue
-# (deployments stuck at deployment_queued until timeout).
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
       - uses: actions/setup-node@v5
         with:
           node-version: 22
@@ -30,9 +32,22 @@ jobs:
         env:
           PUBLIC_SITE_URL: ${{ vars.PUBLIC_SITE_URL }}
           PUBLIC_BASE_PATH: ${{ vars.PUBLIC_BASE_PATH }}
-      - name: Publish to gh-pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Upload Pages artifact
+        # v5 uses a current upload-artifact (avoids Node 20 deprecation on v4)
+        uses: actions/upload-pages-artifact@v5
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          force_orphan: true
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        # v5 runs on Node 24 (same punycode DEP0040 is Node core noise, not a deploy error)
+        uses: actions/deploy-pages@v5
+        with:
+          timeout: 900000
