@@ -12,13 +12,16 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  # Cancel superseded deploys so a hung Pages queue cannot block the next SHA
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
       - uses: actions/setup-node@v5
         with:
           node-version: 22
@@ -45,3 +48,6 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v5
+        with:
+          # Allow longer than default 10m when Pages stays briefly queued
+          timeout: 900000
