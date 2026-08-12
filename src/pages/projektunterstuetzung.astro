@@ -5,6 +5,7 @@ import SiteFooter from '../components/SiteFooter.astro';
 import CTAButton from '../components/CTAButton.astro';
 import { publicUrl } from '../lib/content';
 import hero from '../assets/images/hero-office-2.jpg';
+import HeroShine from '../components/HeroShine.astro';
 
 const title = 'Projektunterstützung';
 const description =
@@ -84,6 +85,7 @@ const branchen = [
   <section class="pu-hero" aria-label="Hero">
     <img class="pu-hero__image" src={hero.src} alt="Teamworkshop im modernen Büro" />
     <div class="pu-hero__shade" aria-hidden="true"></div>
+    <HeroShine />
     <div class="grid-overlay" aria-hidden="true"></div>
     <div class="container pu-hero__content">
       <p class="eyebrow">future by professionals.</p>

@@ -26,9 +26,9 @@ const resolved = href.startsWith('http') || href.startsWith('#')
 
 <style>
   /*
-    Figma menue-point-01 (Desktop instances: Arrow=false)
-    Structure: vertical [label + 4px gap + 1px underline]
-    Hover: underline grows 0 → full label width, Smart Animate 300ms ease-out
+    Figma menue-point-01 (Desktop: Arrow=false)
+    Hover: underline 0 → full width, Smart Animate 300ms ease-out
+    “Shine”: cream underline with soft glow (matches luminous menu sheen)
   */
   .nav-link {
     display: inline-flex;
@@ -67,13 +67,22 @@ const resolved = href.startsWith('http') || href.startsWith('#')
     background: currentColor;
     transform: scaleX(0);
     transform-origin: left center;
-    transition: transform 300ms ease-out;
+    transition:
+      transform 300ms ease-out,
+      box-shadow 300ms ease-out,
+      filter 300ms ease-out;
     will-change: transform;
+    box-shadow: none;
   }
 
   .nav-link:hover .nav-link__underline,
   .nav-link:focus-visible .nav-link__underline {
     transform: scaleX(1);
+    /* Soft shine along the grown underline */
+    box-shadow:
+      0 0 6px color-mix(in srgb, currentColor 70%, transparent),
+      0 0 14px color-mix(in srgb, currentColor 35%, transparent);
+    filter: brightness(1.15);
   }
 
   @media (prefers-reduced-motion: reduce) {

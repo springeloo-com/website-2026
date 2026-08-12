@@ -84,12 +84,19 @@ const parentHref = `${base}${href.startsWith('/') ? href : `/${href}`}`;
     background: currentColor;
     transform: scaleX(0);
     transform-origin: left center;
-    transition: transform 300ms ease-out;
+    transition:
+      transform 300ms ease-out,
+      box-shadow 300ms ease-out,
+      filter 300ms ease-out;
   }
 
   .expandable__row:hover .expandable__underline,
   .expandable__parent:focus-visible .expandable__underline {
     transform: scaleX(1);
+    box-shadow:
+      0 0 6px color-mix(in srgb, currentColor 70%, transparent),
+      0 0 14px color-mix(in srgb, currentColor 35%, transparent);
+    filter: brightness(1.15);
   }
 
   .expandable__toggle {

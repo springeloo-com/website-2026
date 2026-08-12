@@ -113,6 +113,8 @@ const products = [
   <SiteHeader slot="header" activePath="/produkte" variant="transparent" />
 
   <div class="produkte">
+    {/* Figma Blue shine on Header-slider-01 / dark product chrome */}
+    <div class="produkte__blue-shine" aria-hidden="true"></div>
     <section class="produkte-hero" aria-label="Produkte Intro">
       <div class="container produkte-hero__grid">
         <div class="produkte-hero__media">
@@ -221,8 +223,29 @@ const products = [
 
 <style>
   .produkte {
+    position: relative;
     color: var(--color-cream);
     background: #1d2228;
+  }
+
+  .produkte__blue-shine {
+    pointer-events: none;
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: min(42rem, 70vh);
+    z-index: 0;
+    background:
+      linear-gradient(191.5deg, rgb(62, 144, 198) 3.3%, rgba(62, 144, 198, 0) 61%),
+      linear-gradient(217deg, rgba(62, 144, 198, 0.45) 6%, rgba(62, 144, 198, 0) 47%);
+    background-position: top left, bottom left;
+    background-size: 100% 70%, 56% 45%;
+    background-repeat: no-repeat;
+    opacity: 0.29;
+  }
+
+  .produkte > :not(.produkte__blue-shine) {
+    position: relative;
+    z-index: 1;
   }
 
   .produkte-kicker {

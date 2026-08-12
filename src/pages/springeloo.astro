@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import CTAButton from '../components/CTAButton.astro';
+import HeroShine from '../components/HeroShine.astro';
 import { getSiteMeta, publicUrl } from '../lib/content';
 
 const siteMeta = getSiteMeta();
@@ -87,6 +88,7 @@ const team = [
   <section class="sp-hero" aria-label="Hero">
     <img class="sp-hero__image" src={heroSrc} alt="Drei springeloo Experten im Gespräch" width="1920" height="1080" />
     <div class="sp-hero__shade" aria-hidden="true"></div>
+    <HeroShine />
     <div class="grid-overlay" aria-hidden="true"></div>
     <div class="container sp-hero__content">
       <div class="sp-hero__meta">

@@ -1,0 +1,109 @@
+---
+/**
+ * Figma Header-clip-01 → Shine (2097:94827)
+ * Design uses a dense grid of soft cream ellipses (mix-blend overlay, layer opacity 50%).
+ * We recreate the visible mid-hero lens-flare streak without the full 8×5×16 cell grid.
+ */
+import { publicUrl } from '../lib/content';
+
+const ellipse = publicUrl('/uploads/effects/shine-ellipse.svg');
+---
+
+<div class="hero-shine" aria-hidden="true">
+  <div class="hero-shine__band">
+    {
+      Array.from({ length: 9 }, (_, i) => (
+        <img
+          class:list={['hero-shine__flare', `hero-shine__flare--${i + 1}`]}
+          src={ellipse}
+          alt=""
+          width="380"
+          height="380"
+          decoding="async"
+        />
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .hero-shine {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: 0.5;
+    overflow: hidden;
+  }
+
+  .hero-shine__band {
+    position: absolute;
+    /* Mid-hero band where Figma shows the horizontal streak through the portrait */
+    inset-inline: -8%;
+    top: 38%;
+    height: 28%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .hero-shine__flare {
+    flex: 0 0 auto;
+    width: clamp(7rem, 14vw, 14rem);
+    height: auto;
+    mix-blend-mode: overlay;
+    opacity: 0.85;
+    transform: translateY(0);
+    animation: hero-shine-pulse 7.5s var(--ease) infinite;
+  }
+
+  .hero-shine__flare--2,
+  .hero-shine__flare--5,
+  .hero-shine__flare--8 {
+    width: clamp(9rem, 18vw, 18rem);
+    opacity: 1;
+    animation-duration: 6.2s;
+  }
+
+  .hero-shine__flare--3,
+  .hero-shine__flare--6 {
+    animation-delay: -2.1s;
+    transform: translateY(12%);
+  }
+
+  .hero-shine__flare--4,
+  .hero-shine__flare--7 {
+    animation-delay: -4.4s;
+    transform: translateY(-10%);
+  }
+
+  @keyframes hero-shine-pulse {
+    0%,
+    100% {
+      filter: brightness(0.95);
+      opacity: 0.55;
+    }
+    45% {
+      filter: brightness(1.35);
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-shine__flare {
+      animation: none;
+      opacity: 0.75;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    .hero-shine__band {
+      top: 32%;
+      height: 22%;
+    }
+
+    .hero-shine__flare:nth-child(n + 6) {
+      display: none;
+    }
+  }
+</style>

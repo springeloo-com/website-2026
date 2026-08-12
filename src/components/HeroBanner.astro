@@ -1,5 +1,6 @@
 ---
 import CTAButton from './CTAButton.astro';
+import HeroShine from './HeroShine.astro';
 
 interface Props {
   eyebrow?: string;
@@ -25,6 +26,7 @@ const {
 <section class="hero-banner" aria-label="Hero">
   <img class="hero-banner__image" src={imageSrc} alt={imageAlt} />
   <div class="hero-banner__shade" aria-hidden="true"></div>
+  <HeroShine />
   <div class="grid-overlay" aria-hidden="true"></div>
   <div class="hero-banner__content container">
     <p class="hero-banner__tag">{Astro.slots.has('tag') ? <slot name="tag" /> : 'future by professionals.'}</p>
