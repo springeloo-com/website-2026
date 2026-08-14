@@ -1,0 +1,53 @@
+---
+import { publicUrl } from '../lib/content';
+---
+
+<a class="brand-logo" href={import.meta.env.BASE_URL} aria-label="springeloo Startseite">
+  <img
+    class="brand-logo__img brand-logo__img--cream"
+    src={publicUrl('/uploads/springeloo/logo-cream.svg')}
+    alt=""
+    width="212"
+    height="48"
+    decoding="async"
+  />
+  <img
+    class="brand-logo__img brand-logo__img--ink"
+    src={publicUrl('/uploads/springeloo/logo-ink.svg')}
+    alt=""
+    width="212"
+    height="48"
+    decoding="async"
+  />
+</a>
+
+<style>
+  .brand-logo {
+    display: block;
+    flex-shrink: 0;
+    text-decoration: none;
+    line-height: 0;
+  }
+
+  .brand-logo:hover {
+    text-decoration: none;
+  }
+
+  .brand-logo__img {
+    display: block;
+    width: 253px;
+    height: 57px;
+  }
+
+  .brand-logo__img--ink {
+    display: none;
+  }
+
+  /* Figma menue-01 desktop: Assets/Logos/Logo 212×48 */
+  @media (min-width: 768px) {
+    .brand-logo__img {
+      width: 212px;
+      height: 48px;
+    }
+  }
+</style>

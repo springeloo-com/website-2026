@@ -1,0 +1,87 @@
+---
+import { publicUrl } from '../lib/content';
+---
+
+<div class="grad-animation" aria-hidden="true">
+  <div class="grad-animation__blob grad-animation__blob--1">
+    <img src={publicUrl('/uploads/effects/grad-vector-1.svg')} alt="" />
+  </div>
+  <div class="grad-animation__blob grad-animation__blob--2">
+    <img src={publicUrl('/uploads/effects/grad-vector-2.svg')} alt="" />
+  </div>
+  <div class="grad-animation__blob grad-animation__blob--3">
+    <img src={publicUrl('/uploads/effects/grad-vector-3.svg')} alt="" />
+  </div>
+  <div class="grad-animation__blob grad-animation__blob--4">
+    <img src={publicUrl('/uploads/effects/grad-vector-4.svg')} alt="" />
+  </div>
+</div>
+
+<style>
+  .grad-animation {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background: var(--color-blue);
+    pointer-events: none;
+  }
+
+  .grad-animation__blob {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .grad-animation__blob img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+  }
+
+  /* Figma grad-animation-01 vector positions (823:25163–823:25169) */
+  .grad-animation__blob--1 {
+    width: 323px;
+    height: 321px;
+    left: 336px;
+    top: -58px;
+  }
+
+  .grad-animation__blob--1 img {
+    inset: -40.12% -39.88% -40.12% -39.88%;
+  }
+
+  .grad-animation__blob--2 {
+    width: 244px;
+    height: 281px;
+    left: 277px;
+    top: 20px;
+  }
+
+  .grad-animation__blob--2 img {
+    inset: -45.84% -52.79% -45.84% -52.79%;
+  }
+
+  .grad-animation__blob--3 {
+    width: 304px;
+    height: 246px;
+    left: -27px;
+    top: -116px;
+  }
+
+  .grad-animation__blob--3 img {
+    inset: -52.36% -42.37% -52.36% -42.37%;
+  }
+
+  .grad-animation__blob--4 {
+    width: 254px;
+    height: 325px;
+    left: 371px;
+    top: 38px;
+  }
+
+  .grad-animation__blob--4 img {
+    inset: -39.63% -50.71% -39.63% -50.71%;
+  }
+</style>

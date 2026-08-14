@@ -1,5 +1,6 @@
 ---
-import { getPrimaryNav, getSiteMeta } from '../lib/content';
+import { getPrimaryNav } from '../lib/content';
+import BrandLogo from './BrandLogo.astro';
 import NavLink from './NavLink.astro';
 import MobileMenu from './MobileMenu.astro';
 
@@ -10,7 +11,6 @@ interface Props {
 
 const { activePath = '/', variant = 'transparent' } = Astro.props;
 const primaryNav = getPrimaryNav();
-const siteMeta = getSiteMeta();
 
 const isActive = (href: string) => {
   if (href === '/') return activePath === '/';
@@ -29,12 +29,7 @@ const menueVersionMode = variant === 'transparent' ? 'interactive' : 'static';
   {/* Figma TransparentDark / menu sheen — soft diagonal cream shine over nav chrome */}
   <div class="site-header__shine" aria-hidden="true"></div>
   <div class="site-header__inner container">
-    <a class="brand" href={import.meta.env.BASE_URL} aria-label="springeloo Startseite">
-      <span class="brand__mark" aria-hidden="true">
-        <span></span><span></span><span></span><span></span>
-      </span>
-      <span class="brand__name">{siteMeta.name}</span>
-    </a>
+    <BrandLogo />
 
     <nav class="site-header__desktop" aria-label="Hauptnavigation">
       <ul>
@@ -162,40 +157,21 @@ const menueVersionMode = variant === 'transparent' ? 'interactive' : 'static';
     padding-block: 0 0.625rem;
   }
 
-  .brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.65rem;
-    text-decoration: none;
-    font-weight: var(--font-weight-semibold);
-    letter-spacing: -0.02em;
-    padding-bottom: 0.15rem;
+  /* Figma Logo swap: Springbeige on transparent hero, ink on Hintergrund/solid */
+  .site-header :global(.brand-logo__img--ink) {
+    display: none;
   }
 
-  .brand:hover {
-    text-decoration: none;
+  .site-header--solid :global(.brand-logo__img--cream),
+  .site-header--solid-dark :global(.brand-logo__img--cream),
+  .site-header--transparent.site-header--hintergrund :global(.brand-logo__img--cream) {
+    display: none;
   }
 
-  .brand__mark {
-    width: 1.05rem;
-    height: 1.05rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-  }
-
-  .brand__mark span {
-    background: currentColor;
+  .site-header--solid :global(.brand-logo__img--ink),
+  .site-header--solid-dark :global(.brand-logo__img--ink),
+  .site-header--transparent.site-header--hintergrund :global(.brand-logo__img--ink) {
     display: block;
-  }
-
-  .brand__mark span:nth-child(2),
-  .brand__mark span:nth-child(3) {
-    opacity: 0.35;
-  }
-
-  .brand__name {
-    font-size: 1.05rem;
   }
 
   .site-header__desktop {

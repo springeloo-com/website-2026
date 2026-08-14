@@ -1,6 +1,9 @@
 ---
+import '@fontsource/overpass-mono/700.css';
 import CTAButton from './CTAButton.astro';
+import GradAnimation from './GradAnimation.astro';
 import HeroShine from './HeroShine.astro';
+import { publicUrl } from '../lib/content';
 
 interface Props {
   eyebrow?: string;
@@ -17,10 +20,14 @@ const {
   headline,
   imageSrc,
   imageAlt,
-  badge = 'HR + AI',
+  badge = 'HR+AI',
   primaryCta = { label: 'Personal', href: '/projektunterstuetzung' },
   secondaryCta = { label: 'Produkte', href: '/produkte' },
 } = Astro.props;
+
+const hrAiLines = badge.replace(/\s+/g, '').includes('+')
+  ? badge.replace(/\s+/g, '').split('+')
+  : ['HR', 'AI'];
 ---
 
 <section class="hero-banner" aria-label="Hero">
@@ -30,20 +37,42 @@ const {
   <div class="grid-overlay" aria-hidden="true"></div>
   <div class="hero-banner__content container">
     <p class="hero-banner__tag">{Astro.slots.has('tag') ? <slot name="tag" /> : 'future by professionals.'}</p>
-    <div class="hero-banner__stack">
-      {
-        badge && (
-          <div class="hero-banner__badge" aria-hidden="true">
-            <span>{badge}</span>
+
+    {/* Figma Assets/Components/Element/combined-boxes */}
+    <div class="hero-combined" aria-label={headline}>
+      <div class="hero-combined__hrai-row">
+        <div class="hero-combined__hrai" aria-hidden="true">
+          <GradAnimation />
+          <div
+            class="hero-combined__hrai-text"
+            style={`background-image: url('${publicUrl('/uploads/effects/hr-ai-texture.png')}')`}
+          >
+            <p>{hrAiLines[0]}+</p>
+            <p>{hrAiLines[1] ?? 'AI'}</p>
           </div>
-        )
-      }
-      <div class="hero-banner__card">
-        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-        <h1>{headline}</h1>
-        <div class="hero-banner__actions">
-          <CTAButton label={primaryCta.label} href={primaryCta.href} variant="ghost-light" />
-          <CTAButton label={secondaryCta.label} href={secondaryCta.href} variant="ghost-light" />
+        </div>
+      </div>
+
+      <div class="hero-combined__card">
+        <GradAnimation />
+        <div class="hero-combined__card-inner">
+          <div class="hero-combined__copy">
+            {eyebrow && (
+              <p class="hero-combined__eyebrow">
+                {eyebrow.split('\n').map((line, index) => (
+                  <>
+                    {index > 0 && <br aria-hidden="true" />}
+                    {line}
+                  </>
+                ))}
+              </p>
+            )}
+            <h1 class="hero-combined__headline">{headline}</h1>
+          </div>
+          <div class="hero-combined__actions">
+            <CTAButton label={primaryCta.label} href={primaryCta.href} variant="ghost-light" />
+            <CTAButton label={secondaryCta.label} href={secondaryCta.href} variant="ghost-light" />
+          </div>
         </div>
       </div>
     </div>
@@ -92,69 +121,144 @@ const {
 
   .hero-banner__tag {
     margin: 0;
-    font-size: var(--font-size-sm);
+    font-size: 16px;
     font-weight: var(--font-weight-semibold);
+    line-height: 20px;
     max-width: 12rem;
-    line-height: 1.25;
   }
 
-  /* Mobile: card + vertical HR+AI strip (Figma 2109:114327) */
-  .hero-banner__stack {
+  /*
+    Figma combined-boxes — pixel tokens per viewport band.
+    Mobile 2109:114327 | Tablet hoch 2109:104991 | Tablet quer ~446/222 | Desktop 2109:78609
+  */
+  .hero-combined {
+    --hero-card-w: 399px;
+    --hero-box-h: 199.5px;
+    --hero-hr-w: 28px;
+    --hero-hr-offset: 399px;
+    --hero-card-pad: 12px;
+    --hero-text-gap: 8px;
+    --hero-eyebrow-size: 16px;
+    --hero-eyebrow-lh: 20px;
+    --hero-headline-size: 24px;
+    --hero-hr-font: 10px;
+    --hero-hr-tracking: 1.3px;
+
     display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    width: calc(var(--hero-card-w) + var(--hero-hr-w));
+    margin-left: calc(50% - 50vw + 13px);
+    margin-right: 0;
   }
 
-  .hero-banner__badge {
-    order: 2;
+  .hero-combined__hrai-row {
+    display: flex;
+    align-items: center;
+    padding-left: var(--hero-hr-offset);
+  }
+
+  .hero-combined__hrai,
+  .hero-combined__card {
+    position: relative;
     background: var(--color-blue);
-    display: grid;
-    place-items: center;
-    width: 1.75rem;
-    flex: 0 0 1.75rem;
-    padding: var(--space-3) 0;
-    font-weight: var(--font-weight-semibold);
-    letter-spacing: 0.06em;
-    font-size: 0.65rem;
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    transform: rotate(180deg);
+    overflow: hidden;
   }
 
-  .hero-banner__card {
-    order: 1;
+  .hero-combined__hrai {
+    width: var(--hero-hr-w);
+    height: var(--hero-box-h);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding-bottom: 12px;
+  }
+
+  .hero-combined__hrai-text {
+    position: relative;
+    z-index: 1;
     flex: 1 1 auto;
-    min-width: 0;
-    background: var(--color-blue);
-    padding: var(--space-3) var(--space-4);
-    display: grid;
-    gap: var(--space-3);
-    align-content: space-between;
-    min-height: 12.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+    min-height: 0;
+    font-family: 'Overpass Mono', ui-monospace, monospace;
+    font-weight: 700;
+    font-size: var(--hero-hr-font);
+    letter-spacing: var(--hero-hr-tracking);
+    line-height: 0.88;
+    text-align: center;
+    opacity: 0.2;
+    mix-blend-mode: overlay;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
-  .hero-banner__card .eyebrow {
+  .hero-combined__hrai-text p {
     margin: 0;
-    font-size: var(--font-size-sm);
+  }
+
+  .hero-combined__card {
+    width: var(--hero-card-w);
+    height: var(--hero-box-h);
+  }
+
+  .hero-combined__card-inner {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: var(--hero-card-pad);
+  }
+
+  .hero-combined__copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--hero-text-gap);
+  }
+
+  .hero-combined__eyebrow {
+    margin: 0;
+    font-size: var(--hero-eyebrow-size);
     font-weight: var(--font-weight-bold);
+    line-height: var(--hero-eyebrow-lh);
+    white-space: pre-wrap;
   }
 
-  .hero-banner__card h1 {
+  .hero-combined__headline {
     margin: 0;
-    font-size: clamp(1.35rem, 4.2vw, 2.2rem);
+    font-size: var(--hero-headline-size);
+    font-weight: var(--font-weight-regular);
     line-height: 1.16;
     letter-spacing: -0.02em;
-    font-weight: var(--font-weight-regular);
+    mix-blend-mode: soft-light;
   }
 
-  .hero-banner__actions {
+  .hero-combined__actions {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-3);
+    gap: 12px;
   }
 
-  /* Tablet hoch — stack badge above card, lower band (Figma 2109:104991) */
+  .hero-combined__actions :global(.cta) {
+    height: 36px;
+    padding: 8px 24px;
+    border-width: 1.5px;
+    font-size: 16px;
+    font-weight: var(--font-weight-bold);
+    gap: 8px;
+  }
+
+  /* Tablet hoch — 479×239 + 239×239 (2109:104991) */
   @media (min-width: 768px) {
     .hero-banner__content {
       padding-block: calc(var(--header-height) + var(--space-6)) var(--space-6);
@@ -162,58 +266,52 @@ const {
 
     .hero-banner__tag {
       margin-top: var(--space-2);
-      font-size: var(--font-size-md);
       max-width: none;
     }
 
-    .hero-banner__stack {
-      flex-direction: column;
-      align-items: flex-start;
-      width: min(100%, 30rem);
+    .hero-combined {
+      --hero-card-w: 479px;
+      --hero-box-h: 239px;
+      --hero-hr-w: 239px;
+      --hero-hr-offset: 479px;
+      --hero-card-pad: 20px;
+      --hero-text-gap: 14px;
+      --hero-eyebrow-size: 18px;
+      --hero-eyebrow-lh: 22px;
+      --hero-headline-size: 30px;
+      --hero-hr-font: 48px;
+      --hero-hr-tracking: 6.2px;
+
+      margin-left: 0;
       align-self: flex-start;
     }
 
-    .hero-banner__badge {
-      order: 0;
-      writing-mode: horizontal-tb;
-      transform: none;
-      width: 14.9rem;
-      flex: none;
-      aspect-ratio: 1;
-      padding: 0;
-      font-size: clamp(1.5rem, 3vw, 2.25rem);
-      letter-spacing: 0.08em;
-      line-height: 0.88;
-      text-align: center;
-      opacity: 0.95;
+    .hero-combined__hrai {
+      padding-bottom: 0;
+      justify-content: center;
     }
 
-    .hero-banner__card {
-      order: 0;
-      width: 100%;
-      max-width: 30rem;
-      min-height: 14.9rem;
-      padding: var(--space-5);
-      gap: var(--space-4);
+    .hero-combined__hrai-text {
+      justify-content: center;
     }
   }
 
-  /* Tablet quer — right cluster, badge atop card width (Figma 2109:91364) */
+  /* Tablet quer — 446×222 + 222×222 */
   @media (min-width: 1024px) {
-    .hero-banner__stack {
+    .hero-combined {
+      --hero-card-w: 446px;
+      --hero-box-h: 222px;
+      --hero-hr-w: 222px;
+      --hero-hr-offset: 446px;
+      --hero-card-pad: 24px;
+      --hero-text-gap: 14px;
+      --hero-eyebrow-size: 19px;
+      --hero-eyebrow-lh: 23px;
+      --hero-headline-size: 32px;
+      --hero-hr-font: 52px;
+      --hero-hr-tracking: 6.8px;
+
       align-self: flex-end;
-      width: min(100%, 27.9rem);
-      align-items: flex-end;
-    }
-
-    .hero-banner__badge {
-      width: 13.9rem;
-    }
-
-    .hero-banner__card {
-      max-width: 27.9rem;
-      min-height: 13.9rem;
-      padding: 1.25rem;
     }
 
     .hero-banner__tag {
@@ -221,31 +319,27 @@ const {
     }
   }
 
-  /* Desktop — 567×284 card + 284 badge (Figma 2109:78609) */
+  /* Desktop — 567×284 + 284×284, flush right (2109:78609) */
   @media (min-width: 1280px) {
     .hero-banner__content {
       padding-block: calc(var(--header-height) + var(--space-6)) 0;
     }
 
-    .hero-banner__stack {
-      width: min(100%, 35.4rem);
-      margin-bottom: 0;
-    }
+    .hero-combined {
+      --hero-card-w: 567px;
+      --hero-box-h: 284px;
+      --hero-hr-w: 284px;
+      --hero-hr-offset: 567px;
+      --hero-card-pad: 24px;
+      --hero-text-gap: 14px;
+      --hero-eyebrow-size: 20px;
+      --hero-eyebrow-lh: 24px;
+      --hero-headline-size: 35px;
+      --hero-hr-font: 60px;
+      --hero-hr-tracking: 7.8px;
 
-    .hero-banner__badge {
-      width: 17.75rem;
-      font-size: 2.5rem;
-      letter-spacing: 0.13em;
-    }
-
-    .hero-banner__card {
-      max-width: 35.4rem;
-      min-height: 17.75rem;
-      padding: 1.5rem;
-    }
-
-    .hero-banner__card h1 {
-      font-size: clamp(1.75rem, 2.4vw, 2.2rem);
+      margin-left: auto;
+      margin-right: calc(50% - 50vw);
     }
 
     .hero-banner__tag {
