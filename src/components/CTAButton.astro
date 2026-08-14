@@ -1,4 +1,6 @@
 ---
+import { publicUrl } from '../lib/content';
+
 interface Props {
   label: string;
   href: string;
@@ -11,30 +13,33 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') || '';
 const resolved = href.startsWith('http') || href.startsWith('#')
   ? href
   : `${base}${href.startsWith('/') ? href : `/${href}`}`;
+const arrowSrc = publicUrl('/uploads/effects/arrow-right.svg');
 ---
 
 <a class:list={['cta', `cta--${variant}`, className]} href={resolved}>
   <span>{label}</span>
-  <span class="cta__chevron" aria-hidden="true">›</span>
+  <span class="cta__icon" aria-hidden="true">
+    <img src={arrowSrc} alt="" width="5" height="10" />
+  </span>
 </a>
 
 <style>
   .cta {
     display: inline-flex;
     align-items: center;
-    gap: var(--space-2);
-    padding: 0.65rem 1.15rem;
+    gap: 8px;
+    padding: 8px 24px;
+    height: 36px;
     border-radius: var(--radius-pill);
-    border: 1px solid transparent;
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-semibold);
+    border: 1.5px solid transparent;
+    font-size: 16px;
+    font-weight: var(--font-weight-bold);
     text-decoration: none;
-    transition: transform var(--duration) var(--ease), background var(--duration) var(--ease);
+    transition: background var(--duration) var(--ease), color var(--duration) var(--ease);
   }
 
   .cta:hover {
     text-decoration: none;
-    transform: translateY(-1px);
   }
 
   .cta--primary {
@@ -55,8 +60,22 @@ const resolved = href.startsWith('http') || href.startsWith('#')
     color: var(--color-ink);
   }
 
-  .cta__chevron {
-    font-size: 1.1em;
-    line-height: 1;
+  .cta__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  .cta__icon img {
+    width: 5px;
+    height: 10px;
+    max-width: none;
+  }
+
+  .cta--dark .cta__icon img {
+    filter: brightness(0) saturate(100%) invert(24%) sepia(8%) saturate(643%) hue-rotate(169deg);
   }
 </style>

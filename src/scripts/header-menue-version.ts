@@ -1,6 +1,7 @@
 /**
  * Figma menue-01 Version-menue:
- * Interaktionsfläche MOUSE_ENTER → Hintergrund, MOUSE_LEAVE → Transparent (0.5s delay).
+ * Interaktionsfläche (top 2/3 of Header-clip) + menu chrome
+ * MOUSE_ENTER → Hintergrund, MOUSE_LEAVE → Transparent (0.5s delay).
  */
 const SOLID_CLASS = 'site-header--hintergrund';
 const LEAVE_DELAY_MS = 500;
@@ -11,6 +12,9 @@ function initHeaderMenueVersion() {
   header.dataset.menueVersionInit = '1';
 
   if (header.dataset.menueVersionMode === 'static') return;
+
+  const hit = document.querySelector<HTMLElement>('[data-interaktionsflaeche]');
+  const zones = [header, hit].filter((el): el is HTMLElement => Boolean(el));
 
   let leaveTimer: number | undefined;
 
@@ -26,8 +30,11 @@ function initHeaderMenueVersion() {
     }, LEAVE_DELAY_MS);
   };
 
-  header.addEventListener('mouseenter', toHintergrund);
-  header.addEventListener('mouseleave', toTransparent);
+  for (const zone of zones) {
+    zone.addEventListener('mouseenter', toHintergrund);
+    zone.addEventListener('mouseleave', toTransparent);
+  }
+
   header.addEventListener('focusin', toHintergrund);
   header.addEventListener('focusout', (event) => {
     const next = event.relatedTarget;

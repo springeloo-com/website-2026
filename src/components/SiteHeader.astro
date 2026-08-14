@@ -11,13 +11,14 @@ interface Props {
 
 const { activePath = '/', variant = 'transparent' } = Astro.props;
 const primaryNav = getPrimaryNav();
+const mainNav = primaryNav.filter((item) => item.id !== 'kontakt');
+const kontaktNav = primaryNav.find((item) => item.id === 'kontakt');
 
 const isActive = (href: string) => {
   if (href === '/') return activePath === '/';
   return activePath === href || activePath.startsWith(`${href}/`);
 };
 
-/** Figma menue-01 Version=Transparent can switch to Hintergrund on interaction */
 const menueVersionMode = variant === 'transparent' ? 'interactive' : 'static';
 ---
 
@@ -26,22 +27,29 @@ const menueVersionMode = variant === 'transparent' ? 'interactive' : 'static';
   data-menue-version
   data-menue-version-mode={menueVersionMode}
 >
-  {/* Figma TransparentDark / menu sheen — soft diagonal cream shine over nav chrome */}
   <div class="site-header__shine" aria-hidden="true"></div>
-  <div class="site-header__inner container">
+  <div class="site-header__inner">
     <BrandLogo />
 
     <nav class="site-header__desktop" aria-label="Hauptnavigation">
-      <ul>
+      <ul class="site-header__main">
         {
-          /* Desktop Figma menue-point-01: Arrow=false, flat links + underline shine */
-          primaryNav.map((item) => (
+          mainNav.map((item) => (
             <li>
               <NavLink href={item.href} label={item.label} current={isActive(item.href)} />
             </li>
           ))
         }
       </ul>
+      {
+        kontaktNav && (
+          <ul class="site-header__kontakt">
+            <li>
+              <NavLink href={kontaktNav.href} label={kontaktNav.label} current={isActive(kontaktNav.href)} />
+            </li>
+          </ul>
+        )
+      }
     </nav>
 
     <MobileMenu items={primaryNav} activePath={activePath} />
@@ -114,11 +122,9 @@ const menueVersionMode = variant === 'transparent' ? 'interactive' : 'static';
   }
 
   .site-header--transparent {
-    /* Figma menue-01 Transparent: cream type */
     color: var(--color-cream);
   }
 
-  /* Figma Version=Hintergrund (Desktop) — cream bar + dark ink */
   .site-header--transparent.site-header--hintergrund {
     background: var(--color-cream);
     color: var(--color-ink);
@@ -130,7 +136,7 @@ const menueVersionMode = variant === 'transparent' ? 'interactive' : 'static';
     animation: none;
   }
 
-  /* Mobile band (Figma): solid dark chrome over hero */
+  /* Mobile only: solid navy chrome over menue-leiste. Tablet-hoch is transparent + burger. */
   @media (max-width: 767.98px) {
     .site-header--transparent {
       background: var(--color-navy);
@@ -146,18 +152,24 @@ const menueVersionMode = variant === 'transparent' ? 'interactive' : 'static';
     }
   }
 
+  /* Figma menue-01: px 24 mobile / 48 tablet+desktop, pb 10, inner 85 */
   .site-header__inner {
     position: relative;
     z-index: 1;
     height: 100%;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
-    gap: var(--space-4);
-    padding-block: 0 0.625rem;
+    padding: 0 24px;
   }
 
-  /* Figma Logo swap: Springbeige on transparent hero, ink on Hintergrund/solid */
+  @media (min-width: 768px) {
+    .site-header__inner {
+      align-items: flex-end;
+      padding: 0 48px 10px;
+    }
+  }
+
   .site-header :global(.brand-logo__img--ink) {
     display: none;
   }
@@ -181,11 +193,13 @@ const menueVersionMode = variant === 'transparent' ? 'interactive' : 'static';
   .site-header__desktop ul {
     display: flex;
     align-items: flex-start;
-    /* Figma menue-01: 46px between Kontakt group and main cluster; ~16px among points */
-    gap: clamp(1rem, 2.2vw, 2.875rem);
     list-style: none;
     margin: 0;
     padding: 0;
+  }
+
+  .site-header__main {
+    gap: 16px;
   }
 
   .site-header__desktop :global(a),
@@ -194,10 +208,13 @@ const menueVersionMode = variant === 'transparent' ? 'interactive' : 'static';
     text-decoration: none !important;
   }
 
-  @media (min-width: 768px) {
+  /* Figma tablet-quer + desktop: full nav, 46px before Kontakt */
+  @media (min-width: 1024px) {
     .site-header__desktop {
-      display: block;
-      font-size: 0.875rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 46px;
+      font-size: 14px;
     }
   }
 

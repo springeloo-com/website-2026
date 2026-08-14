@@ -32,32 +32,43 @@ const hrAiLines = badge.replace(/\s+/g, '').includes('+')
 
 <section class="hero-banner" aria-label="Hero">
   <img class="hero-banner__image" src={imageSrc} alt={imageAlt} />
-  <div class="hero-banner__shade" aria-hidden="true"></div>
-  <HeroShine />
-  <div class="grid-overlay" aria-hidden="true"></div>
-  <div class="hero-banner__content container">
-    <p class="hero-banner__tag">{Astro.slots.has('tag') ? <slot name="tag" /> : 'future by professionals.'}</p>
 
-    {/* Figma Assets/Components/Element/combined-boxes */}
-    <div class="hero-combined" aria-label={headline}>
-      <div class="hero-combined__hrai-row">
-        <div class="hero-combined__hrai" aria-hidden="true">
-          <GradAnimation />
-          <div
-            class="hero-combined__hrai-text"
-            style={`background-image: url('${publicUrl('/uploads/effects/hr-ai-texture.png')}')`}
-          >
-            <p>{hrAiLines[0]}+</p>
-            <p>{hrAiLines[1] ?? 'AI'}</p>
-          </div>
+  <div class="hero-banner__raster" aria-hidden="true"></div>
+  <HeroShine />
+  <div class="hero-banner__hit" data-interaktionsflaeche aria-hidden="true"></div>
+
+  <p class="hero-banner__tag">
+    {Astro.slots.has('tag') ? (
+      <slot name="tag" />
+    ) : (
+      <>
+        future by
+        <br aria-hidden="true" />
+        professionals.
+      </>
+    )}
+  </p>
+
+  <div class="hero-combined">
+    <div class="hero-combined__hrai-row">
+      <div class="hero-combined__hrai" aria-hidden="true">
+        <GradAnimation />
+        <div
+          class="hero-combined__hrai-text"
+          style={`background-image: url('${publicUrl('/uploads/effects/hr-ai-texture.png')}')`}
+        >
+          <p>{hrAiLines[0]}+</p>
+          <p>{hrAiLines[1] ?? 'AI'}</p>
         </div>
       </div>
+    </div>
 
-      <div class="hero-combined__card">
-        <GradAnimation />
-        <div class="hero-combined__card-inner">
-          <div class="hero-combined__copy">
-            {eyebrow && (
+    <div class="hero-combined__card">
+      <GradAnimation />
+      <div class="hero-combined__card-inner">
+        <div class="hero-combined__copy">
+          {
+            eyebrow && (
               <p class="hero-combined__eyebrow">
                 {eyebrow.split('\n').map((line, index) => (
                   <>
@@ -66,13 +77,13 @@ const hrAiLines = badge.replace(/\s+/g, '').includes('+')
                   </>
                 ))}
               </p>
-            )}
-            <h1 class="hero-combined__headline">{headline}</h1>
-          </div>
-          <div class="hero-combined__actions">
-            <CTAButton label={primaryCta.label} href={primaryCta.href} variant="ghost-light" />
-            <CTAButton label={secondaryCta.label} href={secondaryCta.href} variant="ghost-light" />
-          </div>
+            )
+          }
+          <h1 class="hero-combined__headline">{headline}</h1>
+        </div>
+        <div class="hero-combined__actions">
+          <CTAButton label={primaryCta.label} href={primaryCta.href} variant="ghost-light" />
+          <CTAButton label={secondaryCta.label} href={secondaryCta.href} variant="ghost-light" />
         </div>
       </div>
     </div>
@@ -84,54 +95,12 @@ const hrAiLines = badge.replace(/\s+/g, '').includes('+')
     position: relative;
     min-height: 100vh;
     min-height: 100dvh;
-    color: var(--color-white);
+    color: var(--color-cream);
     overflow: hidden;
-    display: grid;
-  }
 
-  .hero-banner__image {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-
-  .hero-banner__shade {
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(0deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 48%),
-      linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 40%),
-      rgba(0, 0, 0, 0.12);
-    z-index: 1;
-  }
-
-  .hero-banner__content {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding-block: calc(var(--header-height) + var(--space-5)) 0;
-    min-height: 100vh;
-    min-height: 100dvh;
-  }
-
-  .hero-banner__tag {
-    margin: 0;
-    font-size: 16px;
-    font-weight: var(--font-weight-semibold);
-    line-height: 20px;
-    max-width: 12rem;
-  }
-
-  /*
-    Figma combined-boxes — pixel tokens per viewport band.
-    Mobile 2109:114327 | Tablet hoch 2109:104991 | Tablet quer ~446/222 | Desktop 2109:78609
-  */
-  .hero-combined {
+    --hero-grid-cell: 200px;
+    --hero-grid-x: -187px;
+    --hero-grid-y: -59px;
     --hero-card-w: 399px;
     --hero-box-h: 199.5px;
     --hero-hr-w: 28px;
@@ -143,19 +112,70 @@ const hrAiLines = badge.replace(/\s+/g, '').includes('+')
     --hero-headline-size: 24px;
     --hero-hr-font: 10px;
     --hero-hr-tracking: 1.3px;
+  }
 
+  .hero-banner__image {
+    position: absolute;
+    top: var(--header-height);
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - var(--header-height));
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-banner__raster {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: 0.5;
+    background-image:
+      linear-gradient(to right, var(--color-cream) 0.5px, transparent 0.5px),
+      linear-gradient(to bottom, var(--color-cream) 0.5px, transparent 0.5px);
+    background-size: var(--hero-grid-cell) var(--hero-grid-cell);
+    background-position: var(--hero-grid-x) var(--hero-grid-y);
+  }
+
+  .hero-banner__hit {
+    display: none;
+    position: absolute;
+    inset: 0 0 33.33% 0;
+    z-index: 3;
+  }
+
+  .hero-banner__tag {
+    position: absolute;
+    z-index: 2;
+    margin: 0;
+    left: 24px;
+    top: 224px;
+    width: 101px;
+    font-size: 16px;
+    font-weight: var(--font-weight-semibold);
+    line-height: 20px;
+    color: var(--color-cream);
+  }
+
+  .hero-combined {
+    position: absolute;
+    z-index: 4;
+    left: 13px;
+    right: 0;
+    bottom: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     width: calc(var(--hero-card-w) + var(--hero-hr-w));
-    margin-left: calc(50% - 50vw + 13px);
-    margin-right: 0;
+    max-width: calc(100% - 13px);
   }
 
   .hero-combined__hrai-row {
     display: flex;
     align-items: center;
-    padding-left: var(--hero-hr-offset);
+    padding-left: min(var(--hero-hr-offset), calc(100% - var(--hero-hr-w)));
   }
 
   .hero-combined__hrai,
@@ -174,6 +194,7 @@ const hrAiLines = badge.replace(/\s+/g, '').includes('+')
     justify-content: center;
     gap: 4px;
     padding-bottom: 12px;
+    flex-shrink: 0;
   }
 
   .hero-combined__hrai-text {
@@ -207,6 +228,7 @@ const hrAiLines = badge.replace(/\s+/g, '').includes('+')
 
   .hero-combined__card {
     width: var(--hero-card-w);
+    max-width: calc(100% - var(--hero-hr-w));
     height: var(--hero-box-h);
   }
 
@@ -231,6 +253,7 @@ const hrAiLines = badge.replace(/\s+/g, '').includes('+')
     font-size: var(--hero-eyebrow-size);
     font-weight: var(--font-weight-bold);
     line-height: var(--hero-eyebrow-lh);
+    color: var(--color-white);
     white-space: pre-wrap;
   }
 
@@ -239,7 +262,8 @@ const hrAiLines = badge.replace(/\s+/g, '').includes('+')
     font-size: var(--hero-headline-size);
     font-weight: var(--font-weight-regular);
     line-height: 1.16;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
+    color: var(--color-white);
     mix-blend-mode: soft-light;
   }
 
@@ -258,37 +282,47 @@ const hrAiLines = badge.replace(/\s+/g, '').includes('+')
     gap: 8px;
   }
 
-  /* Tablet hoch — 479×239 + 239×239 (2109:104991) */
   @media (min-width: 768px) {
-    .hero-banner__content {
-      padding-block: calc(var(--header-height) + var(--space-6)) var(--space-6);
-    }
-
-    .hero-banner__tag {
-      margin-top: var(--space-2);
-      max-width: none;
-    }
-
-    .hero-combined {
+    .hero-banner {
+      --hero-grid-cell: 240px;
+      --hero-grid-x: -215px;
+      --hero-grid-y: -227px;
       --hero-card-w: 479px;
       --hero-box-h: 239px;
       --hero-hr-w: 239px;
       --hero-hr-offset: 479px;
       --hero-card-pad: 20px;
       --hero-text-gap: 14px;
-      --hero-eyebrow-size: 18px;
-      --hero-eyebrow-lh: 22px;
-      --hero-headline-size: 30px;
-      --hero-hr-font: 48px;
-      --hero-hr-tracking: 6.2px;
+      --hero-eyebrow-size: 16px;
+      --hero-eyebrow-lh: 20px;
+      --hero-headline-size: 28px;
+      --hero-hr-font: 60px;
+      --hero-hr-tracking: 7.8px;
+    }
 
-      margin-left: 0;
-      align-self: flex-start;
+    .hero-banner__image {
+      inset: 0;
+      height: 100%;
+    }
+
+    .hero-banner__hit {
+      display: block;
+    }
+
+    .hero-banner__tag {
+      left: 48px;
+      top: 188px;
+    }
+
+    .hero-combined {
+      left: 25px;
+      right: auto;
+      bottom: 54px;
+      max-width: none;
     }
 
     .hero-combined__hrai {
       padding-bottom: 0;
-      justify-content: center;
     }
 
     .hero-combined__hrai-text {
@@ -296,54 +330,49 @@ const hrAiLines = badge.replace(/\s+/g, '').includes('+')
     }
   }
 
-  /* Tablet quer — 446×222 + 222×222 */
   @media (min-width: 1024px) {
-    .hero-combined {
-      --hero-card-w: 446px;
-      --hero-box-h: 222px;
-      --hero-hr-w: 222px;
-      --hero-hr-offset: 446px;
-      --hero-card-pad: 24px;
-      --hero-text-gap: 14px;
-      --hero-eyebrow-size: 19px;
-      --hero-eyebrow-lh: 23px;
-      --hero-headline-size: 32px;
-      --hero-hr-font: 52px;
-      --hero-hr-tracking: 6.8px;
-
-      align-self: flex-end;
+    .hero-banner {
+      --hero-grid-cell: 224px;
+      --hero-grid-x: -317px;
+      --hero-grid-y: -211px;
+      --hero-card-w: 447px;
+      --hero-box-h: 223px;
+      --hero-hr-w: 223px;
+      --hero-hr-offset: 447px;
     }
 
     .hero-banner__tag {
-      margin-top: var(--space-4);
-    }
-  }
-
-  /* Desktop — 567×284 + 284×284, flush right (2109:78609) */
-  @media (min-width: 1280px) {
-    .hero-banner__content {
-      padding-block: calc(var(--header-height) + var(--space-6)) 0;
+      top: 172px;
     }
 
     .hero-combined {
+      left: auto;
+      right: 0;
+      bottom: 85px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .hero-banner {
+      --hero-grid-cell: 284px;
+      --hero-grid-x: -260px;
+      --hero-grid-y: -272px;
       --hero-card-w: 567px;
       --hero-box-h: 284px;
       --hero-hr-w: 284px;
       --hero-hr-offset: 567px;
       --hero-card-pad: 24px;
-      --hero-text-gap: 14px;
       --hero-eyebrow-size: 20px;
       --hero-eyebrow-lh: 24px;
       --hero-headline-size: 35px;
-      --hero-hr-font: 60px;
-      --hero-hr-tracking: 7.8px;
-
-      margin-left: auto;
-      margin-right: calc(50% - 50vw);
     }
 
     .hero-banner__tag {
-      margin-top: var(--space-6);
+      top: 231px;
+    }
+
+    .hero-combined {
+      bottom: 37px;
     }
   }
 </style>

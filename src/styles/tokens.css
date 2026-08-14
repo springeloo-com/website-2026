@@ -41,10 +41,10 @@
   --space-8: 4rem;
   --space-9: 6rem;
 
-  /* Layout — Figma menue-01 is ~95px (≥768); mobile chrome ~148px in file
-     (we use a slightly taller mobile bar until full chrome assets land) */
+  /* Layout — Figma menue-01 is 95px (tablet quer + desktop);
+     tablet-hoch is also 95px with burger; mobile menue-leiste is 88px */
   --max-content: 72rem;
-  --header-height: 5.9375rem;
+  --header-height: 5.5rem;
   --radius-sm: 0.25rem;
   --radius-pill: 999px;
   --shadow-soft: 0 12px 40px rgba(15, 26, 43, 0.18);
@@ -55,9 +55,16 @@
   --duration: 280ms;
 }
 
-/* Mobile band — taller chrome than tablet/desktop */
+/* Mobile menue-leiste 88px (Figma 1956:52774, excluding iOS status bar) */
 @media (max-width: 767.98px) {
   :root {
-    --header-height: 6.5rem;
+    --header-height: 5.5rem;
+  }
+}
+
+/* Tablet hoch + quer + desktop: 85px row + 10px pb = 95px */
+@media (min-width: 768px) {
+  :root {
+    --header-height: 5.9375rem;
   }
 }
