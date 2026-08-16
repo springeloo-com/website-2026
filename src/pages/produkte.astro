@@ -3,11 +3,37 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import CTAButton from '../components/CTAButton.astro';
+import ProductHeaderSlider from '../components/ProductHeaderSlider.astro';
 import { publicUrl } from '../lib/content';
 
 const title = 'Produkte';
 const description =
   'Digitale Produkte für Identity Management, CRM und Host Ablöse — springeloo.';
+
+/** Figma Header-slider-01 carousel order (factbox Name list). */
+const sliderSlides = [
+  {
+    id: 'host-abloese',
+    name: 'Host Ablöse',
+    description: ['Mainframe-Modernisierung', 'Spec-Driven Development', 'Java & PostgreSQL'],
+    image: '/uploads/produkte/carousel/product-3.png',
+    alt: 'Host Ablöse — Modernisierung und Transformation',
+  },
+  {
+    id: 'spring-ida2',
+    name: 'spring id.a2',
+    description: ['Identity & Access Management', 'Self-Service Portal', 'NIS2-konform'],
+    image: '/uploads/produkte/carousel/product-1.png',
+    alt: 'spring id.a2 — Identity Management',
+  },
+  {
+    id: 'spring-suitecrm',
+    name: 'SuiteCRM',
+    description: ['Kundenkontaktmanagement', 'Open Source CRM', 'Volle Datenhoheit'],
+    image: '/uploads/produkte/carousel/product-2.png',
+    alt: 'spring suiteCRM — Kundenkontaktmanagement',
+  },
+];
 
 const products = [
   {
@@ -113,21 +139,16 @@ const products = [
   <SiteHeader slot="header" activePath="/produkte" variant="transparent" />
 
   <div class="produkte">
-    {/* Figma Blue shine on Header-slider-01 / dark product chrome */}
-    <div class="produkte__blue-shine" aria-hidden="true"></div>
-    <section class="produkte-hero" aria-label="Produkte Intro">
+    {/* Figma Header-slider-01 — product karusell + next/prev arrows */}
+    <ProductHeaderSlider slides={sliderSlides} startIndex={0} />
+
+    <section class="produkte-hero" aria-label="Produkte Intro" id="intro">
       <div class="container produkte-hero__grid">
-        <div class="produkte-hero__media">
-          <img src={publicUrl('/uploads/produkte/intro-a.png')} alt="Arbeit an digitalen Systemen im dunklen Office" width="1024" height="680" />
-        </div>
         <div class="produkte-hero__copy">
           <h1>Aufbau von Kompetenz für und durch neue Werkzeuge — Transformation als Philosophie.</h1>
-          <p>
-            Wir entlasten Organisationen, indem wir Verantwortung übernehmen und Strukturen schaffen, die Fortschritt
-            ermöglichen und langfristig tragen. Durch Senior Experts, jahrelanges Know-how und den Einsatz moderner
-            Technologien verbinden wir Branchenwissen mit modernen Tools und fördern ein digitales Mindset im
-            Unternehmen.
-          </p>
+        </div>
+        <div class="produkte-hero__media">
+          <img src={publicUrl('/uploads/produkte/intro-a.png')} alt="Arbeit an digitalen Systemen im dunklen Office" width="1024" height="680" />
         </div>
       </div>
     </section>
@@ -228,26 +249,6 @@ const products = [
     background: #1d2228;
   }
 
-  .produkte__blue-shine {
-    pointer-events: none;
-    position: absolute;
-    inset: 0 0 auto 0;
-    height: min(42rem, 70vh);
-    z-index: 0;
-    background:
-      linear-gradient(191.5deg, rgb(62, 144, 198) 3.3%, rgba(62, 144, 198, 0) 61%),
-      linear-gradient(217deg, rgba(62, 144, 198, 0.45) 6%, rgba(62, 144, 198, 0) 47%);
-    background-position: top left, bottom left;
-    background-size: 100% 70%, 56% 45%;
-    background-repeat: no-repeat;
-    opacity: 0.29;
-  }
-
-  .produkte > :not(.produkte__blue-shine) {
-    position: relative;
-    z-index: 1;
-  }
-
   .produkte-kicker {
     margin: 0 0 var(--space-3);
     font-size: 0.875rem;
@@ -257,8 +258,8 @@ const products = [
   }
 
   .produkte-hero {
-    padding-block: calc(var(--header-height) + var(--space-7)) var(--space-7);
-    background: var(--color-ink);
+    padding-block: var(--space-7);
+    background: #1d2228;
   }
 
   .produkte-hero__grid {
@@ -279,14 +280,14 @@ const products = [
   }
 
   .produkte-hero h1 {
-    margin: 0 0 var(--space-5);
+    margin: 0;
     font-size: clamp(1.75rem, 3.5vw, 3rem);
     font-weight: var(--font-weight-regular);
     line-height: 1.2;
     letter-spacing: -0.02em;
+    max-width: 22ch;
   }
 
-  .produkte-hero p,
   .produkte-lead__body,
   .product-block__summary p,
   .produkte-oss p {
@@ -442,8 +443,9 @@ const products = [
 
   @media (min-width: 768px) {
     .produkte-hero__grid {
-      grid-template-columns: 0.9fr 1.1fr;
-      align-items: center;
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+      gap: var(--space-7);
     }
   }
 

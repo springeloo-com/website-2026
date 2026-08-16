@@ -84,4 +84,40 @@ import { publicUrl } from '../lib/content';
   .grad-animation__blob--4 img {
     inset: -39.63% -50.71% -39.63% -50.71%;
   }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .grad-animation__blob--1 {
+      animation: grad-drift-a 14s var(--ease, ease-in-out) infinite alternate;
+    }
+
+    .grad-animation__blob--2 {
+      animation: grad-drift-b 11s var(--ease, ease-in-out) infinite alternate;
+    }
+
+    .grad-animation__blob--3 {
+      animation: grad-drift-a 16s var(--ease, ease-in-out) -4s infinite alternate;
+    }
+
+    .grad-animation__blob--4 {
+      animation: grad-drift-b 13s var(--ease, ease-in-out) -2s infinite alternate;
+    }
+  }
+
+  @keyframes grad-drift-a {
+    from {
+      transform: translate(0, 0) scale(1);
+    }
+    to {
+      transform: translate(-4%, 3%) scale(1.04);
+    }
+  }
+
+  @keyframes grad-drift-b {
+    from {
+      transform: translate(0, 0) scale(1);
+    }
+    to {
+      transform: translate(3%, -4%) scale(1.06);
+    }
+  }
 </style>

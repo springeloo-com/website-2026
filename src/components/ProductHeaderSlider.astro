@@ -1,0 +1,655 @@
+---
+/**
+ * Figma Header-slider-01 + product-karusell-Desktop / Mobil
+ * Desktop: I2109:78612;2077:91251 · Mobile: I2109:114326;2095:37160
+ */
+import { publicUrl } from '../lib/content';
+
+export type ProductSlide = {
+  id: string;
+  name: string;
+  description: string[];
+  image: string;
+  alt: string;
+};
+
+interface Props {
+  slides: ProductSlide[];
+  /** Index of the initially centered product (Figma default often Host Ablöse). */
+  startIndex?: number;
+}
+
+const { slides, startIndex = 0 } = Astro.props;
+
+const resolved = slides.map((slide) => ({
+  name: slide.name,
+  description: slide.description,
+  href: `#${slide.id}`,
+  image: publicUrl(slide.image),
+  alt: slide.alt,
+}));
+
+const wrap = (i: number) =>
+  resolved[(((i % resolved.length) + resolved.length) % resolved.length)];
+const initial = wrap(startIndex) ?? resolved[0];
+const prev = wrap(startIndex - 1) ?? resolved[0];
+const next = wrap(startIndex + 1) ?? resolved[0];
+const arrowLeft = publicUrl('/uploads/effects/slide-arrow-left.svg');
+const arrowRight = publicUrl('/uploads/effects/slide-arrow-right.svg');
+---
+
+<section
+  class="phs"
+  aria-roledescription="Karussell"
+  aria-label="Produktübersicht"
+  data-product-header-slider
+  data-start-index={startIndex}
+  data-slides={JSON.stringify(resolved)}
+  tabindex="0"
+>
+  <div class="phs__blue-shine" aria-hidden="true">
+    <div class="phs__blue-top"></div>
+    <div class="phs__blue-bottom"></div>
+  </div>
+
+  <div class="phs__raster" aria-hidden="true">
+    <div class="phs__raster-grid">
+      {
+        Array.from({ length: 5 }, (_, row) => (
+          <div class="phs__raster-row">
+            {Array.from({ length: 8 }, () => (
+              <span class="phs__raster-cell" />
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="phs__hit" data-interaktionsflaeche aria-hidden="true"></div>
+
+  <p class="phs__slogan">
+    future by
+    <br aria-hidden="true" />
+    professionals.
+  </p>
+
+  <div class="phs__karusell">
+    <div class="phs__wrap">
+      <div class="phs__reihe" data-phs-reihe>
+        <article class="phs__tile phs__tile--small" data-phs-tile="prev" aria-hidden="true">
+          <div class="phs__foto">
+            <img src={prev.image} alt="" width="280" height="280" decoding="async" />
+            <span class="phs__veil phs__veil--small" aria-hidden="true"></span>
+          </div>
+        </article>
+
+        <article class="phs__tile phs__tile--big" data-phs-tile="active">
+          <div class="phs__foto">
+            <img src={initial.image} alt={initial.alt} width="440" height="440" decoding="async" />
+            <span class="phs__veil phs__veil--big" aria-hidden="true"></span>
+          </div>
+        </article>
+
+        <article class="phs__tile phs__tile--small" data-phs-tile="next" aria-hidden="true">
+          <div class="phs__foto">
+            <img src={next.image} alt="" width="280" height="280" decoding="async" />
+            <span class="phs__veil phs__veil--small" aria-hidden="true"></span>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="phs__arrows" data-node-id="2085:63004">
+      <button type="button" class="phs__arrow" data-phs-prev aria-label="Vorheriges Produkt">
+        <span class="phs__arrow-icon" aria-hidden="true">
+          <img src={arrowLeft} alt="" width="6" height="10" />
+        </span>
+      </button>
+      <button type="button" class="phs__arrow" data-phs-next aria-label="Nächstes Produkt">
+        <span class="phs__arrow-icon" aria-hidden="true">
+          <img src={arrowRight} alt="" width="6" height="10" />
+        </span>
+      </button>
+    </div>
+
+    <div class="phs__factbox" data-phs-factbox>
+      <span class="phs__trenner" aria-hidden="true"></span>
+      <div class="phs__fact phs__fact--name">
+        <p class="phs__fact-label">Name</p>
+        <p class="phs__fact-value" data-phs-name>{initial.name}</p>
+      </div>
+      <span class="phs__trenner" aria-hidden="true"></span>
+      <div class="phs__fact phs__fact--desc">
+        <p class="phs__fact-label">Beschreibung</p>
+        <div class="phs__fact-desc" data-phs-desc>
+          {initial.description.map((line) => (
+            <p>{line}</p>
+          ))}
+        </div>
+      </div>
+      <span class="phs__trenner" aria-hidden="true"></span>
+      <a class="phs__infos" href={initial.href} data-phs-info>
+        INFOS
+      </a>
+      <span class="phs__trenner" aria-hidden="true"></span>
+    </div>
+  </div>
+</section>
+
+<script>
+  import '../scripts/product-header-slider.ts';
+</script>
+
+<style>
+  .phs {
+    position: relative;
+    isolation: isolate;
+    min-height: 956px;
+    height: 100dvh;
+    max-height: 1258px;
+    overflow: hidden;
+    color: var(--color-cream);
+    background: #1d2228;
+    outline: none;
+  }
+
+  .phs__blue-shine {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .phs__blue-top {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 74%;
+    opacity: 0.29;
+    background: linear-gradient(215.29deg, rgb(62, 144, 198) 3.3%, rgba(62, 144, 198, 0) 61%);
+  }
+
+  .phs__blue-bottom {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 56%;
+    height: 42%;
+    opacity: 0.29;
+    background: linear-gradient(249.16deg, rgb(62, 144, 198) 6.4%, rgba(62, 144, 198, 0) 47%);
+    transform: rotate(180deg);
+    transform-origin: center;
+  }
+
+  .phs__raster {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.5;
+    overflow: hidden;
+  }
+
+  .phs__raster-grid {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    opacity: 0.2;
+  }
+
+  .phs__raster-row {
+    display: flex;
+    margin-bottom: -0.5px;
+  }
+
+  .phs__raster-cell {
+    flex: 0 0 auto;
+    width: 284px;
+    height: 284px;
+    margin-right: -0.5px;
+    border: 0.5px solid var(--color-cream);
+    box-sizing: border-box;
+  }
+
+  .phs__hit {
+    position: absolute;
+    inset: 0 0 33.33% 0;
+    z-index: 1;
+    background: transparent;
+  }
+
+  .phs__slogan {
+    position: absolute;
+    left: 48px;
+    top: 231px;
+    z-index: 3;
+    margin: 0;
+    padding-bottom: 24px;
+    width: 101px;
+    font-size: 16px;
+    font-weight: var(--font-weight-semibold);
+    line-height: 20px;
+    color: var(--color-cream);
+  }
+
+  .phs__karusell {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 340px;
+    height: 616px;
+    z-index: 2;
+  }
+
+  .phs__wrap {
+    position: absolute;
+    inset: 0 0 22% 0;
+    overflow: hidden;
+  }
+
+  .phs__reihe {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 110px;
+    transform: translateX(-50%);
+  }
+
+  .phs__tile {
+    position: relative;
+    flex: 0 0 auto;
+  }
+
+  .phs__tile--small {
+    display: none;
+    width: 280px;
+    height: 280px;
+  }
+
+  .phs__tile--big {
+    width: min(392px, calc(100vw - 48px));
+    height: min(392px, calc(100vw - 48px));
+  }
+
+  .phs__foto {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 10.5px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+  }
+
+  .phs__foto img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .phs__veil {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .phs__veil--big {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .phs__veil--small {
+    background: rgba(37, 86, 119, 0.6);
+  }
+
+  .phs__arrows {
+    position: absolute;
+    inset: 0 0 36% 0;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 12px;
+    pointer-events: none;
+  }
+
+  .phs__arrow {
+    pointer-events: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 46px;
+    padding: 0;
+    border: 0;
+    border-radius: 50px;
+    background: var(--color-cream-soft);
+    cursor: pointer;
+  }
+
+  .phs__arrow:focus-visible {
+    outline: 2px solid var(--color-spring-blue, #3e90c6);
+    outline-offset: 3px;
+  }
+
+  .phs__arrow-icon {
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+  }
+
+  .phs__arrow-icon img {
+    width: 5.833px;
+    height: 10px;
+    display: block;
+  }
+
+  .phs__factbox {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(50% + 258px);
+    transform: translateY(-50%);
+    z-index: 3;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .phs__trenner {
+    flex: 0 0 auto;
+    width: 1px;
+    height: 100px;
+    margin-inline: 12px;
+    background: #3e90c6;
+    align-self: stretch;
+  }
+
+  .phs__fact {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100px;
+    padding-bottom: 12px;
+    box-sizing: border-box;
+  }
+
+  .phs__fact--name {
+    width: 115px;
+    flex-shrink: 0;
+  }
+
+  .phs__fact--desc {
+    width: min(138px, 32vw);
+    flex-shrink: 0;
+    padding-bottom: 8px;
+  }
+
+  .phs__fact-label {
+    margin: 0;
+    font-size: 14px;
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+    color: #3e90c6;
+  }
+
+  .phs__fact-value {
+    margin: 0;
+    font-size: 16px;
+    font-weight: var(--font-weight-medium);
+    line-height: 1.2;
+    color: var(--color-cream);
+  }
+
+  .phs__fact-desc {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    min-height: 55px;
+    justify-content: flex-end;
+  }
+
+  .phs__fact-desc p {
+    margin: 0;
+    font-size: 10px;
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.35;
+    color: var(--color-cream);
+  }
+
+  .phs__infos {
+    display: grid;
+    place-items: center;
+    width: 91px;
+    height: 100px;
+    flex-shrink: 0;
+    font-size: 16px;
+    font-weight: var(--font-weight-medium);
+    line-height: 1.36;
+    color: #3e90c6;
+    text-decoration: none;
+    text-align: center;
+  }
+
+  .phs__infos:hover,
+  .phs__infos:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  /* Tablet hoch — Figma 768 × 1258 header */
+  @media (min-width: 768px) {
+    .phs {
+      min-height: 1024px;
+      height: auto;
+      aspect-ratio: 768 / 1258;
+      max-height: none;
+    }
+
+    .phs__karusell {
+      top: 280px;
+      height: 720px;
+    }
+
+    .phs__tile--big {
+      width: 440px;
+      height: 440px;
+    }
+
+    .phs__tile--small {
+      display: block;
+    }
+
+    .phs__reihe {
+      align-items: flex-end;
+      gap: 160px;
+      top: 24px;
+    }
+
+    .phs__wrap {
+      inset: 0;
+    }
+
+    .phs__arrows {
+      inset: 28% 3.2% 42% 3.2%;
+      padding-inline: 0;
+    }
+
+    .phs__factbox {
+      left: 50%;
+      right: auto;
+      width: max-content;
+      top: calc(50% + 280px);
+      transform: translate(-50%, -50%);
+    }
+
+    .phs__fact--name {
+      width: 180px;
+    }
+
+    .phs__fact--desc {
+      width: 260px;
+      padding-bottom: 12px;
+    }
+
+    .phs__fact-value {
+      font-size: 20px;
+    }
+
+    .phs__fact-desc p {
+      font-size: 14px;
+      font-weight: var(--font-weight-medium);
+      line-height: 1.4;
+    }
+
+    .phs__infos {
+      width: 90px;
+    }
+  }
+
+  /* Tablet quer — Figma 1024 × 768 */
+  @media (min-width: 1024px) {
+    .phs {
+      min-height: 768px;
+      height: 100dvh;
+      aspect-ratio: auto;
+      max-height: 900px;
+    }
+
+    .phs__raster-grid {
+      left: 0;
+      top: 0;
+    }
+
+    .phs__slogan {
+      top: 231px;
+    }
+
+    .phs__karusell {
+      top: 268px;
+      height: 500px;
+    }
+
+    .phs__reihe {
+      gap: 200px;
+      top: 5px;
+    }
+
+    .phs__tile--big {
+      width: 360px;
+      height: 480px;
+    }
+
+    .phs__tile--big .phs__foto {
+      height: 360px;
+      margin-top: 0;
+    }
+
+    .phs__tile--small {
+      width: 220px;
+      height: 220px;
+    }
+
+    .phs__arrows {
+      inset: 38% 3.2% 36% 3.2%;
+    }
+
+    .phs__factbox {
+      top: calc(50% + 210px);
+    }
+  }
+
+  /* Desktop — Figma 1440 × 900 */
+  @media (min-width: 1280px) {
+    .phs {
+      min-height: 900px;
+      height: 100dvh;
+      max-height: none;
+    }
+
+    .phs__blue-top {
+      height: 668px;
+      background: linear-gradient(191.51deg, rgb(62, 144, 198) 3.3%, rgba(62, 144, 198, 0) 61%);
+    }
+
+    .phs__blue-bottom {
+      left: 0;
+      top: 520px;
+      bottom: auto;
+      width: 802px;
+      height: 380px;
+      background: linear-gradient(217.07deg, rgb(62, 144, 198) 6.4%, rgba(62, 144, 198, 0) 47%);
+    }
+
+    .phs__raster-grid {
+      left: -260px;
+      top: -272px;
+    }
+
+    .phs__karusell {
+      top: 200px;
+      height: 700px;
+    }
+
+    .phs__wrap {
+      inset: 0 -0.07% 0 0.07%;
+    }
+
+    .phs__reihe {
+      left: calc(50% + 4px);
+      top: 5px;
+      gap: 256px;
+      align-items: flex-end;
+    }
+
+    .phs__tile--big {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      width: 440px;
+      height: 640px;
+      padding-bottom: 136px;
+      box-sizing: border-box;
+    }
+
+    .phs__tile--big .phs__foto {
+      position: relative;
+      width: 431px;
+      height: 431px;
+      flex: 0 0 auto;
+    }
+
+    .phs__tile--small {
+      width: 280px;
+      height: 280px;
+    }
+
+    .phs__arrows {
+      inset: 43.86% 3.26% 40.3% 3.33%;
+    }
+
+    .phs__factbox {
+      top: calc(50% + 300px);
+    }
+
+    .phs__fact--name {
+      width: 204px;
+    }
+
+    .phs__fact--desc {
+      width: 318px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .phs__arrow {
+      transition: none;
+    }
+  }
+</style>

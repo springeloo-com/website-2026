@@ -230,7 +230,7 @@ export function getGlobals(): GlobalContent {
 }
 
 export function getHomeContent(): HomeContent {
-  if (!homeCache) {
+  if (import.meta.env.DEV || !homeCache) {
     homeCache = validateHome(readYaml<HomeContent>('src/content/pages/home.yaml'));
   }
   return homeCache;

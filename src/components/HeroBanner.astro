@@ -1,4 +1,8 @@
 ---
+/**
+ * Figma Header-clip-01 — home first viewport
+ * Desktop 2099:107247 · Tablet quer I2109:91364;2099:110397 · Tablet hoch I2109:104991;2099:113852
+ */
 import '@fontsource/overpass-mono/700.css';
 import CTAButton from './CTAButton.astro';
 import GradAnimation from './GradAnimation.astro';
@@ -20,7 +24,7 @@ const {
   headline,
   imageSrc,
   imageAlt,
-  badge = 'HR+AI',
+  badge = 'HR + AI',
   primaryCta = { label: 'Personal', href: '/projektunterstuetzung' },
   secondaryCta = { label: 'Produkte', href: '/produkte' },
 } = Astro.props;
@@ -28,25 +32,34 @@ const {
 const hrAiLines = badge.replace(/\s+/g, '').includes('+')
   ? badge.replace(/\s+/g, '').split('+')
   : ['HR', 'AI'];
+
+/** Figma headline breaks after “Digitale ” / “Unternehmenskultur” */
+const headlineHtml = (() => {
+  const match = headline.match(/^(Digitale\s+)(Unternehmenskultur)(\s*)(durch\s+.+)$/i);
+  if (!match) return null;
+  return { lead: match[1], mid: match[2], rest: match[4] };
+})();
 ---
 
 <section class="hero-banner" aria-label="Hero">
-  <img class="hero-banner__image" src={imageSrc} alt={imageAlt} />
+  <img class="hero-banner__image" src={imageSrc} alt={imageAlt} width="2880" height="1800" decoding="async" />
 
   <div class="hero-banner__raster" aria-hidden="true"></div>
   <HeroShine />
   <div class="hero-banner__hit" data-interaktionsflaeche aria-hidden="true"></div>
 
   <p class="hero-banner__tag">
-    {Astro.slots.has('tag') ? (
-      <slot name="tag" />
-    ) : (
-      <>
-        future by
-        <br aria-hidden="true" />
-        professionals.
-      </>
-    )}
+    {
+      Astro.slots.has('tag') ? (
+        <slot name="tag" />
+      ) : (
+        <>
+          future by
+          <br aria-hidden="true" />
+          professionals.
+        </>
+      )
+    }
   </p>
 
   <div class="hero-combined">
@@ -79,7 +92,21 @@ const hrAiLines = badge.replace(/\s+/g, '').includes('+')
               </p>
             )
           }
-          <h1 class="hero-combined__headline">{headline}</h1>
+          <h1 class="hero-combined__headline">
+            {
+              headlineHtml ? (
+                <>
+                  <span class="hero-combined__headline-line">
+                    {headlineHtml.lead}
+                    <span class="hero-combined__headline-em">{headlineHtml.mid}</span>
+                  </span>
+                  <span class="hero-combined__headline-line">{headlineHtml.rest}</span>
+                </>
+              ) : (
+                headline
+              )
+            }
+          </h1>
         </div>
         <div class="hero-combined__actions">
           <CTAButton label={primaryCta.label} href={primaryCta.href} variant="ghost-light" />
@@ -93,10 +120,14 @@ const hrAiLines = badge.replace(/\s+/g, '').includes('+')
 <style>
   .hero-banner {
     position: relative;
+    /* Figma Header-clip mobile canvas 440×956 */
     min-height: 100vh;
     min-height: 100dvh;
+    height: 100dvh;
+    max-height: 1258px;
     color: var(--color-cream);
     overflow: hidden;
+    background: #1d2228;
 
     --hero-grid-cell: 200px;
     --hero-grid-x: -187px;
@@ -112,18 +143,26 @@ const hrAiLines = badge.replace(/\s+/g, '').includes('+')
     --hero-headline-size: 24px;
     --hero-hr-font: 10px;
     --hero-hr-tracking: 1.3px;
+    --hero-wrap-left: 13px;
+    --hero-wrap-top: 540px;
+    --hero-wrap-bottom: auto;
   }
 
   .hero-banner__image {
     position: absolute;
-    top: var(--header-height);
+    /* Figma mobile Image starts below menue (y=148) */
+    top: var(--header-height, 148px);
     right: 0;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: calc(100% - var(--header-height));
+    height: calc(100% - var(--header-height, 148px));
     object-fit: cover;
-    object-position: center;
+    object-position: center 30%;
+  }
+
+  .hero-banner :global(.hero-shine) {
+    display: none;
   }
 
   .hero-banner__raster {
@@ -131,7 +170,8 @@ const hrAiLines = badge.replace(/\s+/g, '').includes('+')
     position: absolute;
     inset: 0;
     z-index: 1;
-    opacity: 0.5;
+    /* Figma Raster opacity 50% × row opacity 50% */
+    opacity: 0.25;
     background-image:
       linear-gradient(to right, var(--color-cream) 0.5px, transparent 0.5px),
       linear-gradient(to bottom, var(--color-cream) 0.5px, transparent 0.5px);
@@ -151,7 +191,7 @@ const hrAiLines = badge.replace(/\s+/g, '').includes('+')
     z-index: 2;
     margin: 0;
     left: 24px;
-    top: 224px;
+    top: 280px;
     width: 101px;
     font-size: 16px;
     font-weight: var(--font-weight-semibold);
@@ -162,13 +202,13 @@ const hrAiLines = badge.replace(/\s+/g, '').includes('+')
   .hero-combined {
     position: absolute;
     z-index: 4;
-    left: 13px;
-    right: 0;
-    bottom: 0;
+    left: var(--hero-wrap-left);
+    top: var(--hero-wrap-top);
+    bottom: var(--hero-wrap-bottom);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: calc(var(--hero-card-w) + var(--hero-hr-w));
+    width: min(427px, calc(100% - 13px));
     max-width: calc(100% - 13px);
   }
 
@@ -235,6 +275,7 @@ const hrAiLines = badge.replace(/\s+/g, '').includes('+')
   .hero-combined__card-inner {
     position: relative;
     z-index: 1;
+    box-sizing: border-box;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -246,6 +287,7 @@ const hrAiLines = badge.replace(/\s+/g, '').includes('+')
     display: flex;
     flex-direction: column;
     gap: var(--hero-text-gap);
+    min-width: 0;
   }
 
   .hero-combined__eyebrow {
@@ -267,21 +309,37 @@ const hrAiLines = badge.replace(/\s+/g, '').includes('+')
     mix-blend-mode: soft-light;
   }
 
+  .hero-combined__headline-line {
+    display: block;
+  }
+
+  .hero-combined__headline-em {
+    color: var(--color-white);
+  }
+
   .hero-combined__actions {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
+    flex-shrink: 0;
   }
 
   .hero-combined__actions :global(.cta) {
     height: 36px;
     padding: 8px 24px;
     border-width: 1.5px;
+    border-color: var(--color-cream);
+    color: var(--color-cream);
     font-size: 16px;
     font-weight: var(--font-weight-bold);
     gap: 8px;
   }
 
+  .hero-combined__actions :global(.cta:hover) {
+    background: color-mix(in srgb, var(--color-cream) 12%, transparent);
+  }
+
+  /* Tablet hoch — Figma 768×1024, combined-boxes at 25,492 · 718×478 */
   @media (min-width: 768px) {
     .hero-banner {
       --hero-grid-cell: 240px;
@@ -298,11 +356,23 @@ const hrAiLines = badge.replace(/\s+/g, '').includes('+')
       --hero-headline-size: 28px;
       --hero-hr-font: 60px;
       --hero-hr-tracking: 7.8px;
+      --hero-wrap-left: 25px;
+      --hero-wrap-top: 492px;
+      --hero-wrap-bottom: auto;
+      height: auto;
+      min-height: 1024px;
+      aspect-ratio: 768 / 1024;
+      max-height: none;
     }
 
     .hero-banner__image {
-      inset: 0;
+      top: 0;
       height: 100%;
+      object-position: center;
+    }
+
+    .hero-banner :global(.hero-shine) {
+      display: block;
     }
 
     .hero-banner__hit {
@@ -315,9 +385,7 @@ const hrAiLines = badge.replace(/\s+/g, '').includes('+')
     }
 
     .hero-combined {
-      left: 25px;
-      right: auto;
-      bottom: 54px;
+      width: 718px;
       max-width: none;
     }
 
@@ -330,6 +398,7 @@ const hrAiLines = badge.replace(/\s+/g, '').includes('+')
     }
   }
 
+  /* Tablet quer — Figma 1024×768, combined-boxes at 353,237 · 670×446 */
   @media (min-width: 1024px) {
     .hero-banner {
       --hero-grid-cell: 224px;
@@ -339,6 +408,12 @@ const hrAiLines = badge.replace(/\s+/g, '').includes('+')
       --hero-box-h: 223px;
       --hero-hr-w: 223px;
       --hero-hr-offset: 447px;
+      --hero-wrap-left: 353px;
+      --hero-wrap-top: 237px;
+      height: 100dvh;
+      min-height: 768px;
+      aspect-ratio: auto;
+      max-height: 900px;
     }
 
     .hero-banner__tag {
@@ -346,12 +421,11 @@ const hrAiLines = badge.replace(/\s+/g, '').includes('+')
     }
 
     .hero-combined {
-      left: auto;
-      right: 0;
-      bottom: 85px;
+      width: 670px;
     }
   }
 
+  /* Desktop — Figma 1440×900, wrap at 591,295 · 849×568 */
   @media (min-width: 1280px) {
     .hero-banner {
       --hero-grid-cell: 284px;
@@ -365,6 +439,11 @@ const hrAiLines = badge.replace(/\s+/g, '').includes('+')
       --hero-eyebrow-size: 20px;
       --hero-eyebrow-lh: 24px;
       --hero-headline-size: 35px;
+      --hero-wrap-left: max(0px, calc(100% - 849px));
+      --hero-wrap-top: 295px;
+      min-height: 900px;
+      height: 100dvh;
+      max-height: none;
     }
 
     .hero-banner__tag {
@@ -372,7 +451,13 @@ const hrAiLines = badge.replace(/\s+/g, '').includes('+')
     }
 
     .hero-combined {
-      bottom: 37px;
+      width: 849px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-combined__actions :global(.cta) {
+      transition: none;
     }
   }
 </style>
