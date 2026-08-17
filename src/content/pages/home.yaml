@@ -31,6 +31,8 @@ leistungen:
       cta:
         label: Mehr erfahren
         href: /produkte
+      image:
+        src: /uploads/ki-expertise-istock-2164558569.jpg
     - eyebrow: Springeloo
       title: "Konstanz durch Kultur: Experten, die bleiben."
       body: Ein Team aus Professionals für nachhaltige digitale Zusammenarbeit.
