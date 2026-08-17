@@ -4,165 +4,43 @@ import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import CTAButton from '../components/CTAButton.astro';
 import ProductHeaderSlider from '../components/ProductHeaderSlider.astro';
-import { publicUrl } from '../lib/content';
+import { getProdukteContent, publicUrl } from '../lib/content';
 
-const title = 'Produkte';
-const description =
-  'Digitale Produkte für Identity Management, CRM und Host Ablöse — springeloo.';
+const page = getProdukteContent();
+const { meta, intro, lead, slider, products, oss, cta } = page;
 
-/** Figma Header-slider-01 carousel order (factbox Name list). */
-const sliderSlides = [
-  {
-    id: 'host-abloese',
-    name: 'Host Ablöse',
-    description: ['Mainframe-Modernisierung', 'Spec-Driven Development', 'Java & PostgreSQL'],
-    image: '/uploads/produkte/carousel/product-3.png',
-    alt: 'Host Ablöse — Modernisierung und Transformation',
-  },
-  {
-    id: 'spring-ida2',
-    name: 'spring id.a2',
-    description: ['Identity & Access Management', 'Self-Service Portal', 'NIS2-konform'],
-    image: '/uploads/produkte/carousel/product-1.png',
-    alt: 'spring id.a2 — Identity Management',
-  },
-  {
-    id: 'spring-suitecrm',
-    name: 'SuiteCRM',
-    description: ['Kundenkontaktmanagement', 'Open Source CRM', 'Volle Datenhoheit'],
-    image: '/uploads/produkte/carousel/product-2.png',
-    alt: 'spring suiteCRM — Kundenkontaktmanagement',
-  },
-];
-
-const products = [
-  {
-    id: 'spring-ida2',
-    category: 'Identity Management',
-    name: 'spring id.a2',
-    logo: '/uploads/produkte/ida-logo.png',
-    mock: '/uploads/produkte/ida2-mock.png',
-    mockAlt: 'spring id.a2 Oberfläche auf Tablet',
-    features: [
-      {
-        title: 'Radikale Kosteneffizienz:',
-        body: 'Maximale Budgetkontrolle. Da die Plattform auf einem aktiven Open-Source-Modell basiert, entfallen teure, wiederkehrende Lizenzgebühren vollständig. Das senkt die Gesamtbetriebskosten dauerhaft.',
-      },
-      {
-        title: 'Volle Datenhoheit:',
-        body: 'Höchste Sicherheitsstandards. Sie behalten die absolute Kontrolle und Hoheit über all Ihre Kundendaten. Das System lässt sich flexibel und DSGVO-konform in Ihrer eigenen IT-Infrastruktur betreiben.',
-      },
-      {
-        title: 'Grenzenlose Flexibilität:',
-        body: 'Zukunftssicher und skalierbar. Dank des offenen Quellcodes passen wir Felder, Oberflächen und Workflows exakt an. Neue Module und Drittsysteme lassen sich nahtlos und unkompliziert integrieren.',
-      },
-    ],
-    summary:
-      'spring id.a2 ist unsere Lösung für sicheres Identity & Access Management auf Basis von Keycloak. Das System ermöglicht eine benutzerzentrierte Verwaltung digitaler Identitäten für interne und externe User. Durch ein intuitives Self-Service-Portal und ein Support-Dashboard schaffen wir ein sicheres Fundament für Ihre Zugriffssteuerung – verlässlich, skalierbar und NIS2-konform.',
-    details: [
-      {
-        title: 'Touchpoint Management:',
-        body: 'Steuerung aller Kundeninteraktionen. Von Web-Formularen und E-Mail-Kampagnen in der Awareness-Phase über das Lead-Management bis hin zu Verkaufschancen und Angeboten im Kaufprozess.',
-      },
-      {
-        title: 'Kundenservice-Tools:',
-        body: 'Professionelles Support-Management. E-Mail-Anfragen werden über E-Mail-to-Case automatisch in Servicefälle umgewandelt. Ein Kundenportal sowie eine Wissensdatenbank entlasten Ihr Team.',
-      },
-      {
-        title: 'Nahtlose Migration:',
-        body: 'Sicherer Systemwechsel. Wir migrieren Ihre bestehenden Daten verlustfrei – inklusive Firmenstammdaten, kundenspezifischen Feldern, Berechtigungen und Historie.',
-      },
-    ],
-  },
-  {
-    id: 'spring-suitecrm',
-    category: 'Kundenkontaktmanagement',
-    name: 'spring suiteCRM',
-    logo: undefined,
-    mock: '/uploads/produkte/suitecrm-mock.png',
-    mockAlt: 'spring suiteCRM Dashboard auf Tablet',
-    features: [
-      {
-        title: 'Keine Lizenzkosten:',
-        body: 'Volle Budgetkontrolle ohne Vendor-Lock-in. Open-Source-Basis bedeutet: keine teuren, wiederkehrenden Lizenzgebühren für Nutzer oder Features.',
-      },
-      {
-        title: 'DSGVO & Compliance:',
-        body: 'Rechtssicher agieren. Volle Datenhoheit, lückenlose Audits und Protokolle – betrieben in Ihrer Infrastruktur.',
-      },
-      {
-        title: 'Open-Source Technologie:',
-        body: 'Nahtlose Markenidentität und Customizing. Login, Oberflächen und Workflows passen wir an Ihr Corporate Design an.',
-      },
-    ],
-    summary:
-      'spring suiteCRM ist unsere kosteneffiziente Lösung für ganzheitliches Kundenkontaktmanagement. Basierend auf Open Source bietet das System volle Datenhoheit und maximale Flexibilität ohne Lizenzgebühren. Wir integrieren KI-Features wie Speech2Text und automatisierte Workflows für ein sicheres Fundament Ihrer Customer Journey – individuell, skalierbar und absolut verlässlich.',
-    details: [
-      { title: 'Kontakt Management', body: 'Zentrale Steuerung von Kontakten, Leads und Opportunities.' },
-      { title: 'Collaborative Tools', body: 'Zusammenarbeit im Team über geteilte Pipelines und Aufgaben.' },
-      { title: 'Mobile Adaption', body: 'Zugriff auf CRM-Daten dort, wo Ihr Vertrieb arbeitet.' },
-    ],
-  },
-  {
-    id: 'host-abloese',
-    category: 'Host Ablöse',
-    name: 'Host Ablöse',
-    logo: undefined,
-    mock: '/uploads/produkte/ida2-mock.png',
-    mockAlt: 'Host Ablöse Modernisierungsoberfläche',
-    features: [
-      {
-        title: 'DORA- & Compliance-Schutz:',
-        body: 'Revisionssichere Prozesse. Durch lückenlose Provenienz entsteht ein fälschungssicherer Audit-Log für die Banken- und Versicherungsaufsicht.',
-      },
-      {
-        title: 'Re-Engineering von Fachwissen:',
-        body: 'Schutz vor Know-how-Verlust. Historisches, implizites Wissen wird aus altem Code extrahiert und in lesbare Fachlogik übersetzt.',
-      },
-      {
-        title: 'Echte Microservices:',
-        body: 'Nachhaltige Architektur. Agenten-Frameworks erkennen Kopplungen und schlagen modulare Grenzen vor – kein neuer „Java-Mainframe“.',
-      },
-    ],
-    summary:
-      'Unsere Modernisierung des PL/I-BookingHubs löst veraltete Mainframe-Systeme durch eine skalierbare Java- und PostgreSQL-Architektur ab. Mittels Spec-Driven Development (SDD) und KI-Agenten wird Legacy-Code in modulare Microservices transformiert. Wir schaffen ein sicheres Fundament für Ihre IT-Transformation – fachlich absolut gleichwertig, performant und nachhaltig wartbar.',
-    details: [
-      { title: 'Dokumenten-Management', body: 'Strukturierte Ablage und Nachvollziehbarkeit in der Transformation.' },
-      { title: 'Kollaborations-Tools', body: 'Gemeinsame Arbeit von Fachseite und Technik am Soll-Zustand.' },
-      { title: 'Mobile Adaption', body: 'Moderne Oberflächen statt Terminal-Zwang.' },
-    ],
-  },
-];
+const sliderSlides = slider.slides.map((slide) => ({
+  id: slide.id,
+  name: slide.name,
+  description: slide.description,
+  image: slide.image.src,
+  alt: slide.image.alt,
+}));
 ---
 
-<BaseLayout title={title} description={description} canonicalPath="/produkte" theme="dark" ogImage={publicUrl('/uploads/produkte/intro-a.png')}>
+<BaseLayout title={meta.title} description={meta.description} canonicalPath="/produkte" theme="dark" ogImage={publicUrl(intro.image.src)}>
   <SiteHeader slot="header" activePath="/produkte" variant="transparent" />
 
   <div class="produkte">
     {/* Figma Header-slider-01 — product karusell + next/prev arrows */}
-    <ProductHeaderSlider slides={sliderSlides} startIndex={0} />
+    <ProductHeaderSlider slides={sliderSlides} startIndex={slider.startIndex} />
 
     <section class="produkte-hero" aria-label="Produkte Intro" id="intro">
       <div class="container produkte-hero__grid">
         <div class="produkte-hero__copy">
-          <h1>Aufbau von Kompetenz für und durch neue Werkzeuge — Transformation als Philosophie.</h1>
+          <h1>{intro.headline}</h1>
         </div>
         <div class="produkte-hero__media">
-          <img src={publicUrl('/uploads/produkte/intro-a.png')} alt="Arbeit an digitalen Systemen im dunklen Office" width="1024" height="680" />
+          <img src={publicUrl(intro.image.src)} alt={intro.image.alt} width="1024" height="680" />
         </div>
       </div>
     </section>
 
     <section class="produkte-lead" id="uebersicht">
       <div class="container">
-        <p class="produkte-kicker">Digitale Transformation</p>
-        <h2>Digitale Produkte, basierend fokussiert auf Transformation von Prozessen in Unternehmen.</h2>
-        <p class="produkte-lead__body">
-          Wir entlasten Organisationen, indem wir Verantwortung übernehmen und Strukturen schaffen, die Fortschritt
-          ermöglichen und langfristig tragen. Durch Senior Experts, jahrelanges Know-how und den Einsatz moderner
-          Technologien, verbinden wir Branchenwissen mit modernen Tools und fördern ein digitales Mindset im
-          Unternehmen.
-        </p>
+        <p class="produkte-kicker">{lead.kicker}</p>
+        <h2>{lead.headline}</h2>
+        <p class="produkte-lead__body">{lead.body}</p>
       </div>
     </section>
 
@@ -176,11 +54,11 @@ const products = [
                 <h2 id={`${product.id}-title`}>{product.name}</h2>
               </div>
               {product.logo ? (
-                <img class="product-block__logo" src={publicUrl(product.logo)} alt="" width="144" height="61" />
+                <img class="product-block__logo" src={publicUrl(product.logo.src)} alt={product.logo.alt} width="144" height="61" />
               ) : null}
             </div>
             <div class="product-block__mock container">
-              <img src={publicUrl(product.mock)} alt={product.mockAlt} width="1314" height="572" />
+              <img src={publicUrl(product.mock.src)} alt={product.mock.alt} width="1314" height="572" />
             </div>
           </div>
 
@@ -219,22 +97,16 @@ const products = [
 
     <section class="produkte-oss" aria-label="Open Source">
       <div class="container">
-        <p class="produkte-kicker">Digitale Souveränität</p>
-        <h2>Open Source Lösungen</h2>
-        <p>
-          Offene Technologien schaffen Unabhängigkeit, Transparenz und langfristige Gestaltbarkeit — das Fundament
-          unserer Produktphilosophie.
-        </p>
+        <p class="produkte-kicker">{oss.kicker}</p>
+        <h2>{oss.headline}</h2>
+        <p>{oss.body}</p>
       </div>
     </section>
 
     <section class="produkte-cta">
       <div class="container produkte-cta__inner">
-        <h2>
-          Investieren Sie in den nächsten Schritt<br />
-          in die Zukunft.
-        </h2>
-        <CTAButton label="Kontakt aufnehmen" href="/kontakt" variant="ghost-light" />
+        <h2>{cta.headline}</h2>
+        <CTAButton label={cta.label} href={cta.href} variant="ghost-light" />
       </div>
     </section>
   </div>
@@ -434,6 +306,7 @@ const products = [
     font-size: clamp(1.75rem, 3.5vw, 3rem);
     font-weight: var(--font-weight-regular);
     line-height: 1.15;
+    white-space: pre-line;
   }
 
   :global(.theme-dark) :global(.site-header--transparent) {

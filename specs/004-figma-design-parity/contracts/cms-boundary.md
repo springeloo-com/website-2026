@@ -6,7 +6,7 @@
 
 | Concern | Owner | Location |
 |---------|-------|----------|
-| Copy & images (approved fields) | Editors via Decap | `home.yaml`, `globals.yaml`, `public/uploads/` |
+| Copy & images (approved fields) | Editors via Decap | `home.yaml`, `produkte.yaml`, `globals.yaml`, `public/uploads/` |
 | Layout, section composition, responsive behavior | Engineering | `.astro`, CSS, components |
 | Design tokens & breakpoints | Engineering (from Figma Variables) | `tokens.css`, `breakpoints.css` |
 
@@ -27,6 +27,6 @@
 ## Invariants from prior features
 
 - German-only editorial content
-- Leistungen cards fixed at three unless a later approved scope change
+- Leistungen cards, Produkte slides, and product blocks fixed at three unless a later approved scope change
 - CTA hrefs remain developer-controlled where already hidden from Decap
 - Editorial workflow / PR path for Decap remains unchanged by this feature

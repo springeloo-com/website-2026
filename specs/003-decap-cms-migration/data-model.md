@@ -17,6 +17,11 @@ footer, contact; hrefs developer-controlled).
 Same fields as feature 002 (meta, hero, Leistungen **exactly 3** cards with
 Markdown bodies).
 
+### ProdukteContent — `src/content/pages/produkte.yaml`
+
+Meta, intro, lead, slider (**exactly 3** slides), products (**exactly 3**
+blocks), OSS, CTA. Product/slide `id`s and CTA `href` are developer-controlled.
+
 ### ContentImage
 
 `src` under `/uploads/…` + required `alt` when meaningful.
@@ -29,7 +34,7 @@ Markdown bodies).
 | Auth | OAuth via `base_url` → proxy |
 | Publish | `publish_mode: editorial_workflow` |
 | Media | `media_folder: public/uploads`, `public_folder: /uploads` |
-| Collections | `files` entries for globals + home |
+| Collections | `files` entries for globals, home, and Produkte |
 | Locale | German content only (no i18n structure) |
 
 ### EditorialChange
@@ -40,6 +45,7 @@ on save; production reflects content only after maintainer merge + Pages deploy.
 ## Validation (Astro build — keep)
 
 - `leistungen.cards.length === 3` or build fails
+- `slider.slides.length === 3` and `products.length === 3` or build fails
 - Required strings non-empty (hero headline, contact phone/email, etc.)
 
 ## Relationships
@@ -48,7 +54,7 @@ on save; production reflects content only after maintainer merge + Pages deploy.
 
 ## Non-goals
 
-- New page YAML files beyond home/globals
-- Changing card cardinality
+- New page YAML files beyond home / Produkte / globals
+- Changing card or product cardinality
 - Multilingual schemas
 - Database entities

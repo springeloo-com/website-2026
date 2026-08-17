@@ -35,7 +35,7 @@ Canonical contracts:
 
 | Concern | Owner |
 |---------|-------|
-| Copy & images | Editors via Decap (`home.yaml`, `globals.yaml`) |
+| Copy & images | Editors via Decap (`home.yaml`, `produkte.yaml`, `globals.yaml`) |
 | Layout / responsive | Engineering (`.astro`, CSS) |
 | Tokens / breakpoints | Engineering from Figma Variables |
 

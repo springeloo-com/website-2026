@@ -47,12 +47,12 @@ npm run check:decap
 ## Happy path
 
 1. Open the Decap admin URL and sign in with **GitHub**.
-2. Edit an in-scope field (home hero, Leistungen cards, globals nav labels,
-   footer/contact).
+2. Edit an in-scope field (home hero, Leistungen cards, Produkte copy/images,
+   globals nav labels, footer/contact).
 3. Save → Decap uses **editorial workflow** (creates/updates a **pull request**
    toward `main`). Production is unchanged until merge.
 4. Maintainer reviews the diff (copy, images, Markdown HTML impact, still
-   exactly three Leistungen cards).
+   exactly three Leistungen cards and three Produkte items).
 5. Maintainer merges the PR.
 6. GitHub Actions builds Astro and deploys GitHub Pages from `main`.
 
@@ -84,20 +84,22 @@ Summary:
 
 - `publish_mode: editorial_workflow`
 - Media: `media_folder: public/uploads`, `public_folder: /uploads`
-- Collections map to `src/content/site/globals.yaml` and
-  `src/content/pages/home.yaml`
+- Collections map to `src/content/site/globals.yaml`,
+  `src/content/pages/home.yaml`, and `src/content/pages/produkte.yaml`
 - CTA/nav/legal **href** fields use hidden widgets (developer-controlled)
 - Leistungen cards: `min: 3` / `max: 3` / `allow_add: false`
+- Produkte slides and product blocks: `min: 3` / `max: 3` / `allow_add: false`
 
 ## What editors can change
 
 | Surface | Fields |
 |---------|--------|
 | Home | SEO title/description, hero text, hero image + alt, CTA **labels**, three Leistungen cards (eyebrow, title, Markdown body, optional image + alt, CTA **label**) |
+| Produkte | SEO; intro headline/image+alt; lead; slider (3 slides: name, description, image+alt); three product blocks (category, name, optional logo, mock+alt, features, summary, details); OSS; CTA **label** |
 | Globals | Brand name, nav **labels**, footer/contact text, legal **labels** |
 
 Not editable in Decap: layout, spacing, colors, routes, CTA/nav **hrefs**,
-card count, other page bodies, home carousel slides.
+card/product/slide count, other page bodies, home carousel slides.
 
 ## Media
 
@@ -111,6 +113,7 @@ You can still edit the YAML files in Git:
 | What | File |
 |------|------|
 | Home | `src/content/pages/home.yaml` |
+| Produkte | `src/content/pages/produkte.yaml` |
 | Globals | `src/content/site/globals.yaml` |
 | Uploads | `public/uploads/` |
 
@@ -120,7 +123,7 @@ Then `npm run build` and open a PR to `main`.
 
 - [ ] Text matches approved wording
 - [ ] Images optimized; meaningful alt text
-- [ ] Still exactly three Leistungen cards
+- [ ] Still exactly three Leistungen cards and three Produkte items
 - [ ] Href destinations unchanged unless a developer intended that
 - [ ] `npm run build` succeeds
 - [ ] Spot-check desktop + mobile

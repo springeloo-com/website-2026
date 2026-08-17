@@ -180,3 +180,117 @@ collections:
                       - label: Href (developer)
                         name: href
                         widget: hidden
+
+      - name: produkte
+        label: Produkte page
+        file: src/content/pages/produkte.yaml
+        fields:
+          - label: SEO
+            name: meta
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+          - label: Intro
+            name: intro
+            widget: object
+            fields:
+              - { label: Headline, name: headline, widget: string }
+              - label: Image
+                name: image
+                widget: object
+                fields:
+                  - { label: File, name: src, widget: image }
+                  - { label: Alt text, name: alt, widget: string }
+          - label: Lead
+            name: lead
+            widget: object
+            fields:
+              - { label: Kicker, name: kicker, widget: string }
+              - { label: Headline, name: headline, widget: string }
+              - { label: Body, name: body, widget: text }
+          - label: Slider
+            name: slider
+            widget: object
+            fields:
+              - { label: Start index (developer), name: startIndex, widget: hidden }
+              - label: Slides (exactly three)
+                name: slides
+                widget: list
+                allow_add: false
+                collapsed: true
+                summary: '{{fields.name}}'
+                min: 3
+                max: 3
+                fields:
+                  - { label: Id (developer), name: id, widget: hidden }
+                  - { label: Name, name: name, widget: string }
+                  - label: Description lines
+                    name: description
+                    widget: list
+                    allow_add: true
+                    field: { label: Line, name: line, widget: string }
+                  - label: Image
+                    name: image
+                    widget: object
+                    fields:
+                      - { label: File, name: src, widget: image }
+                      - { label: Alt text, name: alt, widget: string }
+          - label: Products (exactly three)
+            name: products
+            widget: list
+            allow_add: false
+            collapsed: true
+            summary: '{{fields.name}}'
+            min: 3
+            max: 3
+            fields:
+              - { label: Id (developer), name: id, widget: hidden }
+              - { label: Category, name: category, widget: string }
+              - { label: Name, name: name, widget: string }
+              - label: Logo (optional)
+                name: logo
+                widget: object
+                required: false
+                fields:
+                  - { label: File, name: src, widget: image, required: false }
+                  - { label: Alt text, name: alt, widget: string, required: false }
+              - label: Mock image
+                name: mock
+                widget: object
+                fields:
+                  - { label: File, name: src, widget: image }
+                  - { label: Alt text, name: alt, widget: string }
+              - label: Features
+                name: features
+                widget: list
+                collapsed: true
+                summary: '{{fields.title}}'
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Body, name: body, widget: text }
+              - { label: Summary, name: summary, widget: text }
+              - label: Details
+                name: details
+                widget: list
+                collapsed: true
+                summary: '{{fields.title}}'
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Body, name: body, widget: text }
+          - label: Open Source
+            name: oss
+            widget: object
+            fields:
+              - { label: Kicker, name: kicker, widget: string }
+              - { label: Headline, name: headline, widget: string }
+              - { label: Body, name: body, widget: text }
+          - label: CTA
+            name: cta
+            widget: object
+            fields:
+              - { label: Headline, name: headline, widget: string }
+              - { label: Label, name: label, widget: string }
+              - label: Href (developer)
+                name: href
+                widget: hidden

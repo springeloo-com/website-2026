@@ -17,9 +17,10 @@ npm install
 npm run dev
 ```
 
-Editable content for home + globals lives in:
+Editable content for home, Produkte, and globals lives in:
 
 - `src/content/pages/home.yaml`
+- `src/content/pages/produkte.yaml`
 - `src/content/site/globals.yaml`
 
 Editors normally change those via **Decap CMS** at `/admin/`; see
