@@ -31,6 +31,8 @@ leistungen:
       cta:
         label: Mehr erfahren
         href: /produkte
+      image:
+        src: /uploads/doctors_office_toilet_v01.jpeg
     - eyebrow: Springeloo
       title: "Konstanz durch Kultur: Experten, die bleiben."
       body: Ein Team aus Professionals für nachhaltige digitale Zusammenarbeit.
