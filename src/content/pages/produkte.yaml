@@ -2,18 +2,21 @@ meta:
   title: Produkte
   description: Digitale Produkte für Identity Management, CRM und Host Ablöse — springeloo.
 intro:
-  headline: Aufbau von Kompetenz für und durch neue Werkzeuge — Transformation als Philosophie.
+  headline: Aufbau von Kompetenz für und durch neue Werkzeuge — Transformation als
+    Philosophie.
   image:
     src: /uploads/produkte/intro-a.png
     alt: Arbeit an digitalen Systemen im dunklen Office
 lead:
   kicker: Digitale Transformation
-  headline: Digitale Produkte, basierend fokussiert auf Transformation von Prozessen in Unternehmen.
+  headline: Digitale Produkte, basierend fokussiert auf Transformation von
+    Prozessen in Unternehmen.
   body: >
-    Wir entlasten Organisationen, indem wir Verantwortung übernehmen und Strukturen schaffen, die Fortschritt
-    ermöglichen und langfristig tragen. Durch Senior Experts, jahrelanges Know-how und den Einsatz moderner
-    Technologien, verbinden wir Branchenwissen mit modernen Tools und fördern ein digitales Mindset im
-    Unternehmen.
+    Wir entlasten Organisationen, indem wir Verantwortung übernehmen und
+    Strukturen schaffen, die Fortschritt ermöglichen und langfristig tragen.
+    Durch Senior Experts, jahrelanges Know-how und den Einsatz moderner
+    Technologien, verbinden wir Branchenwissen mit modernen Tools und fördern
+    ein digitales Mindset im Unternehmen.
 slider:
   startIndex: 0
   slides:
@@ -23,8 +26,10 @@ slider:
         - Mainframe-Modernisierung
         - Spec-Driven Development
         - Java & PostgreSQL
+        - "LINE Thomas test "
+        - TEST 2
       image:
-        src: /uploads/produkte/carousel/product-3.png
+        src: /uploads/a1_024_01_2.png
         alt: Host Ablöse — Modernisierung und Transformation
     - id: spring-ida2
       name: spring id.a2
@@ -55,36 +60,45 @@ products:
       src: /uploads/produkte/ida2-mock.png
       alt: spring id.a2 Oberfläche auf Tablet
     features:
-      - title: 'Radikale Kosteneffizienz:'
+      - title: "Radikale Kosteneffizienz:"
         body: >
-          Maximale Budgetkontrolle. Da die Plattform auf einem aktiven Open-Source-Modell basiert, entfallen teure,
-          wiederkehrende Lizenzgebühren vollständig. Das senkt die Gesamtbetriebskosten dauerhaft.
-      - title: 'Volle Datenhoheit:'
+          Maximale Budgetkontrolle. Da die Plattform auf einem aktiven
+          Open-Source-Modell basiert, entfallen teure, wiederkehrende
+          Lizenzgebühren vollständig. Das senkt die Gesamtbetriebskosten
+          dauerhaft.
+      - title: "Volle Datenhoheit:"
         body: >
-          Höchste Sicherheitsstandards. Sie behalten die absolute Kontrolle und Hoheit über all Ihre Kundendaten.
-          Das System lässt sich flexibel und DSGVO-konform in Ihrer eigenen IT-Infrastruktur betreiben.
-      - title: 'Grenzenlose Flexibilität:'
+          Höchste Sicherheitsstandards. Sie behalten die absolute Kontrolle und
+          Hoheit über all Ihre Kundendaten. Das System lässt sich flexibel und
+          DSGVO-konform in Ihrer eigenen IT-Infrastruktur betreiben.
+      - title: "Grenzenlose Flexibilität:"
         body: >
-          Zukunftssicher und skalierbar. Dank des offenen Quellcodes passen wir Felder, Oberflächen und Workflows
-          exakt an. Neue Module und Drittsysteme lassen sich nahtlos und unkompliziert integrieren.
+          Zukunftssicher und skalierbar. Dank des offenen Quellcodes passen wir
+          Felder, Oberflächen und Workflows exakt an. Neue Module und
+          Drittsysteme lassen sich nahtlos und unkompliziert integrieren.
     summary: >
-      spring id.a2 ist unsere Lösung für sicheres Identity & Access Management auf Basis von Keycloak. Das System
-      ermöglicht eine benutzerzentrierte Verwaltung digitaler Identitäten für interne und externe User. Durch ein
-      intuitives Self-Service-Portal und ein Support-Dashboard schaffen wir ein sicheres Fundament für Ihre
-      Zugriffssteuerung – verlässlich, skalierbar und NIS2-konform.
+      spring id.a2 ist unsere Lösung für sicheres Identity & Access Management
+      auf Basis von Keycloak. Das System ermöglicht eine benutzerzentrierte
+      Verwaltung digitaler Identitäten für interne und externe User. Durch ein
+      intuitives Self-Service-Portal und ein Support-Dashboard schaffen wir ein
+      sicheres Fundament für Ihre Zugriffssteuerung – verlässlich, skalierbar
+      und NIS2-konform.
     details:
-      - title: 'Touchpoint Management:'
+      - title: "Touchpoint Management:"
         body: >
-          Steuerung aller Kundeninteraktionen. Von Web-Formularen und E-Mail-Kampagnen in der Awareness-Phase über
-          das Lead-Management bis hin zu Verkaufschancen und Angeboten im Kaufprozess.
-      - title: 'Kundenservice-Tools:'
+          Steuerung aller Kundeninteraktionen. Von Web-Formularen und
+          E-Mail-Kampagnen in der Awareness-Phase über das Lead-Management bis
+          hin zu Verkaufschancen und Angeboten im Kaufprozess.
+      - title: "Kundenservice-Tools:"
         body: >
-          Professionelles Support-Management. E-Mail-Anfragen werden über E-Mail-to-Case automatisch in Servicefälle
-          umgewandelt. Ein Kundenportal sowie eine Wissensdatenbank entlasten Ihr Team.
-      - title: 'Nahtlose Migration:'
+          Professionelles Support-Management. E-Mail-Anfragen werden über
+          E-Mail-to-Case automatisch in Servicefälle umgewandelt. Ein
+          Kundenportal sowie eine Wissensdatenbank entlasten Ihr Team.
+      - title: "Nahtlose Migration:"
         body: >
-          Sicherer Systemwechsel. Wir migrieren Ihre bestehenden Daten verlustfrei – inklusive Firmenstammdaten,
-          kundenspezifischen Feldern, Berechtigungen und Historie.
+          Sicherer Systemwechsel. Wir migrieren Ihre bestehenden Daten
+          verlustfrei – inklusive Firmenstammdaten, kundenspezifischen Feldern,
+          Berechtigungen und Historie.
   - id: spring-suitecrm
     category: Kundenkontaktmanagement
     name: spring suiteCRM
@@ -92,21 +106,24 @@ products:
       src: /uploads/produkte/suitecrm-mock.png
       alt: spring suiteCRM Dashboard auf Tablet
     features:
-      - title: 'Keine Lizenzkosten:'
+      - title: "Keine Lizenzkosten:"
         body: >
-          Volle Budgetkontrolle ohne Vendor-Lock-in. Open-Source-Basis bedeutet: keine teuren, wiederkehrenden
-          Lizenzgebühren für Nutzer oder Features.
-      - title: 'DSGVO & Compliance:'
-        body: Rechtssicher agieren. Volle Datenhoheit, lückenlose Audits und Protokolle – betrieben in Ihrer Infrastruktur.
-      - title: 'Open-Source Technologie:'
+          Volle Budgetkontrolle ohne Vendor-Lock-in. Open-Source-Basis bedeutet:
+          keine teuren, wiederkehrenden Lizenzgebühren für Nutzer oder Features.
+      - title: "DSGVO & Compliance:"
+        body: Rechtssicher agieren. Volle Datenhoheit, lückenlose Audits und Protokolle
+          – betrieben in Ihrer Infrastruktur.
+      - title: "Open-Source Technologie:"
         body: >
-          Nahtlose Markenidentität und Customizing. Login, Oberflächen und Workflows passen wir an Ihr Corporate
-          Design an.
+          Nahtlose Markenidentität und Customizing. Login, Oberflächen und
+          Workflows passen wir an Ihr Corporate Design an.
     summary: >
-      spring suiteCRM ist unsere kosteneffiziente Lösung für ganzheitliches Kundenkontaktmanagement. Basierend auf
-      Open Source bietet das System volle Datenhoheit und maximale Flexibilität ohne Lizenzgebühren. Wir integrieren
-      KI-Features wie Speech2Text und automatisierte Workflows für ein sicheres Fundament Ihrer Customer Journey –
-      individuell, skalierbar und absolut verlässlich.
+      spring suiteCRM ist unsere kosteneffiziente Lösung für ganzheitliches
+      Kundenkontaktmanagement. Basierend auf Open Source bietet das System volle
+      Datenhoheit und maximale Flexibilität ohne Lizenzgebühren. Wir integrieren
+      KI-Features wie Speech2Text und automatisierte Workflows für ein sicheres
+      Fundament Ihrer Customer Journey – individuell, skalierbar und absolut
+      verlässlich.
     details:
       - title: Kontakt Management
         body: Zentrale Steuerung von Kontakten, Leads und Opportunities.
@@ -121,23 +138,26 @@ products:
       src: /uploads/produkte/ida2-mock.png
       alt: Host Ablöse Modernisierungsoberfläche
     features:
-      - title: 'DORA- & Compliance-Schutz:'
+      - title: "DORA- & Compliance-Schutz:"
         body: >
-          Revisionssichere Prozesse. Durch lückenlose Provenienz entsteht ein fälschungssicherer Audit-Log für die
-          Banken- und Versicherungsaufsicht.
-      - title: 'Re-Engineering von Fachwissen:'
+          Revisionssichere Prozesse. Durch lückenlose Provenienz entsteht ein
+          fälschungssicherer Audit-Log für die Banken- und
+          Versicherungsaufsicht.
+      - title: "Re-Engineering von Fachwissen:"
         body: >
-          Schutz vor Know-how-Verlust. Historisches, implizites Wissen wird aus altem Code extrahiert und in lesbare
-          Fachlogik übersetzt.
-      - title: 'Echte Microservices:'
+          Schutz vor Know-how-Verlust. Historisches, implizites Wissen wird aus
+          altem Code extrahiert und in lesbare Fachlogik übersetzt.
+      - title: "Echte Microservices:"
         body: >
-          Nachhaltige Architektur. Agenten-Frameworks erkennen Kopplungen und schlagen modulare Grenzen vor – kein
-          neuer „Java-Mainframe“.
+          Nachhaltige Architektur. Agenten-Frameworks erkennen Kopplungen und
+          schlagen modulare Grenzen vor – kein neuer „Java-Mainframe“.
     summary: >
-      Unsere Modernisierung des PL/I-BookingHubs löst veraltete Mainframe-Systeme durch eine skalierbare Java- und
-      PostgreSQL-Architektur ab. Mittels Spec-Driven Development (SDD) und KI-Agenten wird Legacy-Code in modulare
-      Microservices transformiert. Wir schaffen ein sicheres Fundament für Ihre IT-Transformation – fachlich absolut
-      gleichwertig, performant und nachhaltig wartbar.
+      Unsere Modernisierung des PL/I-BookingHubs löst veraltete
+      Mainframe-Systeme durch eine skalierbare Java- und PostgreSQL-Architektur
+      ab. Mittels Spec-Driven Development (SDD) und KI-Agenten wird Legacy-Code
+      in modulare Microservices transformiert. Wir schaffen ein sicheres
+      Fundament für Ihre IT-Transformation – fachlich absolut gleichwertig,
+      performant und nachhaltig wartbar.
     details:
       - title: Dokumenten-Management
         body: Strukturierte Ablage und Nachvollziehbarkeit in der Transformation.
@@ -149,8 +169,8 @@ oss:
   kicker: Digitale Souveränität
   headline: Open Source Lösungen
   body: >
-    Offene Technologien schaffen Unabhängigkeit, Transparenz und langfristige Gestaltbarkeit — das Fundament
-    unserer Produktphilosophie.
+    Offene Technologien schaffen Unabhängigkeit, Transparenz und langfristige
+    Gestaltbarkeit — das Fundament unserer Produktphilosophie.
 cta:
   headline: |-
     Investieren Sie in den nächsten Schritt
