@@ -4,20 +4,20 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "predev": "node scripts/copy-decap.mjs",
+    "predev": "node scripts/copy-sveltia.mjs",
     "dev": "astro dev",
-    "prebuild": "node scripts/copy-decap.mjs",
+    "prebuild": "node scripts/copy-sveltia.mjs",
     "build": "astro build",
     "preview": "astro preview",
-    "check:decap": "bash scripts/check-decap.sh",
+    "check:cms": "bash scripts/check-cms.sh",
     "check:oauth-write": "bash scripts/check-oauth-write.sh",
     "check:oauth-chain": "bash scripts/check-oauth-chain.sh"
   },
   "dependencies": {
     "@fontsource/figtree": "^5.3.0",
     "@fontsource/overpass-mono": "^5.3.0",
+    "@sveltia/cms": "^0.193.2",
     "astro": "^7.1.6",
-    "decap-cms": "^3.8.0",
     "marked": "^18.0.7",
     "yaml": "^2.9.0"
   },

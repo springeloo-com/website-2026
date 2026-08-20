@@ -1,10 +1,10 @@
-# Decap CMS editorial workflow
+# Sveltia CMS editorial workflow
 
-Editors change copy and images in **Decap CMS**. The public site only updates
+Editors change copy and images in **Sveltia CMS**. The public site only updates
 after a **maintainer merges** a pull request into `main` and GitHub Pages
 deploys.
 
-Saving in Decap is **not** publishing to production.
+Saving in Sveltia CMS is **not** publishing to production.
 
 CloudCannon is **not** used anymore. Do not connect a CloudCannon site for
 day-to-day editing.
@@ -13,11 +13,11 @@ day-to-day editing.
 
 | Role | Can edit content | Can merge to `main` | Deploys production |
 |------|------------------|---------------------|--------------------|
-| Content editor (GitHub **write** collaborator) | Yes (in-scope fields via Decap) | No | No |
+| Content editor (GitHub **write** collaborator) | Yes (in-scope fields via Sveltia CMS) | No | No |
 | Developer / maintainer | Yes | Yes | Via merge + Actions |
 
 Editors authenticate with **GitHub OAuth**. Users without repository write
-access cannot publish edits through Decap. Branch protection must prevent
+access cannot publish edits through Sveltia CMS. Branch protection must prevent
 editors from merging to `main`.
 
 ## Admin URL
@@ -29,27 +29,26 @@ After deploy, open:
   `http://localhost:4321/website-2026/admin/` when `PUBLIC_BASE_PATH=/website-2026/`)
 
 Config lives at `public/admin/config.yml` (served next to the admin UI).
-Decap JS is copied into `public/admin/decap-cms.js` at build time from the
-`decap-cms` **UMD** package (includes React). Do not use `decap-cms-app` with a
-plain `<script>` tag — that causes a `__CLIENT_INTERNALS…` React crash.
+Sveltia CMS JS is copied into `public/admin/sveltia-cms.js` at build time from the
+`@sveltia/cms` **IIFE** package via `scripts/copy-sveltia.mjs`. Self-hosted — no CDN at runtime.
 
 **Important:** “View Source” shows an empty `<body>`. That is normal. After the
-script runs you should see **Mit GitHub einloggen** and an `#nc-root` node in
+script runs you should see the Sveltia CMS login UI (GitHub sign-in) in
 DevTools → Elements.
 
 ### Health check (curl / wget)
 
 ```bash
-npm run check:decap
-# or: bash scripts/check-decap.sh
+npm run check:cms
+# or: bash scripts/check-cms.sh
 ```
 
 ## Happy path
 
-1. Open the Decap admin URL and sign in with **GitHub**.
+1. Open the Sveltia CMS admin URL and sign in with **GitHub**.
 2. Edit an in-scope field (home hero, Leistungen cards, Produkte copy/images,
    globals nav labels, footer/contact).
-3. Save → Decap uses **editorial workflow** (creates/updates a **pull request**
+3. Save → Sveltia CMS uses **editorial workflow** (creates/updates a **pull request**
    toward `main`). Production is unchanged until merge.
 4. Maintainer reviews the diff (copy, images, Markdown HTML impact, still
    exactly three Leistungen cards and three Produkte items).
@@ -60,11 +59,11 @@ npm run check:decap
 
 ### 1. GitHub OAuth App + OAuth proxy
 
-GitHub Pages is static and cannot hold OAuth client secrets. Decap’s GitHub
+GitHub Pages is static and cannot hold OAuth client secrets. Sveltia CMS's GitHub
 backend needs a small **OAuth proxy** (serverless/edge).
 
 **Full step-by-step:** [howto-oauth-proxy.md](howto-oauth-proxy.md)
-(Cloudflare Worker via `decap-proxy`, GitHub OAuth App, secrets, Decap
+(Cloudflare Worker via `decap-proxy`, GitHub OAuth App, secrets, CMS
 `base_url`, verification, and troubleshooting).
 
 Summary:
@@ -80,7 +79,7 @@ Summary:
 2. Restrict who can merge (maintainers only).
 3. Ensure write collaborators can open PRs but cannot merge to `main`.
 
-### 3. Confirm Decap config
+### 3. Confirm CMS config
 
 - `publish_mode: editorial_workflow`
 - Media: `media_folder: public/uploads`, `public_folder: /uploads`
@@ -98,7 +97,7 @@ Summary:
 | Produkte | SEO; intro headline/image+alt; lead; slider (3 slides: name, description, image+alt); three product blocks (category, name, optional logo, mock+alt, features, summary, details); OSS; CTA **label** |
 | Globals | Brand name, nav **labels**, footer/contact text, legal **labels** |
 
-Not editable in Decap: layout, spacing, colors, routes, CTA/nav **hrefs**,
+Not editable in Sveltia CMS: layout, spacing, colors, routes, CTA/nav **hrefs**,
 card/product/slide count, other page bodies, home carousel slides.
 
 ## Media
@@ -106,7 +105,7 @@ card/product/slide count, other page bodies, home carousel slides.
 Uploads go to `public/uploads/`. Paths in YAML stay like `/uploads/….jpg`.
 Always set meaningful **alt** text.
 
-## Local / without Decap UI
+## Local / without Sveltia CMS UI
 
 You can still edit the YAML files in Git:
 
@@ -141,7 +140,7 @@ Then `npm run build` and open a PR to `main`.
 
 ### Save fails: `Resource not accessible by integration`
 
-Login can work while **save** fails. Decap’s editorial workflow creates a
+Login can work while **save** fails. Sveltia CMS's editorial workflow creates a
 branch + PR via the GitHub API; that needs a user OAuth token with **write**
 access to `springeloo-com/website-2026`, and the org must **allow** the OAuth
 App.
@@ -157,7 +156,7 @@ Fix in order:
    Org owner opens:  
    `https://github.com/organizations/springeloo-com/settings/oauth_application_policy`  
    (or **Organization settings → Third-party access**)  
-   Find **Springeloo Decap CMS** (or your OAuth App / Client ID `Ov23…`) →
+   Find **Springeloo Sveltia CMS** (or your OAuth App / Client ID `Ov23…`) →
    **Grant** access to the org. Until Grant, login + read can work while
    save / create-ref returns **403**.
 
@@ -165,13 +164,13 @@ Fix in order:
    Ensure the Cloudflare Worker `/auth` requests `scope=repo,user` (see
    [howto-claudflare.md](howto-claudflare.md)).  
    Then: GitHub → **Settings → Applications → Authorized OAuth Apps** → revoke
-   **Springeloo Decap CMS** → open `/admin/` again → **Mit GitHub einloggen**
+   **Springeloo Sveltia CMS** → open `/admin/` again → **Mit GitHub einloggen**
    and accept the permissions prompt.
 
 4. **Confirm in Chrome DevTools → Network** when saving  
    Look for a red `api.github.com` request (often creating a ref, commit, or
    pull request). Status **403** with that message = still permissions/org
-   policy, not Decap field config.
+   policy, not CMS field config.
 
 5. **Optional bisect** (maintainer only): temporarily set
    `publish_mode: simple` in `public/admin/config.yml` and save again.  
@@ -189,7 +188,7 @@ user’s GitHub rights; it does not invent write access.
 # A) Proxy + authorize URL (no token needed)
 bash scripts/check-oauth-chain.sh
 
-# B) After Decap login — paste token from DevTools → Network → api.github.com
+# B) After Sveltia CMS login — paste token from DevTools → Network → api.github.com
 export GH_TOKEN='gho_...'
 bash scripts/check-oauth-chain.sh
 

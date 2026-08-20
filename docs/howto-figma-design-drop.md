@@ -35,17 +35,17 @@ Canonical contracts:
 
 | Concern | Owner |
 |---------|-------|
-| Copy & images | Editors via Decap (`home.yaml`, `produkte.yaml`, `globals.yaml`) |
+| Copy & images | Editors via Sveltia CMS (`home.yaml`, `produkte.yaml`, `globals.yaml`) |
 | Layout / responsive | Engineering (`.astro`, CSS) |
 | Tokens / breakpoints | Engineering from Figma Variables |
 
-**Do not** overwrite Decap fields with Figma placeholder text/images.
+**Do not** overwrite CMS fields with Figma placeholder text/images.
 
 ## Explicit non-promises
 
 - Instant Figma → production sync
 - Plugin exporters as the production site
-- Hosted builders that replace GitHub Pages + Decap
+- Hosted builders that replace GitHub Pages + Sveltia CMS
 
 ## Dry-run notes (2026-08-05 homepage pass)
 

@@ -137,25 +137,25 @@ else
 fi
 
 # ---------------------------------------------------------------------------
-section "4) Admin shell + Decap bundle"
+section "4) Admin shell + Sveltia CMS bundle"
 ADMIN_HTML=$(curl -fsSL -A "$UA" "${SITE_URL}/admin/" || true)
-if echo "$ADMIN_HTML" | grep -q 'decap-cms.js'; then
-  pass "admin HTML references decap-cms.js"
+if echo "$ADMIN_HTML" | grep -q 'sveltia-cms.js'; then
+  pass "admin HTML references sveltia-cms.js"
 else
-  fail "admin HTML missing decap-cms.js"
+  fail "admin HTML missing sveltia-cms.js"
 fi
-BUNDLE_CODE=$(curl -sS -A "$UA" -o /dev/null -w "%{http_code}" "${SITE_URL}/admin/decap-cms.js" || true)
-BUNDLE_SIZE=$(curl -sS -A "$UA" -o /dev/null -w "%{size_download}" "${SITE_URL}/admin/decap-cms.js" || true)
-if [[ "${BUNDLE_CODE}" == "200" && "${BUNDLE_SIZE}" -gt 1000000 ]]; then
-  pass "decap-cms.js HTTP 200 size=${BUNDLE_SIZE}"
+BUNDLE_CODE=$(curl -sS -A "$UA" -o /dev/null -w "%{http_code}" "${SITE_URL}/admin/sveltia-cms.js" || true)
+BUNDLE_SIZE=$(curl -sS -A "$UA" -o /dev/null -w "%{size_download}" "${SITE_URL}/admin/sveltia-cms.js" || true)
+if [[ "${BUNDLE_CODE}" == "200" && "${BUNDLE_SIZE}" -gt 500000 ]]; then
+  pass "sveltia-cms.js HTTP 200 size=${BUNDLE_SIZE}"
 else
-  fail "decap-cms.js HTTP ${BUNDLE_CODE} size=${BUNDLE_SIZE}"
+  fail "sveltia-cms.js HTTP ${BUNDLE_CODE} size=${BUNDLE_SIZE}"
 fi
 
 # ---------------------------------------------------------------------------
 if [[ -z "${GH_TOKEN:-}" ]]; then
   section "5–7) Skipped (no GH_TOKEN)"
-  warn "Log into Decap, copy Authorization token from a api.github.com request,"
+  warn "Log into Sveltia CMS, copy Authorization token from a api.github.com request,"
   warn "then:  export GH_TOKEN='gho_...' && bash scripts/check-oauth-chain.sh"
   echo
   echo "SUMMARY: proxy/config checks done. FAIL=${FAIL} WARN=${WARN} PASS=${PASS}"

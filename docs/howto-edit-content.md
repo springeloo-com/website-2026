@@ -1,19 +1,19 @@
 # How to change images and text
 
 Most marketing copy and images for the **home page** and **Produkte page**, plus
-shared nav labels and contact details, are edited via **Decap CMS** (or by editing
+shared nav labels and contact details, are edited via **Sveltia CMS** (or by editing
 YAML content files in Git). Layout, routes, and other pages still live in Astro —
 see **[howto-figma-design-drop.md](howto-figma-design-drop.md)** when design
-delivers a new Figma drop (layout is engineering-owned; Decap stays copy/images
+delivers a new Figma drop (layout is engineering-owned; CMS stays copy/images
 only).
 
-## Preferred: Decap CMS
+## Preferred: Sveltia CMS
 
-See **[howto-decap.md](howto-decap.md)** for the full workflow:
+See **[howto-cms.md](howto-cms.md)** for the full workflow:
 
 - Editors save with **editorial workflow** → pull request → **maintainer
   merges** to `main` → GitHub Pages deploys.
-- Saving in Decap does **not** update production by itself.
+- Saving in Sveltia CMS does **not** update production by itself.
 - Open admin at `/admin/` (project site:
   `https://springeloo-com.github.io/website-2026/admin/`).
 
@@ -30,7 +30,7 @@ CloudCannon is no longer part of the editorial path.
 CTA and nav **URLs** are developer-only. Home cards, Produkte slides, and
 product blocks are each fixed at three.
 
-## Local / Git edits (without Decap)
+## Local / Git edits (without Sveltia CMS)
 
 ```bash
 npm install
@@ -62,7 +62,7 @@ Commit on a feature/content branch; open a PR to `main` for review.
 | Other page copy / structure | `src/pages/*.astro` (except Home, Produkte, and Kontakt contact from globals) |
 | Components / layout | `src/components/*.astro` |
 | Colors, fonts, spacing | `src/styles/tokens.css` |
-| Decap field config | `public/admin/config.yml` |
+| CMS field config | `public/admin/config.yml` |
 
 ### Pages map
 
@@ -73,13 +73,13 @@ Commit on a feature/content branch; open a PR to `main` for review.
 | `/produkte` | `src/pages/produkte.astro` + `src/content/pages/produkte.yaml` |
 | `/kontakt` | `src/pages/kontakt.astro` (+ globals contact) |
 | `/springeloo` | `src/pages/springeloo.astro` |
-| `/admin/` | `public/admin/` (Decap CMS; editors only) |
+| `/admin/` | `public/admin/` (Sveltia CMS; editors only) |
 
 ## Images
 
-- **Home hero / card images (editable):** upload via Decap to
+- **Home hero / card images (editable):** upload via Sveltia CMS to
   `public/uploads/`, or place files there and set `src` / `alt` in YAML.
-- **Produkte images (editable):** slider, intro, product mock/logo via Decap
+- **Produkte images (editable):** slider, intro, product mock/logo via Sveltia CMS
   (same `public/uploads/` folder).
 - **Other pages:** import from `src/assets/images/` in the page Astro file, or
   use `public/` for fixed URLs.
@@ -107,8 +107,8 @@ site CSS (`.rich-text`). Do not paste raw HTML/CSS meant to restyle the layout.
 
 | Mistake | Fix |
 |---------|-----|
-| Expect Decap save = live site | Wait for maintainer merge + deploy |
+| Expect CMS save = live site | Wait for maintainer merge + deploy |
 | Edit only `dist/` | Edit content YAML / `src/` only |
 | Try to add a fourth Leistungen card or Produkt | Not allowed — ask a developer |
 | Change nav href in YAML without review | Hrefs are developer-controlled |
-| Look for CloudCannon | Use Decap — see [howto-decap.md](howto-decap.md) |
+| Look for CloudCannon | Use Sveltia CMS — see [howto-cms.md](howto-cms.md) |
