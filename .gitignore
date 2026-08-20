@@ -6,8 +6,8 @@ node_modules/
 dist/
 .astro/
 
-# Generated at build/dev (scripts/copy-decap.mjs)
-public/admin/decap-cms.js
+# Generated at build/dev (scripts/copy-sveltia.mjs)
+public/admin/sveltia-cms.js
 
 # Environment
 .env

@@ -7,11 +7,11 @@
     <title>Springeloo Content</title>
   </head>
   <body>
-    <!-- Decap mounts #nc-root here. Script must load AFTER body exists. -->
+    <!-- Sveltia CMS mounts here. Script must load AFTER body exists. -->
     <!--
-      Full Decap UMD bundle (package: decap-cms), copied at build via
-      scripts/copy-decap.mjs. Do not use decap-cms-app under a script tag.
+      Sveltia CMS IIFE bundle (package: @sveltia/cms), copied at build via
+      scripts/copy-sveltia.mjs. Self-hosted — no CDN at runtime.
     -->
-    <script src="./decap-cms.js"></script>
+    <script src="./sveltia-cms.js"></script>
   </body>
 </html>
