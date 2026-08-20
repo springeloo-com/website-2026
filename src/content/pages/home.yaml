@@ -1,15 +1,14 @@
 meta:
   title: Digitale Unternehmenskultur durch Kompetenzmanagement
-  description: Digitale Tools und Kompetenzen für eine zukunftsfähige
-    Unternehmenskultur — future by professionals.
+  description: Digitale Tools und Kompetenzen für eine zukunftsfähige Unternehmenskultur — future by professionals.
 hero:
-  eyebrow: |
+  eyebrow: |-
     Digitale Tools
     und Kompetenzen
   headline: Digitale Unternehmenskultur durch Kompetenzmanagement.
   badge: HR + AI
   image:
-    src: /uploads/philosophie-istock-1322811355.jpg
+    src: /uploads/Digi_kultur.jpg
     alt: Zwei Fachkräfte im modernen Büro mit Kaffee und Tablet
   primaryCta:
     label: Personal
@@ -22,21 +21,23 @@ leistungen:
     - eyebrow: Projektunterstützung
       title: Inspiration schafft Ideen, Unternehmenskultur treibt Innovation.
       body: Begleitung für Teams, die digitale Kompetenz und Kultur verbinden.
+      image: null
       cta:
         label: Mehr erfahren
         href: /projektunterstuetzung
     - eyebrow: Produkte
       title: Host Ablöse und digitale Werkzeuge.
       body: Produktlösungen, die Legacy-Systeme ablösen und Klarheit schaffen.
-      cta:
-        label: Mehr erfahren
-        href: /produkte
       image:
         src: /uploads/ki-expertise-istock-2164558569.jpg
         alt: Fachkräfte bei der Arbeit mit digitalen Werkzeugen
+      cta:
+        label: Mehr erfahren
+        href: /produkte
     - eyebrow: Springeloo
-      title: "Konstanz durch Kultur: Experten, die bleiben."
+      title: 'Konstanz durch Kultur: Experten, die bleiben.'
       body: Ein Team aus Professionals für nachhaltige digitale Zusammenarbeit.
+      image: null
       cta:
         label: Mehr erfahren
         href: /springeloo
