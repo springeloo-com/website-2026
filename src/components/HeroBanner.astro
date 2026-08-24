@@ -305,8 +305,7 @@ const headlineHtml = (() => {
     font-weight: var(--font-weight-regular);
     line-height: 1.16;
     letter-spacing: 0;
-    color: var(--color-white);
-    mix-blend-mode: soft-light;
+    color: var(--color-cream);
   }
 
   .hero-combined__headline-line {
@@ -314,7 +313,7 @@ const headlineHtml = (() => {
   }
 
   .hero-combined__headline-em {
-    color: var(--color-white);
+    color: var(--color-cream);
   }
 
   .hero-combined__actions {
@@ -336,7 +335,14 @@ const headlineHtml = (() => {
   }
 
   .hero-combined__actions :global(.cta:hover) {
-    background: color-mix(in srgb, var(--color-cream) 12%, transparent);
+    background: var(--color-cream);
+    border-color: var(--color-cream);
+    color: var(--color-blue);
+  }
+
+  .hero-combined__actions :global(.cta:hover .cta__icon img) {
+    filter: brightness(0) saturate(100%) invert(52%) sepia(47%) saturate(468%) hue-rotate(162deg)
+      brightness(93%) contrast(88%);
   }
 
   /* Tablet hoch — Figma 768×1024, combined-boxes at 25,492 · 718×478 */

@@ -8,6 +8,7 @@ import { getProdukteContent, publicUrl } from '../lib/content';
 
 const page = getProdukteContent();
 const { meta, intro, lead, slider, products, oss, cta } = page;
+const arrowCircle = publicUrl('/uploads/effects/icon-arrow-circle.svg');
 
 const sliderSlides = slider.slides.map((slide) => ({
   id: slide.id,
@@ -26,12 +27,14 @@ const sliderSlides = slider.slides.map((slide) => ({
     <ProductHeaderSlider slides={sliderSlides} startIndex={slider.startIndex} />
 
     <section class="produkte-hero" aria-label="Produkte Intro" id="intro">
-      <div class="container produkte-hero__grid">
-        <div class="produkte-hero__copy">
-          <h1>{intro.headline}</h1>
-        </div>
-        <div class="produkte-hero__media">
-          <img src={publicUrl(intro.image.src)} alt={intro.image.alt} width="1024" height="680" />
+      <div class="container">
+        <h1>{intro.headline}</h1>
+        <div class="produkte-hero__grid">
+          <div class="produkte-hero__media">
+            <img src={publicUrl(intro.image.src)} alt={intro.image.alt} width="1024" height="680" />
+          </div>
+          <p class="produkte-hero__col">{intro.columnA}</p>
+          <p class="produkte-hero__col">{intro.columnB}</p>
         </div>
       </div>
     </section>
@@ -66,7 +69,9 @@ const sliderSlides = slider.slides.map((slide) => ({
             <div class="container product-block__features-grid">
               {product.features.map((feature) => (
                 <article>
-                  <span class="product-block__icon" aria-hidden="true" />
+                  <span class="product-block__icon" aria-hidden="true">
+                    <img src={arrowCircle} alt="" width="40" height="40" />
+                  </span>
                   <h3>{feature.title}</h3>
                   <p>{feature.body}</p>
                 </article>
@@ -82,13 +87,18 @@ const sliderSlides = slider.slides.map((slide) => ({
           </div>
 
           <div class="product-block__details">
-            <div class="container">
-              {product.details.map((item, index) => (
-                <details class="product-detail" open={index === 0}>
-                  <summary>{item.title}</summary>
-                  <p>{item.body}</p>
-                </details>
-              ))}
+            <div class="container product-block__details-grid">
+              <div class="product-block__details-media">
+                <img src={publicUrl(product.mock.src)} alt="" width="800" height="600" />
+              </div>
+              <div class="product-block__details-list">
+                {product.details.map((item, index) => (
+                  <details class="product-detail" open={index === 0}>
+                    <summary>{item.title}</summary>
+                    <p>{item.body}</p>
+                  </details>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -103,10 +113,19 @@ const sliderSlides = slider.slides.map((slide) => ({
       </div>
     </section>
 
-    <section class="produkte-cta">
+    <section class="produkte-cta page-cta-band">
+      <div class="grid-overlay grid-overlay--cta" aria-hidden="true"></div>
       <div class="container produkte-cta__inner">
-        <h2>{cta.headline}</h2>
-        <CTAButton label={cta.label} href={cta.href} variant="ghost-light" />
+        <div class="produkte-cta__copy">
+          <p class="produkte-cta__kicker">Jetzt Kontakt aufnehmen</p>
+          <h2>{cta.headline}</h2>
+          <CTAButton label={cta.label} href={cta.href} variant="ghost-light" />
+        </div>
+        <p class="produkte-cta__aside">
+          Ihre digitale<br />
+          Transformation<br />
+          startet hier
+        </p>
       </div>
     </section>
   </div>
@@ -134,6 +153,15 @@ const sliderSlides = slider.slides.map((slide) => ({
     background: #1d2228;
   }
 
+  .produkte-hero h1 {
+    margin: 0 0 var(--space-6);
+    font-size: clamp(1.75rem, 3.5vw, 3rem);
+    font-weight: var(--font-weight-regular);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    max-width: none;
+  }
+
   .produkte-hero__grid {
     display: grid;
     gap: var(--space-6);
@@ -141,7 +169,7 @@ const sliderSlides = slider.slides.map((slide) => ({
 
   .produkte-hero__media {
     overflow: hidden;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 4 / 3;
     background: #111;
   }
 
@@ -151,13 +179,10 @@ const sliderSlides = slider.slides.map((slide) => ({
     object-fit: cover;
   }
 
-  .produkte-hero h1 {
+  .produkte-hero__col {
     margin: 0;
-    font-size: clamp(1.75rem, 3.5vw, 3rem);
-    font-weight: var(--font-weight-regular);
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-    max-width: 22ch;
+    font-size: clamp(1rem, 1.35vw, 1.25rem);
+    line-height: 1.55;
   }
 
   .produkte-lead__body,
@@ -248,8 +273,30 @@ const sliderSlides = slider.slides.map((slide) => ({
     width: 2.5rem;
     height: 2.5rem;
     margin-bottom: var(--space-4);
-    border: 1.5px solid color-mix(in srgb, var(--color-cream) 55%, transparent);
-    border-radius: 0.35rem;
+  }
+
+  .product-block__icon img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .product-block__details-grid {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .product-block__details-media {
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background: #111;
+  }
+
+  .product-block__details-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   .product-detail {
@@ -266,15 +313,33 @@ const sliderSlides = slider.slides.map((slide) => ({
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-semibold);
     list-style: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
   }
 
   .product-detail summary::-webkit-details-marker {
     display: none;
   }
 
+  .product-detail summary::before {
+    content: '';
+    flex: 0 0 0.65rem;
+    width: 0.65rem;
+  }
+
+  .product-detail[open] summary::before {
+    content: '‹';
+    color: var(--color-cream);
+    font-size: 1.25rem;
+    line-height: 1.1;
+    font-weight: var(--font-weight-regular);
+  }
+
   .product-detail p {
     margin: var(--space-3) 0 0;
-    max-width: 48rem;
+    padding-left: calc(0.65rem + 0.65rem);
+    max-width: 40rem;
     line-height: 1.5;
     opacity: 0.92;
   }
@@ -292,7 +357,6 @@ const sliderSlides = slider.slides.map((slide) => ({
 
   .produkte-cta {
     padding-block: var(--space-8);
-    background: var(--color-ink);
   }
 
   .produkte-cta__inner {
@@ -301,12 +365,32 @@ const sliderSlides = slider.slides.map((slide) => ({
     justify-items: start;
   }
 
+  .produkte-cta__copy {
+    display: grid;
+    gap: var(--space-5);
+    justify-items: start;
+  }
+
+  .produkte-cta__kicker,
+  .produkte-cta__aside {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
   .produkte-cta h2 {
     margin: 0;
-    font-size: clamp(1.75rem, 3.5vw, 3rem);
+    font-size: clamp(2rem, 4vw, 3.5rem);
     font-weight: var(--font-weight-regular);
-    line-height: 1.15;
+    line-height: 1.12;
     white-space: pre-line;
+  }
+
+  .produkte-cta__aside {
+    max-width: 14ch;
   }
 
   :global(.theme-dark) :global(.site-header--transparent) {
@@ -316,9 +400,26 @@ const sliderSlides = slider.slides.map((slide) => ({
 
   @media (min-width: 768px) {
     .produkte-hero__grid {
+      grid-template-columns: 1fr 1fr 1fr;
+      align-items: start;
+      gap: var(--space-6);
+    }
+
+    .product-block__details-grid {
       grid-template-columns: 1fr 1fr;
       align-items: start;
       gap: var(--space-7);
+    }
+
+    .produkte-cta__inner {
+      grid-template-columns: 1fr auto;
+      align-items: start;
+      justify-items: stretch;
+    }
+
+    .produkte-cta__aside {
+      text-align: right;
+      justify-self: end;
     }
   }
 

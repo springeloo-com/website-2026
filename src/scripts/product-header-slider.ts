@@ -26,6 +26,7 @@ function initProductHeaderSlider(root: HTMLElement) {
   const nameEl = root.querySelector<HTMLElement>('[data-phs-name]');
   const descEl = root.querySelector<HTMLElement>('[data-phs-desc]');
   const infoLink = root.querySelector<HTMLAnchorElement>('[data-phs-info]');
+  const imageLink = root.querySelector<HTMLAnchorElement>('[data-phs-image-link]');
   const tiles = Array.from(root.querySelectorAll<HTMLElement>('[data-phs-tile]'));
 
   let index = 0;
@@ -70,6 +71,10 @@ function initProductHeaderSlider(root: HTMLElement) {
     if (infoLink) {
       infoLink.href = current.href;
       infoLink.setAttribute('aria-label', `Mehr Infos zu ${current.name}`);
+    }
+    if (imageLink) {
+      imageLink.href = current.href;
+      imageLink.setAttribute('aria-label', `Mehr Infos zu ${current.name}`);
     }
 
     root.dataset.activeIndex = String(index);

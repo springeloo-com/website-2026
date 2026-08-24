@@ -105,6 +105,8 @@ export type ProdukteContent = {
   intro: {
     headline: string;
     image: ContentImage;
+    columnA: string;
+    columnB: string;
   };
   lead: {
     kicker: string;
@@ -281,6 +283,8 @@ function validateProdukte(data: ProdukteContent): ProdukteContent {
 
   requireNonEmpty(data.intro?.headline, 'intro.headline');
   data.intro.image = requireImage(data.intro?.image, 'intro.image');
+  data.intro.columnA = requireNonEmpty(data.intro?.columnA, 'intro.columnA');
+  data.intro.columnB = requireNonEmpty(data.intro?.columnB, 'intro.columnB');
 
   requireNonEmpty(data.lead?.kicker, 'lead.kicker');
   requireNonEmpty(data.lead?.headline, 'lead.headline');

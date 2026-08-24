@@ -48,18 +48,22 @@ const pillars = [
   {
     title: 'Strukturelle Unterstützung',
     body: 'springeloo schafft Strukturen, die Fortschritt ermöglichen und langfristig tragen. Dabei geht es darum, ein sicheres Fundament für Unternehmen zu bauen, die Veränderungen gezielt gestalten wollen.',
+    icon: '/uploads/effects/icon-cube.svg',
   },
   {
     title: 'Fokus Transformation',
     body: 'Ein wesentlicher Teil der Beratung konzentriert sich auf die digitale Souveränität und das Aufzeigen neuer Wege durch den Einsatz von KI und Open-Source-Lösungen.',
+    icon: '/uploads/effects/icon-cycle.svg',
   },
   {
     title: 'Ganzheitlicher Ansatz',
     body: 'Die Beratung ist oft in größere Transformationsprojekte eingebettet. Hierbei werden auch der notwendige Wissensaufbau sowie Veränderungen von Rollen und Governance begleitet.',
+    icon: '/uploads/effects/icon-target.svg',
   },
   {
     title: 'Innovationsmotor',
     body: 'Die Beratung wird durch ein digitales Mindset getrieben, wobei der offene Zugang zu modernsten Technologien genutzt wird, um Lösungen für komplexe Herausforderungen zu schaffen.',
+    icon: '/uploads/effects/icon-bulb.svg',
   },
 ];
 
@@ -186,8 +190,12 @@ const branchen = [
         {
           pillars.map((pillar) => (
             <li>
-              <span class="pu-pillars__mark" aria-hidden="true" />
-              <h3>{pillar.title}</h3>
+              <div class="pu-pillars__head">
+                <span class="pu-pillars__mark" aria-hidden="true">
+                  <img src={publicUrl(pillar.icon)} alt="" width="40" height="40" />
+                </span>
+                <h3>{pillar.title}</h3>
+              </div>
               <p>{pillar.body}</p>
             </li>
           ))
@@ -249,13 +257,22 @@ const branchen = [
     </div>
   </section>
 
-  <section class="pu-cta">
+  <section class="pu-cta page-cta-band">
+    <div class="grid-overlay grid-overlay--cta" aria-hidden="true"></div>
     <div class="container pu-cta__inner">
-      <h2>
-        Investieren Sie in den nächsten Schritt<br />
-        in die Zukunft.
-      </h2>
-      <CTAButton label="Kontakt aufnehmen" href="/kontakt" variant="ghost-light" />
+      <div class="pu-cta__copy">
+        <p class="pu-cta__kicker">Jetzt Kontakt aufnehmen</p>
+        <h2>
+          Investieren Sie in den nächsten Schritt<br />
+          in die Zukunft.
+        </h2>
+        <CTAButton label="Kontakt aufnehmen" href="/kontakt" variant="ghost-light" />
+      </div>
+      <p class="pu-cta__aside">
+        Ihre digitale<br />
+        Transformation<br />
+        startet hier
+      </p>
     </div>
   </section>
 
@@ -353,7 +370,8 @@ const branchen = [
 
   .pu-intro__body {
     margin: 0;
-    max-width: 48rem;
+    max-width: 42rem;
+    margin-left: clamp(1.5rem, 12vw, 8rem);
     font-size: var(--font-size-lg);
     line-height: 1.5;
     color: var(--color-ink);
@@ -391,12 +409,18 @@ const branchen = [
     font-weight: var(--font-weight-semibold);
     line-height: 1.25;
     padding: 0.35rem 0;
-    border-bottom: 2px solid transparent;
+    border-bottom: 3px solid transparent;
     cursor: pointer;
+    transition: opacity var(--duration) var(--ease), border-color var(--duration) var(--ease);
+  }
+
+  .pu-tabs__btn:hover {
+    opacity: 0.75;
   }
 
   .pu-tabs__btn.is-active {
     border-bottom-color: var(--color-cream);
+    opacity: 1;
   }
 
   .pu-tabs__panel {
@@ -482,22 +506,35 @@ const branchen = [
   }
 
   .pu-pillars h3 {
-    margin: 0 0 var(--space-3);
+    margin: 0;
     font-size: var(--font-size-xl);
   }
 
   .pu-pillars p {
-    margin: 0;
+    margin: var(--space-3) 0 0;
     line-height: 1.5;
   }
 
+  .pu-pillars__head {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
   .pu-pillars__mark {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-cream) 82%, var(--color-ink));
+  }
+
+  .pu-pillars__mark img {
+    width: 1.35rem;
+    height: 1.35rem;
     display: block;
-    width: 3.5rem;
-    height: 3.5rem;
-    margin-bottom: var(--space-4);
-    border-radius: 1.75rem;
-    background: var(--color-cream-soft);
   }
 
   .pu-solutions__grid {
@@ -561,7 +598,6 @@ const branchen = [
   }
 
   .pu-cta {
-    background: var(--color-ink);
     color: var(--color-cream);
     padding-block: var(--space-8);
   }
@@ -572,11 +608,31 @@ const branchen = [
     justify-items: start;
   }
 
+  .pu-cta__copy {
+    display: grid;
+    gap: var(--space-5);
+    justify-items: start;
+  }
+
+  .pu-cta__kicker,
+  .pu-cta__aside {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
   .pu-cta h2 {
     margin: 0;
-    font-size: clamp(1.75rem, 3.5vw, 3rem);
+    font-size: clamp(2rem, 4vw, 3.5rem);
     font-weight: var(--font-weight-regular);
-    line-height: 1.15;
+    line-height: 1.12;
+  }
+
+  .pu-cta__aside {
+    max-width: 14ch;
   }
 
   @media (min-width: 768px) {
@@ -587,6 +643,17 @@ const branchen = [
 
     .pu-pillars {
       grid-template-columns: 1fr 1fr;
+    }
+
+    .pu-cta__inner {
+      grid-template-columns: 1fr auto;
+      align-items: start;
+      justify-items: stretch;
+    }
+
+    .pu-cta__aside {
+      text-align: right;
+      justify-self: end;
     }
   }
 

@@ -120,6 +120,38 @@ button {
   color: var(--color-white);
 }
 
+.page-cta-band {
+  position: relative;
+  overflow: hidden;
+  background: #1d2228;
+  color: var(--color-cream);
+}
+
+.page-cta-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 75% 90% at 30% 115%, rgba(62, 144, 198, 0.55), transparent 55%),
+    radial-gradient(ellipse 55% 70% at 75% 125%, rgba(62, 144, 198, 0.28), transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.grid-overlay--cta {
+  z-index: 0;
+  opacity: 0.22;
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--color-cream) 40%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--color-cream) 40%, transparent) 1px, transparent 1px);
+  background-size: 12.5% 20%;
+}
+
+.page-cta-band > :not(.grid-overlay) {
+  position: relative;
+  z-index: 1;
+}
+
 /* Markdown rich-text bodies (editor content) — inherit site type scale only */
 .rich-text {
   font-size: inherit;

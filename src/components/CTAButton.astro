@@ -35,7 +35,10 @@ const arrowSrc = publicUrl('/uploads/effects/arrow-right.svg');
     font-size: 16px;
     font-weight: var(--font-weight-bold);
     text-decoration: none;
-    transition: background var(--duration) var(--ease), color var(--duration) var(--ease);
+    transition:
+      background var(--duration) var(--ease),
+      color var(--duration) var(--ease),
+      border-color var(--duration) var(--ease);
   }
 
   .cta:hover {
@@ -50,8 +53,19 @@ const arrowSrc = publicUrl('/uploads/effects/arrow-right.svg');
   .cta--ghost,
   .cta--ghost-light {
     background: transparent;
-    border-color: var(--color-white);
-    color: var(--color-white);
+    border-color: var(--color-cream);
+    color: var(--color-cream);
+  }
+
+  .cta--ghost-light:hover {
+    background: var(--color-cream);
+    border-color: var(--color-cream);
+    color: var(--color-blue);
+  }
+
+  .cta--ghost-light:hover .cta__icon img {
+    filter: brightness(0) saturate(100%) invert(52%) sepia(47%) saturate(468%) hue-rotate(162deg)
+      brightness(93%) contrast(88%);
   }
 
   .cta--dark {

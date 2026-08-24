@@ -4,8 +4,12 @@ meta:
 intro:
   headline: Aufbau von Kompetenz für und durch neue Werkzeuge — Transformation als Philosophie.
   image:
-    src: /uploads/produkte/intro-a.png
-    alt: Arbeit an digitalen Systemen im dunklen Office
+    src: /uploads/produkte/intro-c.png
+    alt: Fachmann am Laptop bei der Arbeit an digitalen Systemen
+  columnA: >-
+    Die Entwicklung von Kompetenzen in einem Unternehmen lässt sich nicht allein durch das Management von Mitarbeitern verordnen. Wer Digitalisierung ernst meint, muss vor allem bereit sein, gewohnte technologische Pfade zu verlassen. Für uns bedeutet das: Weg von starren Abhängigkeiten und unübersichtlichen Systemlandschaften, hin zu maßgeschneiderter technologischer Souveränität.
+  columnB: >-
+    Unsere Philosophie basiert auf der Entwicklung und Bereitstellung von Systemen, die kritische Geschäftsprozesse nicht nur begleiten, sondern nachhaltig absichern. Ob hochsicheres Identity-Management, effiziente Kundenprozesse, die risikofreie Modernisierung von Legacy-Infrastrukturen oder KI-gestützte Assistenzsysteme in der Medizin – unsere Lösungen reduzieren Komplexität und schaffen messbare operative Exzellenz.
 lead:
   kicker: Digitale Transformation
   headline: Digitale Produkte, basierend fokussiert auf Transformation von Prozessen in Unternehmen.

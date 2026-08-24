@@ -255,8 +255,8 @@ const team = [
     </div>
   </section>
 
-  <section class="sp-cta">
-    <div class="grid-overlay grid-overlay--dark" aria-hidden="true"></div>
+  <section class="sp-cta page-cta-band">
+    <div class="grid-overlay grid-overlay--cta" aria-hidden="true"></div>
     <div class="container sp-cta__inner">
       <div class="sp-cta__copy">
         <p class="sp-kicker sp-kicker--cream">Jetzt Kontakt aufnehmen</p>
@@ -450,7 +450,8 @@ const team = [
   }
 
   .sp-insights {
-    background: var(--color-blue);
+    background:
+      linear-gradient(160deg, #4a9fd0 0%, var(--color-blue) 42%, #2f6f9a 100%);
     color: var(--color-cream);
     padding-block: var(--space-8);
   }
@@ -481,12 +482,18 @@ const team = [
     font-weight: var(--font-weight-semibold);
     line-height: 1.25;
     padding: 0.35rem 0;
-    border-bottom: 2px solid transparent;
+    border-bottom: 3px solid transparent;
     cursor: pointer;
+    transition: opacity var(--duration) var(--ease), border-color var(--duration) var(--ease);
+  }
+
+  .sp-tabs__btn:hover {
+    opacity: 0.75;
   }
 
   .sp-tabs__btn.is-active {
     border-bottom-color: var(--color-cream);
+    opacity: 1;
   }
 
   .sp-tabs__panel {
@@ -516,11 +523,12 @@ const team = [
     margin: 0;
     font-size: var(--font-size-lg);
     line-height: 1.5;
+    max-width: 42rem;
   }
 
   .sp-tabs__media {
     overflow: hidden;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 3 / 4;
     background: color-mix(in srgb, var(--color-cream) 12%, transparent);
   }
 
@@ -629,11 +637,7 @@ const team = [
   }
 
   .sp-cta {
-    position: relative;
-    background: var(--color-ink);
-    color: var(--color-cream);
     padding-block: var(--space-8);
-    overflow: hidden;
   }
 
   .sp-cta__inner {
