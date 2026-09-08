@@ -296,3 +296,32 @@ collections:
               - label: Href (developer)
                 name: href
                 widget: hidden
+
+      - name: projektunterstuetzung
+        label: Projektunterstützung page
+        file: src/content/pages/projektunterstuetzung.yaml
+        fields:
+          - label: SEO
+            name: meta
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+          - label: Hero
+            name: hero
+            widget: object
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: Headline, name: headline, widget: string }
+              - label: Image
+                name: image
+                widget: object
+                fields:
+                  - { label: File, name: src, widget: image }
+                  - { label: Alt text, name: alt, widget: string }
+          - label: Intro
+            name: intro
+            widget: object
+            fields:
+              - { label: Lead, name: lead, widget: text }
+              - { label: Body, name: body, widget: text }

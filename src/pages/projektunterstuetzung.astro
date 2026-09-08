@@ -3,13 +3,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import CTAButton from '../components/CTAButton.astro';
-import { publicUrl } from '../lib/content';
-import hero from '../assets/images/hero-office-2.jpg';
+import { getProjektunterstuetzungContent, publicUrl } from '../lib/content';
 import HeroShine from '../components/HeroShine.astro';
 
-const title = 'Projektunterstützung';
-const description =
-  'Inspiration schafft Ideen, Unternehmenskultur treibt Innovation — Projektunterstützung by springeloo.';
+const page = getProjektunterstuetzungContent();
+const { meta, hero, intro } = page;
 
 const kompetenzen = [
   {
@@ -83,31 +81,24 @@ const branchen = [
 ];
 ---
 
-<BaseLayout title={title} description={description} canonicalPath="/projektunterstuetzung" ogImage={hero.src}>
+<BaseLayout title={meta.title} description={meta.description} canonicalPath="/projektunterstuetzung" ogImage={publicUrl(hero.image.src)}>
   <SiteHeader slot="header" activePath="/projektunterstuetzung" variant="transparent" />
 
   <section class="pu-hero" aria-label="Hero">
-    <img class="pu-hero__image" src={hero.src} alt="Teamworkshop im modernen Büro" />
+    <img class="pu-hero__image" src={publicUrl(hero.image.src)} alt={hero.image.alt} />
     <div class="pu-hero__shade" aria-hidden="true"></div>
     <HeroShine />
     <div class="grid-overlay" aria-hidden="true"></div>
     <div class="container pu-hero__content">
-      <p class="eyebrow">future by professionals.</p>
-      <h1>Inspiration schafft Ideen, Unternehmenskultur treibt Innovation.</h1>
+      <p class="eyebrow">{hero.eyebrow}</p>
+      <h1>{hero.headline}</h1>
     </div>
   </section>
 
   <section class="pu-intro section section--cream" id="insight">
     <div class="container">
-      <p class="pu-intro__lead">
-        Wir finden Menschen, die zu Ihrer Herausforderung passen. Mit unserem durch Erfahrung gestütztem Matching,
-        bringen wir Senior Experten an Bord, die vom ersten Tag an liefern.
-      </p>
-      <p class="pu-intro__body">
-        Gute IT-Experten findet man nicht auf Jobportalen – man kennt sie. Unser Netzwerk von über 12.000 Wissensträgern
-        in Europa ermöglicht es uns, gezielt die richtigen Menschen für die richtigen Aufgaben zu aktivieren – schnell,
-        treffsicher und ohne langwierige Ausschreibungen.
-      </p>
+      <p class="pu-intro__lead">{intro.lead}</p>
+      <p class="pu-intro__body">{intro.body}</p>
     </div>
   </section>
 

@@ -1,11 +1,11 @@
 # How to change images and text
 
-Most marketing copy and images for the **home page** and **Produkte page**, plus
-shared nav labels and contact details, are edited via **Sveltia CMS** (or by editing
-YAML content files in Git). Layout, routes, and other pages still live in Astro —
-see **[howto-figma-design-drop.md](howto-figma-design-drop.md)** when design
-delivers a new Figma drop (layout is engineering-owned; CMS stays copy/images
-only).
+Most marketing copy and images for the **home page**, **Produkte page**, and
+**Projektunterstützung** hero/intro, plus shared nav labels and contact details,
+are edited via **Sveltia CMS** (or by editing YAML content files in Git). Layout,
+routes, and remaining page sections still live in Astro — see
+**[howto-figma-design-drop.md](howto-figma-design-drop.md)** when design delivers
+a new Figma drop (layout is engineering-owned; CMS stays copy/images only).
 
 ## Preferred: Sveltia CMS
 
@@ -25,6 +25,7 @@ CloudCannon is no longer part of the editorial path.
 |---------|--------|
 | Home | SEO title/description, hero text, hero image + alt, CTA labels, 3 Leistungen cards (incl. Markdown body) |
 | Produkte | SEO, intro headline/image, lead, slider images + names, 3 product blocks (copy + mock/logo images), OSS, CTA label |
+| Projektunterstützung | SEO, hero eyebrow/headline/image + alt, intro lead + body |
 | Globals | Nav labels, footer/contact text, legal labels |
 
 CTA and nav **URLs** are developer-only. Home cards, Produkte slides, and
@@ -43,6 +44,7 @@ Edit:
 |------|------|
 | Home hero, meta, Leistungen | `src/content/pages/home.yaml` |
 | Produkte copy and images | `src/content/pages/produkte.yaml` |
+| Projektunterstützung hero + intro | `src/content/pages/projektunterstuetzung.yaml` |
 | Nav labels, footer, contact | `src/content/site/globals.yaml` |
 | Uploaded images | `public/uploads/` |
 
@@ -59,7 +61,7 @@ Commit on a feature/content branch; open a PR to `main` for review.
 
 | What | Where |
 |------|--------|
-| Other page copy / structure | `src/pages/*.astro` (except Home, Produkte, and Kontakt contact from globals) |
+| Other page copy / structure | `src/pages/*.astro` (except Home, Produkte, Projektunterstützung hero/intro, and Kontakt contact from globals) |
 | Components / layout | `src/components/*.astro` |
 | Colors, fonts, spacing | `src/styles/tokens.css` |
 | CMS field config | `public/admin/config.yml` |
@@ -69,7 +71,7 @@ Commit on a feature/content branch; open a PR to `main` for review.
 | URL | File |
 |------|------|
 | `/` | `src/pages/index.astro` + `src/content/pages/home.yaml` |
-| `/projektunterstuetzung` | `src/pages/projektunterstuetzung.astro` |
+| `/projektunterstuetzung` | `src/pages/projektunterstuetzung.astro` + `src/content/pages/projektunterstuetzung.yaml` (hero + intro) |
 | `/produkte` | `src/pages/produkte.astro` + `src/content/pages/produkte.yaml` |
 | `/kontakt` | `src/pages/kontakt.astro` (+ globals contact) |
 | `/springeloo` | `src/pages/springeloo.astro` |
@@ -81,6 +83,8 @@ Commit on a feature/content branch; open a PR to `main` for review.
   `public/uploads/`, or place files there and set `src` / `alt` in YAML.
 - **Produkte images (editable):** slider, intro, product mock/logo via Sveltia CMS
   (same `public/uploads/` folder).
+- **Projektunterstützung hero (editable):** image via Sveltia CMS under that page
+  entry (`public/uploads/`).
 - **Other pages:** import from `src/assets/images/` in the page Astro file, or
   use `public/` for fixed URLs.
 

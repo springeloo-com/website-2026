@@ -128,6 +128,22 @@ export type ProdukteContent = {
   };
 };
 
+export type ProjektunterstuetzungContent = {
+  meta: {
+    title: string;
+    description: string;
+  };
+  hero: {
+    eyebrow: string;
+    headline: string;
+    image: ContentImage;
+  };
+  intro: {
+    lead: string;
+    body: string;
+  };
+};
+
 const ROOT = process.cwd();
 const REQUIRED_NAV_IDS = [
   'projektunterstuetzung',
@@ -352,6 +368,22 @@ function validateProdukte(data: ProdukteContent): ProdukteContent {
   return data;
 }
 
+function validateProjektunterstuetzung(
+  data: ProjektunterstuetzungContent,
+): ProjektunterstuetzungContent {
+  requireNonEmpty(data.meta?.title, 'meta.title');
+  requireNonEmpty(data.meta?.description, 'meta.description');
+
+  requireNonEmpty(data.hero?.eyebrow, 'hero.eyebrow');
+  requireNonEmpty(data.hero?.headline, 'hero.headline');
+  data.hero.image = requireImage(data.hero?.image, 'hero.image');
+
+  requireNonEmpty(data.intro?.lead, 'intro.lead');
+  requireNonEmpty(data.intro?.body, 'intro.body');
+
+  return data;
+}
+
 /** Prefix a public path with Astro `base` when needed. */
 export function publicUrl(src: string, baseUrl = import.meta.env.BASE_URL): string {
   if (!src || src.startsWith('http') || src.startsWith('data:') || src.startsWith('//')) {
@@ -365,6 +397,7 @@ export function publicUrl(src: string, baseUrl = import.meta.env.BASE_URL): stri
 let globalsCache: GlobalContent | null = null;
 let homeCache: HomeContent | null = null;
 let produkteCache: ProdukteContent | null = null;
+let projektunterstuetzungCache: ProjektunterstuetzungContent | null = null;
 
 export function getGlobals(): GlobalContent {
   if (!globalsCache) {
@@ -385,6 +418,15 @@ export function getProdukteContent(): ProdukteContent {
     produkteCache = validateProdukte(readYaml<ProdukteContent>('src/content/pages/produkte.yaml'));
   }
   return produkteCache;
+}
+
+export function getProjektunterstuetzungContent(): ProjektunterstuetzungContent {
+  if (import.meta.env.DEV || !projektunterstuetzungCache) {
+    projektunterstuetzungCache = validateProjektunterstuetzung(
+      readYaml<ProjektunterstuetzungContent>('src/content/pages/projektunterstuetzung.yaml'),
+    );
+  }
+  return projektunterstuetzungCache;
 }
 
 /** Legacy-shaped meta for components that previously used `siteMeta`. */
