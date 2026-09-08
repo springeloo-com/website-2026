@@ -25,7 +25,7 @@ CloudCannon is no longer part of the editorial path.
 |---------|--------|
 | Home | SEO title/description, hero text, hero image + alt, CTA labels, 3 Leistungen cards (incl. Markdown body) |
 | Produkte | SEO, intro headline/image, lead, slider images + names, 3 product blocks (copy + mock/logo images), OSS, CTA label |
-| Projektunterstützung | SEO, hero, intro, Kompetenzen tabs + image, Innovationsberatung/pillars, Softwareentwicklung, Branchen, CTA |
+| Projektunterstützung | SEO, hero, intro, Kompetenzen tabs (each with own image), Innovationsberatung/pillars, Softwareentwicklung, Branchen, CTA |
 | Springeloo | SEO, hero, intro, numbers/stats, Insights tabs + image, management team, CTA |
 | Globals | Nav labels, footer/contact text, legal labels |
 

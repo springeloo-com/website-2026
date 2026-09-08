@@ -145,12 +145,12 @@ export type ProjektunterstuetzungContent = {
   kompetenzen: {
     kicker: string;
     headline: string;
-    image: ContentImage;
     tabs: Array<{
       id: string;
       label: string;
       bodyStrong: string;
       body: string;
+      image: ContentImage;
     }>;
   };
   frameworks: {
@@ -503,7 +503,6 @@ function validateProjektunterstuetzung(
 
   requireNonEmpty(data.kompetenzen?.kicker, 'kompetenzen.kicker');
   requireNonEmpty(data.kompetenzen?.headline, 'kompetenzen.headline');
-  data.kompetenzen.image = requireImage(data.kompetenzen?.image, 'kompetenzen.image');
   const kompTabs = data.kompetenzen?.tabs;
   if (!Array.isArray(kompTabs) || kompTabs.length < 1) {
     throw new Error('Content validation failed: kompetenzen.tabs must have at least 1 item');
@@ -513,6 +512,7 @@ function validateProjektunterstuetzung(
     label: requireNonEmpty(tab?.label, `kompetenzen.tabs[${i}].label`),
     bodyStrong: requireNonEmpty(tab?.bodyStrong, `kompetenzen.tabs[${i}].bodyStrong`),
     body: requireNonEmpty(tab?.body, `kompetenzen.tabs[${i}].body`),
+    image: requireImage(tab?.image, `kompetenzen.tabs[${i}].image`),
   }));
 
   requireNonEmpty(data.frameworks?.kicker, 'frameworks.kicker');

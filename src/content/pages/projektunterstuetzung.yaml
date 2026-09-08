@@ -15,35 +15,48 @@ intro:
 kompetenzen:
   kicker: Kompetenzen
   headline: Aufbau von Kompetenzen der Projektmitarbeiter
-  image:
-    src: /uploads/produkte/intro-c.png
-    alt: Fachleute bei der gemeinsamen Arbeit am Laptop
   tabs:
     - id: programmleitung
       label: Programmleitung + Projektleitung
       bodyStrong: Die erfolgreiche Umsetzung komplexer IT-Vorhaben erfordert eine strukturierte Führung.
       body: >-
         Unsere Projekt- und Programmleiter steuern interdisziplinäre Teams nach etablierten Standards und agilen Frameworks. Wir sichern die lückenlose Überwachung von Budgets, Meilensteinen und Risiken. So gewährleisten wir die verlässliche Transformation Ihrer strategischen Vorgaben in operative Realität.
+      image:
+        src: /uploads/produkte/intro-c.png
+        alt: Fachleute bei der gemeinsamen Arbeit am Laptop
     - id: analyse
       label: Analyse + Architektur
       bodyStrong: Klare Zielbilder brauchen belastbare Architekturentscheidungen.
       body: >-
         Wir analysieren bestehende Landschaften, schärfen Anforderungen und entwerfen Architekturen, die Stabilität mit Innovationsfähigkeit verbinden — vom Ist-Zustand bis zur umsetzbaren Roadmap.
+      image:
+        src: /uploads/analyse-istock-1286627625.jpg
+        alt: Analyse und Architektur am Whiteboard
     - id: testing
       label: Testing
       bodyStrong: Qualität ist kein Nachgedanke.
       body: >-
         Unsere Testspezialisten verankern Qualitätssicherung früh im Vorhaben: Teststrategie, Automatisierung und Freigabeprozesse, damit Releases planbar und risikoarm bleiben.
+      image:
+        src: /uploads/skalierbarkeit-istock-1354880452.jpg
+        alt: Qualitätssicherung und Testing im Team
     - id: sysadmin
       label: Systemadministration
       bodyStrong: Betriebssicherheit schafft Handlungsfreiheit.
       body: >-
         Wir sichern stabile Plattformen und Infrastruktur — Monitoring, Hardening und Betriebsprozesse, damit Fachprojekte auf einem verlässlichen Fundament laufen.
+      image:
+        src: /uploads/sys-admin-istock-2216426330.jpg
+        alt: Systemadministration und Infrastruktur
     - id: prompting
       label: Neue Rollen + Prompting
       bodyStrong: Neue Werkzeuge brauchen neue Rollen.
       body: >-
         Wir begleiten den Aufbau von KI- und Prompting-Kompetenzen im Team — mit klaren Rollen, Governance und praxisnahen Enablement-Formaten.
+      image:
+        src: /uploads/ki-expertise-istock-2164558569.jpg
+        alt: KI- und Prompting-Kompetenzen im Team
+
 frameworks:
   kicker: Innovationsberatung
   headline: Outside the box Denken, in etablierten Frameworks handeln

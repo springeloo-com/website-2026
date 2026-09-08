@@ -331,12 +331,6 @@ collections:
             fields:
               - { label: Kicker, name: kicker, widget: string }
               - { label: Headline, name: headline, widget: string }
-              - label: Shared tab image
-                name: image
-                widget: object
-                fields:
-                  - { label: File, name: src, widget: image }
-                  - { label: Alt text, name: alt, widget: string }
               - label: Tabs
                 name: tabs
                 widget: list
@@ -347,6 +341,12 @@ collections:
                   - { label: Label, name: label, widget: string }
                   - { label: Strong lead, name: bodyStrong, widget: text }
                   - { label: Body, name: body, widget: text }
+                  - label: Image
+                    name: image
+                    widget: object
+                    fields:
+                      - { label: File, name: src, widget: image }
+                      - { label: Alt text, name: alt, widget: string }
           - label: Innovationsberatung
             name: frameworks
             widget: object
