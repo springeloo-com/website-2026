@@ -19,14 +19,16 @@ nav:
   - id: springeloo
     label: Springeloo
     href: /springeloo
+    children: []
   - id: kontakt
     label: Kontakt
     href: /kontakt
+    children: []
 footer:
   tagline: Future by professionals.
   company: Springeloo GmbH
   addressLines:
-    - Teybergasse 1
+    - Teybergasse 100
     - A-1140 Wien
   phone: +43 680 111 32 30
   email: office@springeloo.com
@@ -38,7 +40,7 @@ footer:
       href: /kontakt#datenschutz
 contact:
   addressLines:
-    - Teybergasse 1
+    - Teybergasse 120
     - A-1140 Wien
   phone: +43 680 111 32 30
   email: office@springeloo.com
