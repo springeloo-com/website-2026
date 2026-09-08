@@ -142,6 +142,106 @@ export type ProjektunterstuetzungContent = {
     lead: string;
     body: string;
   };
+  kompetenzen: {
+    kicker: string;
+    headline: string;
+    image: ContentImage;
+    tabs: Array<{
+      id: string;
+      label: string;
+      bodyStrong: string;
+      body: string;
+    }>;
+  };
+  frameworks: {
+    kicker: string;
+    headline: string;
+    body: string;
+    kernbereicheKicker: string;
+    kernbereiche: string[];
+    pillars: Array<{
+      title: string;
+      body: string;
+      icon: string;
+    }>;
+    closing: string;
+  };
+  solutions: {
+    kicker: string;
+    headline: string;
+    columnA: string;
+    columnB: string;
+    merkmalLabel: string;
+    merkmalBody: string;
+  };
+  branchen: {
+    kicker: string;
+    headline: string;
+    lead: string;
+    groups: Array<{
+      title: string;
+      items: string[];
+    }>;
+  };
+  cta: Cta & {
+    kicker: string;
+    headline: string;
+    aside: string;
+  };
+};
+
+export type SpringelooContent = {
+  meta: {
+    title: string;
+    description: string;
+  };
+  hero: {
+    eyebrow: string;
+    brand: string;
+    headline: string;
+    image: ContentImage;
+  };
+  intro: {
+    lead: string;
+    columnA: string;
+    columnB: string;
+  };
+  numbers: {
+    strong: string;
+    body: string;
+    stats: Array<{
+      value: string;
+      label: string;
+    }>;
+  };
+  insights: {
+    kicker: string;
+    headline: string;
+    image: ContentImage;
+    tabs: Array<{
+      id: string;
+      label: string;
+      title: string;
+      lead: string;
+      body: string;
+    }>;
+  };
+  management: {
+    kicker: string;
+    headline: string;
+    quote: string;
+    team: Array<{
+      name: string;
+      role: string;
+      tags: string[];
+      image: ContentImage;
+    }>;
+  };
+  cta: Cta & {
+    kicker: string;
+    headline: string;
+    aside: string;
+  };
 };
 
 const ROOT = process.cwd();
@@ -368,6 +468,26 @@ function validateProdukte(data: ProdukteContent): ProdukteContent {
   return data;
 }
 
+function requireStringList(value: unknown, field: string, min = 1): string[] {
+  if (!Array.isArray(value) || value.length < min) {
+    throw new Error(`Content validation failed: ${field} must have at least ${min} item(s)`);
+  }
+  return value.map((item, i) => {
+    if (typeof item === 'string') {
+      return requireNonEmpty(item, `${field}[${i}]`);
+    }
+    if (item && typeof item === 'object') {
+      const record = item as Record<string, unknown>;
+      for (const key of ['line', 'item', 'tag', 'label', 'value']) {
+        if (typeof record[key] === 'string') {
+          return requireNonEmpty(record[key], `${field}[${i}]`);
+        }
+      }
+    }
+    throw new Error(`Content validation failed: ${field}[${i}] is required`);
+  });
+}
+
 function validateProjektunterstuetzung(
   data: ProjektunterstuetzungContent,
 ): ProjektunterstuetzungContent {
@@ -380,6 +500,134 @@ function validateProjektunterstuetzung(
 
   requireNonEmpty(data.intro?.lead, 'intro.lead');
   requireNonEmpty(data.intro?.body, 'intro.body');
+
+  requireNonEmpty(data.kompetenzen?.kicker, 'kompetenzen.kicker');
+  requireNonEmpty(data.kompetenzen?.headline, 'kompetenzen.headline');
+  data.kompetenzen.image = requireImage(data.kompetenzen?.image, 'kompetenzen.image');
+  const kompTabs = data.kompetenzen?.tabs;
+  if (!Array.isArray(kompTabs) || kompTabs.length < 1) {
+    throw new Error('Content validation failed: kompetenzen.tabs must have at least 1 item');
+  }
+  data.kompetenzen.tabs = kompTabs.map((tab, i) => ({
+    id: requireNonEmpty(tab?.id, `kompetenzen.tabs[${i}].id`),
+    label: requireNonEmpty(tab?.label, `kompetenzen.tabs[${i}].label`),
+    bodyStrong: requireNonEmpty(tab?.bodyStrong, `kompetenzen.tabs[${i}].bodyStrong`),
+    body: requireNonEmpty(tab?.body, `kompetenzen.tabs[${i}].body`),
+  }));
+
+  requireNonEmpty(data.frameworks?.kicker, 'frameworks.kicker');
+  requireNonEmpty(data.frameworks?.headline, 'frameworks.headline');
+  requireNonEmpty(data.frameworks?.body, 'frameworks.body');
+  requireNonEmpty(data.frameworks?.kernbereicheKicker, 'frameworks.kernbereicheKicker');
+  data.frameworks.kernbereiche = requireStringList(
+    data.frameworks?.kernbereiche,
+    'frameworks.kernbereiche',
+  );
+  const pillars = data.frameworks?.pillars;
+  if (!Array.isArray(pillars) || pillars.length < 1) {
+    throw new Error('Content validation failed: frameworks.pillars must have at least 1 item');
+  }
+  data.frameworks.pillars = pillars.map((pillar, i) => ({
+    title: requireNonEmpty(pillar?.title, `frameworks.pillars[${i}].title`),
+    body: requireNonEmpty(pillar?.body, `frameworks.pillars[${i}].body`),
+    icon: requireNonEmpty(pillar?.icon, `frameworks.pillars[${i}].icon`),
+  }));
+  requireNonEmpty(data.frameworks?.closing, 'frameworks.closing');
+
+  requireNonEmpty(data.solutions?.kicker, 'solutions.kicker');
+  requireNonEmpty(data.solutions?.headline, 'solutions.headline');
+  requireNonEmpty(data.solutions?.columnA, 'solutions.columnA');
+  requireNonEmpty(data.solutions?.columnB, 'solutions.columnB');
+  requireNonEmpty(data.solutions?.merkmalLabel, 'solutions.merkmalLabel');
+  requireNonEmpty(data.solutions?.merkmalBody, 'solutions.merkmalBody');
+
+  requireNonEmpty(data.branchen?.kicker, 'branchen.kicker');
+  requireNonEmpty(data.branchen?.headline, 'branchen.headline');
+  requireNonEmpty(data.branchen?.lead, 'branchen.lead');
+  const groups = data.branchen?.groups;
+  if (!Array.isArray(groups) || groups.length < 1) {
+    throw new Error('Content validation failed: branchen.groups must have at least 1 item');
+  }
+  data.branchen.groups = groups.map((group, i) => ({
+    title: requireNonEmpty(group?.title, `branchen.groups[${i}].title`),
+    items: requireStringList(group?.items, `branchen.groups[${i}].items`),
+  }));
+
+  requireNonEmpty(data.cta?.kicker, 'cta.kicker');
+  requireNonEmpty(data.cta?.headline, 'cta.headline');
+  requireNonEmpty(data.cta?.aside, 'cta.aside');
+  data.cta = {
+    kicker: data.cta.kicker.trim(),
+    headline: data.cta.headline.trim(),
+    aside: data.cta.aside.trim(),
+    ...requireCta(data.cta, 'cta'),
+  };
+
+  return data;
+}
+
+function validateSpringeloo(data: SpringelooContent): SpringelooContent {
+  requireNonEmpty(data.meta?.title, 'meta.title');
+  requireNonEmpty(data.meta?.description, 'meta.description');
+
+  requireNonEmpty(data.hero?.eyebrow, 'hero.eyebrow');
+  requireNonEmpty(data.hero?.brand, 'hero.brand');
+  requireNonEmpty(data.hero?.headline, 'hero.headline');
+  data.hero.image = requireImage(data.hero?.image, 'hero.image');
+
+  requireNonEmpty(data.intro?.lead, 'intro.lead');
+  requireNonEmpty(data.intro?.columnA, 'intro.columnA');
+  requireNonEmpty(data.intro?.columnB, 'intro.columnB');
+
+  requireNonEmpty(data.numbers?.strong, 'numbers.strong');
+  requireNonEmpty(data.numbers?.body, 'numbers.body');
+  const stats = data.numbers?.stats;
+  if (!Array.isArray(stats) || stats.length < 1) {
+    throw new Error('Content validation failed: numbers.stats must have at least 1 item');
+  }
+  data.numbers.stats = stats.map((stat, i) => ({
+    value: requireNonEmpty(stat?.value, `numbers.stats[${i}].value`),
+    label: requireNonEmpty(stat?.label, `numbers.stats[${i}].label`),
+  }));
+
+  requireNonEmpty(data.insights?.kicker, 'insights.kicker');
+  requireNonEmpty(data.insights?.headline, 'insights.headline');
+  data.insights.image = requireImage(data.insights?.image, 'insights.image');
+  const insightTabs = data.insights?.tabs;
+  if (!Array.isArray(insightTabs) || insightTabs.length < 1) {
+    throw new Error('Content validation failed: insights.tabs must have at least 1 item');
+  }
+  data.insights.tabs = insightTabs.map((tab, i) => ({
+    id: requireNonEmpty(tab?.id, `insights.tabs[${i}].id`),
+    label: requireNonEmpty(tab?.label, `insights.tabs[${i}].label`),
+    title: requireNonEmpty(tab?.title, `insights.tabs[${i}].title`),
+    lead: requireNonEmpty(tab?.lead, `insights.tabs[${i}].lead`),
+    body: requireNonEmpty(tab?.body, `insights.tabs[${i}].body`),
+  }));
+
+  requireNonEmpty(data.management?.kicker, 'management.kicker');
+  requireNonEmpty(data.management?.headline, 'management.headline');
+  requireNonEmpty(data.management?.quote, 'management.quote');
+  const team = data.management?.team;
+  if (!Array.isArray(team) || team.length < 1) {
+    throw new Error('Content validation failed: management.team must have at least 1 item');
+  }
+  data.management.team = team.map((person, i) => ({
+    name: requireNonEmpty(person?.name, `management.team[${i}].name`),
+    role: requireNonEmpty(person?.role, `management.team[${i}].role`),
+    tags: requireStringList(person?.tags, `management.team[${i}].tags`),
+    image: requireImage(person?.image, `management.team[${i}].image`),
+  }));
+
+  requireNonEmpty(data.cta?.kicker, 'cta.kicker');
+  requireNonEmpty(data.cta?.headline, 'cta.headline');
+  requireNonEmpty(data.cta?.aside, 'cta.aside');
+  data.cta = {
+    kicker: data.cta.kicker.trim(),
+    headline: data.cta.headline.trim(),
+    aside: data.cta.aside.trim(),
+    ...requireCta(data.cta, 'cta'),
+  };
 
   return data;
 }
@@ -398,6 +646,7 @@ let globalsCache: GlobalContent | null = null;
 let homeCache: HomeContent | null = null;
 let produkteCache: ProdukteContent | null = null;
 let projektunterstuetzungCache: ProjektunterstuetzungContent | null = null;
+let springelooCache: SpringelooContent | null = null;
 
 export function getGlobals(): GlobalContent {
   if (!globalsCache) {
@@ -427,6 +676,15 @@ export function getProjektunterstuetzungContent(): ProjektunterstuetzungContent 
     );
   }
   return projektunterstuetzungCache;
+}
+
+export function getSpringelooContent(): SpringelooContent {
+  if (import.meta.env.DEV || !springelooCache) {
+    springelooCache = validateSpringeloo(
+      readYaml<SpringelooContent>('src/content/pages/springeloo.yaml'),
+    );
+  }
+  return springelooCache;
 }
 
 /** Legacy-shaped meta for components that previously used `siteMeta`. */

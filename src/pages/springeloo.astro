@@ -4,122 +4,65 @@ import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import CTAButton from '../components/CTAButton.astro';
 import HeroShine from '../components/HeroShine.astro';
-import { getSiteMeta, publicUrl } from '../lib/content';
+import { getSiteMeta, getSpringelooContent, publicUrl } from '../lib/content';
 
 const siteMeta = getSiteMeta();
-const title = 'Springeloo';
-const description =
-  'Konstanz durch Kultur: Experten, die bleiben — über springeloo.';
-const heroSrc = publicUrl('/uploads/springeloo/hero.jpg');
+const page = getSpringelooContent();
+const { meta, hero, intro, numbers, insights, management, cta } = page;
 
-const stats = [
-  { value: '12K+', label: 'Wissensträger im Netzwerk der Springeloo' },
-  { value: '50+', label: 'Projektpartner in Europa' },
-  { value: '400+', label: 'erfolgreich realisierte Projekte' },
-  { value: '30+', label: 'Jahre Projekterfahrung in digitaler Transformation' },
-];
-
-const insights = [
-  {
-    id: 'philosophie',
-    label: 'Philosophie',
-    title: 'Unsere Philosophie: Ganzheitliche Technologielösungen',
-    lead: 'Digitale Souveränität entsteht durch das perfekte Zusammenspiel von Strategie, Entwicklung und Betrieb.',
-    body: 'Unsere Philosophie basiert darauf, Ihre IT-Infrastruktur als Gesamtes zu stärken. Ob durch unsere proprietären Produkte oder unsere Dienstleistungen von der Architektur bis zur Administration – wir schaffen offene, zukunftssichere Systeme, die Abhängigkeiten abbauen und Ihre Wertschöpfung langfristig sichern.',
-  },
-  {
-    id: 'transformation',
-    label: 'Transformation',
-    title: 'Transformation mit Sicherheit im Wandel',
-    lead: 'Komplexe IT-Vorhaben brauchen Klarheit, Führung und belastbare Meilensteine.',
-    body: 'Wir begleiten digitale Transformation von der Analyse bis zur Umsetzung — mit Senior Experts, Open-Source- und KI-Werkzeugen sowie Strukturen, die Fortschritt ermöglichen und langfristig tragen.',
-  },
-  {
-    id: 'skalierbarkeit',
-    label: 'Skalierbarkeit',
-    title: 'Skalierbarkeit ohne Vendor-Lock-in',
-    lead: 'Wachstum darf nicht an Lizenzen oder starren Architekturen scheitern.',
-    body: 'Unsere Lösungen und Betriebsmodelle sind so gebaut, dass Teams skalieren können: modular, wartbar und mit voller Datenhoheit in Ihrer Infrastruktur.',
-  },
-  {
-    id: 'netzwerk',
-    label: 'Netzwerk',
-    title: 'Ein Netzwerk aus Wissensträgern',
-    lead: 'Gute IT-Experten findet man nicht auf Jobportalen – man kennt sie.',
-    body: 'Über 12.000 Wissensträger in Europa ermöglichen es uns, gezielt die richtigen Menschen für die richtigen Aufgaben zu aktivieren — schnell, treffsicher und ohne langwierige Ausschreibungen.',
-  },
-  {
-    id: 'team',
-    label: 'Team',
-    title: 'Teamkultur als Stabilitätsanker',
-    lead: 'Konstanz entsteht durch Menschen, die bleiben und Verantwortung übernehmen.',
-    body: 'Wir verbinden Branchenwissen mit modernem Handwerk und fördern ein digitales Mindset — in Projekten und in der Zusammenarbeit mit Ihren Teams.',
-  },
-];
-
-const team = [
-  {
-    name: 'Franz Mendl',
-    role: 'Managing Director & Co-Founder',
-    tags: ['Finanzen', 'Projektmanagement', 'Programmmanagement'],
-    image: '/uploads/team/franz-mendl.jpg',
-    imageAlt: 'Porträt Franz Mendl',
-  },
-  {
-    name: 'Horst Suntych',
-    role: 'Managing Director & Co-Founder',
-    tags: ['Visionär', 'strategische Ausrichtung'],
-    image: '/uploads/team/horst-suntych.jpg',
-    imageAlt: 'Porträt Horst Suntych',
-  },
-  {
-    name: 'Mathias Florian',
-    role: 'Vertrieb & technische Produkte',
-    tags: ['Produktkommunikation', 'CRM & IDM', 'MedTech'],
-    image: '/uploads/team/mathias-florian.png',
-    imageAlt: 'Porträt Mathias Florian',
-  },
-];
+const lines = (text: string) => text.split('\n').filter((line) => line.length > 0);
 ---
 
-<BaseLayout title={title} description={description} canonicalPath="/springeloo" ogImage={heroSrc}>
+<BaseLayout title={meta.title} description={meta.description} canonicalPath="/springeloo" ogImage={publicUrl(hero.image.src)}>
   <SiteHeader slot="header" activePath="/springeloo" variant="transparent" />
 
   <section class="sp-hero" aria-label="Hero">
-    <img class="sp-hero__image" src={heroSrc} alt="Drei springeloo Experten im Gespräch" width="1920" height="1080" />
+    <img class="sp-hero__image" src={publicUrl(hero.image.src)} alt={hero.image.alt} width="1920" height="1080" />
     <div class="sp-hero__shade" aria-hidden="true"></div>
     <HeroShine />
     <div class="grid-overlay" aria-hidden="true"></div>
     <div class="container sp-hero__content">
       <div class="sp-hero__meta">
-        <p>future by<br />professionals.</p>
-        <p>springeloo<br />GmbH</p>
+        <p>
+          {
+            lines(hero.eyebrow).map((line, index) => (
+              <>
+                {index > 0 && <br />}
+                {line}
+              </>
+            ))
+          }
+        </p>
+        <p>
+          {
+            lines(hero.brand).map((line, index) => (
+              <>
+                {index > 0 && <br />}
+                {line}
+              </>
+            ))
+          }
+        </p>
       </div>
       <h1>
-        Konstanz durch Kultur:<br />
-        Experten, die bleiben.
+        {
+          lines(hero.headline).map((line, index) => (
+            <>
+              {index > 0 && <br />}
+              {line}
+            </>
+          ))
+        }
       </h1>
     </div>
   </section>
 
   <section class="sp-intro section section--cream">
     <div class="container">
-      <p class="sp-intro__lead">
-        Springeloo steht für Sicherheit im Wandel. Mit unserem Know-how schaffen wir ein sicheres Fundament für
-        Unternehmen, die etwas bewegen wollen.
-      </p>
+      <p class="sp-intro__lead">{intro.lead}</p>
       <div class="sp-intro__body">
-        <p>
-          Die digitale Transformation von Prozessen ist für jedes Unternehmen eine Herausforderung. Das Ziel ist
-          Sicherheit in komplexen IT- und Transformationsprojekten zu schaffen. Dies erreichen wir durch
-          Kompetenzmanagement unserer Mitarbeiter und Implementierung von Softwarelösungen, Open-Source- und KI-Tools.
-        </p>
-        <p>
-          Wir entlasten Organisationen, indem wir Verantwortung übernehmen und Strukturen schaffen, die Fortschritt
-          ermöglichen und langfristig tragen. Durch Senior Experts, jahrelanges Know-how und den Einsatz moderner
-          Technologien, verbinden wir Branchenwissen mit modernen Tools und fördern ein digitales Mindset im
-          Unternehmen.
-        </p>
+        <p>{intro.columnA}</p>
+        <p>{intro.columnB}</p>
       </div>
     </div>
   </section>
@@ -127,19 +70,13 @@ const team = [
   <section class="sp-numbers section section--cream">
     <div class="container">
       <div class="sp-numbers__intro">
-        <p class="sp-numbers__strong">
-          Springeloo fördert den digitalen Ansatz in Unternehmensprozessen, seit über 30 Jahren.
-        </p>
-        <p>
-          Der Ausbau und Einsatz unseres Netzwerkes hat zu einer weit gefächerten Branchen-Expertise geführt die wir
-          seit einiger Zeit auch zur Erstellung von Produkten und Softwarelösungen nutzen die mit dem Verständnis des
-          Fachbereichs entstehen.
-        </p>
+        <p class="sp-numbers__strong">{numbers.strong}</p>
+        <p>{numbers.body}</p>
       </div>
       <hr class="sp-divider" />
       <ul class="sp-stats">
         {
-          stats.map((stat) => (
+          numbers.stats.map((stat) => (
             <li>
               <p class="sp-stats__value">{stat.value}</p>
               <p class="sp-stats__label">{stat.label}</p>
@@ -152,13 +89,13 @@ const team = [
 
   <section class="sp-insights" id="insights" data-sp-tabs>
     <div class="container">
-      <p class="sp-kicker sp-kicker--light">Springeloo insights</p>
-      <h2>Ein digitales Mindset ist unser leitendes Motiv in allen Problemstellungen.</h2>
+      <p class="sp-kicker sp-kicker--light">{insights.kicker}</p>
+      <h2>{insights.headline}</h2>
 
       <div class="sp-tabs">
         <div class="sp-tabs__nav" role="tablist" aria-label="Springeloo Insights">
           {
-            insights.map((item, index) => (
+            insights.tabs.map((item, index) => (
               <button
                 type="button"
                 class:list={['sp-tabs__btn', { 'is-active': index === 0 }]}
@@ -176,7 +113,7 @@ const team = [
 
         <div class="sp-tabs__panels">
           {
-            insights.map((item, index) => (
+            insights.tabs.map((item, index) => (
               <div
                 class:list={['sp-tabs__panel', { 'is-active': index === 0 }]}
                 role="tabpanel"
@@ -192,8 +129,8 @@ const team = [
                 </div>
                 <div class="sp-tabs__media">
                   <img
-                    src={publicUrl('/uploads/springeloo/insight.jpg')}
-                    alt="Fachperson am Arbeitsplatz"
+                    src={publicUrl(insights.image.src)}
+                    alt={insights.image.alt}
                     width="1600"
                     height="1067"
                   />
@@ -208,18 +145,24 @@ const team = [
 
   <section class="sp-mgmt section section--cream" id="management">
     <div class="container">
-      <p class="sp-kicker">Springeloo management</p>
+      <p class="sp-kicker">{management.kicker}</p>
       <h2>
-        Ihre Verbindung zu einem<br />
-        Netzwerk von Professionisten
+        {
+          lines(management.headline).map((line, index) => (
+            <>
+              {index > 0 && <br />}
+              {line}
+            </>
+          ))
+        }
       </h2>
 
       <ul class="sp-team">
         {
-          team.map((person) => (
+          management.team.map((person) => (
             <li class="sp-person">
               <div class="sp-person__photo">
-                <img src={publicUrl(person.image)} alt={person.imageAlt} width="800" height="660" />
+                <img src={publicUrl(person.image.src)} alt={person.image.alt} width="800" height="660" />
               </div>
               <div class="sp-person__text">
                 <p class="sp-person__name">{person.name}</p>
@@ -248,10 +191,7 @@ const team = [
 
       <hr class="sp-divider" />
 
-      <p class="sp-mgmt__quote">
-        Springeloo steht für Sicherheit im Wandel. Mit unserem Know-How schaffen wir ein sicheres Fundament für
-        Unternehmen, die etwas bewegen wollen.
-      </p>
+      <p class="sp-mgmt__quote">{management.quote}</p>
     </div>
   </section>
 
@@ -259,18 +199,28 @@ const team = [
     <div class="grid-overlay grid-overlay--cta" aria-hidden="true"></div>
     <div class="container sp-cta__inner">
       <div class="sp-cta__copy">
-        <p class="sp-kicker sp-kicker--cream">Jetzt Kontakt aufnehmen</p>
+        <p class="sp-kicker sp-kicker--cream">{cta.kicker}</p>
         <h2>
-          Investieren Sie in<br />
-          den nächsten Schritt<br />
-          in die Zukunft.
+          {
+            lines(cta.headline).map((line, index) => (
+              <>
+                {index > 0 && <br />}
+                {line}
+              </>
+            ))
+          }
         </h2>
-        <CTAButton label="Kontakt aufnehmen" href="/kontakt" variant="ghost-light" />
+        <CTAButton label={cta.label} href={cta.href} variant="ghost-light" />
       </div>
       <p class="sp-cta__aside">
-        Ihre digitale<br />
-        Transformation<br />
-        startet hier
+        {
+          lines(cta.aside).map((line, index) => (
+            <>
+              {index > 0 && <br />}
+              {line}
+            </>
+          ))
+        }
       </p>
     </div>
   </section>

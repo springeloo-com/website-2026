@@ -1,0 +1,119 @@
+meta:
+  title: Springeloo
+  description: 'Konstanz durch Kultur: Experten, die bleiben — über springeloo.'
+hero:
+  eyebrow: |-
+    future by
+    professionals.
+  brand: |-
+    springeloo
+    GmbH
+  headline: |-
+    Konstanz durch Kultur:
+    Experten, die bleiben.
+  image:
+    src: /uploads/springeloo/hero.jpg
+    alt: Drei springeloo Experten im Gespräch
+intro:
+  lead: >-
+    Springeloo steht für Sicherheit im Wandel. Mit unserem Know-how schaffen wir ein sicheres Fundament für Unternehmen, die etwas bewegen wollen.
+  columnA: >-
+    Die digitale Transformation von Prozessen ist für jedes Unternehmen eine Herausforderung. Das Ziel ist Sicherheit in komplexen IT- und Transformationsprojekten zu schaffen. Dies erreichen wir durch Kompetenzmanagement unserer Mitarbeiter und Implementierung von Softwarelösungen, Open-Source- und KI-Tools.
+  columnB: >-
+    Wir entlasten Organisationen, indem wir Verantwortung übernehmen und Strukturen schaffen, die Fortschritt ermöglichen und langfristig tragen. Durch Senior Experts, jahrelanges Know-how und den Einsatz moderner Technologien, verbinden wir Branchenwissen mit modernen Tools und fördern ein digitales Mindset im Unternehmen.
+numbers:
+  strong: Springeloo fördert den digitalen Ansatz in Unternehmensprozessen, seit über 30 Jahren.
+  body: >-
+    Der Ausbau und Einsatz unseres Netzwerkes hat zu einer weit gefächerten Branchen-Expertise geführt die wir seit einiger Zeit auch zur Erstellung von Produkten und Softwarelösungen nutzen die mit dem Verständnis des Fachbereichs entstehen.
+  stats:
+    - value: 12K+
+      label: Wissensträger im Netzwerk der Springeloo
+    - value: 50+
+      label: Projektpartner in Europa
+    - value: 400+
+      label: erfolgreich realisierte Projekte
+    - value: 30+
+      label: Jahre Projekterfahrung in digitaler Transformation
+insights:
+  kicker: Springeloo insights
+  headline: Ein digitales Mindset ist unser leitendes Motiv in allen Problemstellungen.
+  image:
+    src: /uploads/springeloo/insight.jpg
+    alt: Fachperson am Arbeitsplatz
+  tabs:
+    - id: philosophie
+      label: Philosophie
+      title: 'Unsere Philosophie: Ganzheitliche Technologielösungen'
+      lead: Digitale Souveränität entsteht durch das perfekte Zusammenspiel von Strategie, Entwicklung und Betrieb.
+      body: >-
+        Unsere Philosophie basiert darauf, Ihre IT-Infrastruktur als Gesamtes zu stärken. Ob durch unsere proprietären Produkte oder unsere Dienstleistungen von der Architektur bis zur Administration – wir schaffen offene, zukunftssichere Systeme, die Abhängigkeiten abbauen und Ihre Wertschöpfung langfristig sichern.
+    - id: transformation
+      label: Transformation
+      title: Transformation mit Sicherheit im Wandel
+      lead: Komplexe IT-Vorhaben brauchen Klarheit, Führung und belastbare Meilensteine.
+      body: >-
+        Wir begleiten digitale Transformation von der Analyse bis zur Umsetzung — mit Senior Experts, Open-Source- und KI-Werkzeugen sowie Strukturen, die Fortschritt ermöglichen und langfristig tragen.
+    - id: skalierbarkeit
+      label: Skalierbarkeit
+      title: Skalierbarkeit ohne Vendor-Lock-in
+      lead: Wachstum darf nicht an Lizenzen oder starren Architekturen scheitern.
+      body: >-
+        Unsere Lösungen und Betriebsmodelle sind so gebaut, dass Teams skalieren können: modular, wartbar und mit voller Datenhoheit in Ihrer Infrastruktur.
+    - id: netzwerk
+      label: Netzwerk
+      title: Ein Netzwerk aus Wissensträgern
+      lead: Gute IT-Experten findet man nicht auf Jobportalen – man kennt sie.
+      body: >-
+        Über 12.000 Wissensträger in Europa ermöglichen es uns, gezielt die richtigen Menschen für die richtigen Aufgaben zu aktivieren — schnell, treffsicher und ohne langwierige Ausschreibungen.
+    - id: team
+      label: Team
+      title: Teamkultur als Stabilitätsanker
+      lead: Konstanz entsteht durch Menschen, die bleiben und Verantwortung übernehmen.
+      body: >-
+        Wir verbinden Branchenwissen mit modernem Handwerk und fördern ein digitales Mindset — in Projekten und in der Zusammenarbeit mit Ihren Teams.
+management:
+  kicker: Springeloo management
+  headline: |-
+    Ihre Verbindung zu einem
+    Netzwerk von Professionisten
+  quote: >-
+    Springeloo steht für Sicherheit im Wandel. Mit unserem Know-How schaffen wir ein sicheres Fundament für Unternehmen, die etwas bewegen wollen.
+  team:
+    - name: Franz Mendl
+      role: Managing Director & Co-Founder
+      tags:
+        - Finanzen
+        - Projektmanagement
+        - Programmmanagement
+      image:
+        src: /uploads/team/franz-mendl.jpg
+        alt: Porträt Franz Mendl
+    - name: Horst Suntych
+      role: Managing Director & Co-Founder
+      tags:
+        - Visionär
+        - strategische Ausrichtung
+      image:
+        src: /uploads/team/horst-suntych.jpg
+        alt: Porträt Horst Suntych
+    - name: Mathias Florian
+      role: Vertrieb & technische Produkte
+      tags:
+        - Produktkommunikation
+        - CRM & IDM
+        - MedTech
+      image:
+        src: /uploads/team/mathias-florian.png
+        alt: Porträt Mathias Florian
+cta:
+  kicker: Jetzt Kontakt aufnehmen
+  headline: |-
+    Investieren Sie in
+    den nächsten Schritt
+    in die Zukunft.
+  aside: |-
+    Ihre digitale
+    Transformation
+    startet hier
+  label: Kontakt aufnehmen
+  href: /kontakt

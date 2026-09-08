@@ -1,9 +1,9 @@
 # How to change images and text
 
-Most marketing copy and images for the **home page**, **Produkte page**, and
-**Projektunterstützung** hero/intro, plus shared nav labels and contact details,
-are edited via **Sveltia CMS** (or by editing YAML content files in Git). Layout,
-routes, and remaining page sections still live in Astro — see
+Most marketing copy and images for the **home**, **Produkte**,
+**Projektunterstützung**, and **Springeloo** pages, plus shared nav labels and
+contact details, are edited via **Sveltia CMS** (or by editing YAML content
+files in Git). Layout and routes still live in Astro — see
 **[howto-figma-design-drop.md](howto-figma-design-drop.md)** when design delivers
 a new Figma drop (layout is engineering-owned; CMS stays copy/images only).
 
@@ -25,11 +25,12 @@ CloudCannon is no longer part of the editorial path.
 |---------|--------|
 | Home | SEO title/description, hero text, hero image + alt, CTA labels, 3 Leistungen cards (incl. Markdown body) |
 | Produkte | SEO, intro headline/image, lead, slider images + names, 3 product blocks (copy + mock/logo images), OSS, CTA label |
-| Projektunterstützung | SEO, hero eyebrow/headline/image + alt, intro lead + body |
+| Projektunterstützung | SEO, hero, intro, Kompetenzen tabs + image, Innovationsberatung/pillars, Softwareentwicklung, Branchen, CTA |
+| Springeloo | SEO, hero, intro, numbers/stats, Insights tabs + image, management team, CTA |
 | Globals | Nav labels, footer/contact text, legal labels |
 
-CTA and nav **URLs** are developer-only. Home cards, Produkte slides, and
-product blocks are each fixed at three.
+CTA and nav **URLs** and tab **ids** are developer-only. Home cards, Produkte slides,
+and product blocks are each fixed at three.
 
 ## Local / Git edits (without Sveltia CMS)
 
@@ -44,7 +45,8 @@ Edit:
 |------|------|
 | Home hero, meta, Leistungen | `src/content/pages/home.yaml` |
 | Produkte copy and images | `src/content/pages/produkte.yaml` |
-| Projektunterstützung hero + intro | `src/content/pages/projektunterstuetzung.yaml` |
+| Projektunterstützung page | `src/content/pages/projektunterstuetzung.yaml` |
+| Springeloo page | `src/content/pages/springeloo.yaml` |
 | Nav labels, footer, contact | `src/content/site/globals.yaml` |
 | Uploaded images | `public/uploads/` |
 
@@ -61,7 +63,7 @@ Commit on a feature/content branch; open a PR to `main` for review.
 
 | What | Where |
 |------|--------|
-| Other page copy / structure | `src/pages/*.astro` (except Home, Produkte, Projektunterstützung hero/intro, and Kontakt contact from globals) |
+| Other page copy / structure | `src/pages/*.astro` (except Home, Produkte, Projektunterstützung, Springeloo, and Kontakt contact from globals) |
 | Components / layout | `src/components/*.astro` |
 | Colors, fonts, spacing | `src/styles/tokens.css` |
 | CMS field config | `public/admin/config.yml` |
@@ -71,10 +73,10 @@ Commit on a feature/content branch; open a PR to `main` for review.
 | URL | File |
 |------|------|
 | `/` | `src/pages/index.astro` + `src/content/pages/home.yaml` |
-| `/projektunterstuetzung` | `src/pages/projektunterstuetzung.astro` + `src/content/pages/projektunterstuetzung.yaml` (hero + intro) |
+| `/projektunterstuetzung` | `src/pages/projektunterstuetzung.astro` + `src/content/pages/projektunterstuetzung.yaml` |
 | `/produkte` | `src/pages/produkte.astro` + `src/content/pages/produkte.yaml` |
 | `/kontakt` | `src/pages/kontakt.astro` (+ globals contact) |
-| `/springeloo` | `src/pages/springeloo.astro` |
+| `/springeloo` | `src/pages/springeloo.astro` + `src/content/pages/springeloo.yaml` |
 | `/admin/` | `public/admin/` (Sveltia CMS; editors only) |
 
 ## Images
@@ -83,8 +85,8 @@ Commit on a feature/content branch; open a PR to `main` for review.
   `public/uploads/`, or place files there and set `src` / `alt` in YAML.
 - **Produkte images (editable):** slider, intro, product mock/logo via Sveltia CMS
   (same `public/uploads/` folder).
-- **Projektunterstützung hero (editable):** image via Sveltia CMS under that page
-  entry (`public/uploads/`).
+- **Projektunterstützung / Springeloo images (editable):** hero, section, and
+  team images via Sveltia CMS (`public/uploads/`).
 - **Other pages:** import from `src/assets/images/` in the page Astro file, or
   use `public/` for fixed URLs.
 

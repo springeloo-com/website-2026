@@ -12,3 +12,105 @@ intro:
     Wir finden Menschen, die zu Ihrer Herausforderung passen. Mit unserem durch Erfahrung gestütztem Matching, bringen wir Senior Experten an Bord, die vom ersten Tag an liefern.
   body: >-
     Gute IT-Experten findet man nicht auf Jobportalen – man kennt sie. Unser Netzwerk von über 12.000 Wissensträgern in Europa ermöglicht es uns, gezielt die richtigen Menschen für die richtigen Aufgaben zu aktivieren – schnell, treffsicher und ohne langwierige Ausschreibungen.
+kompetenzen:
+  kicker: Kompetenzen
+  headline: Aufbau von Kompetenzen der Projektmitarbeiter
+  image:
+    src: /uploads/produkte/intro-c.png
+    alt: Fachleute bei der gemeinsamen Arbeit am Laptop
+  tabs:
+    - id: programmleitung
+      label: Programmleitung + Projektleitung
+      bodyStrong: Die erfolgreiche Umsetzung komplexer IT-Vorhaben erfordert eine strukturierte Führung.
+      body: >-
+        Unsere Projekt- und Programmleiter steuern interdisziplinäre Teams nach etablierten Standards und agilen Frameworks. Wir sichern die lückenlose Überwachung von Budgets, Meilensteinen und Risiken. So gewährleisten wir die verlässliche Transformation Ihrer strategischen Vorgaben in operative Realität.
+    - id: analyse
+      label: Analyse + Architektur
+      bodyStrong: Klare Zielbilder brauchen belastbare Architekturentscheidungen.
+      body: >-
+        Wir analysieren bestehende Landschaften, schärfen Anforderungen und entwerfen Architekturen, die Stabilität mit Innovationsfähigkeit verbinden — vom Ist-Zustand bis zur umsetzbaren Roadmap.
+    - id: testing
+      label: Testing
+      bodyStrong: Qualität ist kein Nachgedanke.
+      body: >-
+        Unsere Testspezialisten verankern Qualitätssicherung früh im Vorhaben: Teststrategie, Automatisierung und Freigabeprozesse, damit Releases planbar und risikoarm bleiben.
+    - id: sysadmin
+      label: Systemadministration
+      bodyStrong: Betriebssicherheit schafft Handlungsfreiheit.
+      body: >-
+        Wir sichern stabile Plattformen und Infrastruktur — Monitoring, Hardening und Betriebsprozesse, damit Fachprojekte auf einem verlässlichen Fundament laufen.
+    - id: prompting
+      label: Neue Rollen + Prompting
+      bodyStrong: Neue Werkzeuge brauchen neue Rollen.
+      body: >-
+        Wir begleiten den Aufbau von KI- und Prompting-Kompetenzen im Team — mit klaren Rollen, Governance und praxisnahen Enablement-Formaten.
+frameworks:
+  kicker: Innovationsberatung
+  headline: Outside the box Denken, in etablierten Frameworks handeln
+  body: >-
+    Die Organisationsberatung wird bei springeloo als ein zentraler Bestandteil der Projektunterstützung beschrieben, der darauf abzielt, Unternehmen durch Struktur, Erfahrung und Verlässlichkeit zu entlasten. Ziel ist es, Geschäftsabläufe zu optimieren und zukunftsweisende Innovationen zu implementieren.
+  kernbereicheKicker: Kernbereiche
+  kernbereiche:
+    - Klassische Aufbau- und Ablauforganisation
+    - Prozess- und Innovationsberatung
+  pillars:
+    - title: Strukturelle Unterstützung
+      body: >-
+        springeloo schafft Strukturen, die Fortschritt ermöglichen und langfristig tragen. Dabei geht es darum, ein sicheres Fundament für Unternehmen zu bauen, die Veränderungen gezielt gestalten wollen.
+      icon: /uploads/effects/icon-cube.svg
+    - title: Fokus Transformation
+      body: >-
+        Ein wesentlicher Teil der Beratung konzentriert sich auf die digitale Souveränität und das Aufzeigen neuer Wege durch den Einsatz von KI und Open-Source-Lösungen.
+      icon: /uploads/effects/icon-cycle.svg
+    - title: Ganzheitlicher Ansatz
+      body: >-
+        Die Beratung ist oft in größere Transformationsprojekte eingebettet. Hierbei werden auch der notwendige Wissensaufbau sowie Veränderungen von Rollen und Governance begleitet.
+      icon: /uploads/effects/icon-target.svg
+    - title: Innovationsmotor
+      body: >-
+        Die Beratung wird durch ein digitales Mindset getrieben, wobei der offene Zugang zu modernsten Technologien genutzt wird, um Lösungen für komplexe Herausforderungen zu schaffen.
+      icon: /uploads/effects/icon-bulb.svg
+  closing: >-
+    Zusammenfassend versteht sich springeloo in der Organisationsberatung nicht als reiner Theoretiker, sondern als Partner, der Verantwortung übernimmt und anspruchsvolle Vorhaben von der Analyse bis zum erfolgreichen Abschluss begleitet.
+solutions:
+  kicker: Softwareentwicklung
+  headline: Customized Solutions durch ein Netzwerk an Wissensträgern.
+  columnA: >-
+    Die Softwareeigenentwicklung bei springeloo zeichnet sich primär durch die komplette Auslagerung einer Individualentwicklung aus.
+  columnB: >-
+    Dabei verfolgt das Unternehmen den sogenannten „Builder“-Ansatz, bei dem es nicht nur als klassischer IT-Dienstleister agiert, sondern die Rolle von Architekten und Ingenieuren einnimmt, um funktionale und innovative Produkte zu schaffen.
+  merkmalLabel: 'Zentrale Merkmale dieser Entwicklung sind:'
+  merkmalBody: Fokus auf Open Source und nachhaltige, wartbare Systeme.
+branchen:
+  kicker: Branchen
+  headline: Netzwerke in den Branchen die Technologie vorantreibt
+  lead: >-
+    Unser Netzwerk und die langjährige Erfahrung im Bereich Digitalisierung erlaubt es uns Expertise in vielen Fachbereichen anzubieten.
+  groups:
+    - title: BFSI
+      items:
+        - Banken & Finanzinstitute
+        - Versicherungen
+        - Asset Management
+        - Fin-Tech
+    - title: Public Sector & Healthcare
+      items:
+        - Gesundheitswesen & Labore
+        - Öffentliche Verwaltung
+    - title: IT, Infrastruktur & Energie
+      items:
+        - Spezialisierte IT-Dienstleister & Banken-IT
+        - Rechenzentrum / Cloud Services
+        - Energie & Versorgung
+        - Handel & E-Commerce
+cta:
+  kicker: Jetzt Kontakt aufnehmen
+  headline: |-
+    Investieren Sie in den nächsten Schritt
+    in die Zukunft.
+  aside: |-
+    Ihre digitale
+    Transformation
+    startet hier
+  label: Kontakt aufnehmen
+  href: /kontakt

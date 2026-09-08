@@ -325,3 +325,194 @@ collections:
             fields:
               - { label: Lead, name: lead, widget: text }
               - { label: Body, name: body, widget: text }
+          - label: Kompetenzen
+            name: kompetenzen
+            widget: object
+            fields:
+              - { label: Kicker, name: kicker, widget: string }
+              - { label: Headline, name: headline, widget: string }
+              - label: Shared tab image
+                name: image
+                widget: object
+                fields:
+                  - { label: File, name: src, widget: image }
+                  - { label: Alt text, name: alt, widget: string }
+              - label: Tabs
+                name: tabs
+                widget: list
+                collapsed: true
+                summary: '{{fields.label}}'
+                fields:
+                  - { label: Id (developer), name: id, widget: hidden }
+                  - { label: Label, name: label, widget: string }
+                  - { label: Strong lead, name: bodyStrong, widget: text }
+                  - { label: Body, name: body, widget: text }
+          - label: Innovationsberatung
+            name: frameworks
+            widget: object
+            fields:
+              - { label: Kicker, name: kicker, widget: string }
+              - { label: Headline, name: headline, widget: string }
+              - { label: Body, name: body, widget: text }
+              - { label: Kernbereiche kicker, name: kernbereicheKicker, widget: string }
+              - label: Kernbereiche lines
+                name: kernbereiche
+                widget: list
+                allow_add: true
+                field: { label: Line, name: line, widget: string }
+              - label: Pillars
+                name: pillars
+                widget: list
+                collapsed: true
+                summary: '{{fields.title}}'
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Body, name: body, widget: text }
+                  - { label: Icon, name: icon, widget: image }
+              - { label: Closing, name: closing, widget: text }
+          - label: Softwareentwicklung
+            name: solutions
+            widget: object
+            fields:
+              - { label: Kicker, name: kicker, widget: string }
+              - { label: Headline, name: headline, widget: string }
+              - { label: Column A, name: columnA, widget: text }
+              - { label: Column B, name: columnB, widget: text }
+              - { label: Merkmal label, name: merkmalLabel, widget: string }
+              - { label: Merkmal body, name: merkmalBody, widget: text }
+          - label: Branchen
+            name: branchen
+            widget: object
+            fields:
+              - { label: Kicker, name: kicker, widget: string }
+              - { label: Headline, name: headline, widget: string }
+              - { label: Lead, name: lead, widget: text }
+              - label: Groups
+                name: groups
+                widget: list
+                collapsed: true
+                summary: '{{fields.title}}'
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - label: Items
+                    name: items
+                    widget: list
+                    allow_add: true
+                    field: { label: Item, name: item, widget: string }
+          - label: CTA
+            name: cta
+            widget: object
+            fields:
+              - { label: Kicker, name: kicker, widget: string }
+              - { label: Headline, name: headline, widget: text }
+              - { label: Aside, name: aside, widget: text }
+              - { label: Label, name: label, widget: string }
+              - label: Href (developer)
+                name: href
+                widget: hidden
+
+      - name: springeloo
+        label: Springeloo page
+        file: src/content/pages/springeloo.yaml
+        fields:
+          - label: SEO
+            name: meta
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+          - label: Hero
+            name: hero
+            widget: object
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: text }
+              - { label: Brand lines, name: brand, widget: text }
+              - { label: Headline, name: headline, widget: text }
+              - label: Image
+                name: image
+                widget: object
+                fields:
+                  - { label: File, name: src, widget: image }
+                  - { label: Alt text, name: alt, widget: string }
+          - label: Intro
+            name: intro
+            widget: object
+            fields:
+              - { label: Lead, name: lead, widget: text }
+              - { label: Column A, name: columnA, widget: text }
+              - { label: Column B, name: columnB, widget: text }
+          - label: Numbers
+            name: numbers
+            widget: object
+            fields:
+              - { label: Strong lead, name: strong, widget: text }
+              - { label: Body, name: body, widget: text }
+              - label: Stats
+                name: stats
+                widget: list
+                collapsed: true
+                summary: '{{fields.value}} — {{fields.label}}'
+                fields:
+                  - { label: Value, name: value, widget: string }
+                  - { label: Label, name: label, widget: string }
+          - label: Insights
+            name: insights
+            widget: object
+            fields:
+              - { label: Kicker, name: kicker, widget: string }
+              - { label: Headline, name: headline, widget: string }
+              - label: Shared tab image
+                name: image
+                widget: object
+                fields:
+                  - { label: File, name: src, widget: image }
+                  - { label: Alt text, name: alt, widget: string }
+              - label: Tabs
+                name: tabs
+                widget: list
+                collapsed: true
+                summary: '{{fields.label}}'
+                fields:
+                  - { label: Id (developer), name: id, widget: hidden }
+                  - { label: Label, name: label, widget: string }
+                  - { label: Title, name: title, widget: string }
+                  - { label: Lead, name: lead, widget: text }
+                  - { label: Body, name: body, widget: text }
+          - label: Management
+            name: management
+            widget: object
+            fields:
+              - { label: Kicker, name: kicker, widget: string }
+              - { label: Headline, name: headline, widget: text }
+              - { label: Quote, name: quote, widget: text }
+              - label: Team
+                name: team
+                widget: list
+                collapsed: true
+                summary: '{{fields.name}}'
+                fields:
+                  - { label: Name, name: name, widget: string }
+                  - { label: Role, name: role, widget: string }
+                  - label: Tags
+                    name: tags
+                    widget: list
+                    allow_add: true
+                    field: { label: Tag, name: tag, widget: string }
+                  - label: Image
+                    name: image
+                    widget: object
+                    fields:
+                      - { label: File, name: src, widget: image }
+                      - { label: Alt text, name: alt, widget: string }
+          - label: CTA
+            name: cta
+            widget: object
+            fields:
+              - { label: Kicker, name: kicker, widget: string }
+              - { label: Headline, name: headline, widget: text }
+              - { label: Aside, name: aside, widget: text }
+              - { label: Label, name: label, widget: string }
+              - label: Href (developer)
+                name: href
+                widget: hidden
+

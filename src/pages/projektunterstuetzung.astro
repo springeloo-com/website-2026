@@ -7,78 +7,9 @@ import { getProjektunterstuetzungContent, publicUrl } from '../lib/content';
 import HeroShine from '../components/HeroShine.astro';
 
 const page = getProjektunterstuetzungContent();
-const { meta, hero, intro } = page;
+const { meta, hero, intro, kompetenzen, frameworks, solutions, branchen, cta } = page;
 
-const kompetenzen = [
-  {
-    id: 'programmleitung',
-    label: 'Programmleitung + Projektleitung',
-    bodyStrong: 'Die erfolgreiche Umsetzung komplexer IT-Vorhaben erfordert eine strukturierte Führung.',
-    body: 'Unsere Projekt- und Programmleiter steuern interdisziplinäre Teams nach etablierten Standards und agilen Frameworks. Wir sichern die lückenlose Überwachung von Budgets, Meilensteinen und Risiken. So gewährleisten wir die verlässliche Transformation Ihrer strategischen Vorgaben in operative Realität.',
-  },
-  {
-    id: 'analyse',
-    label: 'Analyse + Architektur',
-    bodyStrong: 'Klare Zielbilder brauchen belastbare Architekturentscheidungen.',
-    body: 'Wir analysieren bestehende Landschaften, schärfen Anforderungen und entwerfen Architekturen, die Stabilität mit Innovationsfähigkeit verbinden — vom Ist-Zustand bis zur umsetzbaren Roadmap.',
-  },
-  {
-    id: 'testing',
-    label: 'Testing',
-    bodyStrong: 'Qualität ist kein Nachgedanke.',
-    body: 'Unsere Testspezialisten verankern Qualitätssicherung früh im Vorhaben: Teststrategie, Automatisierung und Freigabeprozesse, damit Releases planbar und risikoarm bleiben.',
-  },
-  {
-    id: 'sysadmin',
-    label: 'Systemadministration',
-    bodyStrong: 'Betriebssicherheit schafft Handlungsfreiheit.',
-    body: 'Wir sichern stabile Plattformen und Infrastruktur — Monitoring, Hardening und Betriebsprozesse, damit Fachprojekte auf einem verlässlichen Fundament laufen.',
-  },
-  {
-    id: 'prompting',
-    label: 'Neue Rollen + Prompting',
-    bodyStrong: 'Neue Werkzeuge brauchen neue Rollen.',
-    body: 'Wir begleiten den Aufbau von KI- und Prompting-Kompetenzen im Team — mit klaren Rollen, Governance und praxisnahen Enablement-Formaten.',
-  },
-];
-
-const pillars = [
-  {
-    title: 'Strukturelle Unterstützung',
-    body: 'springeloo schafft Strukturen, die Fortschritt ermöglichen und langfristig tragen. Dabei geht es darum, ein sicheres Fundament für Unternehmen zu bauen, die Veränderungen gezielt gestalten wollen.',
-    icon: '/uploads/effects/icon-cube.svg',
-  },
-  {
-    title: 'Fokus Transformation',
-    body: 'Ein wesentlicher Teil der Beratung konzentriert sich auf die digitale Souveränität und das Aufzeigen neuer Wege durch den Einsatz von KI und Open-Source-Lösungen.',
-    icon: '/uploads/effects/icon-cycle.svg',
-  },
-  {
-    title: 'Ganzheitlicher Ansatz',
-    body: 'Die Beratung ist oft in größere Transformationsprojekte eingebettet. Hierbei werden auch der notwendige Wissensaufbau sowie Veränderungen von Rollen und Governance begleitet.',
-    icon: '/uploads/effects/icon-target.svg',
-  },
-  {
-    title: 'Innovationsmotor',
-    body: 'Die Beratung wird durch ein digitales Mindset getrieben, wobei der offene Zugang zu modernsten Technologien genutzt wird, um Lösungen für komplexe Herausforderungen zu schaffen.',
-    icon: '/uploads/effects/icon-bulb.svg',
-  },
-];
-
-const branchen = [
-  {
-    title: 'BFSI',
-    items: ['Banken & Finanzinstitute', 'Versicherungen', 'Asset Management', 'Fin-Tech'],
-  },
-  {
-    title: 'Public Sector & Healthcare',
-    items: ['Gesundheitswesen & Labore', 'Öffentliche Verwaltung'],
-  },
-  {
-    title: 'IT, Infrastruktur & Energie',
-    items: ['Spezialisierte IT-Dienstleister & Banken-IT', 'Rechenzentrum / Cloud Services', 'Energie & Versorgung', 'Handel & E-Commerce'],
-  },
-];
+const lines = (text: string) => text.split('\n').filter((line) => line.length > 0);
 ---
 
 <BaseLayout title={meta.title} description={meta.description} canonicalPath="/projektunterstuetzung" ogImage={publicUrl(hero.image.src)}>
@@ -104,13 +35,13 @@ const branchen = [
 
   <section class="pu-kompetenzen" id="kompetenzen" data-pu-tabs>
     <div class="container">
-      <p class="pu-kicker pu-kicker--light">Kompetenzen</p>
-      <h2>Aufbau von Kompetenzen der Projektmitarbeiter</h2>
+      <p class="pu-kicker pu-kicker--light">{kompetenzen.kicker}</p>
+      <h2>{kompetenzen.headline}</h2>
 
       <div class="pu-tabs">
         <div class="pu-tabs__nav" role="tablist" aria-label="Kompetenzbereiche">
           {
-            kompetenzen.map((item, index) => (
+            kompetenzen.tabs.map((item, index) => (
               <button
                 type="button"
                 class:list={['pu-tabs__btn', { 'is-active': index === 0 }]}
@@ -128,7 +59,7 @@ const branchen = [
 
         <div class="pu-tabs__panels">
           {
-            kompetenzen.map((item, index) => (
+            kompetenzen.tabs.map((item, index) => (
               <div
                 class:list={['pu-tabs__panel', { 'is-active': index === 0 }]}
                 role="tabpanel"
@@ -144,8 +75,8 @@ const branchen = [
                 </div>
                 <div class="pu-tabs__media">
                   <img
-                    src={publicUrl('/uploads/produkte/intro-c.png')}
-                    alt="Fachleute bei der gemeinsamen Arbeit am Laptop"
+                    src={publicUrl(kompetenzen.image.src)}
+                    alt={kompetenzen.image.alt}
                     width="800"
                     height="600"
                   />
@@ -160,26 +91,28 @@ const branchen = [
 
   <section class="pu-frameworks section section--cream">
     <div class="container">
-      <p class="pu-kicker">Innovationsberatung</p>
-      <h2>Outside the box Denken, in etablierten Frameworks handeln</h2>
+      <p class="pu-kicker">{frameworks.kicker}</p>
+      <h2>{frameworks.headline}</h2>
       <div class="pu-frameworks__split">
-        <p>
-          Die Organisationsberatung wird bei springeloo als ein zentraler Bestandteil der Projektunterstützung
-          beschrieben, der darauf abzielt, Unternehmen durch Struktur, Erfahrung und Verlässlichkeit zu entlasten. Ziel
-          ist es, Geschäftsabläufe zu optimieren und zukunftsweisende Innovationen zu implementieren.
-        </p>
+        <p>{frameworks.body}</p>
         <div>
-          <p class="pu-kicker">Kernbereiche</p>
+          <p class="pu-kicker">{frameworks.kernbereicheKicker}</p>
           <p class="pu-frameworks__kern">
-            Klassische Aufbau- und Ablauforganisation<br />
-            Prozess- und Innovationsberatung
+            {
+              frameworks.kernbereiche.map((line, index) => (
+                <>
+                  {index > 0 && <br />}
+                  {line}
+                </>
+              ))
+            }
           </p>
         </div>
       </div>
 
       <ul class="pu-pillars">
         {
-          pillars.map((pillar) => (
+          frameworks.pillars.map((pillar) => (
             <li>
               <div class="pu-pillars__head">
                 <span class="pu-pillars__mark" aria-hidden="true">
@@ -193,47 +126,32 @@ const branchen = [
         }
       </ul>
 
-      <p class="pu-frameworks__end">
-        Zusammenfassend versteht sich springeloo in der Organisationsberatung nicht als reiner Theoretiker, sondern als
-        Partner, der Verantwortung übernimmt und anspruchsvolle Vorhaben von der Analyse bis zum erfolgreichen Abschluss
-        begleitet.
-      </p>
+      <p class="pu-frameworks__end">{frameworks.closing}</p>
     </div>
   </section>
 
   <section class="pu-solutions section section--cream">
     <div class="container">
-      <p class="pu-kicker">Softwareentwicklung</p>
-      <h2>Customized Solutions durch ein Netzwerk an Wissensträgern.</h2>
+      <p class="pu-kicker">{solutions.kicker}</p>
+      <h2>{solutions.headline}</h2>
       <div class="pu-solutions__grid">
-        <p>
-          Die Softwareeigenentwicklung bei springeloo zeichnet sich primär durch die komplette Auslagerung einer
-          Individualentwicklung aus.
-        </p>
-        <p>
-          Dabei verfolgt das Unternehmen den sogenannten „Builder“-Ansatz, bei dem es nicht nur als klassischer
-          IT-Dienstleister agiert, sondern die Rolle von Architekten und Ingenieuren einnimmt, um funktionale und
-          innovative Produkte zu schaffen.
-        </p>
+        <p>{solutions.columnA}</p>
+        <p>{solutions.columnB}</p>
       </div>
       <p class="pu-solutions__merkmal">
-        <strong>Zentrale Merkmale dieser Entwicklung sind:</strong> Fokus auf Open Source und nachhaltige, wartbare
-        Systeme.
+        <strong>{solutions.merkmalLabel}</strong> {solutions.merkmalBody}
       </p>
     </div>
   </section>
 
   <section class="pu-branchen">
     <div class="container">
-      <p class="pu-kicker pu-kicker--light">Branchen</p>
-      <h2>Netzwerke in den Branchen die Technologie vorantreibt</h2>
-      <p class="pu-branchen__lead">
-        Unser Netzwerk und die langjährige Erfahrung im Bereich Digitalisierung erlaubt es uns Expertise in vielen
-        Fachbereichen anzubieten.
-      </p>
+      <p class="pu-kicker pu-kicker--light">{branchen.kicker}</p>
+      <h2>{branchen.headline}</h2>
+      <p class="pu-branchen__lead">{branchen.lead}</p>
       <div class="pu-branchen__grid">
         {
-          branchen.map((group) => (
+          branchen.groups.map((group) => (
             <div>
               <h3>{group.title}</h3>
               <ul>
@@ -252,17 +170,28 @@ const branchen = [
     <div class="grid-overlay grid-overlay--cta" aria-hidden="true"></div>
     <div class="container pu-cta__inner">
       <div class="pu-cta__copy">
-        <p class="pu-cta__kicker">Jetzt Kontakt aufnehmen</p>
+        <p class="pu-cta__kicker">{cta.kicker}</p>
         <h2>
-          Investieren Sie in den nächsten Schritt<br />
-          in die Zukunft.
+          {
+            lines(cta.headline).map((line, index) => (
+              <>
+                {index > 0 && <br />}
+                {line}
+              </>
+            ))
+          }
         </h2>
-        <CTAButton label="Kontakt aufnehmen" href="/kontakt" variant="ghost-light" />
+        <CTAButton label={cta.label} href={cta.href} variant="ghost-light" />
       </div>
       <p class="pu-cta__aside">
-        Ihre digitale<br />
-        Transformation<br />
-        startet hier
+        {
+          lines(cta.aside).map((line, index) => (
+            <>
+              {index > 0 && <br />}
+              {line}
+            </>
+          ))
+        }
       </p>
     </div>
   </section>
