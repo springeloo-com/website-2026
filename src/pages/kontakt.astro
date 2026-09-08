@@ -2,45 +2,20 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import { getSiteMeta, publicUrl } from '../lib/content';
+import { getKontaktContent, getSiteMeta, publicUrl } from '../lib/content';
 
 const siteMeta = getSiteMeta();
-const title = 'Kontakt';
-const description = 'Wir freuen uns auf Ihre Anfrage — Kontakt zu springeloo.';
+const page = getKontaktContent();
+const { meta, intro, box, office, management, legal } = page;
 
 const phoneDisplay = siteMeta.contactPhone;
 const phoneHref = `tel:${phoneDisplay.replace(/\s/g, '')}`;
 const email = siteMeta.contactEmail;
 
-const team = [
-  {
-    name: 'Franz Mendl',
-    role: 'Managing Director & Co-Founder',
-    tags: ['Finanzen', 'Projektmanagement', 'Programmmanagement'],
-    image: '/uploads/team/franz-mendl.jpg',
-    imageAlt: 'Porträt Franz Mendl',
-    linkedIn: siteMeta.linkedIn,
-  },
-  {
-    name: 'Horst Suntych',
-    role: 'Managing Director & Co-Founder',
-    tags: ['Visionär', 'strategische Ausrichtung'],
-    image: '/uploads/team/horst-suntych.jpg',
-    imageAlt: 'Porträt Horst Suntych',
-    linkedIn: siteMeta.linkedIn,
-  },
-  {
-    name: 'Mathias Florian',
-    role: 'Vertrieb & technische Produkte',
-    tags: ['Produktkommunikation', 'CRM & IDM', 'MedTech'],
-    image: '/uploads/team/mathias-florian.png',
-    imageAlt: 'Porträt Mathias Florian',
-    linkedIn: siteMeta.linkedIn,
-  },
-];
+const lines = (text: string) => text.split('\n').filter((line) => line.length > 0);
 ---
 
-<BaseLayout title={title} description={description} canonicalPath="/kontakt" theme="dark">
+<BaseLayout title={meta.title} description={meta.description} canonicalPath="/kontakt" theme="dark">
   <SiteHeader slot="header" activePath="/kontakt" variant="transparent" />
 
   <section class="kontakt-page" aria-label="Kontakt">
@@ -48,30 +23,46 @@ const team = [
     <div class="container kontakt-page__inner">
       <header class="kontakt-intro">
         <div class="kontakt-intro__main">
-          <p class="kontakt-kicker">Jetzt Kontakt aufnehmen</p>
+          <p class="kontakt-kicker">{intro.kicker}</p>
           <h1>
-            Investieren Sie in<br />
-            den nächsten Schritt<br />
-            in die Zukunft.
+            {
+              lines(intro.headline).map((line, index) => (
+                <>
+                  {index > 0 && <br />}
+                  {line}
+                </>
+              ))
+            }
           </h1>
         </div>
         <p class="kontakt-aside-kicker">
-          Ihre digitale<br />
-          Transformation<br />
-          startet hier
+          {
+            lines(intro.aside).map((line, index) => (
+              <>
+                {index > 0 && <br />}
+                {line}
+              </>
+            ))
+          }
         </p>
       </header>
 
       <div class="kontakt-box">
-        <p class="kontakt-kicker">Wir freuen uns auf Ihre Anfragen</p>
+        <p class="kontakt-kicker">{box.kicker}</p>
         <a class="kontakt-box__line" href={phoneHref}>T. {phoneDisplay}</a>
         <a class="kontakt-box__line" href={`mailto:${email}`}>{email}</a>
       </div>
 
       <div class="kontakt-office">
         <p class="kontakt-kicker">
-          Springeloo<br />
-          office
+          {
+            lines(office.kicker).map((line, index) => (
+              <>
+                {index > 0 && <br />}
+                {line}
+              </>
+            ))
+          }
         </p>
         <p>
           <strong>{siteMeta.company}</strong><br />
@@ -87,19 +78,25 @@ const team = [
       </div>
 
       <div class="kontakt-mgmt-head">
-        <p class="kontakt-kicker">Springeloo management</p>
+        <p class="kontakt-kicker">{management.kicker}</p>
         <h2>
-          Ihre Verbindung zu einem<br />
-          Netzwerk von Professionisten
+          {
+            lines(management.headline).map((line, index) => (
+              <>
+                {index > 0 && <br />}
+                {line}
+              </>
+            ))
+          }
         </h2>
       </div>
 
       <ul class="kontakt-team">
         {
-          team.map((person) => (
+          management.team.map((person) => (
             <li class="kontakt-person">
               <div class="kontakt-person__photo">
-                <img src={publicUrl(person.image)} alt={person.imageAlt} width="480" height="520" />
+                <img src={publicUrl(person.image.src)} alt={person.image.alt} width="480" height="520" />
               </div>
               <div class="kontakt-person__body">
                 <p class="kontakt-person__name">{person.name}</p>
@@ -110,7 +107,7 @@ const team = [
                   ))}
                 </ul>
               </div>
-              <a class="kontakt-person__link" href={person.linkedIn} target="_blank" rel="noopener noreferrer">
+              <a class="kontakt-person__link" href={siteMeta.linkedIn} target="_blank" rel="noopener noreferrer">
                 <img
                   class="kontakt-person__li"
                   src={publicUrl('/uploads/linkedin-bug.png')}
@@ -118,7 +115,7 @@ const team = [
                   width="36"
                   height="31"
                 />
-                <span>Jetzt vernetzen</span>
+                <span>{management.connectLabel}</span>
                 <span class="kontakt-person__chevron" aria-hidden="true">›</span>
               </a>
             </li>
@@ -128,7 +125,7 @@ const team = [
 
       <div class="kontakt-legal">
         <div id="impressum">
-          <h2>Impressum</h2>
+          <h2>{legal.impressumTitle}</h2>
           <p>
             {siteMeta.company}<br />
             {
@@ -142,8 +139,8 @@ const team = [
           </p>
         </div>
         <div id="datenschutz">
-          <h2>Datenschutz</h2>
-          <p>Datenschutzhinweise gemäß Footer-Verweis — Details folgen dem rechtlichen Extract.</p>
+          <h2>{legal.datenschutzTitle}</h2>
+          <p>{legal.datenschutzBody}</p>
         </div>
       </div>
     </div>

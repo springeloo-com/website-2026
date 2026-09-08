@@ -1,9 +1,9 @@
 # How to change images and text
 
 Most marketing copy and images for the **home**, **Produkte**,
-**Projektunterstützung**, and **Springeloo** pages, plus shared nav labels and
-contact details, are edited via **Sveltia CMS** (or by editing YAML content
-files in Git). Layout and routes still live in Astro — see
+**Projektunterstützung**, **Springeloo**, and **Kontakt** pages, plus shared nav
+labels and contact details, are edited via **Sveltia CMS** (or by editing YAML
+content files in Git). Layout and routes still live in Astro — see
 **[howto-figma-design-drop.md](howto-figma-design-drop.md)** when design delivers
 a new Figma drop (layout is engineering-owned; CMS stays copy/images only).
 
@@ -27,7 +27,8 @@ CloudCannon is no longer part of the editorial path.
 | Produkte | SEO, intro headline/image, lead, slider images + names, 3 product blocks (copy + mock/logo images), OSS, CTA label |
 | Projektunterstützung | SEO, hero, intro, Kompetenzen tabs (each with own image), Innovationsberatung/pillars, Softwareentwicklung, Branchen, CTA |
 | Springeloo | SEO, hero, intro, numbers/stats, Insights tabs + image, management team, CTA |
-| Globals | Nav labels, footer/contact text, legal labels |
+| Kontakt | SEO, intro/aside, contact-box kicker, office kicker, management team, legal copy |
+| Globals | Nav labels, footer/contact phone·email·address, legal labels |
 
 CTA and nav **URLs** and tab **ids** are developer-only. Home cards, Produkte slides,
 and product blocks are each fixed at three.
@@ -47,6 +48,7 @@ Edit:
 | Produkte copy and images | `src/content/pages/produkte.yaml` |
 | Projektunterstützung page | `src/content/pages/projektunterstuetzung.yaml` |
 | Springeloo page | `src/content/pages/springeloo.yaml` |
+| Kontakt page | `src/content/pages/kontakt.yaml` |
 | Nav labels, footer, contact | `src/content/site/globals.yaml` |
 | Uploaded images | `public/uploads/` |
 
@@ -63,7 +65,7 @@ Commit on a feature/content branch; open a PR to `main` for review.
 
 | What | Where |
 |------|--------|
-| Other page copy / structure | `src/pages/*.astro` (except Home, Produkte, Projektunterstützung, Springeloo, and Kontakt contact from globals) |
+| Other page copy / structure | `src/pages/*.astro` (except Home, Produkte, Projektunterstützung, Springeloo, Kontakt, and globals contact) |
 | Components / layout | `src/components/*.astro` |
 | Colors, fonts, spacing | `src/styles/tokens.css` |
 | CMS field config | `public/admin/config.yml` |
@@ -75,7 +77,7 @@ Commit on a feature/content branch; open a PR to `main` for review.
 | `/` | `src/pages/index.astro` + `src/content/pages/home.yaml` |
 | `/projektunterstuetzung` | `src/pages/projektunterstuetzung.astro` + `src/content/pages/projektunterstuetzung.yaml` |
 | `/produkte` | `src/pages/produkte.astro` + `src/content/pages/produkte.yaml` |
-| `/kontakt` | `src/pages/kontakt.astro` (+ globals contact) |
+| `/kontakt` | `src/pages/kontakt.astro` + `src/content/pages/kontakt.yaml` (+ globals contact) |
 | `/springeloo` | `src/pages/springeloo.astro` + `src/content/pages/springeloo.yaml` |
 | `/admin/` | `public/admin/` (Sveltia CMS; editors only) |
 

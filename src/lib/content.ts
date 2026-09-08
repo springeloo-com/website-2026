@@ -244,6 +244,40 @@ export type SpringelooContent = {
   };
 };
 
+export type KontaktContent = {
+  meta: {
+    title: string;
+    description: string;
+  };
+  intro: {
+    kicker: string;
+    headline: string;
+    aside: string;
+  };
+  box: {
+    kicker: string;
+  };
+  office: {
+    kicker: string;
+  };
+  management: {
+    kicker: string;
+    headline: string;
+    connectLabel: string;
+    team: Array<{
+      name: string;
+      role: string;
+      tags: string[];
+      image: ContentImage;
+    }>;
+  };
+  legal: {
+    impressumTitle: string;
+    datenschutzTitle: string;
+    datenschutzBody: string;
+  };
+};
+
 const ROOT = process.cwd();
 const REQUIRED_NAV_IDS = [
   'projektunterstuetzung',
@@ -632,6 +666,38 @@ function validateSpringeloo(data: SpringelooContent): SpringelooContent {
   return data;
 }
 
+function validateKontakt(data: KontaktContent): KontaktContent {
+  requireNonEmpty(data.meta?.title, 'meta.title');
+  requireNonEmpty(data.meta?.description, 'meta.description');
+
+  requireNonEmpty(data.intro?.kicker, 'intro.kicker');
+  requireNonEmpty(data.intro?.headline, 'intro.headline');
+  requireNonEmpty(data.intro?.aside, 'intro.aside');
+
+  requireNonEmpty(data.box?.kicker, 'box.kicker');
+  requireNonEmpty(data.office?.kicker, 'office.kicker');
+
+  requireNonEmpty(data.management?.kicker, 'management.kicker');
+  requireNonEmpty(data.management?.headline, 'management.headline');
+  requireNonEmpty(data.management?.connectLabel, 'management.connectLabel');
+  const team = data.management?.team;
+  if (!Array.isArray(team) || team.length < 1) {
+    throw new Error('Content validation failed: management.team must have at least 1 item');
+  }
+  data.management.team = team.map((person, i) => ({
+    name: requireNonEmpty(person?.name, `management.team[${i}].name`),
+    role: requireNonEmpty(person?.role, `management.team[${i}].role`),
+    tags: requireStringList(person?.tags, `management.team[${i}].tags`),
+    image: requireImage(person?.image, `management.team[${i}].image`),
+  }));
+
+  requireNonEmpty(data.legal?.impressumTitle, 'legal.impressumTitle');
+  requireNonEmpty(data.legal?.datenschutzTitle, 'legal.datenschutzTitle');
+  requireNonEmpty(data.legal?.datenschutzBody, 'legal.datenschutzBody');
+
+  return data;
+}
+
 /** Prefix a public path with Astro `base` when needed. */
 export function publicUrl(src: string, baseUrl = import.meta.env.BASE_URL): string {
   if (!src || src.startsWith('http') || src.startsWith('data:') || src.startsWith('//')) {
@@ -647,6 +713,7 @@ let homeCache: HomeContent | null = null;
 let produkteCache: ProdukteContent | null = null;
 let projektunterstuetzungCache: ProjektunterstuetzungContent | null = null;
 let springelooCache: SpringelooContent | null = null;
+let kontaktCache: KontaktContent | null = null;
 
 export function getGlobals(): GlobalContent {
   if (!globalsCache) {
@@ -685,6 +752,13 @@ export function getSpringelooContent(): SpringelooContent {
     );
   }
   return springelooCache;
+}
+
+export function getKontaktContent(): KontaktContent {
+  if (import.meta.env.DEV || !kontaktCache) {
+    kontaktCache = validateKontakt(readYaml<KontaktContent>('src/content/pages/kontakt.yaml'));
+  }
+  return kontaktCache;
 }
 
 /** Legacy-shaped meta for components that previously used `siteMeta`. */

@@ -1,0 +1,56 @@
+meta:
+  title: Kontakt
+  description: Wir freuen uns auf Ihre Anfrage — Kontakt zu springeloo.
+intro:
+  kicker: Jetzt Kontakt aufnehmen
+  headline: |-
+    Investieren Sie in
+    den nächsten Schritt
+    in die Zukunft.
+  aside: |-
+    Ihre digitale
+    Transformation
+    startet hier
+box:
+  kicker: Wir freuen uns auf Ihre Anfragen
+office:
+  kicker: |-
+    Springeloo
+    office
+management:
+  kicker: Springeloo management
+  headline: |-
+    Ihre Verbindung zu einem
+    Netzwerk von Professionisten
+  connectLabel: Jetzt vernetzen
+  team:
+    - name: Franz Mendl
+      role: Managing Director & Co-Founder
+      tags:
+        - Finanzen
+        - Projektmanagement
+        - Programmmanagement
+      image:
+        src: /uploads/team/franz-mendl.jpg
+        alt: Porträt Franz Mendl
+    - name: Horst Suntych
+      role: Managing Director & Co-Founder
+      tags:
+        - Visionär
+        - strategische Ausrichtung
+      image:
+        src: /uploads/team/horst-suntych.jpg
+        alt: Porträt Horst Suntych
+    - name: Mathias Florian
+      role: Vertrieb & technische Produkte
+      tags:
+        - Produktkommunikation
+        - CRM & IDM
+        - MedTech
+      image:
+        src: /uploads/team/mathias-florian.png
+        alt: Porträt Mathias Florian
+legal:
+  impressumTitle: Impressum
+  datenschutzTitle: Datenschutz
+  datenschutzBody: Datenschutzhinweise gemäß Footer-Verweis — Details folgen dem rechtlichen Extract.

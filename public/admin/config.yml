@@ -516,3 +516,64 @@ collections:
                 name: href
                 widget: hidden
 
+
+      - name: kontakt
+        label: Kontakt page
+        file: src/content/pages/kontakt.yaml
+        fields:
+          - label: SEO
+            name: meta
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+          - label: Intro
+            name: intro
+            widget: object
+            fields:
+              - { label: Kicker, name: kicker, widget: string }
+              - { label: Headline, name: headline, widget: text }
+              - { label: Aside, name: aside, widget: text }
+          - label: Contact box
+            name: box
+            widget: object
+            fields:
+              - { label: Kicker, name: kicker, widget: string }
+          - label: Office
+            name: office
+            widget: object
+            fields:
+              - { label: Kicker, name: kicker, widget: text }
+          - label: Management
+            name: management
+            widget: object
+            fields:
+              - { label: Kicker, name: kicker, widget: string }
+              - { label: Headline, name: headline, widget: text }
+              - { label: Connect label, name: connectLabel, widget: string }
+              - label: Team
+                name: team
+                widget: list
+                collapsed: true
+                summary: '{{fields.name}}'
+                fields:
+                  - { label: Name, name: name, widget: string }
+                  - { label: Role, name: role, widget: string }
+                  - label: Tags
+                    name: tags
+                    widget: list
+                    allow_add: true
+                    field: { label: Tag, name: tag, widget: string }
+                  - label: Image
+                    name: image
+                    widget: object
+                    fields:
+                      - { label: File, name: src, widget: image }
+                      - { label: Alt text, name: alt, widget: string }
+          - label: Legal
+            name: legal
+            widget: object
+            fields:
+              - { label: Impressum title, name: impressumTitle, widget: string }
+              - { label: Datenschutz title, name: datenschutzTitle, widget: string }
+              - { label: Datenschutz body, name: datenschutzBody, widget: text }
