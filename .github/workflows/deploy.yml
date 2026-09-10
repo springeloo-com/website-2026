@@ -32,6 +32,7 @@ jobs:
         env:
           PUBLIC_SITE_URL: ${{ vars.PUBLIC_SITE_URL }}
           PUBLIC_BASE_PATH: ${{ vars.PUBLIC_BASE_PATH }}
+          PUBLIC_GTM_ID: ${{ vars.PUBLIC_GTM_ID }}
       - name: Upload Pages artifact
         # v5 uses a current upload-artifact (avoids Node 20 deprecation on v4)
         uses: actions/upload-pages-artifact@v5

@@ -1,0 +1,183 @@
+---
+/**
+ * GDPR cookie banner — loads GTM only after analytics consent.
+ * Set PUBLIC_GTM_ID (e.g. GTM-XXXXXXX) in env / GitHub Actions vars.
+ */
+interface Props {
+  privacyHref?: string;
+}
+
+const { privacyHref = '/kontakt#datenschutz' } = Astro.props;
+const gtmId = (import.meta.env.PUBLIC_GTM_ID as string | undefined)?.trim() || '';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '') || '';
+const privacyUrl = privacyHref.startsWith('http')
+  ? privacyHref
+  : `${base}${privacyHref.startsWith('/') ? privacyHref : `/${privacyHref}`}`;
+---
+
+<div
+  class="cookie-consent"
+  id="cookie-consent"
+  role="dialog"
+  aria-modal="false"
+  aria-labelledby="cookie-consent-title"
+  aria-describedby="cookie-consent-desc"
+  hidden
+  aria-hidden="true"
+  data-gtm-id={gtmId}
+>
+  <div class="cookie-consent__panel">
+    <div class="cookie-consent__copy">
+      <h2 id="cookie-consent-title" class="cookie-consent__title">Cookie-Einstellungen</h2>
+      <p id="cookie-consent-desc" class="cookie-consent__text">
+        Wir verwenden notwendige Cookies für den Betrieb der Website.         Analyse-Cookies (Google Tag Manager /
+        Analytics) setzen wir nur mit Ihrer Einwilligung. Details in unserer
+        {' '}
+        <a href={privacyUrl}>Datenschutzerklärung</a>.
+      </p>
+    </div>
+    <div class="cookie-consent__actions">
+      <button type="button" class="cookie-consent__btn cookie-consent__btn--ghost" data-consent-choice="necessary">
+        Nur notwendige
+      </button>
+      <button type="button" class="cookie-consent__btn cookie-consent__btn--ghost" data-consent-choice="analytics">
+        Analytics erlauben
+      </button>
+      <button type="button" class="cookie-consent__btn cookie-consent__btn--primary" data-consent-choice="all">
+        Alle akzeptieren
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { initCookieConsent } from '../scripts/cookie-consent';
+
+  function boot() {
+    const banner = document.getElementById('cookie-consent');
+    if (!(banner instanceof HTMLElement)) return;
+    if (banner.dataset.consentReady === '1') return;
+    banner.dataset.consentReady = '1';
+    const gtmId = banner.dataset.gtmId || '';
+    initCookieConsent({
+      gtmId,
+      banner,
+      openTriggers: document.querySelectorAll('[data-cookie-settings]'),
+    });
+  }
+
+  boot();
+  document.addEventListener('astro:page-load', boot);
+</script>
+
+<style>
+  .cookie-consent {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: 1000;
+    padding: var(--space-4);
+    pointer-events: none;
+  }
+
+  .cookie-consent:not([hidden]) {
+    pointer-events: auto;
+  }
+
+  .cookie-consent__panel {
+    max-width: var(--max-content);
+    margin-inline: auto;
+    display: grid;
+    gap: var(--space-5);
+    padding: var(--space-5);
+    background: var(--color-cream);
+    color: var(--color-ink);
+    border: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .cookie-consent__title {
+    margin: 0 0 var(--space-3);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-tight);
+  }
+
+  .cookie-consent__text {
+    margin: 0;
+    font-size: var(--font-size-md);
+    line-height: var(--line-normal);
+    max-width: 52rem;
+  }
+
+  .cookie-consent__text a {
+    color: var(--color-blue-deep);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  .cookie-consent__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .cookie-consent__btn {
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.25rem;
+    padding: 0.45rem 1.15rem;
+    border-radius: var(--radius-pill);
+    border: 1.5px solid var(--color-ink);
+    font: inherit;
+    font-size: 0.95rem;
+    font-weight: var(--font-weight-bold);
+    cursor: pointer;
+    transition:
+      background var(--duration) var(--ease),
+      color var(--duration) var(--ease),
+      border-color var(--duration) var(--ease);
+  }
+
+  .cookie-consent__btn--ghost {
+    background: transparent;
+    color: var(--color-ink);
+  }
+
+  .cookie-consent__btn--ghost:hover,
+  .cookie-consent__btn--ghost:focus-visible {
+    background: color-mix(in srgb, var(--color-ink) 8%, transparent);
+  }
+
+  .cookie-consent__btn--primary {
+    background: var(--color-blue);
+    border-color: var(--color-blue);
+    color: var(--color-cream);
+  }
+
+  .cookie-consent__btn--primary:hover,
+  .cookie-consent__btn--primary:focus-visible {
+    background: var(--color-blue-deep);
+    border-color: var(--color-blue-deep);
+  }
+
+  .cookie-consent__btn:focus-visible {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 3px;
+  }
+
+  @media (min-width: 768px) {
+    .cookie-consent__panel {
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: var(--space-6);
+      padding: var(--space-6);
+    }
+
+    .cookie-consent__actions {
+      justify-content: flex-end;
+      max-width: 22rem;
+    }
+  }
+</style>

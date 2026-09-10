@@ -74,6 +74,9 @@ const mapsUrl = 'https://maps.app.goo.gl/UDyRK9NH3pAXULks9';
           <a href={`${base}${item.href}`}>{item.label}</a>
         ))
       }
+      <button type="button" class="site-footer__cookie-btn" data-cookie-settings>
+        Cookie-Einstellungen
+      </button>
     </nav>
     <p>© {year} {siteMeta.company}. Alle Rechte vorbehalten</p>
   </div>
@@ -186,6 +189,24 @@ const mapsUrl = 'https://maps.app.goo.gl/UDyRK9NH3pAXULks9';
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
+  }
+
+  .site-footer__cookie-btn {
+    appearance: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .site-footer__cookie-btn:hover {
+    text-decoration: underline;
   }
 
   @media (min-width: 768px) {

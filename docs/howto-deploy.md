@@ -38,6 +38,7 @@ Go to **Settings → Secrets and variables → Actions → Variables**.
 |----------|-------------|---------|
 | `PUBLIC_SITE_URL` | Always recommended | `https://your-org.github.io` or `https://your-org.github.io/website-2026` |
 | `PUBLIC_BASE_PATH` | Only for **project** sites | `/website-2026/` |
+| `PUBLIC_GTM_ID` | Optional analytics | `GTM-XXXXXXX` (cookie banner gates load) |
 
 ### Which base path?
 

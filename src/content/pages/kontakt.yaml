@@ -53,4 +53,21 @@ management:
 legal:
   impressumTitle: Impressum
   datenschutzTitle: Datenschutz
-  datenschutzBody: Datenschutzhinweise gemäß Footer-Verweis — Details folgen dem rechtlichen Extract.
+  datenschutzBody: |
+    Verantwortlicher für die Datenverarbeitung auf dieser Website ist die Springeloo GmbH
+    (Kontaktdaten siehe Impressum).
+
+    Beim Besuch der Website werden technisch notwendige Daten verarbeitet, die für den Betrieb
+    und die Auslieferung der Seiten erforderlich sind. Darüber hinaus setzen wir – nur nach Ihrer
+    ausdrücklichen Einwilligung – Analyse-Dienste über Google Tag Manager ein. Dazu können Cookies
+    bzw. vergleichbare Technologien gehören, die der Reichweitenmessung und der Verbesserung unseres
+    Angebots dienen.
+
+    Sie können Ihre Einwilligung jederzeit widerrufen oder ändern: über den Link
+    „Cookie-Einstellungen“ im Footer oder über die Cookie-Leiste. Bis zur Einwilligung werden
+    keine Analyse-Tags geladen; die Standardeinstellung entspricht dem Google Consent Mode
+    (Speicherung für Analytics und Werbung verweigert).
+
+    Weitere Auskunfts-, Berichtigungs- und Löschrechte sowie das Recht auf Beschwerde bei einer
+    Aufsichtsbehörde richten sich nach der DSGVO. Eine vollständige Datenschutzerklärung kann
+    hier ergänzt bzw. durch den rechtlichen Textstand ersetzt werden.

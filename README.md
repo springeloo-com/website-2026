@@ -41,6 +41,10 @@ npm run preview
 
 Optional: `PUBLIC_SITE_URL` for absolute canonical/OG URLs.
 
+Optional: `PUBLIC_GTM_ID` (e.g. `GTM-XXXXXXX`) for Google Tag Manager.
+Consent Mode defaults deny analytics until the visitor chooses in the cookie banner.
+See `.env.example`. Set the same variable in GitHub Actions repository variables for production.
+
 ## Speckit
 
 Feature artifacts live in `specs/` (e.g. `specs/001-springeloo-website/`,
