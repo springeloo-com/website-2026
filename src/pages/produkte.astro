@@ -10,13 +10,20 @@ const page = getProdukteContent();
 const { meta, intro, lead, slider, products, oss, cta } = page;
 const arrowCircle = publicUrl('/uploads/effects/icon-arrow-circle.svg');
 
-const sliderSlides = slider.slides.map((slide) => ({
-  id: slide.id,
-  name: slide.name,
-  description: slide.description,
-  image: slide.image.src,
-  alt: slide.image.alt,
-}));
+const productsById = Object.fromEntries(products.map((product) => [product.id, product]));
+
+const sliderSlides = slider.slides.map((slide) => {
+  const product = productsById[slide.id];
+  return {
+    id: slide.id,
+    name: slide.name,
+    description: slide.description,
+    body: product?.summary ?? slide.description.join('. '),
+    details: product?.details ?? [],
+    image: slide.image.src,
+    alt: slide.image.alt,
+  };
+});
 ---
 
 <BaseLayout title={meta.title} description={meta.description} canonicalPath="/produkte" theme="dark" ogImage={publicUrl(intro.image.src)}>
@@ -86,14 +93,26 @@ const sliderSlides = slider.slides.map((slide) => ({
             </div>
           </div>
 
-          <div class="product-block__details">
+          <div class="product-block__details" data-product-details>
             <div class="container product-block__details-grid">
               <div class="product-block__details-media">
-                <img src={publicUrl(product.mock.src)} alt="" width="800" height="600" />
+                <img
+                  data-product-details-image
+                  src={publicUrl(product.details[0]?.image.src ?? product.mock.src)}
+                  alt={product.details[0]?.image.alt ?? product.mock.alt}
+                  width="800"
+                  height="600"
+                />
               </div>
               <div class="product-block__details-list">
                 {product.details.map((item, index) => (
-                  <details class="product-detail" open={index === 0}>
+                  <details
+                    class="product-detail"
+                    open={index === 0}
+                    data-product-detail
+                    data-image-src={publicUrl(item.image.src)}
+                    data-image-alt={item.image.alt}
+                  >
                     <summary>{item.title}</summary>
                     <p>{item.body}</p>
                   </details>
@@ -313,9 +332,15 @@ const sliderSlides = slider.slides.map((slide) => ({
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-semibold);
     list-style: none;
-    display: flex;
+    display: inline-flex;
     align-items: flex-start;
     gap: 0.65rem;
+    max-width: 100%;
+    color: var(--color-cream);
+    border: 1px solid transparent;
+    padding: 0.2rem 0.45rem 0.2rem 0.15rem;
+    margin-inline: -0.15rem;
+    transition: border-color var(--duration) var(--ease);
   }
 
   .product-detail summary::-webkit-details-marker {
@@ -323,22 +348,27 @@ const sliderSlides = slider.slides.map((slide) => ({
   }
 
   .product-detail summary::before {
-    content: '';
-    flex: 0 0 0.65rem;
-    width: 0.65rem;
-  }
-
-  .product-detail[open] summary::before {
     content: '‹';
+    flex: 0 0 0.75rem;
+    width: 0.75rem;
     color: var(--color-cream);
     font-size: 1.25rem;
     line-height: 1.1;
     font-weight: var(--font-weight-regular);
+    opacity: 0.55;
+  }
+
+  .product-detail[open] summary {
+    border-color: var(--color-blue);
+  }
+
+  .product-detail[open] summary::before {
+    opacity: 1;
   }
 
   .product-detail p {
     margin: var(--space-3) 0 0;
-    padding-left: calc(0.65rem + 0.65rem);
+    padding-left: calc(0.75rem + 0.65rem);
     max-width: 40rem;
     line-height: 1.5;
     opacity: 0.92;
@@ -430,3 +460,42 @@ const sliderSlides = slider.slides.map((slide) => ({
     }
   }
 </style>
+
+<script>
+  function initProductDetails(root: HTMLElement) {
+    const image = root.querySelector<HTMLImageElement>('[data-product-details-image]');
+    const items = Array.from(root.querySelectorAll<HTMLDetailsElement>('[data-product-detail]'));
+
+    const syncImage = (item: HTMLDetailsElement) => {
+      if (!image) return;
+      const src = item.dataset.imageSrc;
+      if (!src) return;
+      image.src = src;
+      image.alt = item.dataset.imageAlt ?? '';
+    };
+
+    items.forEach((item) => {
+      item.addEventListener('toggle', () => {
+        if (!item.open) {
+          const anyOpen = items.some((entry) => entry.open);
+          if (!anyOpen) item.open = true;
+          return;
+        }
+        items.forEach((other) => {
+          if (other !== item) other.open = false;
+        });
+        syncImage(item);
+      });
+    });
+
+    const initiallyOpen = items.find((item) => item.open) ?? items[0];
+    if (initiallyOpen) syncImage(initiallyOpen);
+  }
+
+  function bootProductDetails() {
+    document.querySelectorAll<HTMLElement>('[data-product-details]').forEach(initProductDetails);
+  }
+
+  bootProductDetails();
+  document.addEventListener('astro:page-load', bootProductDetails);
+</script>

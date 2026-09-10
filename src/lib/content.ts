@@ -79,6 +79,12 @@ export type ProductTextItem = {
   body: string;
 };
 
+export type ProductDetailItem = {
+  title: string;
+  body: string;
+  image: ContentImage;
+};
+
 export type ProductSlideContent = {
   id: string;
   name: string;
@@ -94,7 +100,7 @@ export type ProductBlock = {
   mock: ContentImage;
   features: ProductTextItem[];
   summary: string;
-  details: ProductTextItem[];
+  details: ProductDetailItem[];
 };
 
 export type ProdukteContent = {
@@ -427,6 +433,20 @@ function requireTextItems(value: unknown, field: string): ProductTextItem[] {
   }));
 }
 
+function requireDetailItems(value: unknown, field: string): ProductDetailItem[] {
+  if (!Array.isArray(value) || value.length === 0) {
+    throw new Error(`Content validation failed: ${field} must have at least 1 item`);
+  }
+  return value.map((item, i) => {
+    const detail = item as ProductDetailItem;
+    return {
+      title: requireNonEmpty(detail?.title, `${field}[${i}].title`),
+      body: requireNonEmpty(detail?.body, `${field}[${i}].body`),
+      image: requireImage(detail?.image, `${field}[${i}].image`),
+    };
+  });
+}
+
 function validateProdukte(data: ProdukteContent): ProdukteContent {
   requireNonEmpty(data.meta?.title, 'meta.title');
   requireNonEmpty(data.meta?.description, 'meta.description');
@@ -486,7 +506,7 @@ function validateProdukte(data: ProdukteContent): ProdukteContent {
     mock: requireImage(product?.mock, `products[${i}].mock`),
     features: requireTextItems(product?.features, `products[${i}].features`),
     summary: requireNonEmpty(product?.summary, `products[${i}].summary`),
-    details: requireTextItems(product?.details, `products[${i}].details`),
+    details: requireDetailItems(product?.details, `products[${i}].details`),
   }));
 
   requireNonEmpty(data.oss?.kicker, 'oss.kicker');

@@ -65,10 +65,19 @@ products:
     details:
       - title: 'Touchpoint Management:'
         body: Steuerung aller Kundeninteraktionen. Von Web-Formularen und E-Mail-Kampagnen in der Awareness-Phase über das Lead-Management bis hin zu Verkaufschancen und Angeboten im Kaufprozess.
+        image:
+          src: /uploads/produkte/carousel/product-1.png
+          alt: Touchpoint Management Oberfläche
       - title: 'Kundenservice-Tools:'
         body: Professionelles Support-Management. E-Mail-Anfragen werden über E-Mail-to-Case automatisch in Servicefälle umgewandelt. Ein Kundenportal sowie eine Wissensdatenbank entlasten Ihr Team.
+        image:
+          src: /uploads/produkte/ida2-mock.png
+          alt: Kundenservice-Tools und Support-Dashboard
       - title: 'Nahtlose Migration:'
         body: Sicherer Systemwechsel. Wir migrieren Ihre bestehenden Daten verlustfrei – inklusive Firmenstammdaten, kundenspezifischen Feldern, Berechtigungen und Historie.
+        image:
+          src: /uploads/produkte/intro-b.png
+          alt: Nahtlose Migration von Bestandsdaten
   - id: spring-suitecrm
     category: Kundenkontaktmanagement
     name: spring suiteCRM
@@ -87,10 +96,19 @@ products:
     details:
       - title: Kontakt Management
         body: Zentrale Steuerung von Kontakten, Leads und Opportunities.
+        image:
+          src: /uploads/produkte/suitecrm-mock.png
+          alt: Kontakt Management in SuiteCRM
       - title: Collaborative Tools
         body: Zusammenarbeit im Team über geteilte Pipelines und Aufgaben.
+        image:
+          src: /uploads/produkte/carousel/product-2.png
+          alt: Collaborative Tools im CRM
       - title: Mobile Adaption
         body: Zugriff auf CRM-Daten dort, wo Ihr Vertrieb arbeitet.
+        image:
+          src: /uploads/produkte/intro-c.png
+          alt: Mobile Adaption des CRM
   - id: host-abloese
     category: Host Ablöse
     name: Host Ablöse
@@ -109,10 +127,19 @@ products:
     details:
       - title: Dokumenten-Management
         body: Strukturierte Ablage und Nachvollziehbarkeit in der Transformation.
+        image:
+          src: /uploads/a1_024_01_2.png
+          alt: Dokumenten-Management in der Host Ablöse
       - title: Kollaborations-Tools
         body: Gemeinsame Arbeit von Fachseite und Technik am Soll-Zustand.
+        image:
+          src: /uploads/produkte/carousel/product-3.png
+          alt: Kollaborations-Tools für die Transformation
       - title: Mobile Adaption
         body: Moderne Oberflächen statt Terminal-Zwang.
+        image:
+          src: /uploads/produkte/intro-a.png
+          alt: Moderne Oberflächen für Host Ablöse
 oss:
   kicker: Digitale Souveränität
   headline: Open Source Lösungen

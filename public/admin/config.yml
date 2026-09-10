@@ -280,6 +280,12 @@ collections:
                 fields:
                   - { label: Title, name: title, widget: string }
                   - { label: Body, name: body, widget: text }
+                  - label: Image
+                    name: image
+                    widget: object
+                    fields:
+                      - { label: File, name: src, widget: image }
+                      - { label: Alt text, name: alt, widget: string }
           - label: Open Source
             name: oss
             widget: object
