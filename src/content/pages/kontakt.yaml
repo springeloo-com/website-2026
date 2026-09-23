@@ -48,12 +48,12 @@ management:
         - CRM & IDM
         - MedTech
       image:
-        src: /uploads/team/mathias-florian.png
+        src: /uploads/mathias_webpage.jpg
         alt: Porträt Mathias Florian
 legal:
   impressumTitle: Impressum
   datenschutzTitle: Datenschutz
-  datenschutzBody: |
+  datenschutzBody: |-
     Verantwortlicher für die Datenverarbeitung auf dieser Website ist die Springeloo GmbH
     (Kontaktdaten siehe Impressum).
 
