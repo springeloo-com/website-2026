@@ -34,11 +34,11 @@ slider:
         src: /uploads/product ida2 gemini.png
         alt: spring id.a2 — Identity Management
     - id: spring-suitecrm
-      name: SuiteCRM
+      name: Limespace
       description:
-        - Kundenkontaktmanagement
-        - Open Source CRM
-        - Volle Datenhoheit
+        - Limespace – die kollaborative Arbeitsplattform mit integrierter KI
+        - Die Software passt sich dem Unternehmen an – nicht umgekehrt
+        - Die Software passt sich dem Unternehmen an – nicht umgekehrt
       image:
         src: /uploads/product SuiteCRM chatgpt (1).png
         alt: spring suiteCRM — Kundenkontaktmanagement
@@ -77,8 +77,8 @@ products:
           src: /uploads/produkte/intro-b.png
           alt: Nahtlose Migration von Bestandsdaten
   - id: spring-suitecrm
-    category: Kundenkontaktmanagement
-    name: spring suiteCRM
+    category: Die kollaborative Arbeitsplattform mit integrierter KI
+    name: Limespace
     logo: null
     mock:
       src: /uploads/produkte/suitecrm-mock.png
@@ -90,7 +90,9 @@ products:
         body: Rechtssicher agieren. Volle Datenhoheit, lückenlose Audits und Protokolle – betrieben in Ihrer Infrastruktur.
       - title: 'Open-Source Technologie:'
         body: Nahtlose Markenidentität und Customizing. Login, Oberflächen und Workflows passen wir an Ihr Corporate Design an.
-    summary: spring suiteCRM ist unsere kosteneffiziente Lösung für ganzheitliches Kundenkontaktmanagement. Basierend auf Open Source bietet das System volle Datenhoheit und maximale Flexibilität ohne Lizenzgebühren. Wir integrieren KI-Features wie Speech2Text und automatisierte Workflows für ein sicheres Fundament Ihrer Customer Journey – individuell, skalierbar und absolut verlässlich.
+    summary: |-
+      Limespace unterstützt überall dort, wo Menschen, Informationen, Termine, Aufgaben und Prozesse zusammenkommen.
+      Ob Kunden betreut, Projekte gesteuert, Teams koordiniert, Dokumente verwaltet oder administrative Abläufe organisiert werden: Limespace schafft eine gemeinsame Arbeitsumgebung, die sich an den jeweiligen Bedarf anpasst.
     details:
       - title: Kontakt Management
         body: Zentrale Steuerung von Kontakten, Leads und Opportunities.
