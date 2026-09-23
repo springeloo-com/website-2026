@@ -31,7 +31,7 @@ slider:
         - Self-Service Portal
         - NIS2-konform
       image:
-        src: /uploads/produkte/carousel/product-1.png
+        src: /uploads/product ida2 gemini.png
         alt: spring id.a2 — Identity Management
     - id: spring-suitecrm
       name: SuiteCRM
