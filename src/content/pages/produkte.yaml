@@ -40,7 +40,7 @@ slider:
         - Open Source CRM
         - Volle Datenhoheit
       image:
-        src: /uploads/produkte/carousel/product-2.png
+        src: /uploads/product SuiteCRM chatgpt (1).png
         alt: spring suiteCRM — Kundenkontaktmanagement
 products:
   - id: spring-ida2
