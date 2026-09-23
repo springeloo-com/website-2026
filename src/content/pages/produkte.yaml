@@ -88,8 +88,10 @@ products:
         body: 'Volle Budgetkontrolle ohne Vendor-Lock-in. Open-Source-Basis bedeutet: keine teuren, wiederkehrenden Lizenzgebühren für Nutzer oder Features.'
       - title: 'DSGVO & Compliance:'
         body: Rechtssicher agieren. Volle Datenhoheit, lückenlose Audits und Protokolle – betrieben in Ihrer Infrastruktur.
-      - title: 'Open-Source Technologie:'
-        body: Nahtlose Markenidentität und Customizing. Login, Oberflächen und Workflows passen wir an Ihr Corporate Design an.
+      - title: Die Software passt sich dem Unternehmen an – nicht umgekehrt
+        body: |-
+          Limespace gibt keine starren Prozesse vor. Workflows, Formulare, Datenstrukturen, Felder, Ansichten und Abläufe können an die individuellen Anforderungen eines Unternehmens oder einer Organisation angepasst werden.
+          Bestehende Prozesse lassen sich damit ebenso abbilden wie neue Arbeitsweisen entwickeln und automatisieren.
     summary: |-
       Limespace unterstützt überall dort, wo Menschen, Informationen, Termine, Aufgaben und Prozesse zusammenkommen.
       Ob Kunden betreut, Projekte gesteuert, Teams koordiniert, Dokumente verwaltet oder administrative Abläufe organisiert werden: Limespace schafft eine gemeinsame Arbeitsumgebung, die sich an den jeweiligen Bedarf anpasst.
