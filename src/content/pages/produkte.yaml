@@ -22,7 +22,7 @@ slider:
         - Spec-Driven Development
         - Java & PostgreSQL
       image:
-        src: /uploads/a1_024_01_2.png
+        src: /uploads/product legacy_decommissioning2 gemini.png
         alt: Host Ablöse — Modernisierung und Transformation
     - id: spring-ida2
       name: spring id.a2
@@ -31,7 +31,7 @@ slider:
         - Self-Service Portal
         - NIS2-konform
       image:
-        src: /uploads/produkte/carousel/product-1.png
+        src: /uploads/product ida2 gemini.png
         alt: spring id.a2 — Identity Management
     - id: spring-suitecrm
       name: SuiteCRM
@@ -40,7 +40,7 @@ slider:
         - Open Source CRM
         - Volle Datenhoheit
       image:
-        src: /uploads/produkte/carousel/product-2.png
+        src: /uploads/product SuiteCRM chatgpt (1).png
         alt: spring suiteCRM — Kundenkontaktmanagement
 products:
   - id: spring-ida2
