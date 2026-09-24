@@ -84,10 +84,12 @@ products:
       src: /uploads/produkte/suitecrm-mock.png
       alt: spring suiteCRM Dashboard auf Tablet
     features:
-      - title: 'Keine Lizenzkosten:'
-        body: 'Volle Budgetkontrolle ohne Vendor-Lock-in. Open-Source-Basis bedeutet: keine teuren, wiederkehrenden Lizenzgebühren für Nutzer oder Features.'
-      - title: 'DSGVO & Compliance:'
-        body: Rechtssicher agieren. Volle Datenhoheit, lückenlose Audits und Protokolle – betrieben in Ihrer Infrastruktur.
+      - title: Alles verbunden – statt isolierter Einzellösungen
+        body: CRM, Projekte, Aufgaben, Dokumente, Termine, Zeiten, Reporting und weitere Geschäftsprozesse greifen auf eine gemeinsame Datenbasis zu und können miteinander verknüpft werden.
+      - title: 'Limespace versteht Zusammenarbeit weiter:'
+        body: |-
+          Als Zusammenspiel von Menschen, Teams und künstlicher Intelligenz.
+          Die integrierte KI agiert nicht nur als Chatbot oder Textgenerator, sondern als intelligenter digitaler Kollege innerhalb der Arbeitsumgebung. Sie arbeitet innerhalb derselben Arbeitsumgebung, kennt den verfügbaren Kontext und kann Informationen zusammenführen, Zusammenhänge erkennen und bei der weiteren Arbeit mitdenken.
       - title: Die Software passt sich dem Unternehmen an – nicht umgekehrt
         body: |-
           Limespace gibt keine starren Prozesse vor. Workflows, Formulare, Datenstrukturen, Felder, Ansichten und Abläufe können an die individuellen Anforderungen eines Unternehmens oder einer Organisation angepasst werden.
@@ -96,18 +98,29 @@ products:
       Limespace unterstützt überall dort, wo Menschen, Informationen, Termine, Aufgaben und Prozesse zusammenkommen.
       Ob Kunden betreut, Projekte gesteuert, Teams koordiniert, Dokumente verwaltet oder administrative Abläufe organisiert werden: Limespace schafft eine gemeinsame Arbeitsumgebung, die sich an den jeweiligen Bedarf anpasst.
     details:
-      - title: Kontakt Management
-        body: Zentrale Steuerung von Kontakten, Leads und Opportunities.
+      - title: Alles verbunden – statt isolierter Einzellösungen
+        body: |-
+          CRM, Projekte, Aufgaben, Dokumente, Termine, Zeiten, Reporting und weitere Geschäftsprozesse greifen auf eine gemeinsame Datenbasis zu und können miteinander verknüpft werden.
+          Informationen stehen dadurch dort zur Verfügung, wo sie gebraucht werden – ohne Medienbrüche, redundante Datenhaltung oder manuelle Übertragung zwischen unterschiedlichen Systemen.
+          So entsteht ein gemeinsamer Arbeitskontext für Mitarbeiter, Teams und KI.
         image:
           src: /uploads/produkte/suitecrm-mock.png
           alt: Kontakt Management in SuiteCRM
-      - title: Collaborative Tools
-        body: Zusammenarbeit im Team über geteilte Pipelines und Aufgaben.
+      - title: Zusammenarbeit zwischen Menschen und KI – der intelligente Kollege
+        body: |-
+          Limespace versteht Zusammenarbeit weiter: als Zusammenspiel von Menschen, Teams und künstlicher Intelligenz.
+          Die integrierte KI agiert nicht nur als Chatbot oder Textgenerator, sondern als intelligenter digitaler Kollege innerhalb der Arbeitsumgebung. Sie arbeitet innerhalb derselben Arbeitsumgebung, kennt den verfügbaren Kontext und kann Informationen zusammenführen, Zusammenhänge erkennen und bei der weiteren Arbeit mitdenken. 
+          Sie kann Informationen über verschiedene Bereiche hinweg finden und einordnen, Berichte erstellen, Dokumente verarbeiten, Aufgaben und Projekte anlegen, Workflows auslösen und bei administrativen sowie analytischen Tätigkeiten unterstützen.
+          Die KI unterstützt damit wie ein Kollege, der den Vorgang bereits kennt und nicht jedes Mal neu eingearbeitet werden muss. 
+          Dabei kann die Interaktion ganz natürlich per Sprache erfolgen. Informationen abfragen, Notizen erfassen, Aufgaben anlegen oder Arbeitsabläufe anstoßen – viele Tätigkeiten können direkt über Sprache gesteuert werden.
         image:
           src: /uploads/produkte/carousel/product-2.png
           alt: Collaborative Tools im CRM
-      - title: Mobile Adaption
-        body: Zugriff auf CRM-Daten dort, wo Ihr Vertrieb arbeitet.
+      - title: Datenhoheit, Kontrolle und Datenschutz
+        body: |-
+          Unternehmensdaten sind ein zentraler Unternehmenswert. Limespace ist deshalb darauf ausgelegt, die Kontrolle über Daten und technologische Abhängigkeiten beim Unternehmen zu belassen. 
+          Durch flexible Betriebsmodelle, offene Schnittstellen und die Möglichkeit, unterschiedliche KI-Modelle einzusetzen, wird die Abhängigkeit von einzelnen Technologieanbietern reduziert. Unternehmen können neue Technologien nutzen und weiterentwickeln, ohne ihre Daten und Prozesse dauerhaft an einen einzelnen Anbieter zu binden.
+          Damit verbindet Limespace Datenschutz und Datenhoheit mit einem strategischen Vorteil: mehr technologische Unabhängigkeit und weniger Vendor Lock-in.
         image:
           src: /uploads/produkte/intro-c.png
           alt: Mobile Adaption des CRM
