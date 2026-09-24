@@ -53,13 +53,23 @@ products:
       src: /uploads/produkte/ida2-mock.png
       alt: spring id.a2 Oberfläche auf Tablet
     features:
-      - title: 'Radikale Kosteneffizienz:'
-        body: Maximale Budgetkontrolle. Da die Plattform auf einem aktiven Open-Source-Modell basiert, entfallen teure, wiederkehrende Lizenzgebühren vollständig. Das senkt die Gesamtbetriebskosten dauerhaft.
-      - title: 'Volle Datenhoheit:'
-        body: Höchste Sicherheitsstandards. Sie behalten die absolute Kontrolle und Hoheit über all Ihre Kundendaten. Das System lässt sich flexibel und DSGVO-konform in Ihrer eigenen IT-Infrastruktur betreiben.
-      - title: 'Grenzenlose Flexibilität:'
-        body: Zukunftssicher und skalierbar. Dank des offenen Quellcodes passen wir Felder, Oberflächen und Workflows exakt an. Neue Module und Drittsysteme lassen sich nahtlos und unkompliziert integrieren.
-    summary: spring id.a2 ist unsere Lösung für sicheres Identity & Access Management auf Basis von Keycloak. Das System ermöglicht eine benutzerzentrierte Verwaltung digitaler Identitäten für interne und externe User. Durch ein intuitives Self-Service-Portal und ein Support-Dashboard schaffen wir ein sicheres Fundament für Ihre Zugriffssteuerung – verlässlich, skalierbar und NIS2-konform.
+      - title: 'Sichere Authentifizierung:'
+        body: Höchster Schutz durch Multi-Faktor-Authentifizierung (MFA). Nutzer loggen sich sicher und flexibel via ID Austria, Passkey, SMS-OTP oder Authenticator-Apps ein – für maximale IT-Sicherheit.
+      - title: 'Self-Service-Portal:'
+        body: Entlastung für Ihre IT. Mitarbeiter und Kunden verwalten Passwörter, Stammdaten und Verifizierungen im intuitiven Web-Portal selbst. Das senkt die Ticket-Rate im Support spürbar.
+      - title: 'Flexibles Deployment:'
+        body: Sie entscheiden, wo Ihre Daten liegen. Die Software läuft wahlweise hochverfügbar in Ihrer Cloud (Cloud-Native) oder klassisch On-Premise auf Ihren eigenen Servern vor Ort.
+    summary: |-
+      spring id.a2 ist unsere Lösung für sicheres Identity & Access Management auf Basis von Keycloak. Das System ermöglicht eine benutzerzentrierte Verwaltung digitaler Identitäten für interne und externe User. Durch ein intuitives Self-Service-Portal und ein Support-Dashboard schaffen wir ein sicheres Fundament für Ihre Zugriffssteuerung – verlässlich, skalierbar und NIS2-konform.
+
+      Keine Lizenzkosten:
+      Volle Budgetkontrolle ohne Vendor-Lock-in. Da die Lösung auf dem Open-Source-Standard Keycloak basiert, entfallen teure, wiederkehrende Lizenzgebühren für Nutzer oder Features.
+
+      NIS2 & Compliance-konform:
+      Rechtssicher agieren. spring id.a2 deckt alle gängigen regulatorischen Standards ab und liefert lückenlose Audits und Protokolle, die für Audits zwingend erforderlich sind.
+
+      White-Label & Customizing:
+      Nahtlose Markenidentität. Das gesamte System – vom Login-Bildschirm bis zur Bestätigungs-E-Mail – wird exakt an das Corporate Design Ihres Unternehmens angepasst.
     details:
       - title: 'Touchpoint Management:'
         body: Steuerung aller Kundeninteraktionen. Von Web-Formularen und E-Mail-Kampagnen in der Awareness-Phase über das Lead-Management bis hin zu Verkaufschancen und Angeboten im Kaufprozess.
