@@ -136,7 +136,25 @@ Then `npm run build` and open a PR to `main`.
 | Production unchanged after save | Expected | Wait for maintainer merge + Pages deploy |
 | Build fails on card count | ≠ 3 cards | Restore exactly three cards in YAML |
 | Admin 404 on Pages | Wrong base path | Use `/website-2026/admin/` for the project site |
+| **Save fails: `A ref named "refs/heads/cms/…" already exists`** | Orphan CMS branch left after merge/close | See section below |
 | **Save fails: `API_ERROR: Resource not accessible by integration`** | Org blocks OAuth App / missing write / stale token scopes | See section below |
+
+### Save fails: `A ref named "refs/heads/cms/…" already exists`
+
+Editorial workflow uses one Git branch per entry, e.g.
+`cms/site/projektunterstuetzung`. If that branch still exists on GitHub but the
+CMS has no open draft/PR, the next save tries to **create** the same ref and
+GitHub rejects it. Image uploads fail the same way (same branch).
+
+Fix:
+
+1. GitHub → **Branches** (or PRs) → find `cms/site/<entry>`.
+2. Merge or close any open PR for that branch, then **delete** the branch.
+3. Retry save in `/admin/` — a fresh branch + PR should appear.
+4. Keep **Settings → General → Automatically delete head branches** enabled so
+   merged CMS branches do not pile up.
+
+Background / product fix: [prd-cms-stale-editorial-branch.md](prd-cms-stale-editorial-branch.md).
 
 ### Save fails: `Resource not accessible by integration`
 
