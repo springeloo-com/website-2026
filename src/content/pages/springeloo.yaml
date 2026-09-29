@@ -94,7 +94,7 @@ management:
         - CRM & IDM
         - MedTech
       image:
-        src: /uploads/team/mathias-florian.png
+        src: /uploads/mathias_webpage.jpg
         alt: Porträt Mathias Florian
 cta:
   kicker: Jetzt Kontakt aufnehmen
