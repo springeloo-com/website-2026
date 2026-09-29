@@ -64,7 +64,7 @@ products:
       - title: 'Keine Lizenzkosten:'
         body: Volle Budgetkontrolle ohne Vendor-Lock-in. Da die Lösung auf dem Open-Source-Standard Keycloak basiert, entfallen teure, wiederkehrende Lizenzgebühren für Nutzer oder Features.
         image:
-          src: /uploads/produkte/carousel/product-1.png
+          src: /uploads/keycloak_logo.png
           alt: Touchpoint Management Oberfläche
       - title: 'NIS2 & Compliance-konform:'
         body: Rechtssicher agieren. spring id.a2 deckt alle gängigen regulatorischen Standards ab und liefert lückenlose Audits und Protokolle, die für Audits zwingend erforderlich sind.
