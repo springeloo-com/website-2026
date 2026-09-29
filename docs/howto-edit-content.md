@@ -106,7 +106,7 @@ site CSS (`.rich-text`). Do not paste raw HTML/CSS meant to restyle the layout.
 
 - [ ] Text matches approved wording
 - [ ] Images optimized; meaningful alt text
-- [ ] Still exactly three Leistungen cards and three Produkte items
+- [ ] Still exactly three Leistungen cards; Produkte slide/product ids stay in sync
 - [ ] Href destinations unchanged unless a developer intended that
 - [ ] `npm run build` succeeds
 - [ ] Spot-check desktop + mobile

@@ -51,7 +51,7 @@ npm run check:cms
 3. Save → Sveltia CMS uses **editorial workflow** (creates/updates a **pull request**
    toward `main`). Production is unchanged until merge.
 4. Maintainer reviews the diff (copy, images, Markdown HTML impact, still
-   exactly three Leistungen cards and three Produkte items).
+   exactly three Leistungen cards; Produkte slides/blocks stay aligned by `id`).
 5. Maintainer merges the PR.
 6. GitHub Actions builds Astro and deploys GitHub Pages from `main`.
 
@@ -87,7 +87,7 @@ Summary:
   `src/content/pages/home.yaml`, and `src/content/pages/produkte.yaml`
 - CTA/nav/legal **href** fields use hidden widgets (developer-controlled)
 - Leistungen cards: `min: 3` / `max: 3` / `allow_add: false`
-- Produkte slides and product blocks: `min: 3` / `max: 3` / `allow_add: false`
+- Produkte slides and product blocks: `min: 3` / `max: 8` (slide `id` must match product `id` for anchors)
 
 ## What editors can change
 
@@ -122,7 +122,7 @@ Then `npm run build` and open a PR to `main`.
 
 - [ ] Text matches approved wording
 - [ ] Images optimized; meaningful alt text
-- [ ] Still exactly three Leistungen cards and three Produkte items
+- [ ] Still exactly three Leistungen cards; Produkte slide/product ids stay in sync
 - [ ] Href destinations unchanged unless a developer intended that
 - [ ] `npm run build` succeeds
 - [ ] Spot-check desktop + mobile

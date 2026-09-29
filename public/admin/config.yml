@@ -216,16 +216,16 @@ collections:
             widget: object
             fields:
               - { label: Start index (developer), name: startIndex, widget: hidden }
-              - label: Slides (exactly three)
+              - label: Slides (min. three)
                 name: slides
                 widget: list
-                allow_add: false
+                allow_add: true
                 collapsed: true
                 summary: '{{fields.name}}'
                 min: 3
-                max: 3
+                max: 8
                 fields:
-                  - { label: Id (developer), name: id, widget: hidden }
+                  - { label: Id (developer), name: id, widget: string }
                   - { label: Name, name: name, widget: string }
                   - label: Description lines
                     name: description
@@ -238,14 +238,14 @@ collections:
                     fields:
                       - { label: File, name: src, widget: image }
                       - { label: Alt text, name: alt, widget: string }
-          - label: Products (exactly three)
+          - label: Products (min. three)
             name: products
             widget: list
-            allow_add: false
+            allow_add: true
             collapsed: true
             summary: '{{fields.name}}'
             min: 3
-            max: 3
+            max: 8
             fields:
               - { label: Id (developer), name: id, widget: hidden }
               - { label: Category, name: category, widget: string }

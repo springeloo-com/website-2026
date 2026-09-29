@@ -461,14 +461,14 @@ function validateProdukte(data: ProdukteContent): ProdukteContent {
   requireNonEmpty(data.lead?.body, 'lead.body');
 
   const slides = data.slider?.slides;
-  if (!Array.isArray(slides) || slides.length !== 3) {
+  if (!Array.isArray(slides) || slides.length < 3) {
     throw new Error(
-      `Content validation failed: slider.slides must have exactly 3 items (got ${slides?.length ?? 0})`,
+      `Content validation failed: slider.slides must have at least 3 items (got ${slides?.length ?? 0})`,
     );
   }
   const startIndex = Number(data.slider?.startIndex ?? 0);
   data.slider.startIndex = Number.isFinite(startIndex)
-    ? Math.min(2, Math.max(0, Math.trunc(startIndex)))
+    ? Math.min(slides.length - 1, Math.max(0, Math.trunc(startIndex)))
     : 0;
   data.slider.slides = slides.map((slide, i) => {
     const rawLines = Array.isArray(slide?.description) ? slide.description : [];
@@ -493,9 +493,9 @@ function validateProdukte(data: ProdukteContent): ProdukteContent {
   });
 
   const products = data.products;
-  if (!Array.isArray(products) || products.length !== 3) {
+  if (!Array.isArray(products) || products.length < 3) {
     throw new Error(
-      `Content validation failed: products must have exactly 3 items (got ${products?.length ?? 0})`,
+      `Content validation failed: products must have at least 3 items (got ${products?.length ?? 0})`,
     );
   }
   data.products = products.map((product, i) => ({

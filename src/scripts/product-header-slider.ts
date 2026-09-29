@@ -36,6 +36,7 @@ function initProductHeaderSlider(root: HTMLElement) {
   const detailsPanel = root.querySelector<HTMLElement>('[data-phs-details]');
   const detailsToggle = root.querySelector<HTMLButtonElement>('[data-phs-details-toggle]');
   const infoLink = root.querySelector<HTMLAnchorElement>('[data-phs-info]');
+  const imageLink = root.querySelector<HTMLAnchorElement>('[data-phs-image-link]');
   const tiles = Array.from(root.querySelectorAll<HTMLElement>('[data-phs-tile]'));
 
   let index = 0;
@@ -80,6 +81,17 @@ function initProductHeaderSlider(root: HTMLElement) {
     );
   };
 
+  const syncProductLinks = (slide: Slide) => {
+    if (infoLink) {
+      infoLink.href = slide.href;
+      infoLink.setAttribute('aria-label', `Mehr zu ${slide.name}`);
+    }
+    if (imageLink) {
+      imageLink.href = slide.href;
+      imageLink.setAttribute('aria-label', `Zum Produkt ${slide.name}`);
+    }
+  };
+
   const show = (nextIndex: number) => {
     index = ((nextIndex % slides.length) + slides.length) % slides.length;
     const current = at(index);
@@ -97,11 +109,7 @@ function initProductHeaderSlider(root: HTMLElement) {
     if (bodyEl) bodyEl.textContent = current.body;
     paintDetails(current);
     setDetailsOpen(false);
-
-    if (infoLink) {
-      infoLink.href = current.href;
-      infoLink.setAttribute('aria-label', `Mehr zu ${current.name}`);
-    }
+    syncProductLinks(current);
 
     root.dataset.activeIndex = String(index);
   };
