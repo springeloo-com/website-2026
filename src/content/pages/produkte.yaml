@@ -50,7 +50,7 @@ products:
       src: /uploads/produkte/ida-logo.png
       alt: spring id.a2 Logo
     mock:
-      src: /uploads/produkte/ida2-mock.png
+      src: /uploads/product ida2 infographic.png
       alt: spring id.a2 Oberfläche auf Tablet
     features:
       - title: 'Sichere Authentifizierung:'
