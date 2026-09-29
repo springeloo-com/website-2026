@@ -140,21 +140,21 @@ products:
         body: Nachhaltige Architektur. Agenten-Frameworks erkennen Kopplungen und schlagen modulare Grenzen vor – kein neuer „Java-Mainframe“.
     summary: Unsere Modernisierung des PL/I-BookingHubs löst veraltete Mainframe-Systeme durch eine skalierbare Java- und PostgreSQL-Architektur ab. Mittels Spec-Driven Development (SDD) und KI-Agenten wird Legacy-Code in modulare Microservices transformiert. Wir schaffen ein sicheres Fundament für Ihre IT-Transformation – fachlich absolut gleichwertig, performant und nachhaltig wartbar.
     details:
-      - title: Dokumenten-Management
-        body: Strukturierte Ablage und Nachvollziehbarkeit in der Transformation.
+      - title: 'Spec-Driven Code Gen:'
+        body: Vollautomatisierte oder KI-gestützte Übersetzung. KI-Agenten analysieren den alten Legacy-Code, erstellen präzise Fachspezifikationen und generieren daraus sauberen, modernen Java-Code.
         image:
           src: /uploads/a1_024_01_2.png
-          alt: Dokumenten-Management in der Host Ablöse
-      - title: Kollaborations-Tools
-        body: Gemeinsame Arbeit von Fachseite und Technik am Soll-Zustand.
+          alt: Spec-Driven Code Gen
+      - title: 'Automated Test-Suite:'
+        body: Höchste Qualität ab Tag eins. Aus den generierten Spezifikationen erzeugt das System vollautomatisch umfassende Unit-, Integrations- und Regressionstests (JUnit 5, Cypress).
         image:
           src: /uploads/produkte/carousel/product-3.png
-          alt: Kollaborations-Tools für die Transformation
-      - title: Mobile Adaption
-        body: Moderne Oberflächen statt Terminal-Zwang.
+          alt: Automated Test-Suite
+      - title: 'Equivalence Validation:'
+        body: Risikofreier Parallelbetrieb. Ein spezialisierter Diff-Agent führt automatisierte Massendaten- und Checksummen-Abgleiche durch, um die 1:1-Gleichwertigkeit mathematisch zu beweisen.
         image:
           src: /uploads/produkte/intro-a.png
-          alt: Moderne Oberflächen für Host Ablöse
+          alt: Equivalence Validation
 oss:
   kicker: Digitale Souveränität
   headline: Open Source Lösungen
