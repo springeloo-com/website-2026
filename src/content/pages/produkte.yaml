@@ -127,7 +127,7 @@ products:
     name: Host Ablöse
     logo: null
     mock:
-      src: /uploads/produkte/ida2-mock.png
+      src: /uploads/product legacy_decommissioning2 gemini.png
       alt: Host Ablöse Modernisierungsoberfläche
     features:
       - title: 'DORA- & Compliance-Schutz:'
@@ -141,17 +141,17 @@ products:
       - title: 'Spec-Driven Code Gen:'
         body: Vollautomatisierte oder KI-gestützte Übersetzung. KI-Agenten analysieren den alten Legacy-Code, erstellen präzise Fachspezifikationen und generieren daraus sauberen, modernen Java-Code.
         image:
-          src: /uploads/a1_024_01_2.png
+          src: /uploads/istockphoto-2283287180-612x612.jpg
           alt: Spec-Driven Code Gen
       - title: 'Automated Test-Suite:'
         body: Höchste Qualität ab Tag eins. Aus den generierten Spezifikationen erzeugt das System vollautomatisch umfassende Unit-, Integrations- und Regressionstests (JUnit 5, Cypress).
         image:
-          src: /uploads/produkte/carousel/product-3.png
+          src: /uploads/istockphoto-2286464404-612x612.jpg
           alt: Automated Test-Suite
       - title: 'Equivalence Validation:'
         body: Risikofreier Parallelbetrieb. Ein spezialisierter Diff-Agent führt automatisierte Massendaten- und Checksummen-Abgleiche durch, um die 1:1-Gleichwertigkeit mathematisch zu beweisen.
         image:
-          src: /uploads/produkte/intro-a.png
+          src: /uploads/istockphoto-1643825903-612x612.jpg
           alt: Equivalence Validation
 oss:
   kicker: Digitale Souveränität
