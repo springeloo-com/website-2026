@@ -59,7 +59,7 @@ products:
         body: Entlastung für Ihre IT. Mitarbeiter und Kunden verwalten Passwörter, Stammdaten und Verifizierungen im intuitiven Web-Portal selbst. Das senkt die Ticket-Rate im Support spürbar.
       - title: 'Flexibles Deployment:'
         body: Sie entscheiden, wo Ihre Daten liegen. Die Software läuft wahlweise hochverfügbar in Ihrer Cloud (Cloud-Native) oder klassisch On-Premise auf Ihren eigenen Servern vor Ort.
-    summary: '**spring id.a2** bietet sicheres, Keycloak-basiertes Identity &amp; Access Management. Mit Self-Service-Portal und Support-Dashboard sorgt die Lösung für eine verlässliche, skalierbare und NIS2-konforme Zugriffssteuerung aller User.'
+    summary: spring id.a2  bietet sicheres, Keycloak-basiertes Identity & Access Management. Mit Self-Service-Portal und Support-Dashboard sorgt die Lösung für eine verlässliche, skalierbare und NIS2-konforme Zugriffssteuerung aller User.
     details:
       - title: 'Keine Lizenzkosten:'
         body: Volle Budgetkontrolle ohne Vendor-Lock-in. Da die Lösung auf dem Open-Source-Standard Keycloak basiert, entfallen teure, wiederkehrende Lizenzgebühren für Nutzer oder Features.
