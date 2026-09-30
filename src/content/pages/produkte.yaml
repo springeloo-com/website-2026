@@ -42,15 +42,6 @@ slider:
       image:
         src: /uploads/product SuiteCRM chatgpt (1).png
         alt: spring suiteCRM — Kundenkontaktmanagement
-    - id: patho-ki
-      name: Patho-KI
-      description:
-        - Machine Learning für Fachärzte
-        - Entscheidungsunterstützung in der Pathologie
-        - Datenschutzkonform & klinisch integrierbar
-      image:
-        src: /uploads/ProduktM-iStock-995684292.jpg
-        alt: Patho-KI — Machine Learning für spezialisierte Ärztinnen und Ärzte
 products:
   - id: spring-ida2
     category: Identity Management
@@ -68,7 +59,7 @@ products:
         body: Entlastung für Ihre IT. Mitarbeiter und Kunden verwalten Passwörter, Stammdaten und Verifizierungen im intuitiven Web-Portal selbst. Das senkt die Ticket-Rate im Support spürbar.
       - title: 'Flexibles Deployment:'
         body: Sie entscheiden, wo Ihre Daten liegen. Die Software läuft wahlweise hochverfügbar in Ihrer Cloud (Cloud-Native) oder klassisch On-Premise auf Ihren eigenen Servern vor Ort.
-    summary: spring id.a2 ist unsere Lösung für sicheres Identity & Access Management auf Basis von Keycloak. Das System ermöglicht eine benutzerzentrierte Verwaltung digitaler Identitäten für interne und externe User. Durch ein intuitives Self-Service-Portal und ein Support-Dashboard schaffen wir ein sicheres Fundament für Ihre Zugriffssteuerung – verlässlich, skalierbar und NIS2-konform.
+    summary: '**spring id.a2** bietet sicheres, Keycloak-basiertes Identity &amp; Access Management. Mit Self-Service-Portal und Support-Dashboard sorgt die Lösung für eine verlässliche, skalierbare und NIS2-konforme Zugriffssteuerung aller User.'
     details:
       - title: 'Keine Lizenzkosten:'
         body: Volle Budgetkontrolle ohne Vendor-Lock-in. Da die Lösung auf dem Open-Source-Standard Keycloak basiert, entfallen teure, wiederkehrende Lizenzgebühren für Nutzer oder Features.
@@ -103,9 +94,7 @@ products:
         body: |-
           Limespace gibt keine starren Prozesse vor. Workflows, Formulare, Datenstrukturen, Felder, Ansichten und Abläufe können an die individuellen Anforderungen eines Unternehmens oder einer Organisation angepasst werden.
           Bestehende Prozesse lassen sich damit ebenso abbilden wie neue Arbeitsweisen entwickeln und automatisieren.
-    summary: |-
-      Limespace unterstützt überall dort, wo Menschen, Informationen, Termine, Aufgaben und Prozesse zusammenkommen.
-      Ob Kunden betreut, Projekte gesteuert, Teams koordiniert, Dokumente verwaltet oder administrative Abläufe organisiert werden: Limespace schafft eine gemeinsame Arbeitsumgebung, die sich an den jeweiligen Bedarf anpasst.
+    summary: Limespace unterstützt überall dort, wo Menschen, Informationen, Termine, Aufgaben und Prozesse zusammenkommen. Limespace schafft eine gemeinsame Arbeitsumgebung, die sich an den jeweiligen Bedarf anpasst.
     details:
       - title: Alles verbunden – statt isolierter Einzellösungen
         body: |-
@@ -147,7 +136,7 @@ products:
         body: Schutz vor Know-how-Verlust. Historisches, implizites Wissen wird aus altem Code extrahiert und in lesbare Fachlogik übersetzt.
       - title: 'Echte Microservices:'
         body: Nachhaltige Architektur. Agenten-Frameworks erkennen Kopplungen und schlagen modulare Grenzen vor – kein neuer „Java-Mainframe“.
-    summary: Unsere Modernisierung des PL/I-BookingHubs löst veraltete Mainframe-Systeme durch eine skalierbare Java- und PostgreSQL-Architektur ab. Mittels Spec-Driven Development (SDD) und KI-Agenten wird Legacy-Code in modulare Microservices transformiert. Wir schaffen ein sicheres Fundament für Ihre IT-Transformation – fachlich absolut gleichwertig, performant und nachhaltig wartbar.
+    summary: Mittels Spec-Driven Development (SDD) und KI-Agenten wird Legacy-Code in modulare Microservices transformiert. Wir schaffen ein sicheres Fundament für Ihre IT-Transformation – fachlich absolut gleichwertig, performant und nachhaltig wartbar.
     details:
       - title: 'Spec-Driven Code Gen:'
         body: Vollautomatisierte oder KI-gestützte Übersetzung. KI-Agenten analysieren den alten Legacy-Code, erstellen präzise Fachspezifikationen und generieren daraus sauberen, modernen Java-Code.
@@ -164,39 +153,6 @@ products:
         image:
           src: /uploads/produkte/intro-a.png
           alt: Equivalence Validation
-  - id: patho-ki
-    category: Medizinische KI
-    name: Patho-KI
-    logo: null
-    mock:
-      src: /uploads/ProduktM-iStock-995684292.jpg
-      alt: Patho-KI Assistenzoberfläche für Fachärzte
-    features:
-      - title: 'ML für Fachärzte:'
-        body: Proto — Patho-KI unterstützt Pathologinnen und Pathologen mit trainierten Modellen bei der Bild- und Befundanalyse. Die KI priorisiert auffällige Regionen und liefert nachvollziehbare Hinweise — die klinische Entscheidung bleibt beim Menschen.
-      - title: 'Spezialisten-Workflow:'
-        body: Proto — Anbindung an bestehende Labor- und Befundprozesse. Fälle lassen sich strukturiert vorbereiten, vergleichen und dokumentieren, ohne die etablierte Arbeitsweise der Spezialisten zu ersetzen.
-      - title: 'Datenschutz & Kontrolle:'
-        body: Proto — Verarbeitung nach klinischen Datenschutzanforderungen. Modelle und Daten bleiben steuerbar (On-Premise oder kontrollierte Cloud), inkl. Audit-Trail für nachvollziehbare Assistenz.
-    summary: |-
-      Patho-KI ist unser Prototyp für Machine-Learning-Assistenz speziell für Fachärzte in der Pathologie.
-      Die Lösung kombiniert Bildanalyse, Priorisierung und strukturierte Entscheidungsunterstützung — damit Spezialisten schneller und sicherer arbeiten können, ohne die Verantwortung an ein Black-Box-System abzugeben.
-    details:
-      - title: 'Bild- und Mustererkennung:'
-        body: Proto — Modelle erkennen Muster in histologischen Aufnahmen und markieren Regionen mit erhöhter Relevanz. Fachärzte erhalten eine visuelle Orientierungshilfe für den Fokus der Begutachtung.
-        image:
-          src: /uploads/produkte/carousel/product-1.png
-          alt: Bildanalyse und Mustererkennung
-      - title: 'Erklärbare Assistenz:'
-        body: Proto — Hinweise werden mit Kontext und Konfidenz indikativ dargestellt. So bleibt die Zusammenarbeit zwischen Mensch und Modell transparent und für den klinischen Alltag nutzbar.
-        image:
-          src: /uploads/produkte/carousel/product-2.png
-          alt: Erklärbare KI-Hinweise
-      - title: 'Integration in den Klinikalltag:'
-        body: Proto — Schnittstellen und Rollenmodelle zielen auf Einbettung in bestehende Systeme. Ziel ist Entlastung bei Routine und Fokus auf komplexe Fälle — Machine Learning als Werkzeug für spezialisierte Ärzte.
-        image:
-          src: /uploads/produkte/intro-b.png
-          alt: Klinische Integration
 oss:
   kicker: Digitale Souveränität
   headline: Open Source Lösungen
