@@ -69,20 +69,20 @@ products:
       - title: 'NIS2 & Compliance-konform:'
         body: Rechtssicher agieren. spring id.a2 deckt alle gängigen regulatorischen Standards ab und liefert lückenlose Audits und Protokolle, die für Audits zwingend erforderlich sind.
         image:
-          src: /uploads/produkte/ida2-mock.png
+          src: /uploads/istockphoto-2247127726-612x612.jpg
           alt: Kundenservice-Tools und Support-Dashboard
       - title: 'White-Label & Customizing:'
         body: Nahtlose Markenidentität. Das gesamte System – vom Login-Bildschirm bis zur Bestätigungs-E-Mail – wird exakt an das Corporate Design Ihres Unternehmens angepasst.
         image:
-          src: /uploads/produkte/intro-b.png
+          src: /uploads/istockphoto-1504880863-612x612.jpg
           alt: Nahtlose Migration von Bestandsdaten
   - id: spring-suitecrm
     category: Die kollaborative Arbeitsplattform mit integrierter KI
     name: Limespace
     logo: null
     mock:
-      src: /uploads/produkte/suitecrm-mock.png
-      alt: spring suiteCRM Dashboard auf Tablet
+      src: /uploads/Limespace_Module.png
+      alt: Limespace Dashboard auf Tablet
     features:
       - title: Alles verbunden – statt isolierter Einzellösungen
         body: CRM, Projekte, Aufgaben, Dokumente, Termine, Zeiten, Reporting und weitere Geschäftsprozesse greifen auf eine gemeinsame Datenbasis zu und können miteinander verknüpft werden.
@@ -102,7 +102,7 @@ products:
           Informationen stehen dadurch dort zur Verfügung, wo sie gebraucht werden – ohne Medienbrüche, redundante Datenhaltung oder manuelle Übertragung zwischen unterschiedlichen Systemen.
           So entsteht ein gemeinsamer Arbeitskontext für Mitarbeiter, Teams und KI.
         image:
-          src: /uploads/produkte/suitecrm-mock.png
+          src: /uploads/istockphoto-1643825903-612x612.jpg
           alt: Kontakt Management in SuiteCRM
       - title: Zusammenarbeit zwischen Menschen und KI – der intelligente Kollege
         body: |-
@@ -112,7 +112,7 @@ products:
           Die KI unterstützt damit wie ein Kollege, der den Vorgang bereits kennt und nicht jedes Mal neu eingearbeitet werden muss. 
           Dabei kann die Interaktion ganz natürlich per Sprache erfolgen. Informationen abfragen, Notizen erfassen, Aufgaben anlegen oder Arbeitsabläufe anstoßen – viele Tätigkeiten können direkt über Sprache gesteuert werden.
         image:
-          src: /uploads/produkte/carousel/product-2.png
+          src: /uploads/istockphoto-2188968497-612x612.jpg
           alt: Collaborative Tools im CRM
       - title: Datenhoheit, Kontrolle und Datenschutz
         body: |-
@@ -120,14 +120,14 @@ products:
           Durch flexible Betriebsmodelle, offene Schnittstellen und die Möglichkeit, unterschiedliche KI-Modelle einzusetzen, wird die Abhängigkeit von einzelnen Technologieanbietern reduziert. Unternehmen können neue Technologien nutzen und weiterentwickeln, ohne ihre Daten und Prozesse dauerhaft an einen einzelnen Anbieter zu binden.
           Damit verbindet Limespace Datenschutz und Datenhoheit mit einem strategischen Vorteil: mehr technologische Unabhängigkeit und weniger Vendor Lock-in.
         image:
-          src: /uploads/produkte/intro-c.png
+          src: /uploads/istockphoto-1180599068-612x612.jpg
           alt: Mobile Adaption des CRM
   - id: host-abloese
     category: Host Ablöse
     name: Host Ablöse
     logo: null
     mock:
-      src: /uploads/produkte/ida2-mock.png
+      src: /uploads/product legacy_decommissioning2 gemini.png
       alt: Host Ablöse Modernisierungsoberfläche
     features:
       - title: 'DORA- & Compliance-Schutz:'
@@ -141,17 +141,17 @@ products:
       - title: 'Spec-Driven Code Gen:'
         body: Vollautomatisierte oder KI-gestützte Übersetzung. KI-Agenten analysieren den alten Legacy-Code, erstellen präzise Fachspezifikationen und generieren daraus sauberen, modernen Java-Code.
         image:
-          src: /uploads/a1_024_01_2.png
+          src: /uploads/istockphoto-2283287180-612x612.jpg
           alt: Spec-Driven Code Gen
       - title: 'Automated Test-Suite:'
         body: Höchste Qualität ab Tag eins. Aus den generierten Spezifikationen erzeugt das System vollautomatisch umfassende Unit-, Integrations- und Regressionstests (JUnit 5, Cypress).
         image:
-          src: /uploads/produkte/carousel/product-3.png
+          src: /uploads/istockphoto-2286464404-612x612.jpg
           alt: Automated Test-Suite
       - title: 'Equivalence Validation:'
         body: Risikofreier Parallelbetrieb. Ein spezialisierter Diff-Agent führt automatisierte Massendaten- und Checksummen-Abgleiche durch, um die 1:1-Gleichwertigkeit mathematisch zu beweisen.
         image:
-          src: /uploads/produkte/intro-a.png
+          src: /uploads/istockphoto-1643825903-612x612.jpg
           alt: Equivalence Validation
 oss:
   kicker: Digitale Souveränität
