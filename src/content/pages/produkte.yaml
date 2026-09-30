@@ -81,8 +81,8 @@ products:
     name: Limespace
     logo: null
     mock:
-      src: /uploads/produkte/suitecrm-mock.png
-      alt: spring suiteCRM Dashboard auf Tablet
+      src: /uploads/Limespace_Module.png
+      alt: Limespace Dashboard auf Tablet
     features:
       - title: Alles verbunden – statt isolierter Einzellösungen
         body: CRM, Projekte, Aufgaben, Dokumente, Termine, Zeiten, Reporting und weitere Geschäftsprozesse greifen auf eine gemeinsame Datenbasis zu und können miteinander verknüpft werden.
