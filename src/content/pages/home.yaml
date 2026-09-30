@@ -21,7 +21,9 @@ leistungen:
     - eyebrow: Projektunterstützung
       title: Inspiration schafft Ideen, Unternehmenskultur treibt Innovation.
       body: Begleitung für Teams, die digitale Kompetenz und Kultur verbinden.
-      image: null
+      image:
+        src: /uploads/hero-office-2.jpg
+        alt: ''
       cta:
         label: Mehr erfahren
         href: /projektunterstuetzung
@@ -37,7 +39,9 @@ leistungen:
     - eyebrow: springeloo GmbH
       title: 'Konstanz durch Kultur: Experten, die bleiben.'
       body: Ein Team aus Professionals für nachhaltige digitale Zusammenarbeit.
-      image: null
+      image:
+        src: /uploads/springeloo/hero.jpg
+        alt: ''
       cta:
         label: Mehr erfahren
         href: /springeloo
