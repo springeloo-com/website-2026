@@ -250,7 +250,7 @@ const arrowRight = publicUrl('/uploads/effects/slide-arrow-right.svg');
 
   .phs__wrap {
     position: absolute;
-    inset: 0 0 22% 0;
+    inset: 0 0 30% 0;
     overflow: hidden;
   }
 
@@ -267,6 +267,7 @@ const arrowRight = publicUrl('/uploads/effects/slide-arrow-right.svg');
   .phs__tile {
     position: relative;
     flex: 0 0 auto;
+    z-index: 1;
   }
 
   .phs__tile--small {
@@ -276,8 +277,8 @@ const arrowRight = publicUrl('/uploads/effects/slide-arrow-right.svg');
   }
 
   .phs__tile--big {
-    width: min(392px, calc(100vw - 48px));
-    height: min(392px, calc(100vw - 48px));
+    width: min(340px, calc(100vw - 64px));
+    height: min(340px, calc(100vw - 64px));
   }
 
   .phs__foto {
@@ -375,9 +376,9 @@ const arrowRight = publicUrl('/uploads/effects/slide-arrow-right.svg');
   .phs__panel {
     position: absolute;
     left: 50%;
-    top: calc(50% + 210px);
+    top: calc(50% + 248px);
     transform: translate(-50%, -50%);
-    z-index: 3;
+    z-index: 5;
     width: min(28rem, calc(100vw - 3rem));
     text-align: center;
   }
@@ -510,8 +511,8 @@ const arrowRight = publicUrl('/uploads/effects/slide-arrow-right.svg');
     }
 
     .phs__tile--big {
-      width: 440px;
-      height: 440px;
+      width: 400px;
+      height: 400px;
     }
 
     .phs__tile--small {
@@ -519,13 +520,13 @@ const arrowRight = publicUrl('/uploads/effects/slide-arrow-right.svg');
     }
 
     .phs__reihe {
-      align-items: flex-end;
-      gap: 160px;
+      align-items: flex-start;
+      gap: 220px;
       top: 24px;
     }
 
     .phs__wrap {
-      inset: 0;
+      inset: 0 0 26% 0;
     }
 
     .phs__arrows {
@@ -534,7 +535,7 @@ const arrowRight = publicUrl('/uploads/effects/slide-arrow-right.svg');
     }
 
     .phs__panel {
-      top: calc(50% + 270px);
+      top: calc(50% + 300px);
       width: min(28rem, 70vw);
     }
   }
@@ -563,9 +564,14 @@ const arrowRight = publicUrl('/uploads/effects/slide-arrow-right.svg');
       height: 560px;
     }
 
+    .phs__wrap {
+      inset: 0;
+    }
+
     .phs__reihe {
       gap: 200px;
       top: 5px;
+      align-items: flex-end;
     }
 
     .phs__tile--big {
