@@ -4,7 +4,6 @@ import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import CTAButton from '../components/CTAButton.astro';
 import HeroShine from '../components/HeroShine.astro';
-import BrandTag from '../components/BrandTag.astro';
 import { getSiteMeta, getSpringelooContent, publicUrl } from '../lib/content';
 
 const siteMeta = getSiteMeta();
@@ -22,7 +21,6 @@ const lines = (text: string) => text.split('\n').filter((line) => line.length > 
     <div class="sp-hero__shade" aria-hidden="true"></div>
     <HeroShine />
     <div class="grid-overlay" aria-hidden="true"></div>
-    <BrandTag />
     <div class="container sp-hero__content">
       <div class="sp-hero__meta">
         <p>
