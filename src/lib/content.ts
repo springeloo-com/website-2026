@@ -223,13 +223,13 @@ export type SpringelooContent = {
   insights: {
     kicker: string;
     headline: string;
-    image: ContentImage;
     tabs: Array<{
       id: string;
       label: string;
       title: string;
       lead: string;
       body: string;
+      image: ContentImage;
     }>;
   };
   management: {
@@ -646,7 +646,6 @@ function validateSpringeloo(data: SpringelooContent): SpringelooContent {
 
   requireNonEmpty(data.insights?.kicker, 'insights.kicker');
   requireNonEmpty(data.insights?.headline, 'insights.headline');
-  data.insights.image = requireImage(data.insights?.image, 'insights.image');
   const insightTabs = data.insights?.tabs;
   if (!Array.isArray(insightTabs) || insightTabs.length < 1) {
     throw new Error('Content validation failed: insights.tabs must have at least 1 item');
@@ -657,6 +656,7 @@ function validateSpringeloo(data: SpringelooContent): SpringelooContent {
     title: requireNonEmpty(tab?.title, `insights.tabs[${i}].title`),
     lead: requireNonEmpty(tab?.lead, `insights.tabs[${i}].lead`),
     body: requireNonEmpty(tab?.body, `insights.tabs[${i}].body`),
+    image: requireImage(tab?.image, `insights.tabs[${i}].image`),
   }));
 
   requireNonEmpty(data.management?.kicker, 'management.kicker');

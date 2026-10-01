@@ -467,12 +467,6 @@ collections:
             fields:
               - { label: Kicker, name: kicker, widget: string }
               - { label: Headline, name: headline, widget: string }
-              - label: Shared tab image
-                name: image
-                widget: object
-                fields:
-                  - { label: File, name: src, widget: image }
-                  - { label: Alt text, name: alt, widget: string }
               - label: Tabs
                 name: tabs
                 widget: list
@@ -484,6 +478,12 @@ collections:
                   - { label: Title, name: title, widget: string }
                   - { label: Lead, name: lead, widget: text }
                   - { label: Body, name: body, widget: text }
+                  - label: Image
+                    name: image
+                    widget: object
+                    fields:
+                      - { label: File, name: src, widget: image }
+                      - { label: Alt text, name: alt, widget: string }
           - label: Management
             name: management
             widget: object
