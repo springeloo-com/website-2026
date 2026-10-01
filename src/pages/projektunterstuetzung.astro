@@ -5,6 +5,7 @@ import SiteFooter from '../components/SiteFooter.astro';
 import CTAButton from '../components/CTAButton.astro';
 import { getProjektunterstuetzungContent, publicUrl } from '../lib/content';
 import HeroShine from '../components/HeroShine.astro';
+import BrandTag from '../components/BrandTag.astro';
 
 const page = getProjektunterstuetzungContent();
 const { meta, hero, intro, kompetenzen, frameworks, solutions, branchen, cta } = page;
@@ -20,8 +21,8 @@ const lines = (text: string) => text.split('\n').filter((line) => line.length > 
     <div class="pu-hero__shade" aria-hidden="true"></div>
     <HeroShine />
     <div class="grid-overlay" aria-hidden="true"></div>
+    <BrandTag />
     <div class="container pu-hero__content">
-      <p class="eyebrow">{hero.eyebrow}</p>
       <h1>{hero.headline}</h1>
     </div>
   </section>

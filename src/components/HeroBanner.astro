@@ -7,6 +7,7 @@ import '@fontsource/overpass-mono/700.css';
 import CTAButton from './CTAButton.astro';
 import GradAnimation from './GradAnimation.astro';
 import HeroShine from './HeroShine.astro';
+import BrandTag from './BrandTag.astro';
 import { publicUrl } from '../lib/content';
 
 interface Props {
@@ -48,19 +49,7 @@ const headlineHtml = (() => {
   <HeroShine />
   <div class="hero-banner__hit" data-interaktionsflaeche aria-hidden="true"></div>
 
-  <p class="hero-banner__tag">
-    {
-      Astro.slots.has('tag') ? (
-        <slot name="tag" />
-      ) : (
-        <>
-          future by
-          <br aria-hidden="true" />
-          professionals.
-        </>
-      )
-    }
-  </p>
+  <BrandTag />
 
   <div class="hero-combined">
     <div class="hero-combined__hrai-row">
@@ -184,19 +173,6 @@ const headlineHtml = (() => {
     position: absolute;
     inset: 0 0 33.33% 0;
     z-index: 3;
-  }
-
-  .hero-banner__tag {
-    position: absolute;
-    z-index: 2;
-    margin: 0;
-    left: 24px;
-    top: 280px;
-    width: 101px;
-    font-size: 16px;
-    font-weight: var(--font-weight-semibold);
-    line-height: 20px;
-    color: var(--color-cream);
   }
 
   .hero-combined {
@@ -385,11 +361,6 @@ const headlineHtml = (() => {
       display: block;
     }
 
-    .hero-banner__tag {
-      left: 48px;
-      top: 188px;
-    }
-
     .hero-combined {
       width: 718px;
       max-width: none;
@@ -422,10 +393,6 @@ const headlineHtml = (() => {
       max-height: 900px;
     }
 
-    .hero-banner__tag {
-      top: 172px;
-    }
-
     .hero-combined {
       width: 670px;
     }
@@ -450,10 +417,6 @@ const headlineHtml = (() => {
       min-height: 900px;
       height: 100dvh;
       max-height: none;
-    }
-
-    .hero-banner__tag {
-      top: 231px;
     }
 
     .hero-combined {

@@ -4,6 +4,7 @@
  * Desktop: I2109:78612;2077:91251 · Mobile: I2109:114326;2095:37160
  */
 import { publicUrl } from '../lib/content';
+import BrandTag from './BrandTag.astro';
 
 export type ProductSlide = {
   id: string;
@@ -73,11 +74,7 @@ const arrowRight = publicUrl('/uploads/effects/slide-arrow-right.svg');
 
   <div class="phs__hit" data-interaktionsflaeche aria-hidden="true"></div>
 
-  <p class="phs__slogan">
-    future by
-    <br aria-hidden="true" />
-    professionals.
-  </p>
+  <BrandTag />
 
   <div class="phs__karusell">
     <div class="phs__wrap">
@@ -240,20 +237,6 @@ const arrowRight = publicUrl('/uploads/effects/slide-arrow-right.svg');
     inset: 0 0 33.33% 0;
     z-index: 1;
     background: transparent;
-  }
-
-  .phs__slogan {
-    position: absolute;
-    left: 48px;
-    top: 231px;
-    z-index: 3;
-    margin: 0;
-    padding-bottom: 24px;
-    width: 101px;
-    font-size: 16px;
-    font-weight: var(--font-weight-semibold);
-    line-height: 20px;
-    color: var(--color-cream);
   }
 
   .phs__karusell {
@@ -573,10 +556,6 @@ const arrowRight = publicUrl('/uploads/effects/slide-arrow-right.svg');
     .phs__raster-grid {
       left: 0;
       top: 0;
-    }
-
-    .phs__slogan {
-      top: 231px;
     }
 
     .phs__karusell {

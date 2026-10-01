@@ -114,9 +114,22 @@ function initProductHeaderSlider(root: HTMLElement) {
     root.dataset.activeIndex = String(index);
   };
 
+  const jumpToProduct = (slide: Slide) => {
+    const id = slide.href.startsWith('#') ? slide.href.slice(1) : slide.href;
+    if (!id) return;
+    const target = document.getElementById(id);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      history.pushState(null, '', `#${id}`);
+      return;
+    }
+    window.location.hash = id;
+  };
+
   detailsToggle?.addEventListener('click', () => {
     const open = detailsToggle.getAttribute('aria-expanded') !== 'true';
     setDetailsOpen(open);
+    if (open) jumpToProduct(at(index));
   });
 
   prevBtn?.addEventListener('click', () => show(index - 1));

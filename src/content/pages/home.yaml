@@ -23,7 +23,7 @@ leistungen:
       body: Begleitung für Teams, die digitale Kompetenz und Kultur verbinden.
       image:
         src: /uploads/hero-office-2.jpg
-        alt: ''
+        alt: Team in einer Besprechung im hellen Büro
       cta:
         label: Mehr erfahren
         href: /projektunterstuetzung
@@ -41,7 +41,7 @@ leistungen:
       body: Ein Team aus Professionals für nachhaltige digitale Zusammenarbeit.
       image:
         src: /uploads/springeloo/hero.jpg
-        alt: ''
+        alt: springeloo Team und Arbeitsumgebung
       cta:
         label: Mehr erfahren
         href: /springeloo

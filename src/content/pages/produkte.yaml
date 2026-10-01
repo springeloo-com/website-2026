@@ -42,6 +42,15 @@ slider:
       image:
         src: /uploads/product SuiteCRM chatgpt (1).png
         alt: spring suiteCRM — Kundenkontaktmanagement
+    - id: patho-ki
+      name: Patho-KI
+      description:
+        - Machine Learning für Fachärzte
+        - Entscheidungsunterstützung in der Pathologie
+        - Datenschutzkonform & klinisch integrierbar
+      image:
+        src: /uploads/ProduktM-iStock-995684292.jpg
+        alt: Patho-KI — Machine Learning für spezialisierte Ärztinnen und Ärzte
 products:
   - id: spring-ida2
     category: Identity Management
@@ -153,6 +162,39 @@ products:
         image:
           src: /uploads/istockphoto-1643825903-612x612.jpg
           alt: Equivalence Validation
+  - id: patho-ki
+    category: Medizinische KI
+    name: Patho-KI
+    logo: null
+    mock:
+      src: /uploads/ProduktM-iStock-995684292.jpg
+      alt: Patho-KI Assistenzoberfläche für Fachärzte
+    features:
+      - title: 'ML für Fachärzte:'
+        body: Proto — Patho-KI unterstützt Pathologinnen und Pathologen mit trainierten Modellen bei der Bild- und Befundanalyse. Die KI priorisiert auffällige Regionen und liefert nachvollziehbare Hinweise — die klinische Entscheidung bleibt beim Menschen.
+      - title: 'Spezialisten-Workflow:'
+        body: Proto — Anbindung an bestehende Labor- und Befundprozesse. Fälle lassen sich strukturiert vorbereiten, vergleichen und dokumentieren, ohne die etablierte Arbeitsweise der Spezialisten zu ersetzen.
+      - title: 'Datenschutz & Kontrolle:'
+        body: Proto — Verarbeitung nach klinischen Datenschutzanforderungen. Modelle und Daten bleiben steuerbar (On-Premise oder kontrollierte Cloud), inkl. Audit-Trail für nachvollziehbare Assistenz.
+    summary: |-
+      Patho-KI ist unser Prototyp für Machine-Learning-Assistenz speziell für Fachärzte in der Pathologie.
+      Die Lösung kombiniert Bildanalyse, Priorisierung und strukturierte Entscheidungsunterstützung — damit Spezialisten schneller und sicherer arbeiten können, ohne die Verantwortung an ein Black-Box-System abzugeben.
+    details:
+      - title: 'Bild- und Mustererkennung:'
+        body: Proto — Modelle erkennen Muster in histologischen Aufnahmen und markieren Regionen mit erhöhter Relevanz. Fachärzte erhalten eine visuelle Orientierungshilfe für den Fokus der Begutachtung.
+        image:
+          src: /uploads/produkte/carousel/product-1.png
+          alt: Bildanalyse und Mustererkennung
+      - title: 'Erklärbare Assistenz:'
+        body: Proto — Hinweise werden mit Kontext und Konfidenz indikativ dargestellt. So bleibt die Zusammenarbeit zwischen Mensch und Modell transparent und für den klinischen Alltag nutzbar.
+        image:
+          src: /uploads/produkte/carousel/product-2.png
+          alt: Erklärbare KI-Hinweise
+      - title: 'Integration in den Klinikalltag:'
+        body: Proto — Schnittstellen und Rollenmodelle zielen auf Einbettung in bestehende Systeme. Ziel ist Entlastung bei Routine und Fokus auf komplexe Fälle — Machine Learning als Werkzeug für spezialisierte Ärzte.
+        image:
+          src: /uploads/produkte/intro-b.png
+          alt: Klinische Integration
 oss:
   kicker: Digitale Souveränität
   headline: Open Source Lösungen

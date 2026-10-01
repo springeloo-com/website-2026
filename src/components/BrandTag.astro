@@ -1,0 +1,52 @@
+---
+/**
+ * Shared “future by professionals.” mark — same absolute position as home / Produkte heroes.
+ */
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<p class:list={['site-brand-tag', className]}>
+  future by
+  <br aria-hidden="true" />
+  professionals.
+</p>
+
+<style is:global>
+  .site-brand-tag {
+    position: absolute;
+    z-index: 3;
+    margin: 0;
+    left: 24px;
+    top: 280px;
+    width: 101px;
+    padding-bottom: 24px;
+    font-size: 16px;
+    font-weight: var(--font-weight-semibold);
+    line-height: 20px;
+    color: var(--color-cream);
+    pointer-events: none;
+  }
+
+  @media (min-width: 768px) {
+    .site-brand-tag {
+      left: 48px;
+      top: 188px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .site-brand-tag {
+      top: 172px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .site-brand-tag {
+      top: 231px;
+    }
+  }
+</style>

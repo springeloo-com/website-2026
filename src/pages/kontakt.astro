@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import BrandTag from '../components/BrandTag.astro';
 import { getKontaktContent, getSiteMeta, publicUrl } from '../lib/content';
 
 const siteMeta = getSiteMeta();
@@ -20,6 +21,7 @@ const lines = (text: string) => text.split('\n').filter((line) => line.length > 
 
   <section class="kontakt-page" aria-label="Kontakt">
     <div class="grid-overlay grid-overlay--dark" aria-hidden="true"></div>
+    <BrandTag />
     <div class="container kontakt-page__inner">
       <header class="kontakt-intro">
         <div class="kontakt-intro__main">
