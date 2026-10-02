@@ -23,7 +23,7 @@ numbers:
   body: Der Ausbau und Einsatz unseres Netzwerkes hat zu einer weit gefächerten Branchen-Expertise geführt die wir seit einiger Zeit auch zur Erstellung von Produkten und Softwarelösungen nutzen die mit dem Verständnis des Fachbereichs entstehen.
   stats:
     - value: 12K+
-      label: Wissensträger im Netzwerk der Springeloo
+      label: Wissensträger im Netzwerk der springeloo
     - value: 50+
       label: Projektpartner in Europa
     - value: 400+
@@ -31,7 +31,7 @@ numbers:
     - value: 30+
       label: Jahre Projekterfahrung in digitaler Transformation
 insights:
-  kicker: Springeloo insights
+  kicker: springeloo insights
   headline: Ein digitales Mindset ist unser leitendes Motiv in allen Problemstellungen.
   tabs:
     - id: philosophie
@@ -79,7 +79,7 @@ management:
   headline: |-
     Ihre Verbindung zu einem
     Netzwerk von Professionisten
-  quote: Springeloo steht für Sicherheit im Wandel. Mit unserem Know-How schaffen wir ein sicheres Fundament für Unternehmen, die etwas bewegen wollen.
+  quote: springeloo steht für Sicherheit im Wandel. Mit unserem Know-How schaffen wir ein sicheres Fundament für Unternehmen, die etwas bewegen wollen.
   team:
     - name: Franz Mendl-Nepita
       role: Managing Director & Co-Founder
