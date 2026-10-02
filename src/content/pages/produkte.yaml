@@ -167,7 +167,7 @@ products:
     name: Patho-KI
     logo: null
     mock:
-      src: /uploads/ProduktM-iStock-995684292.jpg
+      src: /uploads/heatmap.png
       alt: Patho-KI Assistenzoberfläche für Fachärzte
     features:
       - title: 'ML für Fachärzte:'
