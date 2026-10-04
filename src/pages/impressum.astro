@@ -1,0 +1,17 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import { marked } from 'marked';
+import LegalLayout from '../layouts/LegalLayout.astro';
+
+const filePath = path.join(process.cwd(), 'src/content/legal/impressum.md');
+const markdown = fs.readFileSync(filePath, 'utf8');
+const html = marked.parse(markdown, { async: false }) as string;
+---
+
+<LegalLayout
+  title="Impressum"
+  description="Impressum und Offenlegung der springeloo GmbH gemäß ECG, MedienG und GewO."
+  canonicalPath="/impressum"
+  html={html}
+/>

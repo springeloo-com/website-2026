@@ -1,0 +1,17 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import { marked } from 'marked';
+import LegalLayout from '../layouts/LegalLayout.astro';
+
+const filePath = path.join(process.cwd(), 'src/content/legal/datenschutz.md');
+const markdown = fs.readFileSync(filePath, 'utf8');
+const html = marked.parse(markdown, { async: false }) as string;
+---
+
+<LegalLayout
+  title="Datenschutzerklärung"
+  description="Datenschutzerklärung der springeloo GmbH — Informationen zur Verarbeitung personenbezogener Daten."
+  canonicalPath="/datenschutz"
+  html={html}
+/>

@@ -7,7 +7,7 @@ interface Props {
   privacyHref?: string;
 }
 
-const { privacyHref = '/kontakt#datenschutz' } = Astro.props;
+const { privacyHref = '/datenschutz' } = Astro.props;
 const gtmId = (import.meta.env.PUBLIC_GTM_ID as string | undefined)?.trim() || '';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '') || '';
 const privacyUrl = privacyHref.startsWith('http')

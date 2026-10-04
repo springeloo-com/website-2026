@@ -576,10 +576,10 @@ collections:
                     fields:
                       - { label: File, name: src, widget: image }
                       - { label: Alt text, name: alt, widget: string }
-          - label: Legal
+          - label: Legal (Kontakt teaser)
             name: legal
             widget: object
             fields:
               - { label: Impressum title, name: impressumTitle, widget: string }
               - { label: Datenschutz title, name: datenschutzTitle, widget: string }
-              - { label: Datenschutz body, name: datenschutzBody, widget: text }
+              - { label: Datenschutz teaser (full text on /datenschutz), name: datenschutzBody, widget: text }

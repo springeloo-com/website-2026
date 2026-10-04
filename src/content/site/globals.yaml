@@ -34,12 +34,12 @@ footer:
     - A-1140 Wien
   phone: +43 680 111 32 30
   email: office@springeloo.com
-  linkedIn: https://www.linkedin.com/
+  linkedIn: https://www.linkedin.com/company/springeloo/
   legal:
     - label: Impressum
-      href: /kontakt#impressum
+      href: /impressum
     - label: Datenschutzrichtlinien
-      href: /kontakt#datenschutz
+      href: /datenschutz
 contact:
   addressLines:
     - Teybergasse 1

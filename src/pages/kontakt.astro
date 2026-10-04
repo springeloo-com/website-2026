@@ -12,6 +12,7 @@ const { meta, intro, box, office, management, legal } = page;
 const phoneDisplay = siteMeta.contactPhone;
 const phoneHref = `tel:${phoneDisplay.replace(/\s/g, '')}`;
 const email = siteMeta.contactEmail;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '') || '';
 
 const lines = (text: string) => text.split('\n').filter((line) => line.length > 0);
 ---
@@ -139,16 +140,16 @@ const lines = (text: string) => text.split('\n').filter((line) => line.length > 
               ))
             }
           </p>
+          <p>
+            <a href={`${base}/impressum`}>Zum vollständigen Impressum</a>
+          </p>
         </div>
         <div id="datenschutz">
           <h2>{legal.datenschutzTitle}</h2>
-          {
-            legal.datenschutzBody
-              .split(/\n\s*\n/)
-              .map((para) => para.trim())
-              .filter(Boolean)
-              .map((para) => <p>{para}</p>)
-          }
+          <p>{legal.datenschutzBody}</p>
+          <p>
+            <a href={`${base}/datenschutz`}>Zur Datenschutzerklärung</a>
+          </p>
         </div>
       </div>
     </div>
@@ -375,6 +376,16 @@ const lines = (text: string) => text.split('\n').filter((line) => line.length > 
 
   .kontakt-legal p + p {
     margin-top: var(--space-3);
+  }
+
+  .kontakt-legal a {
+    color: var(--color-blue-soft);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  .kontakt-legal a:hover {
+    color: var(--color-cream);
   }
 
   /* Tablet quer+ */
