@@ -27,7 +27,7 @@ CloudCannon is no longer part of the editorial path.
 | Produkte | SEO, intro headline/image, lead, slider images + names, 3 product blocks (copy + mock/logo images), OSS, CTA label |
 | Projektunterstützung | SEO, hero, intro, Kompetenzen tabs (each with own image), Innovationsberatung/pillars, Softwareentwicklung, Branchen, CTA |
 | Springeloo | SEO, hero, intro, numbers/stats, Insights tabs + image, management team, CTA |
-| Kontakt | SEO, intro/aside, contact-box kicker, office kicker, management team, legal copy |
+| Kontakt | SEO, intro/aside, contact-box/office kickers, management (connect label, team tags, **per-person LinkedIn**), legal teaser |
 | Globals | Nav labels, footer/contact phone·email·address, legal labels |
 
 CTA and nav **URLs** and tab **ids** are developer-only. Home cards, Produkte slides,

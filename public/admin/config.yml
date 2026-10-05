@@ -565,11 +565,12 @@ collections:
                 fields:
                   - { label: Name, name: name, widget: string }
                   - { label: Role, name: role, widget: string }
-                  - label: Tags
+                  - label: Tags (z. B. Finanzen, Visionär)
                     name: tags
                     widget: list
                     allow_add: true
                     field: { label: Tag, name: tag, widget: string }
+                  - { label: LinkedIn URL, name: linkedIn, widget: string }
                   - label: Image
                     name: image
                     widget: object

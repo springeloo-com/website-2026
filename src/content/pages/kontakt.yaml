@@ -30,6 +30,7 @@ management:
         - Finanzen
         - Projektmanagement
         - Programmmanagement
+      linkedIn: https://www.linkedin.com/in/franz-mendl-nepita/
       image:
         src: /uploads/team/franz-mendl.jpg
         alt: Porträt Franz Mendl
@@ -39,6 +40,7 @@ management:
         - Visionär
         - strategische Ausrichtung
         - Technischer Vordenker
+      linkedIn: https://www.linkedin.com/in/horstsuntych/
       image:
         src: /uploads/team/horst-suntych.jpg
         alt: Porträt Horst Suntych
@@ -48,6 +50,7 @@ management:
         - Produktkommunikation
         - CRM & IDM
         - MedTech
+      linkedIn: https://www.linkedin.com/in/mathias-florian/
       image:
         src: /uploads/mathias_webpage.jpg
         alt: Porträt Mathias Florian

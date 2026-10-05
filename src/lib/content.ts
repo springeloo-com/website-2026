@@ -274,6 +274,7 @@ export type KontaktContent = {
       name: string;
       role: string;
       tags: string[];
+      linkedIn: string;
       image: ContentImage;
     }>;
   };
@@ -708,6 +709,7 @@ function validateKontakt(data: KontaktContent): KontaktContent {
     name: requireNonEmpty(person?.name, `management.team[${i}].name`),
     role: requireNonEmpty(person?.role, `management.team[${i}].role`),
     tags: requireStringList(person?.tags, `management.team[${i}].tags`),
+    linkedIn: requireNonEmpty(person?.linkedIn, `management.team[${i}].linkedIn`),
     image: requireImage(person?.image, `management.team[${i}].image`),
   }));
 
