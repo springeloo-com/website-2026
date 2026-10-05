@@ -15,15 +15,6 @@ lead:
 slider:
   startIndex: 0
   slides:
-    - id: host-abloese
-      name: Host Ablöse
-      description:
-        - Mainframe-Modernisierung
-        - Spec-Driven Development
-        - Java & PostgreSQL
-      image:
-        src: /uploads/product legacy_decommissioning2 gemini.png
-        alt: Host Ablöse — Modernisierung und Transformation
     - id: spring-ida2
       name: spring id.a2
       description:
@@ -51,6 +42,15 @@ slider:
       image:
         src: /uploads/ProduktM-iStock-995684292.jpg
         alt: Patho-KI — Machine Learning für spezialisierte Ärztinnen und Ärzte
+    - id: host-abloese
+      name: Host Ablöse
+      description:
+        - Mainframe-Modernisierung
+        - Spec-Driven Development
+        - Java & PostgreSQL
+      image:
+        src: /uploads/product legacy_decommissioning2 gemini.png
+        alt: Host Ablöse — Modernisierung und Transformation
 products:
   - id: spring-ida2
     category: Identity Management
