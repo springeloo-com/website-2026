@@ -182,28 +182,25 @@ products:
       Ihre eigene, unabhängige Künstliche Intelligenz – passgenau, reguliert und voll unter Ihrer Kontrolle.
       Unternehmen stehen heute vor der Entscheidung: Abhängigkeit von proprietären Drittanbieter-Blackboxes oder der Aufbau einer eigenen, souveränen KI-Architektur. Erfahren Sie mehr über unsere Leistungen am Bespiel des Praxis-Showcase: KI-Assistenzsystem in der digitalen Pathologie (Labor Dr. Ulm)
     details:
-      - title: Enterprise MLOps & Code-Souveränität
-        body: |-
-          Lückenlose Reproduzierbarkeit: Wir implementieren Ende-zu-Ende MLOps-Pipelines zur vollständigen Versionierung von Quellcode, Modellgewichten und Trainingsdaten.
-
-          Schutz vor Vendor-Lock-in:  Sie erhalten den vollständig dokumentierten Quellcode und die Modellstruktur. Damit bleiben Sie technisch unabhängig und auditierfähig.
-
-          Audit-Trail & Logging: Jede Modellentscheidung und jede menschliche Feedbackschleife wird datenbankgestützt mit Sämtlichen Parametern und Metriken lückenlos protokolliert.
+      - title: Ausgangslage
+        body: Steigende Probenzahlen und Fachkräftemangel in der Histopathologie erforderten eine automatisierte Vor-Priorisierung unauffälliger Routinefälle, um Fachärzt:innen zu entlasten.
         image:
           src: /uploads/produkte/carousel/product-1.png
           alt: Bildanalyse und Mustererkennung
-      - title: Nahtlose Integration & Interoperabilität (Schatten-Inferenz)
+      - title: Umsetzung durch springeloo
         body: |-
-          Backend-First-Architektur: Wir integrieren KI-Systeme als schlanke Hintergrunddienste („Schatten-Inferenz“), die bestehende Fachanwendungen nicht ersetzen, sondern im Hintergrund automatisieren.
-          Standardisierte Schnittstellen: Entwicklungs-Expertise für medizinische und industrielle Standards (z. B. HL7, FHIR, REST-APIs, JSON) sowie ereignisgesteuerte Hintergrunddienste, die KI-Analysen vollautomatisch triggern.
+          Mehrklassen-KI:  Umstellung von einfachen Zweiklassensystemen auf ein granulare Mehrklassen-Modell zur Präzisionsunterscheidung spezifischer Gewebepathologien (wie Polypenarten und Entzündungen im GI-Trakt).
+
+          Anomalieerkennung:  Mathematische Absicherung von Seltenheiten und Artefakten via Mahalanobis-Distanz.
+
+          Schatten-Inferenz & Orchestrator:  Entwicklung eines zentralen Orchestrator-Services, der WSI-Scans im Netzwerk automatisiert erfasst und Vorbefund-Textbausteine sowie Priorisierungs-Flags per REST-API und HL7/FHIR direkt im bestehenden Laborinformationssystem (LIS) bereitstellt.
+
+          AI Act & MLOps:  Vollständige Code- und Modellversionierung, manuelle Feedback-Schleifen der Patholog:innen zur Qualitätskontrolle sowie Erfüllung der Transparenz- und Logging-Auflagen nach dem EU AI Act.
         image:
           src: /uploads/produkte/carousel/product-2.png
           alt: Erklärbare KI-Hinweise
-      - title: Regulatory Tech & AI Governance (EU AI Act & IVDR)
-        body: |-
-          Compliance by Design: Unsere Systemarchitekturen erfüllen bereits im Standard die strengen Anforderungen des europäischen AI Acts  (Artikel 9–15: Risikomanagement, Logging, Transparenz, Cybersicherheit).
-
-          Human-in-the-Loop & Risikominimierung: KI als intelligentes Assistenzsystem, das die menschliche Letztverantwortung stärkt. Durch das Vermeiden eigener Benutzeroberflächen minimieren wir Usability-Haftungsrisiken (IEC 62366-1) und vereinfachen Zertifizierungsprozesse (z. B. IVDR SaMD Klasse C).
+      - title: Ergebnis
+        body: Eine souveräne, betriebsbereite KI-Lösung, die Durchlaufzeiten bei Routinefällen um 65–75 % senkt, die ärztliche Entscheidungssicherheit stärkt und dem Labor die vollständige Kontrolle über die eigene Technologie sichert.
         image:
           src: /uploads/produkte/intro-b.png
           alt: Klinische Integration
