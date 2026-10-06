@@ -163,8 +163,8 @@ products:
           src: /uploads/istockphoto-1643825903-612x612.jpg
           alt: Equivalence Validation
   - id: patho-ki
-    category: Souveräne KI-Lösungen
-    name: 'Praxis-Showcase: KI-Assistenzsystem in der digitalen Pathologie (Labor Dr. Ulm)'
+    category: 'Praxis-Showcase: KI-Assistenzsystem in der digitalen Pathologie (Labor Dr. Ulm)'
+    name: Souveräne KI-Lösungen
     logo: null
     mock:
       src: /uploads/heatmap_klein.png
