@@ -40,7 +40,7 @@ slider:
         - Data Engineering & Kuratierung
         - Enterprise MLOps & Code-Souveränität
       image:
-        src: /uploads/ProduktM-iStock-995684292.jpg
+        src: /uploads/heatmap_klein.png
         alt: Patho-KI — Machine Learning für spezialisierte Ärztinnen und Ärzte
     - id: host-abloese
       name: Host Ablöse
@@ -180,7 +180,7 @@ products:
           Ihre Trainingsdaten verbleiben zu 100 % in Ihrem Eigentum. Wir etablieren Prozesse, die Datenschutz und Anonymisierung nativ in der Daten-Pipeline verankern.
     summary: |-
       Ihre eigene, unabhängige Künstliche Intelligenz – passgenau, reguliert und voll unter Ihrer Kontrolle.
-      Unternehmen und medizinische Einrichtungen stehen heute vor der Entscheidung: Abhängigkeit von proprietären Drittanbieter-Blackboxes oder der Aufbau einer eigenen, souveränen KI-Architektur. Erfahren Sie mehr über unsere Leistungen am Bespiel des Praxis-Showcase: KI-Assistenzsystem in der digitalen Pathologie (Labor Dr. Ulm)
+      Unternehmen stehen heute vor der Entscheidung: Abhängigkeit von proprietären Drittanbieter-Blackboxes oder der Aufbau einer eigenen, souveränen KI-Architektur. Erfahren Sie mehr über unsere Leistungen am Bespiel des Praxis-Showcase: KI-Assistenzsystem in der digitalen Pathologie (Labor Dr. Ulm)
     details:
       - title: Enterprise MLOps & Code-Souveränität
         body: |-
