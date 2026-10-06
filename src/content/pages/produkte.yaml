@@ -185,7 +185,7 @@ products:
       - title: Ausgangslage
         body: Steigende Probenzahlen und Fachkräftemangel in der Histopathologie erforderten eine automatisierte Vor-Priorisierung unauffälliger Routinefälle, um Fachärzt:innen zu entlasten.
         image:
-          src: /uploads/produkte/carousel/product-1.png
+          src: /uploads/istockphoto-1446466521-612x612.jpg
           alt: Bildanalyse und Mustererkennung
       - title: Umsetzung durch springeloo
         body: |-
@@ -197,12 +197,12 @@ products:
 
           AI Act & MLOps:  Vollständige Code- und Modellversionierung, manuelle Feedback-Schleifen der Patholog:innen zur Qualitätskontrolle sowie Erfüllung der Transparenz- und Logging-Auflagen nach dem EU AI Act.
         image:
-          src: /uploads/produkte/carousel/product-2.png
+          src: /uploads/istockphoto-2207142100-612x612.jpg
           alt: Erklärbare KI-Hinweise
       - title: Ergebnis
         body: Eine souveräne, betriebsbereite KI-Lösung, die Durchlaufzeiten bei Routinefällen um 65–75 % senkt, die ärztliche Entscheidungssicherheit stärkt und dem Labor die vollständige Kontrolle über die eigene Technologie sichert.
         image:
-          src: /uploads/produkte/intro-b.png
+          src: /uploads/istockphoto-2226757333-612x612.jpg
           alt: Klinische Integration
 oss:
   kicker: Digitale Souveränität
