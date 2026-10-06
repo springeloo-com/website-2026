@@ -164,34 +164,46 @@ products:
           alt: Equivalence Validation
   - id: patho-ki
     category: Medizinische KI
-    name: Patho-KI
+    name: Souveräne KI-Lösungen
     logo: null
     mock:
-      src: /uploads/heatmap.png
-      alt: Patho-KI Assistenzoberfläche für Fachärzte
+      src: /uploads/heatmap_klein.png
+      alt: Souveräne KI-Lösungen entwickeln
     features:
-      - title: 'ML für Fachärzte:'
-        body: Proto — Patho-KI unterstützt Pathologinnen und Pathologen mit trainierten Modellen bei der Bild- und Befundanalyse. Die KI priorisiert auffällige Regionen und liefert nachvollziehbare Hinweise — die klinische Entscheidung bleibt beim Menschen.
-      - title: 'Spezialisten-Workflow:'
-        body: Proto — Anbindung an bestehende Labor- und Befundprozesse. Fälle lassen sich strukturiert vorbereiten, vergleichen und dokumentieren, ohne die etablierte Arbeitsweise der Spezialisten zu ersetzen.
-      - title: 'Datenschutz & Kontrolle:'
-        body: Proto — Verarbeitung nach klinischen Datenschutzanforderungen. Modelle und Daten bleiben steuerbar (On-Premise oder kontrollierte Cloud), inkl. Audit-Trail für nachvollziehbare Assistenz.
+      - title: 'Souveräne KI für Fachärzte:'
+        body: Eine souveräne KI bedeutet volles Eigentum an Modellen, Quellcodes und Daten, lückenlose Transparenz sowie die Freiheit, Systeme flexibel an spezifische Domänenanforderungen anzupassen – ohne Vendor-Lock-in. Die springeloo GmbH begleitet Sie von der ersten Modellkonzeption über das MLOps-Engineering bis hin zum regulatorisch abgesicherten Echbetrieb.
+      - title: Domänenspezifisches KI-Modell-Engineering
+        body: 'Maßgeschneiderte Modellarchitekturen: Wir entwickeln individuelle Deep-Learning-Architekturen (z. B. auf Basis von ConvNeXt/ResNet), die exakt auf Ihre Fachdomäne zugeschnitten sind – von binären Entscheidungen bis hin zu hochgranularen Mehrklassensystemen.'
+      - title: Data Engineering & Kuratierung
+        body: |-
+          Über automatisierte Ranking-Verfahren identifizieren wir gezielt jene Datenpunkte, die den höchsten Informationsgehalt für das Modell aufweisen, um Datensätze hocheffizient und qualitativ präzise zu erweitern.
+          Ihre Trainingsdaten verbleiben zu 100 % in Ihrem Eigentum. Wir etablieren Prozesse, die Datenschutz und Anonymisierung nativ in der Daten-Pipeline verankern.
     summary: |-
-      Patho-KI ist unser Prototyp für Machine-Learning-Assistenz speziell für Fachärzte in der Pathologie.
-      Die Lösung kombiniert Bildanalyse, Priorisierung und strukturierte Entscheidungsunterstützung — damit Spezialisten schneller und sicherer arbeiten können, ohne die Verantwortung an ein Black-Box-System abzugeben.
+      Ihre eigene, unabhängige Künstliche Intelligenz – passgenau, reguliert und voll unter Ihrer Kontrolle.
+      Unternehmen und medizinische Einrichtungen stehen heute vor der Entscheidung: Abhängigkeit von proprietären Drittanbieter-Blackboxes oder der Aufbau einer eigenen, souveränen KI-Architektur. Erfahren Sie mehr über unsere Leistungen am Bespiel des Projektes PathoKI
     details:
-      - title: 'Bild- und Mustererkennung:'
-        body: Proto — Modelle erkennen Muster in histologischen Aufnahmen und markieren Regionen mit erhöhter Relevanz. Fachärzte erhalten eine visuelle Orientierungshilfe für den Fokus der Begutachtung.
+      - title: Enterprise MLOps & Code-Souveränität
+        body: |-
+          Lückenlose Reproduzierbarkeit: Wir implementieren Ende-zu-Ende MLOps-Pipelines zur vollständigen Versionierung von Quellcode, Modellgewichten und Trainingsdaten.
+
+          Schutz vor Vendor-Lock-in:  Sie erhalten den vollständig dokumentierten Quellcode und die Modellstruktur. Damit bleiben Sie technisch unabhängig und auditierfähig.
+
+          Audit-Trail & Logging: Jede Modellentscheidung und jede menschliche Feedbackschleife wird datenbankgestützt mit Sämtlichen Parametern und Metriken lückenlos protokolliert.
         image:
           src: /uploads/produkte/carousel/product-1.png
           alt: Bildanalyse und Mustererkennung
-      - title: 'Erklärbare Assistenz:'
-        body: Proto — Hinweise werden mit Kontext und Konfidenz indikativ dargestellt. So bleibt die Zusammenarbeit zwischen Mensch und Modell transparent und für den klinischen Alltag nutzbar.
+      - title: Nahtlose Integration & Interoperabilität (Schatten-Inferenz)
+        body: |-
+          Backend-First-Architektur: Wir integrieren KI-Systeme als schlanke Hintergrunddienste („Schatten-Inferenz“), die bestehende Fachanwendungen nicht ersetzen, sondern im Hintergrund automatisieren.
+          Standardisierte Schnittstellen: Entwicklungs-Expertise für medizinische und industrielle Standards (z. B. HL7, FHIR, REST-APIs, JSON) sowie ereignisgesteuerte Hintergrunddienste, die KI-Analysen vollautomatisch triggern.
         image:
           src: /uploads/produkte/carousel/product-2.png
           alt: Erklärbare KI-Hinweise
-      - title: 'Integration in den Klinikalltag:'
-        body: Proto — Schnittstellen und Rollenmodelle zielen auf Einbettung in bestehende Systeme. Ziel ist Entlastung bei Routine und Fokus auf komplexe Fälle — Machine Learning als Werkzeug für spezialisierte Ärzte.
+      - title: Regulatory Tech & AI Governance (EU AI Act & IVDR)
+        body: |-
+          Compliance by Design: Unsere Systemarchitekturen erfüllen bereits im Standard die strengen Anforderungen des europäischen AI Acts  (Artikel 9–15: Risikomanagement, Logging, Transparenz, Cybersicherheit).
+
+          Human-in-the-Loop & Risikominimierung: KI als intelligentes Assistenzsystem, das die menschliche Letztverantwortung stärkt. Durch das Vermeiden eigener Benutzeroberflächen minimieren wir Usability-Haftungsrisiken (IEC 62366-1) und vereinfachen Zertifizierungsprozesse (z. B. IVDR SaMD Klasse C).
         image:
           src: /uploads/produkte/intro-b.png
           alt: Klinische Integration
