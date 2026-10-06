@@ -33,12 +33,12 @@ slider:
       image:
         src: /uploads/product SuiteCRM chatgpt (1).png
         alt: spring suiteCRM — Kundenkontaktmanagement
-    - id: patho-ki
-      name: Patho-KI
+    - id: Souveräne KI-Lösungen
+      name: Souveräne KI-Lösungen
       description:
-        - Machine Learning für Fachärzte
-        - Entscheidungsunterstützung in der Pathologie
-        - Datenschutzkonform & klinisch integrierbar
+        - Domänenspezifisches KI- & Modell-Engineering
+        - Data Engineering & Kuratierung
+        - Enterprise MLOps & Code-Souveränität
       image:
         src: /uploads/ProduktM-iStock-995684292.jpg
         alt: Patho-KI — Machine Learning für spezialisierte Ärztinnen und Ärzte
@@ -163,8 +163,8 @@ products:
           src: /uploads/istockphoto-1643825903-612x612.jpg
           alt: Equivalence Validation
   - id: patho-ki
-    category: Medizinische KI
-    name: Souveräne KI-Lösungen
+    category: Souveräne KI-Lösungen
+    name: 'Praxis-Showcase: KI-Assistenzsystem in der digitalen Pathologie (Labor Dr. Ulm)'
     logo: null
     mock:
       src: /uploads/heatmap_klein.png
@@ -180,7 +180,7 @@ products:
           Ihre Trainingsdaten verbleiben zu 100 % in Ihrem Eigentum. Wir etablieren Prozesse, die Datenschutz und Anonymisierung nativ in der Daten-Pipeline verankern.
     summary: |-
       Ihre eigene, unabhängige Künstliche Intelligenz – passgenau, reguliert und voll unter Ihrer Kontrolle.
-      Unternehmen und medizinische Einrichtungen stehen heute vor der Entscheidung: Abhängigkeit von proprietären Drittanbieter-Blackboxes oder der Aufbau einer eigenen, souveränen KI-Architektur. Erfahren Sie mehr über unsere Leistungen am Bespiel des Projektes PathoKI
+      Unternehmen und medizinische Einrichtungen stehen heute vor der Entscheidung: Abhängigkeit von proprietären Drittanbieter-Blackboxes oder der Aufbau einer eigenen, souveränen KI-Architektur. Erfahren Sie mehr über unsere Leistungen am Bespiel des Praxis-Showcase: KI-Assistenzsystem in der digitalen Pathologie (Labor Dr. Ulm)
     details:
       - title: Enterprise MLOps & Code-Souveränität
         body: |-
