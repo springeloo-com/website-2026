@@ -33,7 +33,7 @@ slider:
       image:
         src: /uploads/Limespace.jpg
         alt: spring suiteCRM — Kundenkontaktmanagement
-    - id: SouveraeneKI
+    - id: patho-ki
       name: Souveräne KI-Lösungen
       description:
         - Domänenspezifisches KI- & Modell-Engineering
