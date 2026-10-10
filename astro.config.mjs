@@ -4,8 +4,8 @@ import { defineConfig } from 'astro/config';
 const base = process.env.PUBLIC_BASE_PATH || '/';
 
 export default defineConfig({
-  site: process.env.PUBLIC_SITE_URL || 'https://springeloo.github.io',
-  base,
+  site: process.env.PUBLIC_SITE_URL || 'https://springeloo.com',
+  base: '/',
   output: 'static',
   trailingSlash: 'ignore',
 });
