@@ -171,7 +171,7 @@ products:
       alt: Souveräne KI-Lösungen entwickeln
     features:
       - title: 'Souveräne KI für Fachärzte:'
-        body: Eine souveräne KI bedeutet volles Eigentum an Modellen, Quellcodes und Daten, lückenlose Transparenz sowie die Freiheit, Systeme flexibel an spezifische Domänenanforderungen anzupassen – ohne Vendor-Lock-in. Die springeloo GmbH begleitet Sie von der ersten Modellkonzeption über das MLOps-Engineering bis hin zum regulatorisch abgesicherten Echbetrieb.
+        body: Eine souveräne KI bedeutet volles Eigentum an Modellen, Quellcodes und Daten, lückenlose Transparenz sowie die Freiheit, Systeme flexibel an spezifische Domänenanforderungen anzupassen – ohne Vendor-Lock-in. Die springeloo GmbH begleitet Sie von der ersten Modellkonzeption über das MLOps-Engineering bis hin zum regulatorisch abgesicherten Echtbetrieb.
       - title: Domänenspezifisches KI-Modell-Engineering
         body: 'Maßgeschneiderte Modellarchitekturen: Wir entwickeln individuelle Deep-Learning-Architekturen (z. B. auf Basis von ConvNeXt/ResNet), die exakt auf Ihre Fachdomäne zugeschnitten sind – von binären Entscheidungen bis hin zu hochgranularen Mehrklassensystemen.'
       - title: Data Engineering & Kuratierung
