@@ -189,7 +189,7 @@ products:
           alt: Bildanalyse und Mustererkennung
       - title: Umsetzung durch springeloo
         body: |-
-          Mehrklassen-KI:  Umstellung von einfachen Zweiklassensystemen auf ein granulare Mehrklassen-Modell zur Präzisionsunterscheidung spezifischer Gewebepathologien (wie Polypenarten und Entzündungen im GI-Trakt).
+          Mehrklassen-KI:  Umstellung von einfachen Zweiklassensystemen auf ein granulares Mehrklassen-Modell zur Präzisionsunterscheidung spezifischer Gewebepathologien (wie Polypenarten und Entzündungen im GI-Trakt).
 
           Anomalieerkennung:  Mathematische Absicherung von Seltenheiten und Artefakten via Mahalanobis-Distanz.
 
