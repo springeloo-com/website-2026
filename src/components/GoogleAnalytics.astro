@@ -1,0 +1,22 @@
+---
+// src/components/GoogleAnalytics.astro
+const GA_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+---
+
+{import.meta.env.PROD && GA_ID && (
+  <>
+    <script
+      is:inline
+      async
+      src={`https://googletagmanager.com{GA_ID}`}
+    ></script>
+    <script is:inline define:vars={{ GA_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', GA_ID);
+    </script>
+  </>
+)}
